@@ -1,10 +1,13 @@
-"set nocompatible
+set nocompatible
+
+imap ,, <ESC>
+
 set number
 syntax on
 set mouse=a
 
 set smartindent
-filetype indent plugin on
+filetype indent on
 
 set shiftwidth=4
 set softtabstop=4
@@ -12,7 +15,6 @@ set expandtab
 set smarttab
 
 "mapping esc to ee
-inoremap <ESC> ii 
 
 "Better command-line completion
 set wildmenu
@@ -21,12 +23,12 @@ set wildmenu
 set showcmd
 
 "Highlight searches (use <C-L> to temporarily turn off highligting
-set hlsearch
+"set hlsearch
 
 set ruler
 
 set ignorecase
-set smartcase
+"set smartcase
 
 
 set confirm
@@ -42,4 +44,28 @@ set pastetoggle=<F11>
 "Annoying
 "set laststatus=2
 
+"Bug
+"set cursorline
 
+set showmatch
+set mat=2
+
+set incsearch
+
+nnoremap j gj
+nnoremap k gk
+
+set noerrorbells
+set novisualbell
+
+syntax enable
+
+try
+    colorscheme molokai
+catch
+endtry
+
+"Always show the status line
+set laststatus=2
+
+autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
