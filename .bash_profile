@@ -9,7 +9,7 @@ cl(){ builtin cd "$@" && la
 }
 alias c='cl'
 alias l='la'
-alias v='vi'
+alias v='vim'
  
 
 alias rm='rm -i'
@@ -25,7 +25,5 @@ alias luu="ssh dkim87@ubuntu.cs.mcgill.ca"
 
 bindkey -v
 
-alias rm="rm --preserve-root"
-touch -- -i
-touch ./-i
+export PATH="$HOME/bin:$PATH"
 
