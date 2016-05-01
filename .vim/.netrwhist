@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/dqmacair/login_script_backup'
+let g:netrw_dirhist_2='/Users/dqmacair/.vim'
+let g:netrw_dirhist_3='/Users/dqmacair/.vim/bundle/ctags-5.8'
+let g:netrw_dirhist_4='/Users/dqmacair/.vim/bundle/neocomplete.vim'
