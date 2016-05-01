@@ -1,4 +1,4 @@
-set nocompatible
+"set nocompatible
 set number
 syntax on
 set mouse=a
@@ -12,7 +12,7 @@ set expandtab
 set smarttab
 
 "mapping esc to ee
-inoremap ii <ESC>
+inoremap <ESC> ii 
 
 "Better command-line completion
 set wildmenu
