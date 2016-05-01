@@ -18,7 +18,7 @@ SHELL = /bin/sh
 #
 exec_prefix = ${prefix}
 datarootdir = ${prefix}/share
-prefix	= /Users/dqmacair
+prefix	= /usr/local
 bindir	= ${exec_prefix}/bin
 srcdir	= .
 libdir	= ${exec_prefix}/lib

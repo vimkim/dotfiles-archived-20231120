@@ -1,50 +1,14 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-"""error"""Plugin 'ascenator/L9', {'name': 'newL9'}
-
-Plugin 'shougo/neocomplete.vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+filetype indent plugin on
 
 imap ,, <ESC>
 
 set number
+set relativenumber
+
+set scrolloff=7
+
 syntax on
 set mouse=a
 
@@ -69,7 +33,7 @@ set showcmd
 set ruler
 
 set ignorecase
-"set smartcase
+set smartcase
 
 
 set confirm
@@ -92,6 +56,7 @@ set mat=2
 
 set incsearch
 
+"cursor moves visual instead of actual line
 nnoremap j gj
 nnoremap k gk
 
@@ -106,9 +71,31 @@ endtry
 "Always show the status line
 set laststatus=2
 
+"Highlight selected word on cursor
 autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
+"""""Pathogen
 execute pathogen#infect()
+"""""
 
+"""""neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplcache_enable_cursor_hold_i=1
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+	    \ <SID>check_back_space() ? "\<TAB>" :
+	    \ neocomplete#start_manual_complete()
+function! s:check_back_space() "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+"""""
+
+"""""easytags
+set tags=./tags;/
+"let g:easytags_cmd='/usr/local/bin/ctags'
+"let g:easytags_syntax_keyword='always'
+"let g:easytags_on_cursorhold=0
+"
+
