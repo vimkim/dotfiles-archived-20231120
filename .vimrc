@@ -1,14 +1,45 @@
+set nocompatible
 set number
 syntax on
 set mouse=a
 
 set smartindent
-filetype indent on
+filetype indent plugin on
 
 set shiftwidth=4
-set tabstop=4
-set softtabstop=0 noexpandtab
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set softtabstop=4
+set expandtab
+set smarttab
 
 "mapping esc to ee
-imap ee <ESC>
+inoremap ii <ESC>
+
+"Better command-line completion
+set wildmenu
+
+"Show partial commands in the last line of the saoc 
+set showcmd
+
+"Highlight searches (use <C-L> to temporarily turn off highligting
+set hlsearch
+
+set ruler
+
+set ignorecase
+set smartcase
+
+
+set confirm
+
+set wildmenu
+
+set visualbell
+
+set cmdheight=2
+
+set pastetoggle=<F11>
+
+"Annoying
+"set laststatus=2
+
+
