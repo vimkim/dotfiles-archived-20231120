@@ -1,2 +1,7 @@
-# login_script_backup
-including .bashrc and .vimrc
+# Runtime config scripts backup
+- .bashrc
+- .zshrc
+- .vimrc
+- .vim
+- .inputrc
+etc.
