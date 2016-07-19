@@ -57,7 +57,7 @@ set cmdheight=2
 set pastetoggle=<F11>
 
 "Annoying
-"set laststatus=2
+set laststatus=2
 
 "Bug
 "set cursorline
@@ -72,11 +72,10 @@ nnoremap j gj
 nnoremap k gk
 
 
-syntax enable
 
 """""Python"""""
 "If F9 is pressed then run python
-nnoremap <buffer> <F9> :w <CR> :exec '!python' shellescape(@%,1)<cr>
+nnoremap <buffer> <F9> :w <CR> :exec '!python3' shellescape(@%,1)<cr>
 
 """""C,CPP"""""
 "If F8 is pressed then run gcc and a.out
@@ -86,16 +85,17 @@ map <F8> :w <CR>:!gcc % && ./a.out <CR>
 
 """"""""""""""Color Scheme molokai"""""""""""Begin
 try
+    syntax enable
     colorscheme molokai
 catch
 endtry
-let g:molokai_original = 1
+"let g:molokai_original = 1
 "let g:rehash256 = 1
 """"""""""""""Color Scheme molokai"""""""""""End
 
 
 "Always show the status line
-set laststatus=2
+"set laststatus=2
 
 "Highlight selected word on cursor
 "autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
@@ -126,7 +126,46 @@ set tags=./tags;/
 "let g:easytags_cmd='/usr/local/bin/ctags'
 "let g:easytags_syntax_keyword='always'
 "let g:easytags_on_cursorhold=0
-"
+
+
+"""""Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"""""ctrlp.vim
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+:nnoremap <F5> :CtrlP
+let g:ctrlp_map ='<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+
+"""""TagBar
+nmap <F2> :TagbarToggle<CR>
+
+"""""Semantic Highlight
+:nnoremap <F12> :SemanticHighlightToggle<cr>
+let g:semanticTermColors = [1,2,3,9,10,12,13,14,15,125]
+
+"""""NerdTree
+
+"""""AirLine
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 """""MacVim ZOOM"""""
 set guifont=Menlo:h22
+
+"""""Autocmd
+
+"autocmd VimEnter * SemanticHighlightToggle
+"autocmd VimEnter * NERDTree
+autocmd VimEnter * Tagbar
+
