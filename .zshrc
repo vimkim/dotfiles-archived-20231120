@@ -9,7 +9,9 @@ export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="random"
-# strug.zsh-theme
+#strug.zsh-theme
+#intheloop.zsh-theme
+#fox.zsh-theme
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -111,3 +113,8 @@ alias python='python3'
 alias py='python'
 bindkey -M viins ',,' vi-cmd-mode
 ls
+
+# Setting PATH for Python 3.5
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+export PATH
