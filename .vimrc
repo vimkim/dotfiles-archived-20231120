@@ -1,4 +1,3 @@
-set nocompatible              " be iMproved, required
 set backspace=indent,eol,start " make backspace work like most other apps. Alternatives: set backspace=2
 
 filetype indent plugin on
@@ -21,6 +20,14 @@ set scrolloff=7
 
 "syntax highlighting"
 syntax on
+
+"monokai scheme
+colorscheme monokain
+"gruvbox scheme
+"colorscheme gruvbox
+"set bg=dark
+
+
 
 "mouse"
 set mouse=a
@@ -85,10 +92,10 @@ map <F8> :w <CR>:!gcc % && ./a.out <CR>
 
 """"""""""""""Color Scheme molokai"""""""""""Begin
 try
-    syntax enable
-    colorscheme molokai
+    "colorscheme molokai
 catch
 endtry
+
 "let g:molokai_original = 1
 "let g:rehash256 = 1
 """"""""""""""Color Scheme molokai"""""""""""End
@@ -140,7 +147,6 @@ let g:syntastic_check_on_wq = 0
 
 """""ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-:nnoremap <F5> :CtrlP
 let g:ctrlp_map ='<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
@@ -155,6 +161,7 @@ let g:semanticTermColors = [1,2,3,9,10,12,13,14,15,125]
 """""NerdTree
 
 """""AirLine
+set t_Co=256
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
