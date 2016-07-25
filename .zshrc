@@ -12,6 +12,7 @@ ZSH_THEME="random"
 #strug.zsh-theme
 #intheloop.zsh-theme
 #fox.zsh-theme
+#zonathan.zsh-theme
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -94,7 +95,7 @@ alias ll='ls -GAFl'
 cl(){ builtin cd "$@" && la
 }
 alias c='cl'
-alias l='la'
+alias l='ls'
 alias v='vim'
 alias rm='rm -i'
 alias mv='mv -i'
@@ -111,6 +112,7 @@ alias luu="ssh dkim87@ubuntu.cs.mcgill.ca"
 alias rsc='Rscript'
 alias python='python3'
 alias py='python'
+alias dog='pygmentize -g'
 bindkey -M viins ',,' vi-cmd-mode
 ls
 
