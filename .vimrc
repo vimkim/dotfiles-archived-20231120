@@ -171,8 +171,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 set guifont=Menlo:h22
 
 """""Autocmd
-
 "autocmd VimEnter * SemanticHighlightToggle
 "autocmd VimEnter * NERDTree
-autocmd VimEnter * Tagbar
+"autocmd VimEnter * Tagbar
 
