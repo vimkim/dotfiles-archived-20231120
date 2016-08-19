@@ -90,6 +90,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# vim save ctrl s begin
+alias vim="stty stop '' -ixoff ; vim"
+ttyctl -f
+# vim save ctrl s end
 alias la='ls -GAF'
 alias ll='ls -GAFl'
 cl(){ builtin cd "$@" && la

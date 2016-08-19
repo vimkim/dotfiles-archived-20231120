@@ -1,177 +1,197 @@
-set backspace=indent,eol,start " make backspace work like most other apps. Alternatives: set backspace=2
 
+"TABLE OF CONTENTS
+"- TIPs & Reminders
+"- NECESSARY
+"- ACCESSARY
+"- MAPPING
+"- SCHEME
+"- PLUGIN
+"- FORGOTTEN
+
+
+"==========================================================================================
+" Tips 
+"
+" - windo makes all windows to do the same command
+" - you can look up the register file by :reg
+" - you can paste from registry by using "<char>p
+" - you can copy to registry by using "<char>y (visual select might be useful)
+" -
+
+"==========================================================================================
+" NECESSARY
+"indent"
 filetype indent plugin on
-
-"""""""""""""""""""""""""MAPPING""""""""""""""""""""""""""""""
-" mapping ESC to ,,  
-vmap ,, <ESC> 
-imap ,, <ESC>
-cmap ,, <C-c>
-
-" mapping dot(.) to :norm.<CR> so it can be used in visual mode.
-""vnoremap . :norm.<CR>
-
-"line number
-set number
-set relativenumber
-
-"scrolling control"
-set scrolloff=7
-
 "syntax highlighting"
 syntax on
-
-"monokai scheme
-colorscheme monokain
-"gruvbox scheme
-"colorscheme gruvbox
-"set bg=dark
-
-
-
 "mouse"
 set mouse=a
-
 "indenting"
 set smartindent
-
 "tab control"
 set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smarttab
-
-"Better command-line completion
-set wildmenu
-
 "Show partial commands in the last line of the saoc 
 set showcmd
-
-"Highlight searches (use <C-L> to temporarily turn off highligting
-"set hlsearch
-
-set ruler
-
 "when searching, ignore case sensitivity, but smart enough"
 set ignorecase
 set smartcase
+"scrolling control"
+set scrolloff=7
+"line number
+set number
+set relativenumber
+"make backspace work like most other apps. Alternatives: set backspace=2
+set backspace=indent,eol,start 
+"MACVIM ZOOM
+set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
 
+
+"==========================================================================================
+" ACCESSARY
 "probably this asks before quit
 set confirm
-
+"set command line height to 2
 set cmdheight=2
-
+"toggle paste mode
 set pastetoggle=<F11>
-
 "Annoying
 set laststatus=2
-
 "Bug
-"set cursorline
-
+""set cursorline
+"??
 set showmatch
+"??
 set mat=2
-
+"??
 set incsearch
+"Better command-line completion
+set wildmenu
+"Highlight searches (use <C-L> to temporarily turn off highligting)
+""set hlsearch
+"??
+set ruler
 
+
+"==========================================================================================
+" SIMPLE MAPPING 
+" mapping ESC to ,,  
+vmap ,, <ESC> 
+imap ,, <ESC>
+cmap ,, <C-c>
+" map leaderkey
+let mapleader = ","
 "cursor moves visual instead of actual line
 nnoremap j gj
 nnoremap k gk
-
-
-
-"""""Python"""""
-"If F9 is pressed then run python
+" mapping dot(.) to :norm.<CR> so it can be used in visual mode.
+""vnoremap . :norm.<CR>
+" ctrl+s saves
+noremap <C-s> :update<CR>
+inoremap <c-s> <ESC>:Update<CR>
+vnoremap <C-s> <esc>:w<CR>gv
+" window split and scrollbind
+map <Leader>wsb = :lclose:vsplit:windo set scrollbind:Errors
+" COMPILE & RUN MAPPING
+" - Python: "If F9 is pressed then run python
 nnoremap <buffer> <F9> :w <CR> :exec '!python3' shellescape(@%,1)<cr>
-
-"""""C,CPP"""""
-"If F8 is pressed then run gcc and a.out
+" - C,CPP: "If F8 is pressed then run gcc and a.out
+" creates an executable file named a.out
 map <F8> :w <CR>:!gcc % && ./a.out <CR>
-"map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+" creates an executable file that has the same name with its .c file
+""map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
 
 
-""""""""""""""Color Scheme molokai"""""""""""Begin
-try
-    "colorscheme molokai
-catch
-endtry
-
+"==========================================================================================
+" SCHEMES 
+" MONOKAI BEGIN
+colorscheme monokain
+" MONOKAI END
+"gruvbox BEGIN
+""colorscheme gruvbox
+""set bg=dark
+"GRUVBOX END
+"MOLOKAI BEGIN
+""colorscheme molokai
 "let g:molokai_original = 1
 "let g:rehash256 = 1
-""""""""""""""Color Scheme molokai"""""""""""End
+"MOLOKAI END
 
 
-"Always show the status line
-"set laststatus=2
+"==========================================================================================
+" PLUGINS
 
-"Highlight selected word on cursor
-"autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-
-
-"""""""""""""""""""""""""PLUGINS""""""""""""""""""""""""""""""
-
-"""""Pathogen
+"Pathogen
 execute pathogen#infect()
-"""""
 
-"""""neocomplete
+"neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplcache_enable_cursor_hold_i=1
-
-" <TAB>: completion.
+"for neocomplete, enable <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-	    \ <SID>check_back_space() ? "\<TAB>" :
-	    \ neocomplete#start_manual_complete()
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ neocomplete#start_manual_complete()
 function! s:check_back_space() "{{{
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
-"""""
 
-"""""easytags
+"easytags
 set tags=./tags;/
-"let g:easytags_cmd='/usr/local/bin/ctags'
-"let g:easytags_syntax_keyword='always'
-"let g:easytags_on_cursorhold=0
+""let g:easytags_cmd='/usr/local/bin/ctags'
+""let g:easytags_syntax_keyword='always'
+""let g:easytags_on_cursorhold=0
 
-
-"""""Syntastic
+"Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-"""""ctrlp.vim
+"ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map ='<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_cmd = 'ctrlp'
 
-
-"""""TagBar
+"TagBar
 nmap <F2> :TagbarToggle<CR>
 
-"""""Semantic Highlight
+"Semantic Highlight
 :nnoremap <F12> :SemanticHighlightToggle<cr>
 let g:semanticTermColors = [1,2,3,9,10,12,13,14,15,125]
 
-"""""NerdTree
+"NerdTree
 
-"""""AirLine
+"AirLine
 set t_Co=256
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-"""""MacVim ZOOM"""""
-set guifont=Menlo:h22
+"Autocmd
+""autocmd VimEnter * SemanticHighlightToggle
+""autocmd VimEnter * NERDTree
+""autocmd VimEnter * Tagbar
+autocmd VimEnter * Minimap
 
-"""""Autocmd
-"autocmd VimEnter * SemanticHighlightToggle
-"autocmd VimEnter * NERDTree
-"autocmd VimEnter * Tagbar
+"vim-minimap by Severin Lemaignan
+let g:minimap_show='<leader>ms'
+let g:minimap_update='<leader>mu'
+let g:minimap_close='<leader>gc'
+let g:minimap_toggle='<leader>mm'
+let g:minimap_highlight='Visual'
+
+"==========================================================================================
+" UNKNOWN
+"Always show the status line
+""set laststatus=2
+"Highlight selected word on cursor
+""autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
 
