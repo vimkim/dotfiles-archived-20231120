@@ -90,10 +90,19 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+
+#==========================================================================================
+# CUSTOMIZED
+#==========================================================================================
+
 # vim save ctrl s begin
-alias vim="stty stop '' -ixoff ; vim"
-ttyctl -f
+#alias vim="stty stop '' -ixoff ; vim"
+#ttyctl -f
+stty -ixon
 # vim save ctrl s end
+
+
 alias la='ls -GAF'
 alias ll='ls -GAFl'
 cl(){ builtin cd "$@" && la
@@ -119,6 +128,7 @@ alias py='python'
 alias dog='pygmentize -g'
 bindkey -M viins ',,' vi-cmd-mode
 ls
+
 
 # Setting PATH for Python 3.5
 # The original version is saved in .bash_profile.pysave
