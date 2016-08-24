@@ -12,11 +12,11 @@
 "==========================================================================================
 " Tips 
 "==========================================================================================
-" - windo makes all windows to do the same command
-" - you can look up the register file by :reg
-" - you can paste from registry by using "<char>p
-" - you can copy to registry by using "<char>y (visual select might be useful)
-" - you can change the case of a letter by [visual_mode] + (u,U,~)
+" - :windo makes all windows do the same command
+" - Look up the register file by :reg
+" - Paste from registry by using "<char>p
+" - Copy to registry by using "<char>y (visual select might be useful)
+" - Change the case of a letter by [visual_mode] + (u,U,~)
 " - ctags should be updates using command: $ ctags -R .
 " - RECOVERY: if .swp file was created, you can recover that file by $vim -r
 "   <filename>
@@ -67,9 +67,10 @@ set listchars=tab:▸\ ,eol:¬
 " the current directory and up and up until your $HOME (that's the meaning of
 " the semicolon), stopping on the first hit. -by romainl from SO
 set tags=./tags;tags;
-" ???
+" change working directory as the file location????
 "set autochdir
-
+"Highlight selected word on cursor
+autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 
 
@@ -223,9 +224,9 @@ let g:ctrlp_cmd = 'ctrlp'
 nmap <leader>tb :TagbarToggle<CR>
 
 " SEMANTIC HIGHLIGHT
-"nnoremap <Leader><F12> :SemanticHighlightToggle<cr>
+nnoremap <Leader>h :SemanticHighlightToggle<cr>
 "let g:semanticTermColors = [1,2,3,9,10,12,13,14,15,125]
-"autocmd VimEnter * SemanticHighlightToggle
+autocmd VimEnter * SemanticHighlightToggle
 
 " NERDTREE
 let NERDTreeShowHidden=1
@@ -261,6 +262,18 @@ let g:indentLine_color_term = 100
 let g:EasyMotion_do_mapping = 0
 " This allows you to jump onto a specific letter.
 nmap <Leader>f <Plug>(easymotion-overwin-f)
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+""nmap s <Plug>(easymotion-overwin-f)
+" or `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+""nmap s <Plug>(easymotion-overwin-f2)
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+" JK motions: Line motions << what is this for?
+""map <Leader>j <Plug>(easymotion-j)
+""map <Leader>k <Plug>(easymotion-k)
+
 
 " EASYTAGS
 " This requirse both vim-easytags and vim-misc bundle
@@ -269,6 +282,8 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " VIM-MULTI-CURSOR
 
+" VIM-SEEK
+
 
 
 
@@ -276,9 +291,7 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 "==========================================================================================
 " UNKNOWN
 "==========================================================================================
-"Always show the status line
-""set laststatus=2
-"Highlight selected word on cursor
-""autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+
 
 
