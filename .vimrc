@@ -23,6 +23,9 @@
 "   Or, just press R and it sometimes works. Save the file with different
 "   name (or backup the original file with different name and then recover).
 "   $ vimdiff filename1 filename2 << this is a helpful tool
+" - <c-w><c-w> goes to the next window, while <c-w><c-p> goes to the last
+"   window.
+" - <c-w>+j,h,k,l works.
 
 
 "==========================================================================================
@@ -71,7 +74,9 @@ set tags=./tags;tags;
 "set autochdir
 "Highlight selected word on cursor
 autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-
+" Better command-line completion
+set wildmenu
+set wildmode=list:longest,full
 
 
 "==========================================================================================
@@ -93,8 +98,6 @@ set showmatch
 set mat=2
 " ??
 set incsearch
-" Better command-line completion
-set wildmenu
 " Highlight searches (use <C-L> to temporarily turn off highligting)
 ""set hlsearch
 " ??
