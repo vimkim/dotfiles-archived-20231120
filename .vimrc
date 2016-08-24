@@ -17,6 +17,12 @@
 " - you can paste from registry by using "<char>p
 " - you can copy to registry by using "<char>y (visual select might be useful)
 " - you can change the case of a letter by [visual_mode] + (u,U,~)
+" - ctags should be updates using command: $ ctags -R .
+" - RECOVERY: if .swp file was created, you can recover that file by $vim -r
+"   <filename>
+"   Or, just press R and it sometimes works. Save the file with different
+"   name (or backup the original file with different name and then recover).
+"   $ vimdiff filename1 filename2 << this is a helpful tool
 
 
 "==========================================================================================
@@ -37,13 +43,16 @@ set expandtab
 set smarttab
 " Show partial commands in the last line of the saoc 
 set showcmd
-" when searching, ignore case sensitivity, but smart enough 
+" Search pattern becomes case-insensitive.
 set ignorecase
+" Search pattern becomes case-insensitive when it has lowercase letters only. 
+" * This should be turned on together with :set ignorecase.
 set smartcase
 " scrolling control
 set scrolloff=7
 " line number
 set number
+" relative line number
 set relativenumber
 " make backspace work like most other apps. Alternatives: set backspace=2
 set backspace=indent,eol,start 
@@ -51,6 +60,17 @@ set backspace=indent,eol,start
 set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
 " visual bell
 set vb
+" show invisibles
+set list
+set listchars=tab:▸\ ,eol:¬
+" tells vim to look for a tags file in the directory of the current file, in
+" the current directory and up and up until your $HOME (that's the meaning of
+" the semicolon), stopping on the first hit. -by romainl from SO
+set tags=./tags;tags;
+" ???
+"set autochdir
+
+
 
 
 "==========================================================================================
@@ -141,14 +161,14 @@ nnoremap <F8> :w <CR>:!gcc % && ./a.out <CR>
 " SCHEMES 
 "==========================================================================================
 " MONOKAI BEGIN
-colorscheme monokain
+"colorscheme monokain
 " MONOKAI END
 "gruvbox BEGIN
 ""colorscheme gruvbox
 ""set bg=dark
 "GRUVBOX END
 "MOLOKAI BEGIN
-""colorscheme molokai
+colorscheme molokai
 "let g:molokai_original = 1
 "let g:rehash256 = 1
 "MOLOKAI END
@@ -158,13 +178,19 @@ colorscheme monokain
 " PLUGINS
 "==========================================================================================
 
+" To disable a plugin, add it's bundle name to the following list
+let g:pathogen_disabled=['neocomplete.vim']
 " PATHOGEN
 execute pathogen#infect()
+" * IMPORTANT: It is required that the user should run :Helptags command everytime a
+" new plugin is installed. This method helps trigger :help <plugin_name>
+" function. -by tpope, the creater of pathogen.
 
 " NEOCOMPLETE
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplcache_enable_cursor_hold_i=1
-"for neocomplete, enable <TAB>: completion.
+"for neocomplete, enable <TAB>: completion. It also helps tabs recover its
+"original functionality.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
             \ neocomplete#start_manual_complete()
@@ -172,12 +198,6 @@ function! s:check_back_space() "{{{
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
-
-" EASYTAGS
-set tags=./tags;/
-""let g:easytags_cmd='/usr/local/bin/ctags'
-""let g:easytags_syntax_keyword='always'
-""let g:easytags_on_cursorhold=0
 
 " SYNTASTIC
 set statusline+=%#warningmsg#
@@ -188,19 +208,27 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" EASYTAGS
+"set tags=.vim/bundle/nerdtree/doc/tags;/
+"let g:easytags_cmd='/usr/local/bin/ctags'
+"let g:easytags_syntax_keyword='always'
+"let g:easytags_on_cursorhold=0
+
 " CTRLP.VIM
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map ='<c-p>'
 let g:ctrlp_cmd = 'ctrlp'
 
 " TAGBAR
-nmap <F2> :TagbarToggle<CR>
+nmap <leader>tb :TagbarToggle<CR>
 
 " SEMANTIC HIGHLIGHT
-:nnoremap <F12> :SemanticHighlightToggle<cr>
-let g:semanticTermColors = [1,2,3,9,10,12,13,14,15,125]
+"nnoremap <Leader><F12> :SemanticHighlightToggle<cr>
+"let g:semanticTermColors = [1,2,3,9,10,12,13,14,15,125]
+"autocmd VimEnter * SemanticHighlightToggle
 
 " NERDTREE
+let NERDTreeShowHidden=1
 
 " AIRLINE
 set t_Co=256
@@ -210,7 +238,6 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " AUTOCMD
-""autocmd VimEnter * SemanticHighlightToggle
 ""autocmd VimEnter * NERDTree
 ""autocmd VimEnter * Tagbar
 
@@ -228,6 +255,23 @@ let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_color_term = 100
 " special:·│¦┆➤▶
+
+" EASYMOTION
+" Disable default mapping
+let g:EasyMotion_do_mapping = 0
+" This allows you to jump onto a specific letter.
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" EASYTAGS
+" This requirse both vim-easytags and vim-misc bundle
+" Disable automatic highlighting only in Python files
+"":autocmd FileType python let b:easytags_auto_highlight = 0
+
+" VIM-MULTI-CURSOR
+
+
+
+
 
 "==========================================================================================
 " UNKNOWN
