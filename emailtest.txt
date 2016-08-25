@@ -1,0 +1,5 @@
+hello!
+
+I just changed my email!
+Using 
+git config --global user.email "<my email>"
