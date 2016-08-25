@@ -1,6 +1,9 @@
-" Created by dkim87, all rights reserved.
+"
+" Created by dequ[_macOS,_WSL]
 " All comments copied are referenced with '-by John Doe' format.
-
+" partly referred to Janus .vimrc
+"
+"===================================================================================
 "TABLE OF CONTENTS
 "- TIPs & Reminders
 "- NECESSARY
@@ -8,8 +11,7 @@
 "- MAPPING
 "- SCHEME
 "- PLUGIN
-"- FORGOTTEN
-
+"- MISC
 
 "===================================================================================
 " Tips 
@@ -37,10 +39,12 @@
 " * Tips
 " - You can determine the status of a variable <myvar> by typing :set myvar?
 
-" indent
-filetype indent plugin on
-" syntax highlighting"
-syntax on
+set nocompatible
+" For Pathogen, "This is what you should have at the top of your ~/.vimrc" - by romainl 
+filetype off
+filetype plugin indent off
+syntax off
+" now go down to the plugin section and see these turned on
 " mouse
 set mouse=a
 " indenting
@@ -51,7 +55,7 @@ set softtabstop=4
 set expandtab
 set smarttab
 " Show partial commands in the last line of the saoc 
-set showcmd
+set showcmd 
 " Search pattern becomes case-insensitive.
 set ignorecase
 " Search pattern becomes case-insensitive when it has lowercase letters only. 
@@ -100,8 +104,8 @@ set cmdheight=2
 set pastetoggle=<F11>
 " Annoying
 set laststatus=2
-" Bug
-""set cursorline
+" emphasize the line which the cursor is on 
+set cursorline
 " ??
 set showmatch
 " ??
@@ -114,6 +118,15 @@ set incsearch
 set ruler
 " HTML indenting issue
 let g:html_indent_inctags = "html,body,head,tbody"
+" ??
+set showmode
+set showcmd
+set hidden
+"zc will close the fold, zo will open the fold, za will toggle the fold under
+"the current cursor.
+"zC, zO, zA applies the same, recursively.
+"zR opens all folds, zM closes all folds
+set foldmethod=indent
 
 
 "===================================================================================
@@ -132,8 +145,8 @@ let mapleader = ","
 
 " CURSOR
 " cursor moves visual instead of actual line
-nnoremap j gj
-nnoremap k gk
+noremap j gj
+noremap k gk
 
 " ONLY WORKS when terminal rc files contain: stty -ixon
 "{{{{{{{{{{{{{{{{{{{{
@@ -199,9 +212,13 @@ colorscheme molokai
 "   let g:something_blah=foo
 
 " To disable a plugin, add it's bundle name to the following list
-"let g:pathogen_disabled=['neocomplete.vim']
+let g:pathogen_disabled=['neocomplete.vim']
 " PATHOGEN
 execute pathogen#infect()
+" this helptags function is decprecated, but who cares. I'm lazy.
+execute pathogen#helptags()   
+filetype plugin indent on
+syntax on
 " * IMPORTANT: It is required that the user should run :Helptags command everytime a
 " new plugin is installed. This method helps trigger :help <plugin_name>
 " function. -by tpope, the creater of pathogen.
@@ -211,7 +228,7 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplcache_enable_cursor_hold_i=1
 "for neocomplete, enable <TAB>: completion. It also helps tabs recover its
 "original functionality.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
             \ neocomplete#start_manual_complete()
 function! s:check_back_space() "{{{
@@ -236,6 +253,7 @@ let g:ctrlp_cmd = 'ctrlp'
 " TAGBAR
 nmap <leader>tb :TagbarToggle<CR>
 let g:tagbar_width=30
+autocmd VimEnter * Tagbar
 
 
 " SEMANTIC HIGHLIGHT
@@ -253,12 +271,11 @@ let NERDTreeShowHidden=1
 set t_Co=256
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " AUTOCMD
 ""autocmd VimEnter * NERDTree
-""autocmd VimEnter * Tagbar
 
 
 " VIM-MINIMAP BY SEVERIN LEMAIGNAN
@@ -310,19 +327,26 @@ let g:easytags_include_members = 1
 " special scheme for member variables? Italics also available?
 "highlight link cMember Special
 highlight link cMember Italics
-"let g:easytags_on_cursorhold=1
+""let g:easytags_on_cursorhold=1
+" run asynchronouse tags file updates
+let g:easytags_async = 1
+" hello
 
 
 " VIM-MULTI-CURSOR
 
 " VIM-SEEK
 
+" VIM-GUTTER
+" mapping disabled
+let g:gitgutter_map_keys=0
+
 
 
 
 
 "===================================================================================
-" UNKNOWN
+" MISC
 "===================================================================================
 
 
