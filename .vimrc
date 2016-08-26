@@ -1,11 +1,13 @@
-"
+" VIMRC / INIT.VIM FILE
 " Created by dequ[_macOS,_WSL]
 " All comments copied are referenced with '-by John Doe' format.
 " partly referred to Janus .vimrc
+" From 20160825, this .vimrc file has been transformed into init.vim.
+" Functionality for (not-neo)vim rarely tested since then.
 "
 "===================================================================================
 "TABLE OF CONTENTS
-"- TIPs & Reminders
+"- TIPS & Reminders
 "- NECESSARY
 "- ACCESSORY
 "- MAPPING
@@ -33,6 +35,8 @@
 " - G; will bring you to the last location of the cursor.
 " - vimdiff can compare files. ]c,[c to jump to differences, do, dp each
 "   stands for obtain and put.
+" - * will move you to the next identifier (variable name), while g* does the
+"   same but does not care whether it is blank-separated. eg. var1 -> myvar1this 
 
 
 "===================================================================================
@@ -64,7 +68,7 @@ set ignorecase
 " * This should be turned on together with :set ignorecase.
 set smartcase
 " scrolling control
-set scrolloff=7
+set scrolloff=9
 " line number
 set number
 " relative line number
@@ -129,6 +133,10 @@ set hidden
 "zC, zO, zA applies the same, recursively.
 "zR opens all folds, zM closes all folds
 set foldmethod=indent
+" Omny? this sucks
+set omnifunc=syntaxcomplete#Complete
+" spell check, but not grammar. Useful for writing README
+""set spell
 
 
 "===================================================================================
@@ -141,7 +149,6 @@ set foldmethod=indent
 vmap ,, <ESC> 
 imap ,, <ESC>
 cmap ,, <C-c>
-
 " LEADER KEY
 let mapleader = ","
 
@@ -173,12 +180,12 @@ nnoremap <Leader><Enter> O<ESC>
 " COMPILE & RUN MAPPING
 " - Python: "If F9 is pressed then run python
 " rp : run python code
-nnoremap <buffer> <leader>rp :w <CR> :exec '!python3' shellescape(@%,1)<cr>
+nnoremap <buffer> <leader>py :w <CR> :exec '!python3' shellescape(@%,1)<cr>
 " - C,CPP: "If F8 is pressed then run gcc and a.out
 " creates an executable file named a.out
 " crc : compile and run c code / ccp : compile and run cpp code
-nnoremap <leader>crc :w <CR>:!gcc % && ./a.out <CR>
-nnoremap <leader>ccp :w <CR>:!gcc % && ./a.out <CR>
+nnoremap <leader>gcc :w <CR>:!gcc % && ./a.out <CR>
+nnoremap <leader>g++ :w <CR>:!g++ % && ./a.out <CR>
 " creates an executable file that has the same name with its .c file
 ""map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
 
@@ -219,8 +226,7 @@ let g:pathogen_disabled=['neocomplete.vim']
 execute pathogen#infect()
 " this helptags function is decprecated, but who cares. I'm lazy.
 execute pathogen#helptags()   
-filetype plugin indent on
-syntax on
+
 " * IMPORTANT: It is required that the user should run :Helptags command everytime a
 " new plugin is installed. This method helps trigger :help <plugin_name>
 " function. -by tpope, the creater of pathogen.
@@ -237,6 +243,30 @@ syntax on
 "    h""let col = col('.') - 1
 "    ""return !col || getline('.')[col - 1]  =~ '\s'
 ""endfunction"}}}
+
+"vim-plug session
+call plug#begin('$HOME/.config/nvim/plugged') "TODO
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-clang' 
+Plug 'Shougo/neoinclude.vim'
+call plug#end()
+
+" DEOPLETE
+let g:deoplete#enable_at_startup = 1
+" Use smartcase
+let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_smart_case = 1
+" Let <TAB> also do completion
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" close preview window on leaving the insert mode
+autocmd InsertLeave * if pumvisible() == 0 | pclose | endif
+set completeopt-=preview
+
+"deoplete-clang
+let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.8.1/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.8.1/lib/clang'
+let g:deoplete#eable_refresh_always = 1
+
 
 " SYNTASTIC
 set statusline+=%#warningmsg#
@@ -317,7 +347,7 @@ let g:EasyMotion_smartcase = 1
 " * Tip: 
 ""echo join(sort(map(items(filter(copy(g:), 'v:key =~ "^easytags"')), 'string(v:val)')), "\n")
 " The above command will list all the settings.
-" This requirse both vim-easytags and vim-misc bundle
+" This requires both vim-easytags and vim-misc bundle
 " By default the tags will be updated and highlighted if cursor on hold for a
 " moment. In order to disable, see below.
 " auto highlight disable
@@ -337,6 +367,8 @@ let g:easytags_async = 1
 " help: <c-n> for highlighting a word and continue if pressed again
 " help: <c-p> for going back, <c-x> for skipping and continue
 " help: multipleCursorsFind for regular expression
+" By default, multicursor starts with <c-n>. Change with the following:
+let g:multi_cursor_start_key='<leader>mc'
 " multi_cursor_quit_key
 let g:multi_cursor_quit_key=','
 " Called once right before you start selecting multiple cursors
@@ -358,14 +390,12 @@ endfunction
 " help: [c, ]c jumps to hunk
 " help: <leader>hp for preview, <leader>hs for stage, <leader>hu for undo
 
-
-
-
-
+filetype plugin indent on
+syntax on
+"
 "===================================================================================
 " MISC
 "===================================================================================
-
 
 
 
