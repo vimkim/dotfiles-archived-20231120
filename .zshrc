@@ -109,11 +109,7 @@ cl(){ builtin cd "$@" && la
 }
 alias c='cl'
 alias l='ls'
-<<<<<<< HEAD
 alias v='nvim'
-=======
-alias v='vim'
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 alias rm='rm -i'
 alias mv='mv -i'
 alias cm='chmod -v'
@@ -122,6 +118,7 @@ alias gst='git status'
 alias gad='git add'
 alias gcm='git commit'
 alias gps='git push'
+alias gpsom='git push origin master'
 alias gpl='git pull'
 alias lmm="ssh dkim87@mimi.cs.mcgill.ca"
 alias llx="ssh dkim87@linux.cs.mcgill.ca"
@@ -138,7 +135,4 @@ ls
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
-<<<<<<< HEAD
 export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.5/bin
-=======
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
