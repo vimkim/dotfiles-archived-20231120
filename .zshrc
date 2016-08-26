@@ -109,7 +109,11 @@ cl(){ builtin cd "$@" && la
 }
 alias c='cl'
 alias l='ls'
+<<<<<<< HEAD
+alias v='nvim'
+=======
 alias v='vim'
+>>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 alias rm='rm -i'
 alias mv='mv -i'
 alias cm='chmod -v'
@@ -134,3 +138,7 @@ ls
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
+<<<<<<< HEAD
+export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.5/bin
+=======
+>>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d

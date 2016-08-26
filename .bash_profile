@@ -45,3 +45,7 @@ export PATH
 # Python
 alias python='python3'
 alias py='python'
+<<<<<<< HEAD
+export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.5/bin
+=======
+>>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
