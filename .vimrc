@@ -1,15 +1,9 @@
-<<<<<<< HEAD
 "
 " Created by dequ[_macOS,_WSL]
 " All comments copied are referenced with '-by John Doe' format.
 " partly referred to Janus .vimrc
 "
 "===================================================================================
-=======
-" Created by dkim87, all rights reserved.
-" All comments copied are referenced with '-by John Doe' format.
-
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 "TABLE OF CONTENTS
 "- TIPs & Reminders
 "- NECESSARY
@@ -17,12 +11,7 @@
 "- MAPPING
 "- SCHEME
 "- PLUGIN
-<<<<<<< HEAD
 "- MISC
-=======
-"- FORGOTTEN
-
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 
 "===================================================================================
 " Tips 
@@ -50,19 +39,13 @@
 " * Tips
 " - You can determine the status of a variable <myvar> by typing :set myvar?
 
-<<<<<<< HEAD
 set nocompatible
 " For Pathogen, "This is what you should have at the top of your ~/.vimrc" - by romainl 
 filetype off
 filetype plugin indent off
 syntax off
 " now go down to the plugin section and see these turned on
-=======
-" indent
-filetype indent plugin on
-" syntax highlighting"
-syntax on
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
+let g:minimap_close='<leader>gc'
 " mouse
 set mouse=a
 " indenting
@@ -126,13 +109,8 @@ set cmdheight=2
 set pastetoggle=<F11>
 " Annoying
 set laststatus=2
-<<<<<<< HEAD
 " emphasize the line which the cursor is on 
 set cursorline
-=======
-" Bug
-""set cursorline
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 " ??
 set showmatch
 " ??
@@ -140,12 +118,11 @@ set mat=2
 " ??
 set incsearch
 " Highlight searches (use <C-L> to temporarily turn off highligting)
-""set hlsearch
+set hlsearch
 " ??
 set ruler
 " HTML indenting issue
 let g:html_indent_inctags = "html,body,head,tbody"
-<<<<<<< HEAD
 " ??
 set showmode
 set showcmd
@@ -155,8 +132,6 @@ set hidden
 "zC, zO, zA applies the same, recursively.
 "zR opens all folds, zM closes all folds
 set foldmethod=indent
-=======
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 
 
 "===================================================================================
@@ -175,13 +150,8 @@ let mapleader = ","
 
 " CURSOR
 " cursor moves visual instead of actual line
-<<<<<<< HEAD
 noremap j gj
 noremap k gk
-=======
-nnoremap j gj
-nnoremap k gk
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 
 " ONLY WORKS when terminal rc files contain: stty -ixon
 "{{{{{{{{{{{{{{{{{{{{
@@ -247,7 +217,6 @@ colorscheme molokai
 "   let g:something_blah=foo
 
 " To disable a plugin, add it's bundle name to the following list
-<<<<<<< HEAD
 let g:pathogen_disabled=['neocomplete.vim']
 " PATHOGEN
 execute pathogen#infect()
@@ -255,31 +224,22 @@ execute pathogen#infect()
 execute pathogen#helptags()   
 filetype plugin indent on
 syntax on
-=======
-"let g:pathogen_disabled=['neocomplete.vim']
-" PATHOGEN
-execute pathogen#infect()
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 " * IMPORTANT: It is required that the user should run :Helptags command everytime a
 " new plugin is installed. This method helps trigger :help <plugin_name>
 " function. -by tpope, the creater of pathogen.
 
 " NEOCOMPLETE
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplcache_enable_cursor_hold_i=1
+""let g:neocomplete#enable_at_startup = 1
+""let g:neocomplcache_enable_cursor_hold_i=1
 "for neocomplete, enable <TAB>: completion. It also helps tabs recover its
 "original functionality.
-<<<<<<< HEAD
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-=======
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ neocomplete#start_manual_complete()
-function! s:check_back_space() "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+""inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+""            \ <SID>check_back_space() ? "\<TAB>" :
+""            \ neocomplete#start_manual_complete()
+""function! s:check_back_space() "{{{
+"    h""let col = col('.') - 1
+"    ""return !col || getline('.')[col - 1]  =~ '\s'
+""endfunction"}}}
 
 " SYNTASTIC
 set statusline+=%#warningmsg#
@@ -292,16 +252,13 @@ let g:syntastic_check_on_wq = 0
 
 " CTRLP.VIM
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_map ='<c-p>'
+let g:ctrlp_map= '<leader>p'
 let g:ctrlp_cmd = 'ctrlp'
 
 " TAGBAR
 nmap <leader>tb :TagbarToggle<CR>
 let g:tagbar_width=30
-<<<<<<< HEAD
 autocmd VimEnter * Tagbar
-=======
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 
 
 " SEMANTIC HIGHLIGHT
@@ -319,20 +276,11 @@ let NERDTreeShowHidden=1
 set t_Co=256
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-<<<<<<< HEAD
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " AUTOCMD
 ""autocmd VimEnter * NERDTree
-=======
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-
-" AUTOCMD
-""autocmd VimEnter * NERDTree
-""autocmd VimEnter * Tagbar
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 
 
 " VIM-MINIMAP BY SEVERIN LEMAIGNAN
@@ -384,37 +332,42 @@ let g:easytags_include_members = 1
 " special scheme for member variables? Italics also available?
 "highlight link cMember Special
 highlight link cMember Italics
-<<<<<<< HEAD
 ""let g:easytags_on_cursorhold=1
 " run asynchronouse tags file updates
 let g:easytags_async = 1
-" hello
-=======
-"let g:easytags_on_cursorhold=1
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
-
 
 " VIM-MULTI-CURSOR
+" help: <c-n> for highlighting a word and continue if pressed again
+let g:minimap_close='<leader>gc'
+" help: <c-p> for going back, <c-x> for skipping and continue
+" help: multipleCursorsFind for regular expression
+" multi_cursor_quit_key
+let g:multi_cursor_quit_key=','
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    exe 'NeoCompleteLock'
+  endif
+endfunction
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    exe 'NeoCompleteUnlock'
+  endif
+endfunction
+
 
 " VIM-SEEK
 
-<<<<<<< HEAD
 " VIM-GUTTER
 " mapping disabled
-let g:gitgutter_map_keys=0
 
-=======
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 
 
 
 
 "===================================================================================
-<<<<<<< HEAD
 " MISC
-=======
-" UNKNOWN
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 "===================================================================================
 
 
