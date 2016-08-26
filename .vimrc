@@ -31,6 +31,8 @@
 "   window.
 " - <c-w>+j,h,k,l works.
 " - G; will bring you to the last location of the cursor.
+" - vimdiff can compare files. ]c,[c to jump to differences, do, dp each
+"   stands for obtain and put.
 
 
 "===================================================================================
@@ -45,7 +47,6 @@ filetype off
 filetype plugin indent off
 syntax off
 " now go down to the plugin section and see these turned on
-let g:minimap_close='<leader>gc'
 " mouse
 set mouse=a
 " indenting
@@ -55,12 +56,8 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smarttab
-" Show partial commands in the last line of the saoc 
-<<<<<<< HEAD
+" Show partial commands in the last line
 set showcmd 
-=======
-set showcmd
->>>>>>> ea9b35d124080e611a0d204ac620cb3f97a21e0d
 " Search pattern becomes case-insensitive.
 set ignorecase
 " Search pattern becomes case-insensitive when it has lowercase letters only. 
@@ -117,7 +114,7 @@ set showmatch
 set mat=2
 " ??
 set incsearch
-" Highlight searches (use <C-L> to temporarily turn off highligting)
+" Highlight searches (use :noh to temporalily turn off)
 set hlsearch
 " ??
 set ruler
@@ -270,7 +267,10 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 
 
 " NERDTREE
+" help: ,nt
 let NERDTreeShowHidden=1
+map <leader>nt :NERDTreeToggle<CR>
+""autocmd VimEnter * NERDTree
 
 " AIRLINE
 set t_Co=256
@@ -278,10 +278,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
-
-" AUTOCMD
-""autocmd VimEnter * NERDTree
-
 
 " VIM-MINIMAP BY SEVERIN LEMAIGNAN
 let g:minimap_show='<leader>ms'
@@ -315,7 +311,6 @@ let g:EasyMotion_smartcase = 1
 ""map <Leader>j <Plug>(easymotion-j)
 ""map <Leader>k <Plug>(easymotion-k)
 
-
 " EASYTAGS
 " * Tip: 
 ""echo join(sort(map(items(filter(copy(g:), 'v:key =~ "^easytags"')), 'string(v:val)')), "\n")
@@ -338,7 +333,6 @@ let g:easytags_async = 1
 
 " VIM-MULTI-CURSOR
 " help: <c-n> for highlighting a word and continue if pressed again
-let g:minimap_close='<leader>gc'
 " help: <c-p> for going back, <c-x> for skipping and continue
 " help: multipleCursorsFind for regular expression
 " multi_cursor_quit_key
@@ -349,18 +343,18 @@ function! Multiple_cursors_before()
     exe 'NeoCompleteLock'
   endif
 endfunction
-" Called once only when the multiple selection is canceled (default <Esc>)
+" Called once only when the multiple selection is canceled(default <Esc>)
 function! Multiple_cursors_after()
   if exists(':NeoCompleteUnlock')==2
     exe 'NeoCompleteUnlock'
   endif
 endfunction
 
-
 " VIM-SEEK
 
 " VIM-GUTTER
-" mapping disabled
+" help: [c, ]c jumps to hunk
+" help: <leader>hp for preview, <leader>hs for stage, <leader>hu for undo
 
 
 
