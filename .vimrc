@@ -248,11 +248,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " CTRLP.VIM
+" help: ,p toggles
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map= '<leader>p'
-let g:ctrlp_cmd = 'ctrlp'
+let g:ctrlp_cmd = 'CtrlPBuffor .'
 
 " TAGBAR
+" help: ,tb toggles tagbar. <c-w><c-w> changes window and press ? for details.
 nmap <leader>tb :TagbarToggle<CR>
 let g:tagbar_width=30
 autocmd VimEnter * Tagbar
@@ -267,7 +269,7 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 
 
 " NERDTREE
-" help: ,nt
+" help: ,nt toggles. Then type ? for details.
 let NERDTreeShowHidden=1
 map <leader>nt :NERDTreeToggle<CR>
 ""autocmd VimEnter * NERDTree
