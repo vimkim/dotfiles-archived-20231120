@@ -250,7 +250,16 @@ call plug#begin('$HOME/.config/nvim/plugged') "TODO
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-clang' 
 Plug 'Shougo/neoinclude.vim'
+"Plug 'romainl/flattened'
 call plug#end()
+
+" SOLARIZED
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"set bg=light
+"colorscheme solarized
+"colorscheme flattened_dark
+"colorscheme flattened_light
+
 
 " DEOPLETE
 let g:deoplete#enable_at_startup = 1
