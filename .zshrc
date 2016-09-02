@@ -107,9 +107,33 @@ alias la='ls -GAF'
 alias ll='ls -GAFl'
 cl(){ builtin cd "$@" && la
 }
-alias c='cl'
+#alias c='cl'
+c(){
+    if [ -d $@ ]; then
+        cl "$@"
+    elif [ -f $@ ]; then
+        nvim "$@"
+    else
+        echo "hey, there is my_error, check .zshrc"
+    fi
+}
 alias l='ls'
-alias v='nvim'
+#alias v='nvim'
+v(){
+    if [ -d $@ ]; then
+        cl "$@"
+    #elif [ -f $@ ]; then
+    else
+        nvim "$@"
+    #else 
+        #read -q "REPLY?Would you like to create a new file?"
+        #if [[ $REPLY =~ '^[Yy]$' ]]; then # $REPLY = y also works
+            #nvim "$@"
+        #else
+            #echo "hey, there is my_error, check .zshrc"
+        #fi
+    fi
+}
 alias rm='rm -i'
 alias mv='mv -i'
 alias cm='chmod -v'
@@ -127,6 +151,8 @@ alias rsc='Rscript'
 alias python='python3'
 alias py='python'
 alias dog='pygmentize -g'
+alias o='open'
+alias oas='open -a Safari'
 bindkey -M viins ',,' vi-cmd-mode
 ls
 
