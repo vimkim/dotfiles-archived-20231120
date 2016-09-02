@@ -209,7 +209,7 @@ nnoremap <leader>g++ :w <CR>:!g++ % && ./a.out <CR>
 "GRUVBOX END
 "MOLOKAI BEGIN
 colorscheme molokai
-"let g:molokai_original = 1
+let g:molokai_original = 1
 "let g:rehash256 = 1
 "MOLOKAI END
 
