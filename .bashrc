@@ -1,4 +1,3 @@
-# .bashrc
 
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
 
@@ -14,7 +13,7 @@ viavailable(){
 # ls config
 alias ls='ls --color=auto'
 alias la="ls -GAF"
-alias ll="ls -lAF"
+alias ll="ls -GAFl"
 alias l='ls' 
 
 #cl, c, v config
