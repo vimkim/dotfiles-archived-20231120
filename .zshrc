@@ -13,6 +13,7 @@ ZSH_THEME="random"
 #intheloop.zsh-theme
 #fox.zsh-theme
 #zonathan.zsh-theme
+#af-magit theme << ---- line separate, simple
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -125,7 +126,7 @@ v(){
     #elif [ -f $@ ]; then
     else
         nvim "$@"
-    #else 
+    #else
         #read -q "REPLY?Would you like to create a new file?"
         #if [[ $REPLY =~ '^[Yy]$' ]]; then # $REPLY = y also works
             #nvim "$@"
@@ -153,12 +154,19 @@ alias py='python'
 alias dog='pygmentize -g'
 alias o='open'
 alias oas='open -a Safari'
+alias gcc='/usr/local/Cellar/gcc/6.2.0/bin/gcc-6'
+alias g++='/usr/local/Cellar/gcc/6.2.0/bin/g++-6'
 bindkey -M viins ',,' vi-cmd-mode
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
 ls
+# archey
+#screenfetch -v
 
 
 # Setting PATH for Python 3.5
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH
 export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.5/bin
+# for macport
+export PATH=$PATH:/opt/local/bin/
+
