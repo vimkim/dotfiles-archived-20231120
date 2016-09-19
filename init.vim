@@ -234,9 +234,9 @@ nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 "   let g:something_blah=foo
 
 " To disable a plugin, add it's bundle name to the following list
-"let g:pathogen_disabled=['neocomplete.vim']
+let g:pathogen_disabled=['neocomplete.vim']
 " PATHOGEN
-"execute pathogen#infect()
+execute pathogen#infect()
 " this helptags function is decprecated, but who cares. I'm lazy.
 "execute pathogen#helptags()
 
@@ -258,11 +258,7 @@ nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 ""endfunction"}}}
 
 "vim-plug session
-" To install, type :
-"curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-call plug#begin('$HOME/.vim/plugged') "TODO
+call plug#begin('$HOME/.config/nvim/plugged') "TODO
 Plug 'yggdroot/indentline'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
