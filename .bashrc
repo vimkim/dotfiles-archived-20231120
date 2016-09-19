@@ -1,41 +1,56 @@
+# .bashrc
 
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
-export CLICOLOR=1
-export LSCOLORS=ExFxBxDxCxegedabagacad
 
-alias la='ls -GAF'
-alias ll='ls -GAFl'
-cl(){ builtin cd "$@" && la
-}
-#alias c='cl'
-c(){
-    if [ -d $@ ]; then
-        cl "$@"
-    elif [ -f $@ ]; then
+# vim config. If nvim exists, use it
+viavailable(){
+    if hash nvim 2>/dev/null; then
         nvim "$@"
     else
-        echo "hey, there is my_error, check .zshrc"
+        vim "$@"
     fi
 }
-alias l='ls'
-#alias v='nvim'
+
+# ls config
+alias ls='ls --color=auto'
+alias la="ls -GAF"
+alias ll="ls -lAF"
+alias l='ls' 
+
+#cl, c, v config
+cl(){ 
+	builtin  cd "$@" && ls
+}
+
+c(){
+    if [[ -d $@ ]]; then
+        cl "$@"
+    elif [[ -f $@ ]]; then
+        viavailable "$@"
+    else
+        read -r -p "create new file? [y/N] " response
+        if [[ $response =~ ^([Yy]|[yY][eE][sS])$ ]]; then 
+            viavailable "$@"
+        else
+            echo "hey, there is an my_error, check .*rc file"
+        fi
+    fi
+} # unlike v(), if new files are intended to be created, then it asks once more.
+
 v(){
-    if [ -d $@ ]; then
+    if [[ -d $@ ]]; then
         cl "$@"
     #elif [ -f $@ ]; then
     else
-        nvim "$@"
-    #else
-        #read -q "REPLY?Would you like to create a new file?"
-        #if [[ $REPLY =~ '^[Yy]$' ]]; then # $REPLY = y also works
-            #nvim "$@"
-        #else
-            #echo "hey, there is my_error, check .zshrc"
-        #fi
+        viavailable "$@"
     fi
 }
+
+# verbose rm and mv
 alias rm='rm -i'
 alias mv='mv -i'
+
+# easier 
 alias cm='chmod -v'
 alias md='mkdir'
 
@@ -47,6 +62,7 @@ alias gps='git push'
 alias gpsom='git push origin master'
 alias gpl='git pull'
 
+# if login, run la
 la
 
 alias lmm="ssh dkim87@mimi.cs.mcgill.ca"
