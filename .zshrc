@@ -139,6 +139,8 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias cm='chmod -v'
 alias md='mkdir'
+
+#git shortcuts
 alias gst='git status'
 alias gad='git add'
 alias gcm='git commit'
