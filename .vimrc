@@ -1,3 +1,4 @@
+
 " VIMRC / INIT.VIM FILE
 " Created by dequ[_macOS,_WSL]
 " All comments copied are referenced with '-by John Doe' format.
@@ -16,7 +17,7 @@
 "- MISC
 
 "===================================================================================
-" Tips 
+" Tips
 "===================================================================================
 " - :windo makes all windows do the same command
 " - Look up the register file by :reg
@@ -36,7 +37,8 @@
 " - vimdiff can compare files. ]c,[c to jump to differences, do, dp each
 "   stands for obtain and put.
 " - * will move you to the next identifier (variable name), while g* does the
-"   same but does not care whether it is blank-separated. eg. var1 -> myvar1this 
+"   same but does not care whether it is blank-separated. eg. var1 -> myvar1this
+" - :%s/\s\+$// << Delete all spaces and tabs at the end of my lines
 
 
 "===================================================================================
@@ -46,7 +48,7 @@
 " - You can determine the status of a variable <myvar> by typing :set myvar?
 
 set nocompatible
-" For Pathogen, "This is what you should have at the top of your ~/.vimrc" - by romainl 
+" For Pathogen, "This is what you should have at the top of your ~/.vimrc" - by romainl
 filetype off
 filetype plugin indent off
 syntax off
@@ -56,15 +58,16 @@ set mouse=a
 " indenting
 set smartindent
 " tab control
-set shiftwidth=4
+set tabstop=4
 set softtabstop=4
+set shiftwidth=4
 set expandtab
 set smarttab
 " Show partial commands in the last line
-set showcmd 
+set showcmd
 " Search pattern becomes case-insensitive.
 set ignorecase
-" Search pattern becomes case-insensitive when it has lowercase letters only. 
+" Search pattern becomes case-insensitive when it has lowercase letters only.
 " * This should be turned on together with :set ignorecase.
 set smartcase
 " scrolling control
@@ -74,7 +77,7 @@ set number
 " relative line number
 set relativenumber
 " make backspace work like most other apps. Alternatives: set backspace=2
-set backspace=indent,eol,start 
+set backspace=indent,eol,start
 " MACVIM ZOOM
 set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
 " visual bell
@@ -86,8 +89,6 @@ set listchars=tab:▸\ ,eol:¬
 " the current directory and up and up until your $HOME (that's the meaning of
 " the semicolon), stopping on the first hit. -by romainl from SO
 ""set tags=./tags;tags; -disabled for easytags
-" change working directory as the file location????
-"set autochdir
 "Highlight selected word on cursor
 autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 " Better command-line completion
@@ -107,10 +108,10 @@ set confirm
 " set command line height to 2
 set cmdheight=2
 " toggle paste mode
-set pastetoggle=<F11>
+"set pastetoggle=<F11> << not necessary
 " Annoying
 set laststatus=2
-" emphasize the line which the cursor is on 
+" emphasize the line which the cursor is on
 set cursorline
 " ??
 set showmatch
@@ -127,6 +128,7 @@ let g:html_indent_inctags = "html,body,head,tbody"
 " ??
 set showmode
 set showcmd
+" buffer control
 set hidden
 "zc will close the fold, zo will open the fold, za will toggle the fold under
 "the current cursor.
@@ -137,6 +139,10 @@ set foldmethod=indent
 set omnifunc=syntaxcomplete#Complete
 " spell check, but not grammar. Useful for writing README
 ""set spell
+" auto change directory, works same as autochdir with less errors
+autocmd BufEnter * silent! lcd %:p:h
+" Saves undo's after file closes
+set undofile
 
 
 "===================================================================================
@@ -144,18 +150,26 @@ set omnifunc=syntaxcomplete#Complete
 "===================================================================================
 " * :verbose map <KEY> will tell you if the mapping is already taken by other
 " function.
-"
+
+" ARROWS FOR COLEMAK
+"noremap k j
+"noremap h k
+"noremap j h
+
 " ESC
-vmap ,, <ESC> 
+vmap ,, <ESC>
 imap ,, <ESC>
 cmap ,, <C-c>
+vmap wf <ESC>
+imap wf <ESC>
+cmap wf <C-c>
 " LEADER KEY
 let mapleader = ","
 
 " CURSOR
 " cursor moves visual instead of actual line
-noremap j gj
-noremap k gk
+"noremap j gj
+"noremap k gk
 
 " ONLY WORKS when terminal rc files contain: stty -ixon
 "{{{{{{{{{{{{{{{{{{{{
@@ -170,7 +184,7 @@ vnoremap <C-s> <esc>:w<CR>gv
 nnoremap <C-q> :qa<CR>
 "}}}}}}}}}}}}}}}}}}}}
 
-" NEW LINE 
+" NEW LINE
 " insert new line without entering insert mode.
 nnoremap <Enter> o<ESC>
 " insert new line above the cursor without entering insert mode.
@@ -180,24 +194,22 @@ nnoremap <Leader><Enter> O<ESC>
 " COMPILE & RUN MAPPING
 " - Python: "If F9 is pressed then run python
 " rp : run python code
-nnoremap <buffer> <leader>py :w <CR> :exec '!python3' shellescape(@%,1)<cr>
+nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
 " - C,CPP: "If F8 is pressed then run gcc and a.out
 " creates an executable file named a.out
 " crc : compile and run c code / ccp : compile and run cpp code
-nnoremap <leader>gcc :w <CR>:!gcc % && ./a.out <CR>
-nnoremap <leader>g++ :w <CR>:!g++ % && ./a.out <CR>
+nnoremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
+nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 " creates an executable file that has the same name with its .c file
 ""map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
 
 " EXPERIMENTAL
 " mapping dot(.) to :norm.<CR> so it can be used in visual mode.
 ""vnoremap . :norm.<CR>
-" window split and scrollbind (experimental)
-""map <Leader>wsb = :lclose:vsplit:windo set scrollbind:Errors
 
 
 "===================================================================================
-" SCHEMES 
+" SCHEMES
 "===================================================================================
 
 " MONOKAI BEGIN
@@ -208,8 +220,8 @@ nnoremap <leader>g++ :w <CR>:!g++ % && ./a.out <CR>
 ""set bg=dark
 "GRUVBOX END
 "MOLOKAI BEGIN
-colorscheme molokai
-let g:molokai_original = 1
+"colorscheme molokai
+"let g:molokai_original = 1
 "let g:rehash256 = 1
 "MOLOKAI END
 
@@ -226,7 +238,7 @@ let g:pathogen_disabled=['neocomplete.vim']
 " PATHOGEN
 execute pathogen#infect()
 " this helptags function is decprecated, but who cares. I'm lazy.
-execute pathogen#helptags()   
+"execute pathogen#helptags()
 
 " * IMPORTANT: It is required that the user should run :Helptags command everytime a
 " new plugin is installed. This method helps trigger :help <plugin_name>
@@ -247,19 +259,38 @@ execute pathogen#helptags()
 
 "vim-plug session
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-clang' 
+Plug 'zchee/deoplete-clang'
 Plug 'Shougo/neoinclude.vim'
-"Plug 'romainl/flattened'
+Plug 'easymotion/vim-easymotion'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'suan/vim-instant-markdown'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 call plug#end()
 
-" SOLARIZED
-"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-"set bg=light
-"colorscheme solarized
-"colorscheme flattened_dark
-"colorscheme flattened_light
 
+" GOYO
+"autocmd VimEnter * Goyo
+
+" LIMELIGHT
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = "gray"
+let g:limelight_conceal_ctermfg = 245
+"autocmd VimEnter * Limelight
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+" SOLARIZED
+syntax enable
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set bg=light
+colorscheme solarized
 
 " DEOPLETE
 let g:deoplete#enable_at_startup = 1
@@ -273,10 +304,8 @@ autocmd InsertLeave * if pumvisible() == 0 | pclose | endif
 set completeopt-=preview
 
 "deoplete-clang
-let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.8.1/lib/libclang.dylib'
 let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.8.1/lib/clang'
 let g:deoplete#eable_refresh_always = 1
-
 
 " SYNTASTIC
 set statusline+=%#warningmsg#
@@ -297,8 +326,7 @@ let g:ctrlp_cmd = 'CtrlPBuffor .'
 " help: ,tb toggles tagbar. <c-w><c-w> changes window and press ? for details.
 nmap <leader>tb :TagbarToggle<CR>
 let g:tagbar_width=30
-autocmd VimEnter * Tagbar
-
+"autocmd VimEnter * Tagbar
 
 " SEMANTIC HIGHLIGHT
 nnoremap <Leader>h :SemanticHighlightToggle<cr>
@@ -307,7 +335,6 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 " also highlight words starting with $ in javascript.
 ""autocmd FileType javascript setlocal iskeyword+=$
 
-
 " NERDTREE
 " help: ,nt toggles. Then type ? for details.
 let NERDTreeShowHidden=1
@@ -315,11 +342,11 @@ map <leader>nt :NERDTreeToggle<CR>
 ""autocmd VimEnter * NERDTree
 
 " AIRLINE
-set t_Co=256
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme = 'light'
 
 " VIM-MINIMAP BY SEVERIN LEMAIGNAN
 let g:minimap_show='<leader>ms'
@@ -353,15 +380,23 @@ let g:EasyMotion_smartcase = 1
 ""map <Leader>j <Plug>(easymotion-j)
 ""map <Leader>k <Plug>(easymotion-k)
 
+" TABULAR
+
+" VIM-MARKDOWN
+nnoremap <leader>>> V:HeaderIncrease<CR>
+nnoremap <leader><< V:HeaderDecrease<CR>
+
+" VIM-INSTANT-MARKDOWN
+
 " EASYTAGS
-" * Tip: 
+" * Tip:
 ""echo join(sort(map(items(filter(copy(g:), 'v:key =~ "^easytags"')), 'string(v:val)')), "\n")
 " The above command will list all the settings.
 " This requires both vim-easytags and vim-misc bundle
 " By default the tags will be updated and highlighted if cursor on hold for a
 " moment. In order to disable, see below.
 " auto highlight disable
-""let g:easytags_auto_highlight = 0 
+""let g:easytags_auto_highlight = 0
 " Disable automatic highlighting only in Python files
 "":autocmd FileType python let b:easytags_auto_highlight = 0
 " highlight member variables in cpp and java
@@ -401,11 +436,24 @@ endfunction
 " help: <leader>hp for preview, <leader>hs for stage, <leader>hu for undo
 
 filetype plugin indent on
-syntax on
-"
+
+" turn off auto commenting when <cr>
+autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o
+
+" Syntax of these languages is fussy over tabs Vs spaces - by VimCast
+autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 noexpandtab
+
+" Customizations based on house-style (arbitrary)
+autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+
+if !exists("g:syntax_on")
+    syntax enable
+endif " by Andy Ray from SO
+
 "===================================================================================
 " MISC
 "===================================================================================
-
-
-
+hi NonText ctermfg=1 guifg=gray
