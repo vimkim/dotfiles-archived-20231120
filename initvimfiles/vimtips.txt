@@ -1,0 +1,74 @@
+"START_OF_FILE
+"INIT.VIM FILE (.vimrc in past)
+"Creator: dequ
+"From 20160825, this .vimrc file has been transformed into init.vim.
+"Functionality for (not-neo)vim rarely tested.
+"
+"section============================================================================
+"TABLE OF CONTENTS
+"===================================================================================
+
+"- TIPS & REMINDERS
+"- MAPPING
+"- PLUGIN
+"- SCHEME
+"- NECESSARY
+"- ACCESSORY
+"- MISC
+
+"section============================================================================
+"TIPS & REMINDERS
+"===================================================================================
+
+"[[Windows]]
+"- :windo makes all windows do the same command.
+"- <c-w><c-w> goes to the next window, while <c-w><c-p> goes to the last window.
+"- <c-w>+j,h,k,l works.
+
+"[[Registry]]
+"- Look up the register file by :reg.
+"- Paste from registry by using "<char>p.
+"- Copy to registry by using "<char>y (visual select might be useful).
+
+"[[Case]]
+"- Change the case of a letter by [visual_mode] + (u,U,~).
+
+"[[Tags]]
+"- ctags should be updates using command: $ ctags -R .
+
+"[[Recovery]]
+"- If .swp file was created, you can recover that file by $vim -r <filename> Or, just press R and it sometimes works. Save the file with different name (or backup the original file with different name and then recover).
+
+"[[Difference]]
+"- $ vimdiff filename1 filename2 << this is a helpful tool.
+"- For neovim, it is nvim -d filename1 filename2.
+"- c[,c] to just to difference chunks
+"- do (diff obtain), dp (diff put) to equalize the differences.
+"- If you want to undo your do/dp, you can just simply <c-w><c-w>u. 
+
+"[[Cursor]]
+"- g; will bring your cursor to the previous changelist.
+"- g, will bring you cursor to the next changelist.
+"- `` (two backticks) will bring you to the last location of the cursor.
+"- TODO: figure out the actual mechanism of ``
+"- * will move your cursor to the next word. eg) myvar -> myvar
+"- g* will move your cursor to the next text. eg) myvar -> heymyvar3
+"- gf will open the file under the cursor.
+"- <c-w>f will open the file in a new window.
+"- <c-w>gf will open the file in a new tab.
+
+"[[Substitute]]
+"- :%s/\s\+$// << Delete all spaces and tabs at the end of my lines
+
+"[[Sort]
+":sort
+":sort i "ignorecase
+":sort! "reverse sort
+":sort /{pattern}/ "skip pattern
+":sort r /{pattern}/ "search for pattern
+
+"[[.vimrc tips]]
+"- You can change the plugin variable within vim command mode by just typing :let g:something_blah=foo
+"- :set myvar? would determine the status of the variable <myvar>
+
+
