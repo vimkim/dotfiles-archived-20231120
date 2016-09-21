@@ -11,7 +11,7 @@ viavailable(){
 }
 
 # ls config
-alias ls='ls --color=auto'
+#alias ls='ls --color=auto'
 alias la="ls -GAF"
 alias ll="ls -GAFl"
 alias l='ls' 
@@ -92,3 +92,6 @@ export PATH
 
 # Python
 export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.5/bin
+
+set -o vi
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

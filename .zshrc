@@ -172,3 +172,5 @@ export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin
 # for macport
 export PATH=$PATH:/opt/local/bin/
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
