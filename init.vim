@@ -1,23 +1,23 @@
-
-" VIMRC / INIT.VIM FILE
-" Created by dequ[_macOS,_WSL]
-" All comments copied are referenced with '-by John Doe' format.
-" partly referred to Janus .vimrc
-" From 20160825, this .vimrc file has been transformed into init.vim.
-" Functionality for (not-neo)vim rarely tested since then.
+"START_OF_FILE
+"INIT.VIM FILE (.vimrc in past)
+"Creator: dequ
+"From 20160825, this .vimrc file has been transformed into init.vim.
+"Functionality for (not-neo)vim rarely tested.
 "
-"===================================================================================
+"section============================================================================
 "TABLE OF CONTENTS
-"- TIPS & Reminders
+"===================================================================================
+
+"- TIPS & REMINDERS
+"- PLUGIN
+"- SCHEME
+"- MAPPING
 "- NECESSARY
 "- ACCESSORY
-"- MAPPING
-"- SCHEME
-"- PLUGIN
 "- MISC
 
-"===================================================================================
-"TIPS
+"section============================================================================
+"TIPS & REMINDERS
 "===================================================================================
 
 "[[Windows]]
@@ -57,33 +57,37 @@
 "[[Substitute]]
 "- :%s/\s\+$// << Delete all spaces and tabs at the end of my lines
 
+"[[.vimrc tips]]
+"- You can change the plugin variable within vim command mode by just typing :let g:something_blah=foo
+"- :set myvar? would determine the status of the variable <myvar>
 
-"===================================================================================
+
+"section============================================================================
 " PLUGINS
 "===================================================================================
-" * Tips
-" - You can change the plugin variable within vim command mode by just typing
-"   let g:something_blah=foo
 
+"Discard all previous settings.
 set nocompatible
-"For Pathogen, "This is what you should have at the top of your ~/.vimrc" - by romainl
+
+"(For Pathogen, "This is what you should have at the top of your ~/.vimrc" - by romainl
 filetype off
 filetype plugin indent off
 syntax off
 "Now go down to the plugin section and see these turned on.
+")
 
-
+"(PATHOGEN << not used anymore.
 "Not using pathogen anymore. Changed to "vimplug.
-" PATHOGEN << not used anymore.
 ""let g:pathogen_disabled=['neocomplete.vim']
 ""execute pathogen#infect()
 "If this is executed, helptags of plugins are updated.
 ""execute pathogen#helptags()
 "* IMPORTANT: It is required that the user should run :Helptags command everytime a new plugin is installed. This method helps trigger :help <plugin_name> function. -by tpope, the creater of pathogen
+")
 
+"(NEOCOMPLETE
 "Not using Neocomplete anymore. Changed to Deoplete for neovim compatibility.
 "It sounds strange but Neocomplete does not work for neovim. Use Deoplete instead.
-" NEOCOMPLETE
 ""let g:neocomplete#enable_at_startup = 1
 ""let g:neocomplcache_enable_cursor_hold_i=1
 "Enable <TAB> for Neocomplete. It also helps tabs recover its original functionality.
@@ -94,8 +98,9 @@ syntax off
 "    h""let col = col('.') - 1
 "    ""return !col || getline('.')[col - 1]  =~ '\s'
 ""endfunction"}}}
+")
 
-"VIMPLUG 
+"(VIMPLUG 
 "To install, type :
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -123,31 +128,36 @@ Plug 'suan/vim-instant-markdown'
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-surround'
 call plug#end()
+")
 
-" CTRLP.VIM
+"(CTRLP.VIM
 " help: ,p toggles
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map= '<leader>p'
 let g:ctrlp_cmd = 'CtrlPBuffor .'
+")
 
-" GOYO
+"(GOYO
 "autocmd VimEnter * Goyo
+")
 
-" LIMELIGHT
+"(LIMELIGHT
 " Color name (:help cterm-colors) or ANSI code
 let g:limelight_conceal_ctermfg = "gray"
 let g:limelight_conceal_ctermfg = 245
 "autocmd VimEnter * Limelight
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+")
 
-" SOLARIZED
+"(SOLARIZED
 syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set bg=light
 colorscheme solarized
+")
 
-" DEOPLETE
+"(DEOPLETE
 let g:deoplete#enable_at_startup = 1
 " Use smartcase
 let g:deoplete#enable_ignore_case = 1
@@ -157,12 +167,14 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " close preview window on leaving the insert mode
 autocmd InsertLeave * if pumvisible() == 0 | pclose | endif
 set completeopt-=preview
+")
 
-"deoplete-clang
+"(DEOPLETE-CLANG
 let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.8.1/lib/clang'
 let g:deoplete#eable_refresh_always = 1
+")
 
-" SYNTASTIC
+"(SYNTASTIC
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -170,49 +182,56 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+")
 
-" TAGBAR
+"(TAGBAR
 " help: ,tb toggles tagbar. <c-w><c-w> changes window and press ? for details.
 nmap <leader>tb :TagbarToggle<CR>
 let g:tagbar_width=30
 "autocmd VimEnter * Tagbar
+")
 
-" SEMANTIC HIGHLIGHT
+"(SEMANTIC HIGHLIGHT
 nnoremap <Leader>h :SemanticHighlightToggle<cr>
 ""let g:semanticTermColors = [1,2,3,9,10,12,13,14,15,125]
 ""autocmd VimEnter * SemanticHighlightToggle
 " also highlight words starting with $ in javascript.
 ""autocmd FileType javascript setlocal iskeyword+=$
+")
 
-" NERDTREE
+"(NERDTREE
 " help: ,nt toggles. Then type ? for details.
 let NERDTreeShowHidden=1
 map <leader>nt :NERDTreeToggle<CR>
 ""autocmd VimEnter * NERDTree
+")
 
-" AIRLINE
+"(AIRLINE
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme = 'light'
+")
 
-" VIM-MINIMAP BY SEVERIN LEMAIGNAN
+"(VIM-MINIMAP BY SEVERIN LEMAIGNAN
 let g:minimap_show='<leader>ms'
 let g:minimap_update='<leader>mu'
 let g:minimap_close='<leader>gc'
 let g:minimap_toggle='<leader>mm'
 let g:minimap_highlight='Visual'
 "autocmd VimEnter * Minimap
+")
 
-" INDENTLINE PLUGIN
+"(INDENTLINE PLUGIN
 let g:indentLine_char = '▶'
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_color_term = 100
 " special:·│¦┆➤▶
+")
 
-" EASYMOTION
+"(EASYMOTION
 " Disable default mapping
 let g:EasyMotion_do_mapping = 0
 " This allows you to jump onto a specific letter.
@@ -228,16 +247,20 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions << what is this for?
 ""map <Leader>j <Plug>(easymotion-j)
 ""map <Leader>k <Plug>(easymotion-k)
+")
 
-" TABULAR
+"(TABULAR
+")
 
-" VIM-MARKDOWN
+"(VIM-MARKDOWN
 nnoremap <leader>>> V:HeaderIncrease<CR>
 nnoremap <leader><< V:HeaderDecrease<CR>
+")
 
-" VIM-INSTANT-MARKDOWN
+"(VIM-INSTANT-MARKDOWN
+")
 
-" EASYTAGS
+"(EASYTAGS
 " * Tip:
 ""echo join(sort(map(items(filter(copy(g:), 'v:key =~ "^easytags"')), 'string(v:val)')), "\n")
 " The above command will list all the settings.
@@ -256,8 +279,9 @@ highlight link cMember Italics
 ""let g:easytags_on_cursorhold=1
 " run asynchronouse tags file updates
 let g:easytags_async = 1
+")
 
-" VIM-MULTI-CURSOR
+"(VIM-MULTI-CURSOR
 " help: <c-n> for highlighting a word and continue if pressed again
 " help: <c-p> for going back, <c-x> for skipping and continue
 " help: multipleCursorsFind for regular expression
@@ -277,15 +301,18 @@ function! Multiple_cursors_after()
     exe 'NeoCompleteUnlock'
   endif
 endfunction
+")
 
-" VIM-SEEK
+"(VIM-SEEK
+")
 
-" VIM-GUTTER
+"(VIM-GUTTER
 " help: [c, ]c jumps to hunk
 " help: <leader>hp for preview, <leader>hs for stage, <leader>hu for undo
+")
 
+"(FILETYPE
 filetype plugin indent on
-
 " turn off auto commenting when <cr>
 autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o
 
@@ -297,65 +324,80 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+")
 
+"(SYNTAX ENABLE
 if !exists("g:syntax_on")
     syntax enable
 endif " by Andy Ray from SO
+")
 
-"===================================================================================
+"section============================================================================
 " NECESSARY
 "===================================================================================
-" * Tips
-" - You can determine the status of a variable <myvar> by typing :set myvar?
 
-" mouse
-set mouse=a
 " indenting
+set autoindent
 set smartindent
+set cindent
+
 " tab control
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
+
 " Show partial commands in the last line
 set showcmd
+
 " Search pattern becomes case-insensitive.
 set ignorecase
+
 " Search pattern becomes case-insensitive when it has lowercase letters only.
 " * This should be turned on together with :set ignorecase.
 set smartcase
+
 " scrolling control
 set scrolloff=9
+
 " line number
 set number
+
 " relative line number
 set relativenumber
+
 " make backspace work like most other apps. Alternatives: set backspace=2
 set backspace=indent,eol,start
+
 " MACVIM ZOOM
 set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
+
 " visual bell
 set vb
+
 " show invisibles
 set list
 set listchars=tab:▸\ ,eol:¬
+
 " tells vim to look for a tags file in the directory of the current file, in
 " the current directory and up and up until your $HOME (that's the meaning of
 " the semicolon), stopping on the first hit. -by romainl from SO
 ""set tags=./tags;tags; -disabled for easytags
 "Highlight selected word on cursor
 autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-" Better command-line completion
+"Better command-line completion
 set wildmenu
 set wildmode=list:longest,full
+"Mouse
+set mouse=a
 " Have Vim jump to the last position when a file reopened.
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 
-"===================================================================================
+"section============================================================================
 " ACCESSORY
 "===================================================================================
 " Asks before quit without save
@@ -400,7 +442,7 @@ autocmd BufEnter * silent! lcd %:p:h
 set undofile
 
 
-"===================================================================================
+"section============================================================================
 " MAPPING
 "===================================================================================
 " * :verbose map <KEY> will tell you if the mapping is already taken by other
@@ -426,62 +468,68 @@ let mapleader = ","
 "noremap j gj
 "noremap k gk
 
-" ONLY WORKS when terminal rc files contain: stty -ixon
-"{{{{{{{{{{{{{{{{{{{{
-" SAVE
-" ctrl+s saves
+"( ONLY WORKS when the terminal .*shrc file contains: stty -ixon
+"SAVE
 nnoremap <C-s> :update<CR>
-inoremap <c-s> <ESC>:update<CR>
+inoremap <c-s> <ESC>:update<CR>a
 vnoremap <C-s> <esc>:w<CR>gv
 
-" QUIT
+"QUIT
 " ctrl+q quits all which is not working
 nnoremap <C-q> :qa<CR>
-"}}}}}}}}}}}}}}}}}}}}
+")
 
-" NEW LINE
+"NEW LINE
 " insert new line without entering insert mode.
 nnoremap <Enter> o<ESC>
 " insert new line above the cursor without entering insert mode.
 nnoremap <Leader><Enter> O<ESC>
 " Unfortunately, a more intuitive  choice of <S-Enter> O<ESC> not working on CLI
 
-" COMPILE & RUN MAPPING
-" - Python: "If F9 is pressed then run python
-" rp : run python code
+"(COMPILE & RUN MAPPING
+"- PYTHON
 nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
-" - C,CPP: "If F8 is pressed then run gcc and a.out
-" creates an executable file named a.out
-" crc : compile and run c code / ccp : compile and run cpp code
+
+"- C,CPP
+"Create an executable file named a.out.
 nnoremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
 nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
+"IMPORTANT: if bugs occured, change gcc-6 to gcc
 " creates an executable file that has the same name with its .c file
 ""map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+")
 
 " EXPERIMENTAL
 " mapping dot(.) to :norm.<CR> so it can be used in visual mode.
 ""vnoremap . :norm.<CR>
 
 
-"===================================================================================
-" SCHEMES
+"section============================================================================
+"COLORSCHEMES
 "===================================================================================
 
-" MONOKAI BEGIN
+"Currently using solarized colorscheme. Check the plugin.
+
 "colorscheme monokain
-" MONOKAI END
-"gruvbox BEGIN
-""colorscheme gruvbox
-""set bg=dark
-"GRUVBOX END
-"MOLOKAI BEGIN
+
+"((gruvbox) 
+"colorscheme gruvbox
+"set bg=dark
+")
+
+"((MOLOKAI)
 "colorscheme molokai
 "let g:molokai_original = 1
 "let g:rehash256 = 1
-"MOLOKAI END
+")
 
 
-"===================================================================================
+"section============================================================================
 " MISC
 "===================================================================================
+
+"Change color of list chars (such as tab, carriage return chars) to red
 hi NonText ctermfg=1 guifg=gray
+
+"All comments copied are referenced with '-by John Doe' format.
+"partly referred to Janus .vimrc
