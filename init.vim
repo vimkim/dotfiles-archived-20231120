@@ -73,7 +73,7 @@ syntax off
 "Now go down to the plugin section and see these turned on.
 
 
-"Not using pathogen anymore. Changed to vimplug.
+"Not using pathogen anymore. Changed to "vimplug.
 " PATHOGEN << not used anymore.
 ""let g:pathogen_disabled=['neocomplete.vim']
 ""execute pathogen#infect()
@@ -99,30 +99,36 @@ syntax off
 "To install, type :
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"use :sort /.... '.*\// to sort the lines.
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
+Plug 'kien/ctrlp.vim'
+Plug 'zchee/deoplete-clang'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'junegunn/goyo.vim'
 Plug 'yggdroot/indentline'
-Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/limelight.vim'
+Plug 'Shougo/neoinclude.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
-Plug 'tpope/vim-surround'
-Plug 'kien/ctrlp.vim'
-Plug 'majutsushi/tagbar'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-clang'
-Plug 'Shougo/neoinclude.vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'suan/vim-instant-markdown'
-Plug 'altercation/vim-colors-solarized'
+Plug 'majutsushi/tagbar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'suan/vim-instant-markdown'
+Plug 'plasticboy/vim-markdown'
+Plug 'tpope/vim-surround'
 call plug#end()
 
+" CTRLP.VIM
+" help: ,p toggles
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_map= '<leader>p'
+let g:ctrlp_cmd = 'CtrlPBuffor .'
 
 " GOYO
 "autocmd VimEnter * Goyo
@@ -164,12 +170,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
-" CTRLP.VIM
-" help: ,p toggles
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_map= '<leader>p'
-let g:ctrlp_cmd = 'CtrlPBuffor .'
 
 " TAGBAR
 " help: ,tb toggles tagbar. <c-w><c-w> changes window and press ? for details.
