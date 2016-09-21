@@ -258,6 +258,10 @@ execute pathogen#infect()
 ""endfunction"}}}
 
 "vim-plug session
+" To install, type :
+"curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
 Plug 'yggdroot/indentline'
 Plug 'airblade/vim-gitgutter'
