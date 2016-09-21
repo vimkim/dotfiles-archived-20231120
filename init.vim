@@ -17,213 +17,45 @@
 "- MISC
 
 "===================================================================================
-" Tips
-"===================================================================================
-" - :windo makes all windows do the same command
-" - Look up the register file by :reg
-" - Paste from registry by using "<char>p
-" - Copy to registry by using "<char>y (visual select might be useful)
-" - Change the case of a letter by [visual_mode] + (u,U,~)
-" - ctags should be updates using command: $ ctags -R .
-" - RECOVERY: if .swp file was created, you can recover that file by $vim -r
-"   <filename>
-"   Or, just press R and it sometimes works. Save the file with different
-"   name (or backup the original file with different name and then recover).
-"   $ vimdiff filename1 filename2 << this is a helpful tool
-" - <c-w><c-w> goes to the next window, while <c-w><c-p> goes to the last
-"   window.
-" - <c-w>+j,h,k,l works.
-" - G; will bring you to the last location of the cursor.
-" - vimdiff can compare files. ]c,[c to jump to differences, do, dp each
-"   stands for obtain and put.
-" - * will move you to the next identifier (variable name), while g* does the
-"   same but does not care whether it is blank-separated. eg. var1 -> myvar1this
-" - :%s/\s\+$// << Delete all spaces and tabs at the end of my lines
-
-
-"===================================================================================
-" NECESSARY
-"===================================================================================
-" * Tips
-" - You can determine the status of a variable <myvar> by typing :set myvar?
-
-set nocompatible
-" For Pathogen, "This is what you should have at the top of your ~/.vimrc" - by romainl
-filetype off
-filetype plugin indent off
-syntax off
-" now go down to the plugin section and see these turned on
-" mouse
-set mouse=a
-" indenting
-set smartindent
-" tab control
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab
-" Show partial commands in the last line
-set showcmd
-" Search pattern becomes case-insensitive.
-set ignorecase
-" Search pattern becomes case-insensitive when it has lowercase letters only.
-" * This should be turned on together with :set ignorecase.
-set smartcase
-" scrolling control
-set scrolloff=9
-" line number
-set number
-" relative line number
-set relativenumber
-" make backspace work like most other apps. Alternatives: set backspace=2
-set backspace=indent,eol,start
-" MACVIM ZOOM
-set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
-" visual bell
-set vb
-" show invisibles
-set list
-set listchars=tab:▸\ ,eol:¬
-" tells vim to look for a tags file in the directory of the current file, in
-" the current directory and up and up until your $HOME (that's the meaning of
-" the semicolon), stopping on the first hit. -by romainl from SO
-""set tags=./tags;tags; -disabled for easytags
-"Highlight selected word on cursor
-autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-" Better command-line completion
-set wildmenu
-set wildmode=list:longest,full
-" Have Vim jump to the last position when a file reopened.
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-
-"===================================================================================
-" ACCESSORY
-"===================================================================================
-" Asks before quit without save
-set confirm
-" set command line height to 2
-set cmdheight=2
-" toggle paste mode
-"set pastetoggle=<F11> << not necessary
-" Annoying
-set laststatus=2
-" emphasize the line which the cursor is on
-set cursorline
-" ??
-set showmatch
-" ??
-set mat=2
-" ??
-set incsearch
-" Highlight searches (use :noh to temporalily turn off)
-set hlsearch
-" ??
-set ruler
-" HTML indenting issue
-let g:html_indent_inctags = "html,body,head,tbody"
-" ??
-set showmode
-set showcmd
-" buffer control
-set hidden
-"zc will close the fold, zo will open the fold, za will toggle the fold under
-"the current cursor.
-"zC, zO, zA applies the same, recursively.
-"zR opens all folds, zM closes all folds
-set foldmethod=indent
-" Omny? this sucks
-set omnifunc=syntaxcomplete#Complete
-" spell check, but not grammar. Useful for writing README
-""set spell
-" auto change directory, works same as autochdir with less errors
-autocmd BufEnter * silent! lcd %:p:h
-" Saves undo's after file closes
-set undofile
-
-
-"===================================================================================
-" MAPPING
-"===================================================================================
-" * :verbose map <KEY> will tell you if the mapping is already taken by other
-" function.
-
-" ARROWS FOR COLEMAK
-"noremap k j
-"noremap h k
-"noremap j h
-
-" ESC
-vmap ,, <ESC>
-imap ,, <ESC>
-cmap ,, <C-c>
-vmap wf <ESC>
-imap wf <ESC>
-cmap wf <C-c>
-" LEADER KEY
-let mapleader = ","
-
-" CURSOR
-" cursor moves visual instead of actual line
-"noremap j gj
-"noremap k gk
-
-" ONLY WORKS when terminal rc files contain: stty -ixon
-"{{{{{{{{{{{{{{{{{{{{
-" SAVE
-" ctrl+s saves
-nnoremap <C-s> :update<CR>
-inoremap <c-s> <ESC>:update<CR>
-vnoremap <C-s> <esc>:w<CR>gv
-
-" QUIT
-" ctrl+q quits all which is not working
-nnoremap <C-q> :qa<CR>
-"}}}}}}}}}}}}}}}}}}}}
-
-" NEW LINE
-" insert new line without entering insert mode.
-nnoremap <Enter> o<ESC>
-" insert new line above the cursor without entering insert mode.
-nnoremap <Leader><Enter> O<ESC>
-" Unfortunately, a more intuitive  choice of <S-Enter> O<ESC> not working on CLI
-
-" COMPILE & RUN MAPPING
-" - Python: "If F9 is pressed then run python
-" rp : run python code
-nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
-" - C,CPP: "If F8 is pressed then run gcc and a.out
-" creates an executable file named a.out
-" crc : compile and run c code / ccp : compile and run cpp code
-nnoremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
-nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
-" creates an executable file that has the same name with its .c file
-""map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
-
-" EXPERIMENTAL
-" mapping dot(.) to :norm.<CR> so it can be used in visual mode.
-""vnoremap . :norm.<CR>
-
-
-"===================================================================================
-" SCHEMES
+"TIPS
 "===================================================================================
 
-" MONOKAI BEGIN
-"colorscheme monokain
-" MONOKAI END
-"gruvbox BEGIN
-""colorscheme gruvbox
-""set bg=dark
-"GRUVBOX END
-"MOLOKAI BEGIN
-"colorscheme molokai
-"let g:molokai_original = 1
-"let g:rehash256 = 1
-"MOLOKAI END
+"[[Windows]]
+"- :windo makes all windows do the same command.
+"- <c-w><c-w> goes to the next window, while <c-w><c-p> goes to the last window.
+"- <c-w>+j,h,k,l works.
+
+"[[Registry]]
+"- Look up the register file by :reg.
+"- Paste from registry by using "<char>p.
+"- Copy to registry by using "<char>y (visual select might be useful).
+
+"[[Case]]
+"- Change the case of a letter by [visual_mode] + (u,U,~).
+
+"[[Tags]]
+"- ctags should be updates using command: $ ctags -R .
+
+"[[Recovery]]
+"- If .swp file was created, you can recover that file by $vim -r <filename> Or, just press R and it sometimes works. Save the file with different name (or backup the original file with different name and then recover).
+
+"[[Difference]]
+"- $ vimdiff filename1 filename2 << this is a helpful tool.
+"- For neovim, it is nvim -d filename1 filename2.
+"- c[,c] to just to difference chunks
+"- do (diff obtain), dp (diff put) to equalize the differences.
+"- If you want to undo your do/dp, you can just simply <c-w><c-w>u. 
+
+"[[Cursor]]
+"- g; will bring your cursor to the previous changelist.
+"- g, will bring you cursor to the next changelist.
+"- `` (two backticks) will bring you to the last location of the cursor.
+"- TODO: figure out the actual mechanism of ``
+"- * will move your cursor to the next word. eg) myvar -> myvar
+"- g* will move your cursor to the next text. eg) myvar -> heymyvar3
+
+"[[Substitute]]
+"- :%s/\s\+$// << Delete all spaces and tabs at the end of my lines
 
 
 "===================================================================================
@@ -233,22 +65,28 @@ nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 " - You can change the plugin variable within vim command mode by just typing
 "   let g:something_blah=foo
 
-" To disable a plugin, add it's bundle name to the following list
-let g:pathogen_disabled=['neocomplete.vim']
-" PATHOGEN
-execute pathogen#infect()
-" this helptags function is decprecated, but who cares. I'm lazy.
-"execute pathogen#helptags()
+set nocompatible
+"For Pathogen, "This is what you should have at the top of your ~/.vimrc" - by romainl
+filetype off
+filetype plugin indent off
+syntax off
+"Now go down to the plugin section and see these turned on.
 
-" * IMPORTANT: It is required that the user should run :Helptags command everytime a
-" new plugin is installed. This method helps trigger :help <plugin_name>
-" function. -by tpope, the creater of pathogen.
 
+"Not using pathogen anymore. Changed to vimplug.
+" PATHOGEN << not used anymore.
+""let g:pathogen_disabled=['neocomplete.vim']
+""execute pathogen#infect()
+"If this is executed, helptags of plugins are updated.
+""execute pathogen#helptags()
+"* IMPORTANT: It is required that the user should run :Helptags command everytime a new plugin is installed. This method helps trigger :help <plugin_name> function. -by tpope, the creater of pathogen
+
+"Not using Neocomplete anymore. Changed to Deoplete for neovim compatibility.
+"It sounds strange but Neocomplete does not work for neovim. Use Deoplete instead.
 " NEOCOMPLETE
 ""let g:neocomplete#enable_at_startup = 1
 ""let g:neocomplcache_enable_cursor_hold_i=1
-"for neocomplete, enable <TAB>: completion. It also helps tabs recover its
-"original functionality.
+"Enable <TAB> for Neocomplete. It also helps tabs recover its original functionality.
 ""inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
 ""            \ <SID>check_back_space() ? "\<TAB>" :
 ""            \ neocomplete#start_manual_complete()
@@ -257,11 +95,10 @@ execute pathogen#infect()
 "    ""return !col || getline('.')[col - 1]  =~ '\s'
 ""endfunction"}}}
 
-"vim-plug session
-" To install, type :
+"VIMPLUG 
+"To install, type :
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
 Plug 'yggdroot/indentline'
 Plug 'airblade/vim-gitgutter'
@@ -284,7 +121,6 @@ Plug 'suan/vim-instant-markdown'
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 call plug#end()
 
 
@@ -465,6 +301,185 @@ autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 if !exists("g:syntax_on")
     syntax enable
 endif " by Andy Ray from SO
+
+"===================================================================================
+" NECESSARY
+"===================================================================================
+" * Tips
+" - You can determine the status of a variable <myvar> by typing :set myvar?
+
+" mouse
+set mouse=a
+" indenting
+set smartindent
+" tab control
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+" Show partial commands in the last line
+set showcmd
+" Search pattern becomes case-insensitive.
+set ignorecase
+" Search pattern becomes case-insensitive when it has lowercase letters only.
+" * This should be turned on together with :set ignorecase.
+set smartcase
+" scrolling control
+set scrolloff=9
+" line number
+set number
+" relative line number
+set relativenumber
+" make backspace work like most other apps. Alternatives: set backspace=2
+set backspace=indent,eol,start
+" MACVIM ZOOM
+set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
+" visual bell
+set vb
+" show invisibles
+set list
+set listchars=tab:▸\ ,eol:¬
+" tells vim to look for a tags file in the directory of the current file, in
+" the current directory and up and up until your $HOME (that's the meaning of
+" the semicolon), stopping on the first hit. -by romainl from SO
+""set tags=./tags;tags; -disabled for easytags
+"Highlight selected word on cursor
+autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+" Better command-line completion
+set wildmenu
+set wildmode=list:longest,full
+" Have Vim jump to the last position when a file reopened.
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+
+"===================================================================================
+" ACCESSORY
+"===================================================================================
+" Asks before quit without save
+set confirm
+" set command line height to 2
+set cmdheight=2
+" toggle paste mode
+"set pastetoggle=<F11> << not necessary
+" Annoying
+set laststatus=2
+" emphasize the line which the cursor is on
+set cursorline
+" ??
+set showmatch
+" ??
+set mat=2
+" ??
+set incsearch
+" Highlight searches (use :noh to temporalily turn off)
+set hlsearch
+" ??
+set ruler
+" HTML indenting issue
+let g:html_indent_inctags = "html,body,head,tbody"
+" ??
+set showmode
+set showcmd
+" buffer control
+set hidden
+"zc will close the fold, zo will open the fold, za will toggle the fold under
+"the current cursor.
+"zC, zO, zA applies the same, recursively.
+"zR opens all folds, zM closes all folds
+set foldmethod=indent
+" Omny? this sucks
+set omnifunc=syntaxcomplete#Complete
+" spell check, but not grammar. Useful for writing README
+""set spell
+" auto change directory, works same as autochdir with less errors
+autocmd BufEnter * silent! lcd %:p:h
+" Saves undo's after file closes
+set undofile
+
+
+"===================================================================================
+" MAPPING
+"===================================================================================
+" * :verbose map <KEY> will tell you if the mapping is already taken by other
+" function.
+
+" ARROWS FOR COLEMAK
+"noremap k j
+"noremap h k
+"noremap j h
+
+" ESC
+vmap ,, <ESC>
+imap ,, <ESC>
+cmap ,, <C-c>
+vmap wf <ESC>
+imap wf <ESC>
+cmap wf <C-c>
+" LEADER KEY
+let mapleader = ","
+
+" CURSOR
+" cursor moves visual instead of actual line
+"noremap j gj
+"noremap k gk
+
+" ONLY WORKS when terminal rc files contain: stty -ixon
+"{{{{{{{{{{{{{{{{{{{{
+" SAVE
+" ctrl+s saves
+nnoremap <C-s> :update<CR>
+inoremap <c-s> <ESC>:update<CR>
+vnoremap <C-s> <esc>:w<CR>gv
+
+" QUIT
+" ctrl+q quits all which is not working
+nnoremap <C-q> :qa<CR>
+"}}}}}}}}}}}}}}}}}}}}
+
+" NEW LINE
+" insert new line without entering insert mode.
+nnoremap <Enter> o<ESC>
+" insert new line above the cursor without entering insert mode.
+nnoremap <Leader><Enter> O<ESC>
+" Unfortunately, a more intuitive  choice of <S-Enter> O<ESC> not working on CLI
+
+" COMPILE & RUN MAPPING
+" - Python: "If F9 is pressed then run python
+" rp : run python code
+nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
+" - C,CPP: "If F8 is pressed then run gcc and a.out
+" creates an executable file named a.out
+" crc : compile and run c code / ccp : compile and run cpp code
+nnoremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
+nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
+" creates an executable file that has the same name with its .c file
+""map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+
+" EXPERIMENTAL
+" mapping dot(.) to :norm.<CR> so it can be used in visual mode.
+""vnoremap . :norm.<CR>
+
+
+"===================================================================================
+" SCHEMES
+"===================================================================================
+
+" MONOKAI BEGIN
+"colorscheme monokain
+" MONOKAI END
+"gruvbox BEGIN
+""colorscheme gruvbox
+""set bg=dark
+"GRUVBOX END
+"MOLOKAI BEGIN
+"colorscheme molokai
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+"MOLOKAI END
+
 
 "===================================================================================
 " MISC
