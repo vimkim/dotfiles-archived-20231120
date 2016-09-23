@@ -113,8 +113,13 @@ let g:html_indent_inctags = "html,body,head,tbody"
 set showmode
 set showcmd
 
-" buffer control
+" Better buffer management - hide buffers instead of closing them - by mojotech
 set hidden
+
+" Default history is only 20
+set history=50
+" Use more levels of undo
+set undolevels=50  
 
 "zc will close the fold, zo will open the fold, za will toggle the fold under
 "the current cursor.
