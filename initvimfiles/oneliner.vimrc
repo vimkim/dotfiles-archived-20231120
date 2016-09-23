@@ -41,7 +41,11 @@ set backspace=indent,eol,start
 set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
 
 " visual bell
-set vb
+set visualbell
+set noerrorbells
+
+"Auto read when a file is changed on disk
+set autoread
 
 " show invisibles
 set list
