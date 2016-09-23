@@ -41,6 +41,13 @@ vnoremap <C-s> <esc>:w<CR>gv
 nnoremap <C-q> :qa<CR>
 ")
 
+"DISABLE EX-MODE
+:map Q <nop>
+
+"Try quit in insert mode.
+inoremap QQ <c-c>:q<cr>
+nnoremap QQ <c-c>:q<cr>
+
 "NEW LINE
 " insert new line without entering insert mode.
 nnoremap <Enter> o<ESC>
