@@ -18,6 +18,9 @@ let mapleader = ","
 vmap ,, <ESC>
 imap ,, <ESC>
 cmap ,, <C-c>
+vmap fw <ESC>
+imap fw <ESC>
+cmap fw <C-c>
 vmap wf <ESC>
 imap wf <ESC>
 cmap wf <C-c>
