@@ -58,6 +58,9 @@ nnoremap <Leader><Enter> O<ESC>
 "SUDO SAVE
 cnoremap sudow w !sudo tee %
 
+"SAVE & QUIT IN INSERT MODE
+inoremap ZZ <c-c>ZZ
+
 "(COMPILE & RUN MAPPING
 "- PYTHON
 nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
