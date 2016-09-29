@@ -104,6 +104,7 @@ stty -ixon
 # vim save ctrl s end
 
 
+alias l='ls -GF'
 alias la='ls -GAF'
 alias ll='ls -GAFl'
 cl(){ builtin cd "$@" && la
@@ -118,7 +119,6 @@ c(){
         echo "hey, there is my_error, check .zshrc"
     fi
 }
-alias l='ls'
 #alias v='nvim'
 v(){
     if [ -d $@ ]; then
@@ -136,7 +136,7 @@ v(){
     fi
 }
 alias rm='rm -i'
-alias mv='mv -i'
+alias mv='mv -iv'
 alias cm='chmod -v'
 alias md='mkdir'
 
@@ -153,9 +153,18 @@ alias luu="ssh dkim87@ubuntu.cs.mcgill.ca"
 alias rsc='Rscript'
 alias python='python3'
 alias py='python'
+
+# better than cat
 alias dog='pygmentize -g'
+
+# jekyll blog
+alias jse='bundle exec jekyll serve -w'
+
+#macOS
 alias o='open'
 alias oas='open -a Safari'
+
+# Compiler
 alias gcc='/usr/local/Cellar/gcc/6.2.0/bin/gcc-6'
 alias g++='/usr/local/Cellar/gcc/6.2.0/bin/g++-6'
 bindkey -M viins ',,' vi-cmd-mode
