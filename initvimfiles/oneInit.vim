@@ -66,12 +66,23 @@
 "[[Substitute]]
 "- :%s/\s\+$// << Delete all spaces and tabs at the end of my lines
 
-"[[Sort]
+"[[Sort]]
 ":sort
 ":sort i "ignorecase
 ":sort! "reverse sort
 ":sort /{pattern}/ "skip pattern
 ":sort r /{pattern}/ "search for pattern
+
+"[[vimgrep]]
+"vimgrep /esc/gj {filename}
+"vimgrep /esc/gj `find {directory} -type f -not -path "*.git*"`
+" The one below is more efficient. It searches through the parent directory recursively.
+"vimgrep /rc/gj ../**/* 
+" Run the command and :copen, :cnext. Use QuickFix features.
+" :cn will go to the next error.
+" :cnf will go to the first error of the next file.
+
+
 
 "[[.vimrc tips]]
 "- You can change the plugin variable within vim command mode by just typing :let g:something_blah=foo
@@ -118,7 +129,8 @@ vnoremap <C-s> <esc>:w<CR>gv
 
 "QUIT
 " ctrl+q quits all which is not working
-nnoremap <C-q> :qa<CR>
+nnoremap <C-q> :q<CR>
+inoremap <C-q> <ESC>:q<CR>
 ")
 
 "DISABLE EX-MODE
