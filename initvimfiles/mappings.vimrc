@@ -33,12 +33,13 @@ noremap k gk
 "( ONLY WORKS when the terminal .*shrc file contains: stty -ixon
 "SAVE
 nnoremap <C-s> :update<CR>
-inoremap <c-s> <ESC>:update<CR>a
+inoremap <c-s> <ESC>:update<CR>
 vnoremap <C-s> <esc>:w<CR>gv
 
 "QUIT
 " ctrl+q quits all which is not working
-nnoremap <C-q> :qa<CR>
+nnoremap <C-q> :q<CR>
+inoremap <C-q> <ESC>:q<CR>
 ")
 
 "DISABLE EX-MODE
