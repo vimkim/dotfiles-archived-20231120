@@ -137,6 +137,11 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 ""autocmd FileType javascript setlocal iskeyword+=$
 ")
 
+"(NERDCOMMENTER
+"let NERDSpaceDelims=1
+let NERDRemoveExtraSpaces=1
+")
+
 "(NERDTREE
 " help: ,nt toggles. Then type ? for details.
 let NERDTreeShowHidden=1

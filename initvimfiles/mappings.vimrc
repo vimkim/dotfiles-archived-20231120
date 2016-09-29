@@ -62,6 +62,9 @@ cnoremap sudow w !sudo tee %
 "SAVE & QUIT IN INSERT MODE
 inoremap ZZ <c-c>ZZ
 
+" Map Ctrl-Backspace to delete the previous word in insert mode.
+imap <C-BS> <C-W>
+
 "(COMPILE & RUN MAPPING
 "- PYTHON
 nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
