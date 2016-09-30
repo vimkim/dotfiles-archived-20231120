@@ -55,6 +55,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
+Plug 'SirVer/ultisnips'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
@@ -63,6 +64,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown'
 Plug 'plasticboy/vim-markdown'
+Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 call plug#end()
 ")
@@ -257,7 +259,9 @@ endfunction
 "(FILETYPE
 filetype plugin indent on
 " turn off auto commenting when <cr>
-autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o
+autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o 
+" Check the status by set formatoptions?, then you would see jql
+
 
 " Syntax of these languages is fussy over tabs Vs spaces - by VimCast
 autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
@@ -267,6 +271,12 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+" Turn on auto listing
+autocmd FileType markdown setlocal formatoptions +=c formatoptions +=r formatoptions +=o
+" Check the status by set formatoptions? and then you will see jqtlncro
+
+" Enter insert mode automatically when editing git commit messages 
+autocmd FileType gitcommit 1 | startinsert "by benjifisher from so
 ")
 
 "(SYNTAX ENABLE
