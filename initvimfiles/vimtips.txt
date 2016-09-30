@@ -20,6 +20,9 @@
 "TIPS & REMINDERS
 "===================================================================================
 
+"[[Modal]]
+"- <c-o> in insert mode would allow you to run a command in normal mode and restore back to insert mode.
+
 "[[Windows]]
 "- :windo makes all windows do the same command.
 "- <c-w><c-w> goes to the next window, while <c-w><c-p> goes to the last window.
@@ -54,21 +57,32 @@
 "- * will move your cursor to the next word. eg) myvar -> myvar
 "- g* will move your cursor to the next text. eg) myvar -> heymyvar3
 "- gf will open the file under the cursor.
+"- <c-o> will go back to the previous file (move cursor to an older position in jusp list).
+"- <c-^> will alter between files.
+"- :e# is equivalent to the above.
 "- <c-w>f will open the file in a new window.
 "- <c-w>gf will open the file in a new tab.
 
 "[[Substitute]]
 "- :%s/\s\+$// << Delete all spaces and tabs at the end of my lines
 
-"[[Sort]
+"[[Sort]]
 ":sort
 ":sort i "ignorecase
 ":sort! "reverse sort
 ":sort /{pattern}/ "skip pattern
 ":sort r /{pattern}/ "search for pattern
 
+"[[vimgrep]]
+"vimgrep /esc/gj {filename}
+"vimgrep /esc/gj `find {directory} -type f -not -path "*.git*"`
+" The one below is more efficient. It searches through the parent directory recursively.
+"vimgrep /rc/gj ../**/* 
+" Run the command and :copen, :cnext. Use QuickFix features.
+" :cn will go to the next error.
+" :cnf will go to the first error of the next file.
+
 "[[.vimrc tips]]
 "- You can change the plugin variable within vim command mode by just typing :let g:something_blah=foo
 "- :set myvar? would determine the status of the variable <myvar>
-
 
