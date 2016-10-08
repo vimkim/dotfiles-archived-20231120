@@ -15,15 +15,15 @@ let mapleader = ","
 "noremap j h
 
 "ESC
-vmap ,, <ESC>
-imap ,, <ESC>
-cmap ,, <C-c>
-vmap fw <ESC>
-imap fw <ESC>
-cmap fw <C-c>
-vmap wf <ESC>
-imap wf <ESC>
-cmap wf <C-c>
+"vmap ,, <ESC>
+"imap ,, <ESC>
+"cmap ,, <C-c>
+vnoremap fw <ESC>
+inoremap fw <ESC>
+cnoremap fw <C-c>
+vnoremap wf <ESC>
+inoremap wf <ESC>
+cnoremap wf <C-c>
 
 "CURSOR
 "cursor moves visual instead of actual line
@@ -72,6 +72,7 @@ nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
 "- C,CPP
 "Create an executable file named a.out.
 nnoremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
+nnoremap <leader>gpp :w <CR>:!g++-6 % && ./a.out <CR>
 nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 "IMPORTANT: if bugs occured, change gcc-6 to gcc
 " creates an executable file that has the same name with its .c file

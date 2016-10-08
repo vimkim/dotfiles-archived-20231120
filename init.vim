@@ -4,3 +4,4 @@ so ~/runtime_config/initvimfiles/oneliner.vimrc
 so ~/runtime_config/initvimfiles/colorschemes.vimrc
 so ~/runtime_config/initvimfiles/misc.vimrc
 "~/runtime_config/initvimfiles/vimtips.txt
+
