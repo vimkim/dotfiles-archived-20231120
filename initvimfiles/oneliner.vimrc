@@ -128,7 +128,7 @@ set undolevels=50
 set foldmethod=indent
 
 " Omny? this sucks
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
 
 " spell check, but not grammar. Useful for writing README
 ""set spell

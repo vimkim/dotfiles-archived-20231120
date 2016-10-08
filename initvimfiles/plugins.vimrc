@@ -44,8 +44,9 @@ syntax off
 "use :sort /.... '.*\// to sort the lines.
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
 Plug 'kien/ctrlp.vim'
-Plug 'zchee/deoplete-clang'
+Plug 'chrisbra/csv.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-clang'
 Plug 'junegunn/goyo.vim'
 Plug 'yggdroot/indentline'
 Plug 'junegunn/limelight.vim'
@@ -60,10 +61,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown'
 Plug 'plasticboy/vim-markdown'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 call plug#end()
@@ -110,8 +114,9 @@ set completeopt-=preview
 ")
 
 "(DEOPLETE-CLANG
+let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.8.1/lib/libclang.dylib'
 let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.8.1/lib/clang'
-let g:deoplete#eable_refresh_always = 1
+let g:deoplete#enable_refresh_always = 1
 ")
 
 "(SYNTASTIC
@@ -122,6 +127,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 ")
 
 "(TAGBAR
@@ -200,6 +206,7 @@ let g:EasyMotion_smartcase = 1
 "(VIM-MARKDOWN
 nnoremap <leader>>> V:HeaderIncrease<CR>
 nnoremap <leader><< V:HeaderDecrease<CR>
+let g:vim_markdown_conceal = 0
 ")
 
 "(VIM-INSTANT-MARKDOWN
@@ -226,7 +233,7 @@ highlight link cMember Italics
 let g:easytags_async = 1
 ")
 
-"(VIM-MULTI-CURSOR
+"(VIM-MULTIPLE-CURSOR
 " help: <c-n> for highlighting a word and continue if pressed again
 " help: <c-p> for going back, <c-x> for skipping and continue
 " help: multipleCursorsFind for regular expression
