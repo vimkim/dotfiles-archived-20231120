@@ -103,29 +103,37 @@ source $ZSH/oh-my-zsh.sh
 stty -ixon
 # vim save ctrl s end
 
+# vim config. If nvim exists, use it
+viavailable(){
+    if hash nvim 2>/dev/null; then
+        nvim "$@"
+    else
+        vim "$@"
+    fi
+}
 
+# ls config
+#alias ls='ls --color=auto'
 alias l='ls -GF'
 alias la='ls -GAF'
 alias ll='ls -GAFl'
 cl(){ builtin cd "$@" && la
 }
-#alias c='cl'
 c(){
     if [ -d $@ ]; then
         cl "$@"
     elif [ -f $@ ]; then
-        nvim "$@"
+        viavailable "$@"
     else
         echo "hey, there is my_error, check .zshrc"
     fi
 }
-#alias v='nvim'
 v(){
     if [ -d $@ ]; then
         cl "$@"
     #elif [ -f $@ ]; then
     else
-        nvim "$@"
+        viavailable "$@"
     #else
         #read -q "REPLY?Would you like to create a new file?"
         #if [[ $REPLY =~ '^[Yy]$' ]]; then # $REPLY = y also works
@@ -140,17 +148,30 @@ alias mv='mv -iv'
 alias cm='chmod -v'
 alias md='mkdir'
 
+#grep shortcuts
+alias grep='grep --color'
+alias fzg='grep -nir'
+alias fzgrep='grep -nir'
+alias ask='grep -nir '
+#alias ask='grep -nir -A 2'
+function askman { 
+    ask "$@" ~/mymanual/
+}
 #git shortcuts
 alias gst='git status'
 alias gad='git add'
-alias gcm='git commit'
+alias gcm='git commit -m'
 alias gps='git push'
 alias gpsom='git push origin master'
 alias gpl='git pull'
 alias lmm="ssh dkim87@mimi.cs.mcgill.ca"
 alias llx="ssh dkim87@linux.cs.mcgill.ca"
 alias luu="ssh dkim87@ubuntu.cs.mcgill.ca"
+
+#Rscript shortcut
 alias rsc='Rscript'
+
+#Python shortcut
 alias python='python3'
 alias py='python'
 
@@ -167,9 +188,12 @@ alias oas='open -a Safari'
 # Compiler
 alias gcc='/usr/local/Cellar/gcc/6.2.0/bin/gcc-6'
 alias g++='/usr/local/Cellar/gcc/6.2.0/bin/g++-6'
-bindkey -M viins ',,' vi-cmd-mode
+
+# bindkey -M viins ',,' vi-cmd-mode
+bindkey -M viins 'wf' vi-cmd-mode
+bindkey -M viins 'fw' vi-cmd-mode
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-ls
+la
 # archey
 #screenfetch -v
 
