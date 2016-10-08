@@ -18,7 +18,7 @@ alias l='ls'
 
 #cl, c, v config
 cl(){ 
-	builtin  cd "$@" && ls
+	builtin  cd "$@" && la
 }
 
 c(){
@@ -47,7 +47,7 @@ v(){
 
 # verbose rm and mv
 alias rm='rm -i'
-alias mv='mv -i'
+alias mv='mv -iv'
 
 # easier 
 alias cm='chmod -v'
@@ -61,8 +61,6 @@ alias gps='git push'
 alias gpsom='git push origin master'
 alias gpl='git pull'
 
-# if login, run la
-la
 
 alias lmm="ssh dkim87@mimi.cs.mcgill.ca"
 alias llx="ssh dkim87@linux.cs.mcgill.ca"
@@ -74,13 +72,27 @@ export PATH="/usr/local/bin:$PATH"
 
 #Rscript shortcut
 alias rsc='Rscript'
+
+#Python shortcut
 alias python='python3'
 alias py='python'
+
+# better than cat
 alias dog='pygmentize -g'
+
+# jekyll blog
+alias jse='bundle exec jekyll serve -w'
+
+#macOS
 alias o='open'
 alias oas='open -a Safari'
+
+# Compiler
+alias gcc='/usr/local/Cellar/gcc/6.2.0/bin/gcc-6'
+alias g++='/usr/local/Cellar/gcc/6.2.0/bin/g++-6'
+
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-ls
+
 # archey
 #screenfetch -v
 
@@ -95,3 +107,6 @@ export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin
 
 set -o vi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# if login, run la
+la
