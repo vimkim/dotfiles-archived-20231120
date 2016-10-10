@@ -11,4 +11,7 @@ cat ~/runtime_config/initvimfiles/colorschemes.vimrc >> ~/runtime_config/initvim
 
 cat ~/runtime_config/initvimfiles/misc.vimrc >> ~/runtime_config/initvimfiles/oneInit.vim
 
+cat ~/runtime_config/initvimfiles/gistfile.vim >> ~/runtime_config/initvimfiles/oneInit.vim
+
+
 

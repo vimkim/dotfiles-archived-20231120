@@ -157,13 +157,24 @@ alias ask='grep -nir '
 function askman { 
     ask "$@" ~/mymanual/
 }
+function askhere { 
+    ask "$@" . 
+}
+alias gotoman='cd ~/mymanual'
+
 #git shortcuts
 alias gst='git status'
 alias gad='git add'
-alias gcm='git commit -m'
+alias gada='git add .'
+alias gcm='git commit'
+alias gcmm='git commit -m'
+alias gcmam='git commit -am'
 alias gps='git push'
 alias gpsom='git push origin master'
 alias gpl='git pull'
+alias gplom='git pull'
+
+# ssh shortcut
 alias lmm="ssh dkim87@mimi.cs.mcgill.ca"
 alias llx="ssh dkim87@linux.cs.mcgill.ca"
 alias luu="ssh dkim87@ubuntu.cs.mcgill.ca"

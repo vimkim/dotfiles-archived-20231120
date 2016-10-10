@@ -65,6 +65,15 @@ inoremap ZZ <c-c>ZZ
 " Map Ctrl-Backspace to delete the previous word in insert mode.
 imap <C-BS> <C-W>
 
+" Map local replace
+nnoremap gr gd[{V%::s/<c-r>///gc<left><left><left>
+"gd moves to the definition
+"[{ bring the cursor to the scope begin
+"V% visual-line mode and go to the opposite } thus selecting the whole scope.
+
+" Map global replace
+nnoremap gR gD:%s/<c-r>///gc<left><left><left>
+
 "(COMPILE & RUN MAPPING
 "- PYTHON
 nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
