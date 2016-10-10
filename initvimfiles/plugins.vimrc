@@ -56,7 +56,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips' "Snippets Engine
+Plug 'honza/vim-snippets' " Snippets
+Plug 'tpope/vim-abolish'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
@@ -68,7 +70,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown'
 Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 call plug#end()
 ")
@@ -135,6 +136,15 @@ let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 nmap <leader>tb :TagbarToggle<CR>
 let g:tagbar_width=30
 "autocmd VimEnter * Tagbar
+")
+
+"(ULTISNIPS
+let g:UltiSnipsListSnippets = "<c-l>"
+" Defines the directory private snippet definition files are stored in.
+set runtimepath+=~/.vim/mysnip/"
+let g:UltiSnipsSnippetsDir = "~/.vim/mySnips/UltiSnips/"
+" Defines the directories for looking for snippets. Do not mix up.
+let g:UltiSnipsSnippetsDirectories = ["~/.vim/mySnips/UltiSnips/"]
 ")
 
 "(SEMANTIC HIGHLIGHT

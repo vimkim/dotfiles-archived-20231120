@@ -139,4 +139,7 @@ autocmd BufEnter * silent! lcd %:p:h
 " Saves undo's after file closes
 set undofile
 
+" Full path to the status line visible
+"set statusline+=%F
+
 

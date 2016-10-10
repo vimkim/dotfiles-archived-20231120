@@ -82,12 +82,9 @@
 " :cn will go to the next error.
 " :cnf will go to the first error of the next file.
 
-
-
 "[[.vimrc tips]]
 "- You can change the plugin variable within vim command mode by just typing :let g:something_blah=foo
 "- :set myvar? would determine the status of the variable <myvar>
-
 
 
 "section============================================================================
@@ -106,15 +103,15 @@ let mapleader = ","
 "noremap j h
 
 "ESC
-vmap ,, <ESC>
-imap ,, <ESC>
-cmap ,, <C-c>
-vmap fw <ESC>
-imap fw <ESC>
-cmap fw <C-c>
-vmap wf <ESC>
-imap wf <ESC>
-cmap wf <C-c>
+"vmap ,, <ESC>
+"imap ,, <ESC>
+"cmap ,, <C-c>
+vnoremap fw <ESC>
+inoremap fw <ESC>
+cnoremap fw <C-c>
+vnoremap wf <ESC>
+inoremap wf <ESC>
+cnoremap wf <C-c>
 
 "CURSOR
 "cursor moves visual instead of actual line
@@ -124,7 +121,7 @@ noremap k gk
 "( ONLY WORKS when the terminal .*shrc file contains: stty -ixon
 "SAVE
 nnoremap <C-s> :update<CR>
-inoremap <c-s> <ESC>:update<CR>a
+inoremap <c-s> <ESC>:update<CR>
 vnoremap <C-s> <esc>:w<CR>gv
 
 "QUIT
@@ -153,6 +150,18 @@ cnoremap sudow w !sudo tee %
 "SAVE & QUIT IN INSERT MODE
 inoremap ZZ <c-c>ZZ
 
+" Map Ctrl-Backspace to delete the previous word in insert mode.
+imap <C-BS> <C-W>
+
+" Map local replace
+nnoremap gr gd[{V%::s/<c-r>///gc<left><left><left>
+"gd moves to the definition
+"[{ bring the cursor to the scope begin
+"V% visual-line mode and go to the opposite } thus selecting the whole scope.
+
+" Map global replace
+nnoremap gR gD:%s/<c-r>///gc<left><left><left>
+
 "(COMPILE & RUN MAPPING
 "- PYTHON
 nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
@@ -160,6 +169,7 @@ nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
 "- C,CPP
 "Create an executable file named a.out.
 nnoremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
+nnoremap <leader>gpp :w <CR>:!g++-6 % && ./a.out <CR>
 nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 "IMPORTANT: if bugs occured, change gcc-6 to gcc
 " creates an executable file that has the same name with its .c file
@@ -218,8 +228,9 @@ syntax off
 "use :sort /.... '.*\// to sort the lines.
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
 Plug 'kien/ctrlp.vim'
-Plug 'zchee/deoplete-clang'
+Plug 'chrisbra/csv.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-clang'
 Plug 'junegunn/goyo.vim'
 Plug 'yggdroot/indentline'
 Plug 'junegunn/limelight.vim'
@@ -229,14 +240,20 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
+Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-abolish'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown'
 Plug 'plasticboy/vim-markdown'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 call plug#end()
 ")
@@ -282,8 +299,9 @@ set completeopt-=preview
 ")
 
 "(DEOPLETE-CLANG
+let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.8.1/lib/libclang.dylib'
 let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.8.1/lib/clang'
-let g:deoplete#eable_refresh_always = 1
+let g:deoplete#enable_refresh_always = 1
 ")
 
 "(SYNTASTIC
@@ -294,6 +312,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 ")
 
 "(TAGBAR
@@ -372,6 +391,7 @@ let g:EasyMotion_smartcase = 1
 "(VIM-MARKDOWN
 nnoremap <leader>>> V:HeaderIncrease<CR>
 nnoremap <leader><< V:HeaderDecrease<CR>
+let g:vim_markdown_conceal = 0
 ")
 
 "(VIM-INSTANT-MARKDOWN
@@ -398,7 +418,7 @@ highlight link cMember Italics
 let g:easytags_async = 1
 ")
 
-"(VIM-MULTI-CURSOR
+"(VIM-MULTIPLE-CURSOR
 " help: <c-n> for highlighting a word and continue if pressed again
 " help: <c-p> for going back, <c-x> for skipping and continue
 " help: multipleCursorsFind for regular expression
@@ -587,7 +607,7 @@ set undolevels=50
 set foldmethod=indent
 
 " Omny? this sucks
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
 
 " spell check, but not grammar. Useful for writing README
 ""set spell
@@ -616,6 +636,7 @@ set undofile
 "((MOLOKAI)
 "colorscheme molokai
 "let g:molokai_original = 1
+"set bg=dark
 "let g:rehash256 = 1
 ")
 
@@ -630,3 +651,16 @@ hi NonText ctermfg=1 guifg=gray
 
 "All comments copied are referenced with '-by John Doe' format.
 "partly referred to Janus .vimrc
+" For refactoring within {} for javascript which gd, gD (go to definition) does not work.
+
+function! Refactor()
+    call inputsave()
+    let @z=input("What do you want to rename'" . @z . "' to? ")
+    call inputrestore()
+endfunction
+
+" Locally (local to block) rename a variable
+nnoremap <Leader>rf "zyiw:call Refactor()<cr>mx:silent! norm gd<cr>[{V%:s/<C-R>//<c-r>z/g<cr>`x
+
+" Locally (local to block) rename a variable in python, since python is not using {}
+nnoremap <Leader>prf "zyiw:call Refactor()<cr>mx:silent! norm gd<cr>[%V]%:s/<C-R>//<c-r>z/g<cr>`x
