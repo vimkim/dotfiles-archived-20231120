@@ -109,4 +109,4 @@ set -o vi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # if login, run la
-la
+# la

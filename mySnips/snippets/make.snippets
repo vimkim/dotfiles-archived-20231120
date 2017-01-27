@@ -1,0 +1,21 @@
+
+# base
+snippet basee
+	.PHONY: clean, mrproper
+	CC = g++
+	CFLAGS = -g -Wall
+
+	all: $1
+		./$1
+
+	%.o: %.cpp
+		$(CC) $(CFLAGS) -c -o $@ $<
+	
+	${1:out}: $1.o
+		$(CC) $(CFLAGS) -o $@ $+
+
+	clean:
+		rm -f *.o core.*
+
+	mrproper: clean
+		rm -f $1
