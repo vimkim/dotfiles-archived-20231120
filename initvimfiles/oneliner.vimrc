@@ -4,15 +4,17 @@
 "===================================================================================
 
 " indenting
+set cindent
 set autoindent
 set smartindent
-set cindent
 
 " tab control
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
+" This changes the first tab to spaces
+"set expandtab
+set noexpandtab
 set smarttab
 
 " Show partial commands in the last line
@@ -57,7 +59,7 @@ set listchars=tab:▸\ ,eol:¬
 ""set tags=./tags;tags; -disabled for easytags
 
 "Highlight selected word on cursor
-autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+" autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 "Better command-line completion
 set wildmenu
@@ -126,6 +128,7 @@ set undolevels=50
 "zC, zO, zA applies the same, recursively.
 "zR opens all folds, zM closes all folds
 set foldmethod=indent
+set nofoldenable
 
 " Omny? this sucks
 "set omnifunc=syntaxcomplete#Complete
@@ -142,4 +145,8 @@ set undofile
 " Full path to the status line visible
 "set statusline+=%F
 
+" Source .zshrc file
+set shell=bash\ --login
+" behave strange
+"set shell=zsh\ -i
 

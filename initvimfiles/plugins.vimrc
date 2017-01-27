@@ -47,6 +47,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-clang'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/goyo.vim'
 Plug 'yggdroot/indentline'
 Plug 'junegunn/limelight.vim'
@@ -57,6 +58,7 @@ Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
+"Plug 'lervag/vimtex' 
 Plug 'honza/vim-snippets' " Snippets
 Plug 'tpope/vim-abolish'
 Plug 'vim-airline/vim-airline'
@@ -64,13 +66,15 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
 Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc'
+Plug 'xolox/vim-misc' " must follow easytags
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown'
 Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-surround'
+Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
 ")
 
@@ -141,11 +145,14 @@ let g:tagbar_width=30
 "(ULTISNIPS
 let g:UltiSnipsListSnippets = "<c-l>"
 " Defines the directory private snippet definition files are stored in.
-set runtimepath+=~/.vim/mysnip/"
-let g:UltiSnipsSnippetsDir = "~/.vim/mySnips/UltiSnips/"
+set runtimepath+=~/.vim/mySnips/"
+let g:UltiSnipsSnippetsDir = "~/.vim/mySnips/UltiSnips"
 " Defines the directories for looking for snippets. Do not mix up.
-let g:UltiSnipsSnippetsDirectories = ["~/.vim/mySnips/UltiSnips/"]
+let g:UltiSnipsSnippetsDirectories = ["~/.vim/mySnips/UltiSnips"]
 ")
+
+"(VIMTEX
+
 
 "(SEMANTIC HIGHLIGHT
 nnoremap <Leader>h :SemanticHighlightToggle<cr>
@@ -263,6 +270,10 @@ function! Multiple_cursors_after()
     exe 'NeoCompleteUnlock'
   endif
 endfunction
+")
+
+"(VIM-LATEX-LIVE-PREVIEW
+let g:livepreview_previewer = 'open -a Preview'
 ")
 
 "(VIM-SEEK

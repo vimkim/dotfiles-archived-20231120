@@ -14,6 +14,8 @@ ZSH_THEME="random"
 #fox.zsh-theme
 #zonathan.zsh-theme
 #af-magit theme << ---- line separate, simple
+#tjkirch_mod << neat, colorful, clear
+#arrow << neat
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -214,7 +216,17 @@ la
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.5/bin
 # for macport
-export PATH=$PATH:/opt/local/bin/
+export PATH=$PATH:/opt/local/bin
 
+# for LaTex
+export PATH=$PATH:/Library/TeX/texbin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+alias sage='~/Applications/SageMath/sage'
+
+# LaTeX
+#alias pdflatex='/usr/local/texlive/2016/bin/x86_64-darwin/pdflatex'
+#alias latexmk='/library/tex/texbin/latexmk/'
+echo "ranger is amazing"
