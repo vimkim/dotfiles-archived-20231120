@@ -107,11 +107,11 @@ stty -ixon
 
 # vim config. If nvim exists, use it
 viavailable(){
-    if hash nvim 2>/dev/null; then
-        nvim "$@"
-    else
-        vim "$@"
-    fi
+	if hash nvim 2>/dev/null; then
+		nvim "$@"
+	else
+		vim "$@"
+	fi
 }
 
 # ls config
@@ -122,28 +122,28 @@ alias ll='ls -GAFl'
 cl(){ builtin cd "$@" && la
 }
 c(){
-    if [ -d $@ ]; then
-        cl "$@"
-    elif [ -f $@ ]; then
-        viavailable "$@"
-    else
-        echo "hey, there is my_error, check .zshrc"
-    fi
+	if [ -d $@ ]; then
+		cl "$@"
+	elif [ -f $@ ]; then
+		viavailable "$@"
+	else
+		echo "hey, there is my_error, check .zshrc"
+	fi
 }
 v(){
-    if [ -d $@ ]; then
-        cl "$@"
-    #elif [ -f $@ ]; then
-    else
-        viavailable "$@"
-    #else
-        #read -q "REPLY?Would you like to create a new file?"
-        #if [[ $REPLY =~ '^[Yy]$' ]]; then # $REPLY = y also works
-            #nvim "$@"
-        #else
-            #echo "hey, there is my_error, check .zshrc"
-        #fi
-    fi
+	if [ -d $@ ]; then
+		cl "$@"
+		#elif [ -f $@ ]; then
+	else
+		viavailable "$@"
+		#else
+		#read -q "REPLY?Would you like to create a new file?"
+		#if [[ $REPLY =~ '^[Yy]$' ]]; then # $REPLY = y also works
+		#nvim "$@"
+		#else
+		#echo "hey, there is my_error, check .zshrc"
+		#fi
+	fi
 }
 alias rm='rm -i'
 alias mv='mv -iv'
@@ -154,13 +154,13 @@ alias md='mkdir'
 alias grep='grep --color'
 alias fzg='grep -nir'
 alias fzgrep='grep -nir'
-alias ask='grep -nir '
-#alias ask='grep -nir -A 2'
+#alias ask='grep -nir '
+alias ask='grep -nir -A 2'
 function askman { 
-    ask "$@" ~/mymanual/
+	ask "$@" ~/mymanual/
 }
 function askhere { 
-    ask "$@" . 
+	ask "$@" . 
 }
 alias gotoman='cd ~/mymanual'
 
@@ -230,3 +230,5 @@ alias sage='~/Applications/SageMath/sage'
 #alias pdflatex='/usr/local/texlive/2016/bin/x86_64-darwin/pdflatex'
 #alias latexmk='/library/tex/texbin/latexmk/'
 echo "ranger is amazing"
+
+

@@ -51,6 +51,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/goyo.vim'
 Plug 'yggdroot/indentline'
 Plug 'junegunn/limelight.vim'
+Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamcco
+Plug 'iamcco/markdown-preview.vim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -69,10 +71,9 @@ Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc' " must follow easytags
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'suan/vim-instant-markdown'
 Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'xuhdev/vim-latex-live-preview'
+"Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
@@ -98,6 +99,9 @@ let g:limelight_conceal_ctermfg = 245
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 ")
+
+"(MARKDOWN PREVIEW
+let g:mkdp_path_to_chrome = "open -a Safari"
 
 "(SOLARIZED
 syntax enable
@@ -152,6 +156,12 @@ let g:UltiSnipsSnippetsDirectories = ["~/.vim/mySnips/UltiSnips"]
 ")
 
 "(VIMTEX
+" These are not working properly. It still opens the default system viewer
+"let g:vimtex_view_general_viewer = 'open'
+"let g:vimtex_view_general_options = '-a Skim'
+
+
+")
 
 
 "(SEMANTIC HIGHLIGHT
@@ -226,9 +236,6 @@ nnoremap <leader><< V:HeaderDecrease<CR>
 let g:vim_markdown_conceal = 0
 ")
 
-"(VIM-INSTANT-MARKDOWN
-")
-
 "(EASYTAGS
 " * Tip:
 ""echo join(sort(map(items(filter(copy(g:), 'v:key =~ "^easytags"')), 'string(v:val)')), "\n")
@@ -273,7 +280,7 @@ endfunction
 ")
 
 "(VIM-LATEX-LIVE-PREVIEW
-let g:livepreview_previewer = 'open -a Preview'
+"let g:livepreview_previewer = 'open -a Preview'
 ")
 
 "(VIM-SEEK

@@ -145,8 +145,17 @@ set undofile
 " Full path to the status line visible
 "set statusline+=%F
 
+"set zsh to default
+set shell=/usr/local/bin/zsh
+"with l option, this somehow sources the .zshrc
+set shell=zsh\ -l
 " Source .zshrc file
-set shell=bash\ --login
-" behave strange
+"set shell=bash\ --login
+" behave strange << interactive mode which seems wrong. This produces tts error or something like that
 "set shell=zsh\ -i
 
+"latex conceal unwanted strange math mode
+let g:tex_conceal = ""
+
+"add *.anki as a file extension
+au BufNewFile,BufRead *.anki set filetype=anki
