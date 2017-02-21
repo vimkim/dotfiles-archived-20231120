@@ -92,5 +92,3 @@ nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 " EXPERIMENTAL
 " mapping dot(.) to :norm.<CR> so it can be used in visual mode.
 ""vnoremap . :norm.<CR>
-
-

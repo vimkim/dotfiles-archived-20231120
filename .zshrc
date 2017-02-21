@@ -233,4 +233,4 @@ echo "ranger is amazing"
 
 # when quite ranger, change shell directory to last visited ranger directory
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
-
+alias ra='ranger'

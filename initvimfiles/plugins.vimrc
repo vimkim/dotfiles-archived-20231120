@@ -291,6 +291,11 @@ endfunction
 " help: <leader>hp for preview, <leader>hs for stage, <leader>hu for undo
 ")
 
+"(VIM-SURROUND
+" mapping for anki cloze
+let g:surround_99 = "{{c::\r}}"
+")
+
 "(FILETYPE
 filetype plugin indent on
 " turn off auto commenting when <cr>
