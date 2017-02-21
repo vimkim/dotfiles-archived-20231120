@@ -56,6 +56,7 @@ Plug 'iamcco/markdown-preview.vim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
@@ -93,11 +94,11 @@ nnoremap <leader>cp :CtrlP<Space>.<cr>
 
 "(LIMELIGHT
 " Color name (:help cterm-colors) or ANSI code
-let g:limelight_conceal_ctermfg = "gray"
+"let g:limelight_conceal_ctermfg = "gray"
 let g:limelight_conceal_ctermfg = 245
 "autocmd VimEnter * Limelight
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+"autocmd! User GoyoEnter Limelight
+"autocmd! User GoyoLeave Limelight!
 ")
 
 "(MARKDOWN PREVIEW
@@ -106,8 +107,8 @@ let g:mkdp_path_to_chrome = "open -a Safari"
 "(SOLARIZED
 syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set bg=light
-colorscheme solarized
+"set bg=light
+"colorscheme solarized
 ")
 
 "(DEOPLETE
@@ -184,12 +185,19 @@ map <leader>nt :NERDTreeToggle<CR>
 ""autocmd VimEnter * NERDTree
 ")
 
+"(PAPERCOLOR-THEME (colorscheme)
+set t_Co=256 "This is may or may not needed.
+set bg=light
+colorscheme PaperColor
+")
+
 "(AIRLINE
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme = 'light'
+"let g:airline_theme = 'light'
+let g:airline_theme ='papercolor'
 ")
 
 "(VIM-MINIMAP BY SEVERIN LEMAIGNAN
@@ -293,35 +301,6 @@ endfunction
 
 "(VIM-SURROUND
 " mapping for anki cloze
-let g:surround_99 = "{{c::\r}}"
-")
-
-"(FILETYPE
-filetype plugin indent on
-" turn off auto commenting when <cr>
-autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o 
-" Check the status by set formatoptions?, then you would see jql
-
-
-" Syntax of these languages is fussy over tabs Vs spaces - by VimCast
-autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 noexpandtab
-
-" Customizations based on house-style (arbitrary)
-autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
-autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
-autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
-" Turn on auto listing
-autocmd FileType markdown setlocal formatoptions +=c formatoptions +=r formatoptions +=o
-" Check the status by set formatoptions? and then you will see jqtlncro
-
-" Enter insert mode automatically when editing git commit messages 
-autocmd FileType gitcommit 1 | startinsert "by benjifisher from so
-")
-
-"(SYNTAX ENABLE
-if !exists("g:syntax_on")
-    syntax enable
-endif " by Andy Ray from SO
+let g:surround_99 = "{{c1::\r}}"
 ")
 

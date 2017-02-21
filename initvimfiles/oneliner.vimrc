@@ -1,20 +1,19 @@
-
 "section============================================================================
 " NECESSARY
 "===================================================================================
 
-" indenting
-set cindent
-set autoindent
-set smartindent
+"indenting
+"set cindent
+set autoindent "tells vim to apply the indentation of the current line to the next(enter, o, O)
+set smartindent "reacts to syntax/style of code. 'autoindent' must be on.
 
 " tab control
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 " This changes the first tab to spaces
-"set expandtab
-set noexpandtab
+set expandtab
+"set noexpandtab
 set smarttab
 
 " Show partial commands in the last line
@@ -119,9 +118,9 @@ set showcmd
 set hidden
 
 " Default history is only 20
-set history=50
+set history=100
 " Use more levels of undo
-set undolevels=50  
+set undolevels=100  
 
 "zc will close the fold, zo will open the fold, za will toggle the fold under
 "the current cursor.
@@ -134,7 +133,7 @@ set nofoldenable
 "set omnifunc=syntaxcomplete#Complete
 
 " spell check, but not grammar. Useful for writing README
-""set spell
+"set spell << Currently set for txt, md, anki
 
 " auto change directory, works same as autochdir with less errors
 autocmd BufEnter * silent! lcd %:p:h
@@ -157,5 +156,3 @@ set shell=zsh\ -l
 "latex conceal unwanted strange math mode
 let g:tex_conceal = ""
 
-"add *.anki as a file extension
-au BufNewFile,BufRead *.anki set filetype=anki
