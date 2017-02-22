@@ -11,6 +11,7 @@
 "- TIPS & REMINDERS
 "- MAPPING
 "- PLUGIN
+"- FILETYPE
 "- SCHEME
 "- NECESSARY
 "- ACCESSORY
@@ -176,12 +177,18 @@ nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 ""map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
 ")
 
+"Replace Windows ^m enter return into Unix
+nnoremap <leader>winm :%s/\r/\r/g<CR>
+
+"Buffer shortcuts
+nnoremap bn :bn<cr>
+nnoremap bp :bp<cr>
+nnoremap bd :bd<cr>
+
 
 " EXPERIMENTAL
 " mapping dot(.) to :norm.<CR> so it can be used in visual mode.
 ""vnoremap . :norm.<CR>
-
-
 
 "section============================================================================
 " PLUGINS
@@ -231,30 +238,38 @@ Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-clang'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/goyo.vim'
 Plug 'yggdroot/indentline'
+"Plug 'itchyny/lightline.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamcco
+Plug 'iamcco/markdown-preview.vim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips' "Snippets Engine
+"Plug 'lervag/vimtex' 
+Plug 'honza/vim-snippets' " Snippets
 Plug 'tpope/vim-abolish'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
-Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-misc' " must follow easytags
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'suan/vim-instant-markdown'
 Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'honza/vim-snippets'
+"Plug 'xuhdev/vim-latex-live-preview'
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
+Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
 ")
 
@@ -272,18 +287,25 @@ nnoremap <leader>cp :CtrlP<Space>.<cr>
 
 "(LIMELIGHT
 " Color name (:help cterm-colors) or ANSI code
-let g:limelight_conceal_ctermfg = "gray"
+"let g:limelight_conceal_ctermfg = "gray"
 let g:limelight_conceal_ctermfg = 245
 "autocmd VimEnter * Limelight
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+"autocmd! User GoyoEnter Limelight
+"autocmd! User GoyoLeave Limelight!
 ")
+
+"(LIGHTLINE
+let g:lightline = {'colorscheme': 'PaperColor',}
+")
+
+"(MARKDOWN PREVIEW
+let g:mkdp_path_to_chrome = "open -a Safari"
 
 "(SOLARIZED
 syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set bg=light
-colorscheme solarized
+"set bg=light
+"colorscheme solarized
 ")
 
 "(DEOPLETE
@@ -322,6 +344,24 @@ let g:tagbar_width=30
 "autocmd VimEnter * Tagbar
 ")
 
+"(ULTISNIPS
+let g:UltiSnipsListSnippets = "<c-l>"
+" Defines the directory private snippet definition files are stored in.
+set runtimepath+=~/.vim/mySnips/"
+let g:UltiSnipsSnippetsDir = "~/.vim/mySnips/UltiSnips"
+" Defines the directories for looking for snippets. Do not mix up.
+let g:UltiSnipsSnippetsDirectories = ["~/.vim/mySnips/UltiSnips"]
+")
+
+"(VIMTEX
+" These are not working properly. It still opens the default system viewer
+"let g:vimtex_view_general_viewer = 'open'
+"let g:vimtex_view_general_options = '-a Skim'
+
+
+")
+
+
 "(SEMANTIC HIGHLIGHT
 nnoremap <Leader>h :SemanticHighlightToggle<cr>
 ""let g:semanticTermColors = [1,2,3,9,10,12,13,14,15,125]
@@ -342,12 +382,21 @@ map <leader>nt :NERDTreeToggle<CR>
 ""autocmd VimEnter * NERDTree
 ")
 
+"(PAPERCOLOR-THEME (colorscheme)
+set t_Co=256 "This is may or may not needed.
+set bg=light
+colorscheme PaperColor
+")
+
 "(AIRLINE
 let g:airline_powerline_fonts = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme = 'light'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline_theme = 'light'
+let g:airline_theme ='papercolor'
 ")
 
 "(VIM-MINIMAP BY SEVERIN LEMAIGNAN
@@ -394,9 +443,6 @@ nnoremap <leader><< V:HeaderDecrease<CR>
 let g:vim_markdown_conceal = 0
 ")
 
-"(VIM-INSTANT-MARKDOWN
-")
-
 "(EASYTAGS
 " * Tip:
 ""echo join(sort(map(items(filter(copy(g:), 'v:key =~ "^easytags"')), 'string(v:val)')), "\n")
@@ -440,6 +486,10 @@ function! Multiple_cursors_after()
 endfunction
 ")
 
+"(VIM-LATEX-LIVE-PREVIEW
+"let g:livepreview_previewer = 'open -a Preview'
+")
+
 "(VIM-SEEK
 ")
 
@@ -448,12 +498,18 @@ endfunction
 " help: <leader>hp for preview, <leader>hs for stage, <leader>hu for undo
 ")
 
+"(VIM-SURROUND
+" mapping for anki cloze
+let g:surround_99 = "{{c1::\r}}"
+")
+
 "(FILETYPE
 filetype plugin indent on
 " turn off auto commenting when <cr>
-autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o 
+"autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o 
+" Opposite to above, turn on auto commenting 
+autocmd FileType * setlocal formatoptions +=cro
 " Check the status by set formatoptions?, then you would see jql
-
 
 " Syntax of these languages is fussy over tabs Vs spaces - by VimCast
 autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
@@ -464,12 +520,23 @@ autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 " Turn on auto listing
-autocmd FileType markdown setlocal formatoptions +=c formatoptions +=r formatoptions +=o
+autocmd FileType markdown setlocal formatoptions +=r formatoptions +=o
+" Anki '- enter' autolisting not working
+"add *.anki as a file extension
+au BufNewFile,BufRead *.anki set filetype=anki
+" add anki comments and format options
+autocmd FileType anki setlocal formatoptions +=r formatoptions +=o formatoptions +=l formatoptions +=n comments+=b:*,b:+,b:> comments-=fb:- comments+=b:-
 " Check the status by set formatoptions? and then you will see jqtlncro
 
 " Enter insert mode automatically when editing git commit messages 
-autocmd FileType gitcommit 1 | startinsert "by benjifisher from so
+"autocmd FileType gitcommit 1 | startinsert "by benjifisher from so "error
+"when fugitive
 ")
+
+"Spell check for txt, md, anki
+autocmd filetype text setlocal spell
+autocmd filetype markdown setlocal spell
+autocmd filetype anki setlocal spell
 
 "(SYNTAX ENABLE
 if !exists("g:syntax_on")
@@ -477,21 +544,23 @@ if !exists("g:syntax_on")
 endif " by Andy Ray from SO
 ")
 
-
+let g:tex_flavor='latex'
 "section============================================================================
 " NECESSARY
 "===================================================================================
 
-" indenting
-set autoindent
-set smartindent
-set cindent
+"indenting
+"set cindent
+set autoindent "tells vim to apply the indentation of the current line to the next(enter, o, O)
+set smartindent "reacts to syntax/style of code. 'autoindent' must be on.
 
 " tab control
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+" This changes the first tab to spaces
 set expandtab
+"set noexpandtab
 set smarttab
 
 " Show partial commands in the last line
@@ -536,7 +605,7 @@ set listchars=tab:▸\ ,eol:¬
 ""set tags=./tags;tags; -disabled for easytags
 
 "Highlight selected word on cursor
-autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+" autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 "Better command-line completion
 set wildmenu
@@ -596,21 +665,22 @@ set showcmd
 set hidden
 
 " Default history is only 20
-set history=50
+set history=100
 " Use more levels of undo
-set undolevels=50  
+set undolevels=100  
 
 "zc will close the fold, zo will open the fold, za will toggle the fold under
 "the current cursor.
 "zC, zO, zA applies the same, recursively.
 "zR opens all folds, zM closes all folds
 set foldmethod=indent
+set nofoldenable
 
 " Omny? this sucks
 "set omnifunc=syntaxcomplete#Complete
 
 " spell check, but not grammar. Useful for writing README
-""set spell
+"set spell << Currently set for txt, md, anki
 
 " auto change directory, works same as autochdir with less errors
 autocmd BufEnter * silent! lcd %:p:h
@@ -618,6 +688,20 @@ autocmd BufEnter * silent! lcd %:p:h
 " Saves undo's after file closes
 set undofile
 
+" Full path to the status line visible
+"set statusline+=%F
+
+"set zsh to default
+set shell=/usr/local/bin/zsh
+"with l option, this somehow sources the .zshrc
+set shell=zsh\ -l
+" Source .zshrc file
+"set shell=bash\ --login
+" behave strange << interactive mode which seems wrong. This produces tts error or something like that
+"set shell=zsh\ -i
+
+"latex conceal unwanted strange math mode
+let g:tex_conceal = ""
 
 
 "section============================================================================
