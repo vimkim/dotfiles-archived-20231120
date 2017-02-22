@@ -20,7 +20,7 @@ autocmd FileType markdown setlocal formatoptions +=r formatoptions +=o
 "add *.anki as a file extension
 au BufNewFile,BufRead *.anki set filetype=anki
 " add anki comments and format options
-autocmd FileType anki setlocal formatoptions +=r formatoptions +=o formatoptions +=l formatoptions +=n comments+=b:*,b:+,b:>,
+autocmd FileType anki setlocal formatoptions +=r formatoptions +=o formatoptions +=l formatoptions +=n comments+=b:*,b:+,b:> comments-=fb:- comments+=b:-
 " Check the status by set formatoptions? and then you will see jqtlncro
 
 " Enter insert mode automatically when editing git commit messages 
