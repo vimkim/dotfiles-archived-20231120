@@ -88,6 +88,9 @@ nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 ""map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
 ")
 
+"Replace Windows ^m enter return into Unix
+nnoremap <leader>winm :%s/\r/\r/g<CR>
+
 
 " EXPERIMENTAL
 " mapping dot(.) to :norm.<CR> so it can be used in visual mode.
