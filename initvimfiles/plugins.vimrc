@@ -50,6 +50,7 @@ Plug 'zchee/deoplete-clang'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/goyo.vim'
 Plug 'yggdroot/indentline'
+"Plug 'itchyny/lightline.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamcco
 Plug 'iamcco/markdown-preview.vim'
@@ -68,8 +69,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
-Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc' " must follow easytags
+"Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-misc' " must follow easytags
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'plasticboy/vim-markdown'
@@ -99,6 +100,10 @@ let g:limelight_conceal_ctermfg = 245
 "autocmd VimEnter * Limelight
 "autocmd! User GoyoEnter Limelight
 "autocmd! User GoyoLeave Limelight!
+")
+
+"(LIGHTLINE
+let g:lightline = {'colorscheme': 'PaperColor',}
 ")
 
 "(MARKDOWN PREVIEW
@@ -193,9 +198,11 @@ colorscheme PaperColor
 
 "(AIRLINE
 let g:airline_powerline_fonts = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 "let g:airline_theme = 'light'
 let g:airline_theme ='papercolor'
 ")
