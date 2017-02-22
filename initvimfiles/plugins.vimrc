@@ -76,6 +76,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
 "Plug 'xuhdev/vim-latex-live-preview'
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
