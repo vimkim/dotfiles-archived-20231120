@@ -91,6 +91,11 @@ nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 "Replace Windows ^m enter return into Unix
 nnoremap <leader>winm :%s/\r/\r/g<CR>
 
+"Buffer shortcuts
+nnoremap bn :bn<cr>
+nnoremap bp :bp<cr>
+nnoremap bd :bd<cr>
+
 
 " EXPERIMENTAL
 " mapping dot(.) to :norm.<CR> so it can be used in visual mode.
