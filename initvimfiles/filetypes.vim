@@ -24,7 +24,8 @@ autocmd FileType anki setlocal formatoptions +=r formatoptions +=o formatoptions
 " Check the status by set formatoptions? and then you will see jqtlncro
 
 " Enter insert mode automatically when editing git commit messages 
-autocmd FileType gitcommit 1 | startinsert "by benjifisher from so
+"autocmd FileType gitcommit 1 | startinsert "by benjifisher from so "error
+"when fugitive
 ")
 
 "Spell check for txt, md, anki

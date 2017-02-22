@@ -114,7 +114,14 @@ viavailable(){
 		vim "$@"
 	fi
 }
-
+# vimrc function
+vimrc(){
+	if hash nvim 2>/dev/null; then
+		nvim ~/.config/nvim/init.vim
+	else
+        vim ~/.vimrc
+	fi
+}
 # ls config
 #alias ls='ls --color=auto'
 alias l='ls -GF'
