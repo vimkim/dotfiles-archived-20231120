@@ -1,3 +1,5 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/dqmacair/.oh-my-zsh
@@ -40,7 +42,7 @@ ZSH_THEME="random"
 ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-#COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -64,7 +66,6 @@ plugins=(vi-mode)
 
 # User configuration
 
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -83,7 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -199,8 +200,8 @@ alias o='open'
 alias oas='open -a Safari'
 
 # Compiler
-alias gcc='/usr/local/Cellar/gcc/6.2.0/bin/gcc-6'
-alias g++='/usr/local/Cellar/gcc/6.2.0/bin/g++-6'
+#alias gcc='/usr/local/Cellar/gcc/6.2.0/bin/gcc-6'
+#alias g++='/usr/local/Cellar/gcc/6.2.0/bin/g++-6'
 
 # bindkey -M viins ',,' vi-cmd-mode
 bindkey -M viins 'wf' vi-cmd-mode
@@ -214,7 +215,7 @@ la
 # Setting PATH for Python 3.5
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.5/bin
+export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.5/bin
 # for macport
 export PATH=$PATH:/opt/local/bin
 
@@ -234,3 +235,6 @@ echo "ranger is amazing"
 # when quite ranger, change shell directory to last visited ranger directory
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 alias ra='ranger'
+# With shell aliases
+#alias ra='SHELL=/usr/local/bin/r.shell ranger # seems like not working
+
