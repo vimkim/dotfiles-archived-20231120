@@ -38,8 +38,8 @@ vnoremap <C-s> <esc>:w<CR>gv
 
 "QUIT
 " ctrl+q quits all which is not working
-nnoremap <C-q> :q<CR>
-inoremap <C-q> <ESC>:q<CR>
+nnoremap <C-q> :qa<CR>
+inoremap <C-q> <ESC>:qa<CR>
 ")
 
 "DISABLE EX-MODE
