@@ -39,3 +39,6 @@ if !exists("g:syntax_on")
 endif " by Andy Ray from SO
 ")
 
+"anki auto copy to clipboard
+nnoremap <leader>anki gg"*yG:wqa<cr>
+
