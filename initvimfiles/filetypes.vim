@@ -16,16 +16,8 @@ autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 " Turn on auto listing
 autocmd FileType markdown setlocal formatoptions +=r formatoptions +=o
-" Anki '- enter' autolisting not working
-"add *.anki as a file extension
-au BufNewFile,BufRead *.anki set filetype=anki
-" add anki comments and format options
-autocmd FileType anki setlocal formatoptions +=r formatoptions +=o formatoptions +=l formatoptions +=n comments+=b:*,b:+,b:> comments-=fb:- comments+=b:-
 " Check the status by set formatoptions? and then you will see jqtlncro
 
-" Enter insert mode automatically when editing git commit messages 
-"autocmd FileType gitcommit 1 | startinsert "by benjifisher from so "error
-"when fugitive
 ")
 
 "Spell check for txt, md, anki
@@ -39,6 +31,28 @@ if !exists("g:syntax_on")
 endif " by Andy Ray from SO
 ")
 
-"anki auto copy to clipboard
-nnoremap <leader>anki gg"*yG:wqa<cr>
+"add *.anki as a file extension
+au BufNewFile,BufRead *.anki set filetype=anki
+" add anki comments and format options
+autocmd FileType anki setlocal formatoptions +=r formatoptions +=o formatoptions +=l formatoptions +=n comments+=b:*,b:+,b:> comments-=fb:- comments+=b:-
+"<leader>anki pastes the clipboard
+autocmd Filetype anki nnoremap <leader>anki :set paste<cr>i<c-r>*<esc>:set nopaste<cr>
+"above process is automated when opening a new file
+function AnkiAutoPaste()
+    set paste
+    "! prevents mapping
+    """""normal! "*p 
+    " removes ^m in win enter
+    """""normal! :silent %s/\r/\r/g
+    """""Either the above two commands or the below one works fine
+    normal! i*
+    set nopaste
+endfunction
+autocmd BufNewFile *.anki call AnkiAutoPaste()
+"anki auto copy to clipboard when exit
+autocmd Filetype anki nnoremap <c-q> gg"*yG:q<cr>
 
+
+" Enter insert mode automatically when editing git commit messages 
+"autocmd FileType gitcommit 1 | startinsert "by benjifisher from so "error
+"when fugitive
