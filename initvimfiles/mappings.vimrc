@@ -96,6 +96,9 @@ nnoremap bn :bn<cr>
 nnoremap bp :bp<cr>
 nnoremap bd :bd<cr>
 
+"Add space in normal mode
+nnoremap <space> i<space><esc>
+
 
 " EXPERIMENTAL
 " mapping dot(.) to :norm.<CR> so it can be used in visual mode.
