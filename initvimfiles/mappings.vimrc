@@ -92,9 +92,9 @@ nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 nnoremap <leader>winm :%s/\r/\r/g<CR>
 
 "Buffer shortcuts
-nnoremap bn :bn<cr>
-nnoremap bp :bp<cr>
-nnoremap bd :bd<cr>
+nnoremap gn :bn<cr>
+nnoremap gp :bp<cr>
+nnoremap gd :bd<cr>
 
 "Add space in normal mode
 nnoremap <space> i<space><esc>
