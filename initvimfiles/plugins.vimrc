@@ -273,6 +273,9 @@ highlight link cMember Italics
 let g:easytags_async = 1
 ")
 
+"(VIM-FUGITIVE
+")
+
 "(VIM-MULTIPLE-CURSOR
 " help: <c-n> for highlighting a word and continue if pressed again
 " help: <c-p> for going back, <c-x> for skipping and continue
