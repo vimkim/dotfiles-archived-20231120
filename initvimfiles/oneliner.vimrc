@@ -145,13 +145,11 @@ set undofile
 "set statusline+=%F
 
 "set zsh to default
-set shell=/usr/local/bin/zsh
-"with l option, this somehow sources the .zshrc
-set shell=zsh\ -l
-" Source .zshrc file
-"set shell=bash\ --login
-" behave strange << interactive mode which seems wrong. This produces tts error or something like that
-"set shell=zsh\ -i
+set shell=/usr/local/bin/zsh "brew zsh location for macos
+" with l option, this somehow sources the .zshrc
+"set shell=zsh\ -l " Works fine but disabled due to conflicts with Fugitive Gdiff
+"set shell=bash\ --login " Source .bashrc file
+"set shell=zsh\ -i " behave strange; interactive mode which seems wrong. This produces tts error or something like that
 
 "latex conceal unwanted strange math mode
 let g:tex_conceal = ""
