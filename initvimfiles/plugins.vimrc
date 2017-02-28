@@ -192,7 +192,7 @@ map <leader>nt :NERDTreeToggle<CR>
 ")
 
 "(PAPERCOLOR-THEME (colorscheme)
-set t_Co=256 "This is may or may not needed.
+"set t_Co=256 "This is may or may not needed.
 set bg=light
 colorscheme PaperColor
 ")
