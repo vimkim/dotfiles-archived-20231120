@@ -237,7 +237,6 @@ alias sage='~/Applications/SageMath/sage'
 # LaTeX
 #alias pdflatex='/usr/local/texlive/2016/bin/x86_64-darwin/pdflatex'
 #alias latexmk='/library/tex/texbin/latexmk/'
-echo "ranger is amazing"
 
 # when quite ranger, change shell directory to last visited ranger directory
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
