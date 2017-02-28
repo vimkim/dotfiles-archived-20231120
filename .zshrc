@@ -231,7 +231,7 @@ export PATH=$PATH:/Library/TeX/texbin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
+# sage alias
 alias sage='~/Applications/SageMath/sage'
 
 # LaTeX
