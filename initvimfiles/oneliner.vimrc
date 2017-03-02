@@ -154,3 +154,4 @@ set shell=/usr/local/bin/zsh "brew zsh location for macos
 "latex conceal unwanted strange math mode
 let g:tex_conceal = ""
 
+set lazyredraw " redraw only when we need to 
