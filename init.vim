@@ -1,3 +1,4 @@
+" locate the cursor on the file path and press gf
 so ~/runtime_config/initvimfiles/mappings.vimrc
 so ~/runtime_config/initvimfiles/plugins.vimrc
 so ~/runtime_config/initvimfiles/filetypes.vim
