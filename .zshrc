@@ -229,10 +229,8 @@ export PATH=$PATH:/opt/local/bin
 # for LaTex
 export PATH=$PATH:/Library/TeX/texbin
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# sage alias
-alias sage='~/Applications/SageMath/sage'
+# for tmux-powerline
+PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
 ##### EXTRA SOURCING #####
 # fzf
