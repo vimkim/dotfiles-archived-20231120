@@ -108,7 +108,6 @@ export VISUAL=/usr/local/bin/nvim
 # bindkey -M viins 'wf' vi-cmd-mode
 # bindkey -M viins 'fw' vi-cmd-mode
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-la
 # archey
 #screenfetch -v
 
