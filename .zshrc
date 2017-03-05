@@ -122,13 +122,14 @@ stty -ixon
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.5/bin
+
 # for macport
 export PATH=$PATH:/opt/local/bin
 
 # for LaTex
 export PATH=$PATH:/Library/TeX/texbin
 
-# for tmux-powerline
+# for tmux-powerline # currently not using it
 PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
 ##### EXTRA SOURCING #####
