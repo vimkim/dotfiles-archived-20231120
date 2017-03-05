@@ -100,125 +100,25 @@ source $ZSH/oh-my-zsh.sh
 # CUSTOMIZED
 #==========================================================================================
 
-# vim save ctrl s begin
-#alias vim="stty stop '' -ixoff ; vim"
-#ttyctl -f
-stty -ixon
-# vim save ctrl s end
-
-# vim config. If nvim exists, use it
-viavailable(){
-	if hash nvim 2>/dev/null; then
-		nvim "$@"
-	else
-		vim "$@"
-	fi
-}
-# vimrc function
-vimrc(){
-	if hash nvim 2>/dev/null; then
-		nvim ~/.config/nvim/init.vim
-	else
-        vim ~/.vimrc
-	fi
-}
-# ls config
-#alias ls='ls --color=auto'
-alias l='ls -GF'
-alias la='ls -GAF'
-alias ll='ls -GAFl'
-cl(){ builtin cd "$@" && la
-}
-c(){
-	if [ -d $@ ]; then
-		cl "$@"
-	elif [ -f $@ ]; then
-		viavailable "$@"
-	else
-		echo "hey, there is my_error, check .zshrc"
-	fi
-}
-v(){
-	if [ -d $@ ]; then
-		cl "$@"
-		#elif [ -f $@ ]; then
-	else
-		viavailable "$@"
-		#else
-		#read -q "REPLY?Would you like to create a new file?"
-		#if [[ $REPLY =~ '^[Yy]$' ]]; then # $REPLY = y also works
-		#nvim "$@"
-		#else
-		#echo "hey, there is my_error, check .zshrc"
-		#fi
-	fi
-}
-alias rm='rm -i'
-alias mv='mv -iv'
-alias cm='chmod -v'
-alias md='mkdir'
-
-#grep shortcuts
-alias grep='grep --color'
-alias fzg='grep -nir'
-alias fzgrep='grep -nir'
-#alias ask='grep -nir '
-alias ask='grep -nir -A 2'
-function askman { 
-	ask "$@" ~/mymanual/
-}
-function askhere { 
-	ask "$@" . 
-}
-alias gotoman='cd ~/mymanual'
-
-#git shortcuts
-alias gst='git status'
-alias gad='git add'
-alias gada='git add .'
-alias gcm='git commit'
-alias gcmm='git commit -m'
-alias gcmam='git commit -am'
-alias gps='git push'
-alias gpsom='git push origin master'
-alias gpl='git pull'
-alias gplom='git pull'
-
-# ssh shortcut
-alias lmm="ssh dkim87@mimi.cs.mcgill.ca"
-alias llx="ssh dkim87@linux.cs.mcgill.ca"
-alias luu="ssh dkim87@ubuntu.cs.mcgill.ca"
-
-#Rscript shortcut
-alias rsc='Rscript'
-
-#Python shortcut
-alias python='python3'
-alias py='python'
-
-# better than cat
-alias dog='pygmentize -g'
-
-# jekyll blog
-alias jse='bundle exec jekyll serve -w'
-
-#macOS
-alias o='open'
-alias oas='open -a Safari'
-
-# Compiler
-#alias gcc='/usr/local/Cellar/gcc/6.2.0/bin/gcc-6'
-#alias g++='/usr/local/Cellar/gcc/6.2.0/bin/g++-6'
+# default editor (required for tmuxinator somehow)
+export EDITOR=/usr/local/bin/nvim
+export VISUAL=/usr/local/bin/nvim
 
 # bindkey -M viins ',,' vi-cmd-mode
-bindkey -M viins 'wf' vi-cmd-mode
-bindkey -M viins 'fw' vi-cmd-mode
+# bindkey -M viins 'wf' vi-cmd-mode
+# bindkey -M viins 'fw' vi-cmd-mode
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 la
 # archey
 #screenfetch -v
 
+# vim save ctrl s {{{ 
+#alias vim="stty stop '' -ixoff ; vim"
+#ttyctl -f
+stty -ixon
+# }}}
 
+##### PATH #####
 # Setting PATH for Python 3.5
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
