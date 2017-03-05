@@ -234,15 +234,11 @@ export PATH=$PATH:/Library/TeX/texbin
 # sage alias
 alias sage='~/Applications/SageMath/sage'
 
-# LaTeX
-#alias pdflatex='/usr/local/texlive/2016/bin/x86_64-darwin/pdflatex'
-#alias latexmk='/library/tex/texbin/latexmk/'
-
-# when quite ranger, change shell directory to last visited ranger directory
-alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
-alias ra='ranger'
-# With shell aliases
-#alias ra='SHELL=/usr/local/bin/r.shell ranger # seems like not working
+##### EXTRA SOURCING #####
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# for tmuxinator
+source ~/runtime_config/tmuxinatorfiles/tmuxinator.zsh
 
 # Aliases
 source ~/runtime_config/zshaliases.zshrc
