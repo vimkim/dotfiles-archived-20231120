@@ -99,16 +99,19 @@ snippet | "absolute" i
 \left| $1 \right|$0
 endsnippet
 
-snippet dif "differentiation" 
-\frac{d $1}{d $2}$0
+snippet dif "differentiation"
+ \frac{d $1}{d $2}$0
 endsnippet
-snippet diff "differentiation" 
+snippet diff "differentiation"
 \frac{d $1}{d $2}$0
 endsnippet
 snippet pdif "partial differentiation"
 \frac{\partial $1}{\partial $2}$0
 endsnippet
 snippet pdiff "partial differentiation"
+\frac{\partial $1}{\partial $2}$0
+endsnippet
+snippet pard "partial differentiation"
 \frac{\partial $1}{\partial $2}$0
 endsnippet
 
@@ -123,11 +126,11 @@ snippet dint "definite integral"
 \int_{$1}^{$2}{$3}\: d {$4}$0
 endsnippet
 
-snippet sum "sum"
+snippet sum "sum" i
 \sum_{$1}^{$2}{$3}$0
 endsnippet
 
-snippet lim "limit"
+snippet lim "limit" i
 \lim_{$1 \to $2} $0
 endsnippet
 
