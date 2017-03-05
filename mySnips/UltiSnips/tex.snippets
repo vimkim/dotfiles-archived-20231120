@@ -1,58 +1,9 @@
-###########################################################################
-# Snippets to create anki cards using vim
-###########################################################################
-
-snippet la "[latex]"
-[latex]
-${1}
-[/latex]
-endsnippet
-
 snippet $ "in-line math"
 $ ${1} $${0}
 endsnippet
 
 snippet $$ "math"
 $$ ${1} $$${0}
-
-snippet en "enumerate" b
-\begin{enumerate}
-\item ${1}
-\end{enumerate}
-endsnippet
-
-snippet al "align*" b
-\begin{align*}
-${1:a} &= ${2:b}\\
-${3:c} &= ${4:d}\\${5}
-\end{align*}
-${0}
-endsnippet
-
-snippet add "add equation to align" b
-${1:a} &= ${2:b}\\${3}
-endsnippet
-
-snippet it "itemize"
-\begin{itemize}
-\item ${1}
-\end{itemize}
-endsnippet
-
-snippet ite "item"
-\item ${1}
-endsnippet
-
-snippet nat "natural numbers"
-\mathbb{N}
-endsnippet
-
-snippet cz "cloze" i
-{{c1::${1:${VISUAL:cloze test}}}}
-endsnippet
-
-
-##### LATEX GENERAL #####
 
 snippet fr "fraction" i
 \\frac{${1}}{${2}}${0}
