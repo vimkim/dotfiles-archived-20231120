@@ -244,3 +244,7 @@ alias ra='ranger'
 # With shell aliases
 #alias ra='SHELL=/usr/local/bin/r.shell ranger # seems like not working
 
+# Aliases
+source ~/runtime_config/zshaliases.zshrc
+# Run at initialization
+source ~/runtime_config/zshrun.zshrc
