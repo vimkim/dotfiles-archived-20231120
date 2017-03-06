@@ -13,12 +13,12 @@ let mapleader = ","
 "vmap ,, <ESC>
 "imap ,, <ESC>
 "cmap ,, <C-c>
-vnoremap fw <ESC>
-inoremap fw <ESC>
-cnoremap fw <C-c>
-vnoremap wf <ESC>
-inoremap wf <ESC>
-cnoremap wf <C-c>
+"vnoremap fw <ESC>
+"inoremap fw <ESC>
+"cnoremap fw <C-c>
+"vnoremap wf <ESC>
+"inoremap wf <ESC>
+"cnoremap wf <C-c>
 
 "CURSOR
 "cursor moves visual instead of actual line
