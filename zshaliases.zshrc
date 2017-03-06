@@ -162,6 +162,7 @@ alias runtime_config='cd ~/runtime_config; ls -a'
 alias myman='cd ~/mymanual; ls -a'
 alias anki='cd ~/anki/; ls -a'
 alias notetaking='cd ~/notetaking/; ls -a'
+alias project='cd ~/notetaking/1_fine482/project/; ls -a'
 
 # personal edit aliases
 alias tmuxconf='nvim ~/runtime_config/.tmux.conf'
