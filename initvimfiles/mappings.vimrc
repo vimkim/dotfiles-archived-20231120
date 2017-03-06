@@ -9,11 +9,6 @@
 " LEADER KEY
 let mapleader = ","
 
-"ARROWS FOR COLEMAK
-"noremap k j
-"noremap h k
-"noremap j h
-
 "ESC
 "vmap ,, <ESC>
 "imap ,, <ESC>
