@@ -103,3 +103,9 @@ nnoremap <space> i<space><esc>
 " EXPERIMENTAL
 " mapping dot(.) to :norm.<CR> so it can be used in visual mode.
 ""vnoremap . :norm.<CR>
+
+"fugitive alias
+cnoremap gst Gstatus
+cnoremap gad Gwrite
+cnoremap gco Gcommit -m "
+cnoremap gps Gpush
