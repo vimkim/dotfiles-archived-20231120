@@ -32,9 +32,9 @@ inoremap <c-s> <ESC>:update<CR>
 vnoremap <C-s> <esc>:w<CR>gv
 
 "QUIT
-" ctrl+q quits all which is not working
-nnoremap <C-q> :qa<CR>
-inoremap <C-q> <ESC>:qa<CR>
+" ctrl+q quits all which is not working // now works 
+nnoremap <C-q> :q<CR>
+inoremap <C-q> <ESC>:q<CR>
 ")
 
 "DISABLE EX-MODE
