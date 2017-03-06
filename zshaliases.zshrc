@@ -161,6 +161,7 @@ alias luu="ssh dkim87@ubuntu.cs.mcgill.ca"
 alias runtime_config='cd ~/runtime_config; ls -a'
 alias myman='cd ~/mymanual; ls -a'
 alias anki='cd ~/anki/; ls -a'
+alias notetaking='cd ~/notetaking/; ls -a'
 
 # personal edit aliases
 alias tmuxconf='nvim ~/runtime_config/.tmux.conf'
