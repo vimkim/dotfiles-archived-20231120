@@ -91,6 +91,11 @@ nnoremap gn :bn<cr>
 nnoremap gp :bp<cr>
 nnoremap gd :bd<cr>
 
+"Line-opeation shortcut
+nnoremap gw $
+nnoremap gb ^
+vnoremap gw $h
+
 "Add space in normal mode
 nnoremap <space> i<space><esc>
 
