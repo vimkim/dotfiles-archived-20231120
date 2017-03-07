@@ -102,9 +102,6 @@ nnoremap <space> i<space><esc>
 "Y behaves y$, like C or D, instead of yy
 nnoremap Y y$
 
-" put date on document
-cnoremap date :put =strftime('%Y-%b-%d %a %T')
-
 " EXPERIMENTAL
 " mapping dot(.) to :norm.<CR> so it can be used in visual mode.
 ""vnoremap . :norm.<CR>
