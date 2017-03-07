@@ -34,8 +34,8 @@ fu! ToggleCB()
 	elseif(match(line, "\\[x\\]") != -1)
 		let line = substitute(line, '\[x\]\s*', "", "")
     else 
-        let line = substitute(line, '\(^\s*-\s\)', '\1[ ] ', "")
-        "let line = substitute(line, '^\s*-\s', '\0[ ] ', "") "both works
+        let line = substitute(line, '\(^\s*[\*-]\s\)', '\1[ ] ', "")
+        "let line = substitute(line, '^\s*[\*-]\s', '\0[ ] ', "") "both works
 	endif
 
 	call setline('.', line)
