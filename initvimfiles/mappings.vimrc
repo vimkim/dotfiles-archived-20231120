@@ -113,3 +113,7 @@ cnoremap gps Gpush
 " command to show the file path
 cnoremap filepath echo expand('%:p')<cr>
 cnoremap fullpath echo expand('%:p')<cr>
+
+" mapping for replace / substitute
+cnoremap repl %s/
+cnoremap subs %s/
