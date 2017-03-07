@@ -122,3 +122,6 @@ cnoremap fullpath echo expand('%:p')<cr>
 " mapping for replace / substitute
 cnoremap repl %s/
 cnoremap subs %s/
+
+" put date on document
+cnoremap date put =strftime('%Y-%b-%d %a %T')
