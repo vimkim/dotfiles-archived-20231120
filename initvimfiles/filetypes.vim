@@ -16,7 +16,40 @@ autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 " Turn on auto listing
-autocmd FileType markdown setlocal formatoptions +=r formatoptions +=o comments+=b:00.
+autocmd FileType markdown setlocal formatoptions +=r formatoptions +=o comments+=b:00. comments-=b:- comments+=b:-\ [\ ] comments+=b:-
+
+" {{{ CHECKBOX-VIM 
+" Thanks to Jonas Kramer (jkramer) for his 'checkbox.vim' plugin 
+" And modom for his pull request
+if exists('g:loaded_checkbox') " what is the usage of this?
+	" finish
+endif
+
+"fu! checkbox#ToggleCB()
+fu! ToggleCB()
+	let line = getline('.')
+
+	if(match(line, "\\[ \\]") != -1)
+		let line = substitute(line, "\\[ \\]", "[x]", "")
+	elseif(match(line, "\\[x\\]") != -1)
+		let line = substitute(line, '\[x\]\s*', "", "")
+        let line = substitute(line, '\(^\s*-\s\)', '\1 [  ] ', "")
+    else 
+        let line = substitute(line, '\(^\s*-\s\)', '\1[ ] ', "")
+        "let line = substitute(line, '^\s*-\s', '\0[ ] ', "") "both works
+	endif
+
+	call setline('.', line)
+endf
+
+"command! ToggleCB call checkbox#ToggleCB()
+autocmd filetype markdown command! ToggleCB call ToggleCB()
+"nmap <silent> <leader>tt :ToggleCB<cr>
+autocmd filetype markdown nmap <silent> <leader>tt :ToggleCB<cr>
+let g:loaded_checkbox = 1
+"}}}
+
+
 " Check the status by set formatoptions? and then you will see jqtlncro
 
 ")
