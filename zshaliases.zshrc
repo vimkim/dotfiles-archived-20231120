@@ -87,10 +87,9 @@ alias whichsh='echo $0' #check shell
 #git 
 alias gst='git status'
 alias gad='git add'
-alias gada='git add .'
-alias gcm='git commit'
-alias gcmm='git commit -m'
-alias gcmam='git commit -am'
+alias gap='git add --patch'
+alias gcm='git commit --verbose'
+alias gcmm='git commit --verbose -m'
 alias gps='git push'
 alias gpsom='git push -u origin master'
 alias gpl='git pull'
