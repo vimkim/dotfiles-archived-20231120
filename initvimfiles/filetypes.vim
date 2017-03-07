@@ -44,8 +44,12 @@ endf
 "command! ToggleCB call checkbox#ToggleCB()
 autocmd filetype markdown command! ToggleCB call ToggleCB()
 "nmap <silent> <leader>tt :ToggleCB<cr>
-autocmd filetype markdown nmap <silent> <leader>tt :ToggleCB<cr>
+"autocmd filetype markdown nmap <silent> <leader>tt :ToggleCB<cr> 
+" {{{ repeat.vim implementation
+autocmd filetype markdown nmap <plug>ToggleCheckBox :ToggleCB<cr>:call repeat#set("\<plug>ToggleCheckBox")<cr>
+autocmd filetype markdown nmap <leader>tt <plug>ToggleCheckBox
 let g:loaded_checkbox = 1
+" }}}
 "}}}
 
 
