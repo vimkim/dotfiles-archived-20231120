@@ -111,5 +111,5 @@ cnoremap gco Gcommit -m "
 cnoremap gps Gpush
 
 " command to show the file path
-cnoremap filepath :echo expand('%:p')<cr>
-cnoremap fullpath :echo expand('%:p')<cr>
+cnoremap filepath echo expand('%:p')<cr>
+cnoremap fullpath echo expand('%:p')<cr>
