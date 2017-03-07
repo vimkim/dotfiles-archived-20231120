@@ -106,11 +106,6 @@ nnoremap Y y$
 " mapping dot(.) to :norm.<CR> so it can be used in visual mode.
 ""vnoremap . :norm.<CR>
 
-"fugitive alias
-cnoremap gst Gstatus
-cnoremap gad Gwrite
-cnoremap gco Gcommit -m "
-cnoremap gps Gpush
 " highlight last inserted text // seems like not working? for me?: It does not work if file is saved. I escape the file using <c-s>. That was the reason this does not work.
 "nnoremap gV `[v`]
 "set timeoutlen=1000 " still the above command does not properly work << not required anymore
