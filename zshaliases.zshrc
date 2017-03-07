@@ -121,6 +121,7 @@ alias muxn='mux new'
 alias muxo='mux open'
 alias muxs='mux start'
 alias muxst='mux start stream'
+alias muxstop='mux start stopwatch'
 
 # ranger 
 # when quit ranger, change shell directory to last visited ranger directory
