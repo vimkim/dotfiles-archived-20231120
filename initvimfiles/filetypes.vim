@@ -33,7 +33,6 @@ fu! ToggleCB()
 		let line = substitute(line, "\\[ \\]", "[x]", "")
 	elseif(match(line, "\\[x\\]") != -1)
 		let line = substitute(line, '\[x\]\s*', "", "")
-        let line = substitute(line, '\(^\s*-\s\)', '\1 [  ] ', "")
     else 
         let line = substitute(line, '\(^\s*-\s\)', '\1[ ] ', "")
         "let line = substitute(line, '^\s*-\s', '\0[ ] ', "") "both works
