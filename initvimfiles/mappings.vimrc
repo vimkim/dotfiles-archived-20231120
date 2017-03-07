@@ -99,6 +99,9 @@ vnoremap gw $h
 "Add space in normal mode
 nnoremap <space> i<space><esc>
 
+"Y behaves y$, like C or D, instead of yy
+nnoremap Y y$
+
 
 " EXPERIMENTAL
 " mapping dot(.) to :norm.<CR> so it can be used in visual mode.
