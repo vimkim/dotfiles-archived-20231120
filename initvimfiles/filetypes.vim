@@ -3,19 +3,20 @@ filetype plugin indent on
 " turn off auto commenting when <cr>
 "autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o 
 " Opposite to above, turn on auto commenting 
-autocmd FileType * setlocal formatoptions +=cro
+autocmd FileType * setlocal formatoptions +=cro comments-=fb:- comments+=b:-
+
 " Check the status by set formatoptions?, then you would see jql
 
 " Syntax of these languages is fussy over tabs Vs spaces - by VimCast
 autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab "the original settings were noexpandtab but this does not work for yaml files for tmuxinator
 
 " Customizations based on house-style (arbitrary)
 autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 " Turn on auto listing
-autocmd FileType markdown setlocal formatoptions +=r formatoptions +=o
+autocmd FileType markdown setlocal formatoptions +=r formatoptions +=o comments+=b:00.
 " Check the status by set formatoptions? and then you will see jqtlncro
 
 ")
