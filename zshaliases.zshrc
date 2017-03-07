@@ -59,17 +59,9 @@ alias zshrc='viavailable ~/runtime_config/.zshrc'
 alias sozsh='source ~/.zshrc'
 
 # vimrc function
-vimrc(){
-	if hash nvim 2>/dev/null; then
-        if [ -f ~/runtime_config/init.vim ]; then
-            nvim ~/runtime_config/init.vim
-        else
-            nvim ~/.config/nvim/init.vim
-        fi
-	else
-        vim ~/.vimrc
-	fi
-}
+alias vimrc='viavailable ~/runtime_config/.vimrc'
+alias initv='viavailable ~/runtime_config/init.vim'
+alias nvimrc='viavailable ~/runtime_config/init.vim'
 
 # accessibility aliases
 alias rm='rm -i'
