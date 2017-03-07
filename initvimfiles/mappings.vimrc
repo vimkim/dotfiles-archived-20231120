@@ -113,6 +113,9 @@ nnoremap Y y$
 
 
 
+" visual select whole line except for the carriage return (enter) <c-r>
+nnoremap gwb ^v$h
+
 " command to show the file path
 cnoremap filepath echo expand('%:p')<cr>
 cnoremap fullpath echo expand('%:p')<cr>
