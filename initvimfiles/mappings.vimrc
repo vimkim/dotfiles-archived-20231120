@@ -116,6 +116,16 @@ nnoremap Y y$
 " visual select whole line except for the carriage return (enter) <c-r>
 nnoremap gwb ^v$h
 
+"fugitive alias
+nnoremap <leader>gst :Gstatus<cr>
+nnoremap <leader>gad :Gwrite<cr>
+nnoremap <leader>gap :Git add -p %<cr>
+nnoremap <leader>gco :Gcommit --verbose<cr>
+nnoremap <leader>gps :Gpush<cr>
+
+" #############################
+" Extra personal aliases or shortcuts (informal)
+" #############################
 " command to show the file path
 cnoremap filepath echo expand('%:p')<cr>
 cnoremap fullpath echo expand('%:p')<cr>
