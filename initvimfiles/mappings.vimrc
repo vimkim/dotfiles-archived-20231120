@@ -111,6 +111,12 @@ cnoremap gst Gstatus
 cnoremap gad Gwrite
 cnoremap gco Gcommit -m "
 cnoremap gps Gpush
+" highlight last inserted text // seems like not working? for me?: It does not work if file is saved. I escape the file using <c-s>. That was the reason this does not work.
+"nnoremap gV `[v`]
+"set timeoutlen=1000 " still the above command does not properly work << not required anymore
+"set ttimeoutlen=10 " 
+
+
 
 " command to show the file path
 cnoremap filepath echo expand('%:p')<cr>
