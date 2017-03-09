@@ -75,7 +75,7 @@ autocmd FileType anki setlocal formatoptions +=r formatoptions +=o formatoptions
 "<leader>anki pastes the clipboard
 autocmd Filetype anki nnoremap <leader>anki :set paste<cr>i<c-r>*<esc>:set nopaste<cr>
 "above process is automated when opening a new file
-function AnkiAutoPaste()
+function! AnkiAutoPaste()
     set paste
     "! prevents mapping
     """""normal! "*p 
