@@ -1,0 +1,8 @@
+create a file 
+`.git/hooks/post-commit`
+
+cat post-commit
+```
+#!/bin/sh
+git push origin master
+```
