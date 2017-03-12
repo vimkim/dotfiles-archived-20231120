@@ -148,3 +148,5 @@ cnoremap date put =strftime('%Y-%b-%d %a %T')<cr>
 
 " FZF
 nnoremap :e<space> :FZF 
+
+cnoremap sovimrc so $MYVIMRC<cr>
