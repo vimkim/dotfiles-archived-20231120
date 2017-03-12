@@ -1,11 +1,11 @@
 " locate the cursor on the file path and press gf
-so ~/runtime_config/initvimfiles/mappings.vimrc
-so ~/runtime_config/initvimfiles/plugins.vimrc
-so ~/runtime_config/initvimfiles/filetypes.vim
-so ~/runtime_config/initvimfiles/latex.vim
-so ~/runtime_config/initvimfiles/oneliner.vimrc
-so ~/runtime_config/initvimfiles/colorschemes.vimrc
-so ~/runtime_config/initvimfiles/misc.vimrc
-so ~/runtime_config/initvimfiles/gistfile.vim
-"~/runtime_config/initvimfiles/vimtips.txt
+so ~/runtime_config/nvim_initfiles/mappings.vimrc
+so ~/runtime_config/nvim_initfiles/plugins.vimrc
+so ~/runtime_config/nvim_initfiles/filetypes.vim
+so ~/runtime_config/nvim_initfiles/latex.vim
+so ~/runtime_config/nvim_initfiles/oneliner.vimrc
+so ~/runtime_config/nvim_initfiles/colorschemes.vimrc
+so ~/runtime_config/nvim_initfiles/misc.vimrc
+so ~/runtime_config/nvim_initfiles/gistfile.vim
+"~/runtime_config/nvim_initfiles/vimtips.txt
 
