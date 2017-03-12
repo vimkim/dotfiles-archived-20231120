@@ -52,6 +52,12 @@ let g:loaded_checkbox = 1
 " }}}
 "}}}
 
+"{{ Markdown tab means indent
+"fu! IndentTab()
+    "let line = getline('.')
+    "if(match(line, '^\s*[\*-]\s') != -1)
+        " - let line = substitute(line, '^\s*
+
 
 " Check the status by set formatoptions? and then you will see jqtlncro
 
