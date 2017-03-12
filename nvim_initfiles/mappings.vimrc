@@ -75,9 +75,9 @@ nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
 
 "- C,CPP
 "Create an executable file named a.out.
-nnoremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
-nnoremap <leader>gpp :w <CR>:!g++-6 % && ./a.out <CR>
-nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
+"nnoremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
+"nnoremap <leader>gpp :w <CR>:!g++-6 % && ./a.out <CR>
+"nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 "IMPORTANT: if bugs occured, change gcc-6 to gcc
 " creates an executable file that has the same name with its .c file
 ""map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
