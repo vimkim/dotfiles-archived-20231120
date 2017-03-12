@@ -132,9 +132,11 @@ nnoremap <leader>gps :Gpush<cr>
 cnoremap filepath echo expand('%:p')<cr>
 cnoremap fullpath echo expand('%:p')<cr>
 
-" mapping for replace / substitute
-cnoremap repl %s/
-cnoremap subs %s/
+" mapping for replace all / substitute all 
+nnoremap :repa :%s/
+nnoremap :repl :%s/
+nnoremap :suba :%s/
+nnoremap :subs :%s/
 
 " put date on document
 cnoremap date put =strftime('%Y-%b-%d %a %T')
