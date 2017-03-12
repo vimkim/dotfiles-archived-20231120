@@ -141,3 +141,6 @@ nnoremap :subs :%s/
 
 " put date on document timestamp
 cnoremap date put =strftime('%Y-%b-%d %a %T')<cr>
+
+" FZF
+nnoremap :e<space> :FZF 
