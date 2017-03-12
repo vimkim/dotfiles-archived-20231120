@@ -188,7 +188,8 @@ let NERDRemoveExtraSpaces=1
 " help: ,nt toggles. Then type ? for details.
 let NERDTreeShowHidden=1
 map <leader>nt :NERDTreeToggle<CR>
-""autocmd VimEnter * NERDTree
+"autocmd VimEnter * NERDTree
+let g:NERDTreeWinSize=20
 ")
 
 "(PAPERCOLOR-THEME (colorscheme)
