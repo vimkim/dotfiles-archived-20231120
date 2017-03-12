@@ -7,8 +7,8 @@
 # 6. Git
 # 7. TMUX, Tmuxinator
 # 8. Ranger
-# 8. Languages: R,Python,C,Latex,etc.
-# 9. PERSONAL
+# 9. Languages: R,Python,C,Latex,etc.
+# 10. PERSONAL
 
 # ls aliases 
 #alias ls='ls --color=auto'
