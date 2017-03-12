@@ -120,7 +120,8 @@ nnoremap gwb ^v$h
 nnoremap <leader>gst :Gstatus<cr>
 nnoremap <leader>gad :Gwrite<cr>
 nnoremap <leader>gap :Git add -p %<cr>
-"nnoremap <leader>gco :Gcommit --verbose<cr>
+nnoremap <leader>ap :Git add -p %<cr>
+nnoremap <leader>gco :Gcommit --verbose<cr>
 nnoremap <leader>gc :Gcommit --verbose<cr>
 nnoremap <leader>cvc :Gcommit --verbose<cr>
 nnoremap <leader>gps :Gpush<cr>
