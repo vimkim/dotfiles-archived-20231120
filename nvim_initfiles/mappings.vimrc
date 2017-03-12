@@ -125,8 +125,8 @@ nnoremap <leader>gco :Gcommit --verbose<cr>
 nnoremap <leader>gc :Gcommit --verbose<cr>
 nnoremap <leader>cvc :Gcommit --verbose<cr>
 nnoremap <leader>gps :Gpush<cr>
-nnoremap <leader>gdi :Gdiff<cr>
-nnoremap <leader>di :Gdiff<cr>
+nnoremap <leader>gdi :Gvdiff<cr>
+nnoremap <leader>di :Gvdiff<cr>
 " not fugitive but useful for visual select + stage
 vnoremap dp :diffput<cr>
 
