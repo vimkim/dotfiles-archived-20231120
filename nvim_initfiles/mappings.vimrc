@@ -139,5 +139,5 @@ nnoremap :repl :%s/
 nnoremap :suba :%s/
 nnoremap :subs :%s/
 
-" put date on document
-cnoremap date put =strftime('%Y-%b-%d %a %T')
+" put date on document timestamp
+cnoremap date put =strftime('%Y-%b-%d %a %T')<cr>
