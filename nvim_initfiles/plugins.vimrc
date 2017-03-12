@@ -323,5 +323,9 @@ endfunction
 "(VIM-SURROUND
 " mapping for anki cloze
 let g:surround_99 = "{{c1::\r}}"
+" mapping for markdown
+let g:surround_98 = "**\r**" " press b
+" mapping for latex mathmode
+let g:surround_108 = "$$ \r $$" " press l
 ")
 
