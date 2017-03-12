@@ -125,6 +125,10 @@ nnoremap <leader>gco :Gcommit --verbose<cr>
 nnoremap <leader>gc :Gcommit --verbose<cr>
 nnoremap <leader>cvc :Gcommit --verbose<cr>
 nnoremap <leader>gps :Gpush<cr>
+nnoremap <leader>gdi :Gdiff<cr>
+nnoremap <leader>di :Gdiff<cr>
+" not fugitive but useful for visual select + stage
+vnoremap dp :diffput<cr>
 
 " #############################
 " Extra personal aliases or shortcuts (informal)
