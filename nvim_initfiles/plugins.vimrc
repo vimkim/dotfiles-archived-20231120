@@ -197,6 +197,14 @@ set bg=light
 colorscheme PaperColor
 ")
 
+"(RAINBOW-PARENTHESES.VIM
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+")
+
+
 "(AIRLINE
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep=''
