@@ -30,30 +30,40 @@ syntax off
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "use :sort /.... '.*\// to sort the lines.
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
-Plug 'kien/ctrlp.vim'
-Plug 'chrisbra/csv.vim'
+"Plug 'jiangmiao/auto-pairs'
+"Plug 'kien/ctrlp.vim'
+"Plug 'chrisbra/csv.vim'
+" The below 2 plugins are not used for vim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-clang'
+"Plug 'zchee/deoplete-clang'
+"" Instead of the above two, neocomplete for vim
+"Plug 'Shougo/neocomplete.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'sjl/gundo.vim'
 Plug 'yggdroot/indentline'
 "Plug 'itchyny/lightline.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamcco
 Plug 'iamcco/markdown-preview.vim'
-Plug 'Shougo/neoinclude.vim'
-Plug 'scrooloose/nerdcommenter'
+"Plug 'Shougo/neoinclude.vim' "too slow
+Plug 'scrooloose/nerdcommenter' "too slow
 Plug 'scrooloose/nerdtree'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'kien/rainbow_parentheses.vim'
+"Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
-"Plug 'lervag/vimtex' 
-Plug 'honza/vim-snippets' " Snippets
+Plug 'honza/vim-snippets' " Snippets, let me put next to ultisnips
+Plug 'lervag/vimtex' 
 Plug 'tpope/vim-abolish'
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+"Plug 'bling/vim-bufferline'
+"Plug 'ap/vim-buftabline' 
 Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
 "Plug 'xolox/vim-easytags'
@@ -64,11 +74,20 @@ Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
 "Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-repeat'
+Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'zefei/vim-wintabs'
 call plug#end()
 ")
 
+"(AUTO-PAIR
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsShortcutBackInsert = '<M-b>'
+au Filetype markdown let b:autopairs_loaded=1
+au filetype lisp let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"'}
+")
 "(CTRLP.VIM
 " help: ,p toggles
 let g:ctrlp_map = '<leader>ctp'
@@ -77,8 +96,19 @@ let g:ctrlp_show_hidden = 1
 nnoremap <leader>cp :CtrlP<Space>.<cr>
 ")
 
+"(FZF)
+nnoremap :fz :FZF
+"nnoremap <c-f> :FZF<cr>
+")
+"(FZF.VIM
+nmap <c-x><c-f> <plug>(fzf-complete-path)
+")
+
 "(GOYO
 "autocmd VimEnter * Goyo
+")
+"(GUNDO.VIM
+nnoremap <leader>gu :GundoToggle<cr>
 ")
 
 "(LIMELIGHT
@@ -96,7 +126,13 @@ let g:lightline = {'colorscheme': 'PaperColor',}
 
 "(MARKDOWN PREVIEW
 let g:mkdp_path_to_chrome = "open -a Safari"
-
+"let g:mkdp_path_to_chrome = "open -a '/Applications/Google Chrome.app'"
+"let g:mkdp_auto_start = 1
+"let g:mkdp_auto_open = 1
+let g:mkdp_auto_close = 0
+let g:mkdp_refresh_slow = 1 " refresh when save the buffer or leave from insert mode
+let g:mkdp_command_for_global = 0 " markdown preview command can be use for all files
+")
 "(SOLARIZED
 syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -106,14 +142,29 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 "(DEOPLETE
 let g:deoplete#enable_at_startup = 1
+" auto complete error temporary fix "https://github.com/Shougo/deoplete.nvim/issues/440
+let g:deoplete#auto_complete_delay = 250
 " Use smartcase
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_smart_case = 1
+let g:deoplete#auto_complete_start_length = 3
+let g:deoplete#disable_auto_complete = 0
 " Let <TAB> also do completion
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " close preview window on leaving the insert mode
-autocmd InsertLeave * if pumvisible() == 0 | pclose | endif
+"autocmd InsertLeave * if pumvisible() == 0 | pclose | endif
 set completeopt-=preview
+" Two lines for Disable buffer source
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources._ = ['buffer']
+let b:deoplete_ignore_sources = ['buffer']
+
+")
+
+"(DEOPLETE-CLANG << broken now
+"let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.8.1/lib/libclang.dylib'
+"let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.8.1/lib/clang'
+"let g:deoplete#enable_refresh_always = 1
 ")
 
 "(NEOCOMPLETE
@@ -125,7 +176,7 @@ set completeopt-=preview
 ""function! s:check_back_space() "{{{
 "    h""let col = col('.') - 1
 "    ""return !col || getline('.')[col - 1]  =~ '\s'
-""endfunction"}}}
+""endfunction"}}}}}}}}}
 ")
 "
 "(NEOCOMPLETE
@@ -220,12 +271,18 @@ let g:tagbar_width=30
 ")
 
 "(ULTISNIPS
-let g:UltiSnipsListSnippets = "<c-l>"
+"let g:UltiSnipsListSnippets = "<c-l>"
+let g:UltiSnipsJumpForwardTrigger = "<c-l>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 " Defines the directory private snippet definition files are stored in.
 set runtimepath+=~/.vim/mySnips/"
 let g:UltiSnipsSnippetsDir = "~/.vim/mySnips/UltiSnips"
 " Defines the directories for looking for snippets. Do not mix up.
 let g:UltiSnipsSnippetsDirectories = ["~/.vim/mySnips/UltiSnips"]
+
+"for autocompletion
+inoremap <c-x><c-k> <c-x><c-k>
+inoremap <c-l> <c-l>
 ")
 
 "(VIMTEX
@@ -245,6 +302,11 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 ""autocmd FileType javascript setlocal iskeyword+=$
 ")
 
+"( IAMCCO/MARKDOWN-PREVIEW.VIM
+nnoremap :prev :MarkdownPreview<cr>
+nnoremap :nprev :MarkdownPreviewStop<cr>
+")
+
 "(NERDCOMMENTER
 "let NERDSpaceDelims=1
 let NERDRemoveExtraSpaces=1
@@ -253,9 +315,11 @@ let NERDRemoveExtraSpaces=1
 "(NERDTREE
 " help: ,nt toggles. Then type ? for details.
 let NERDTreeShowHidden=1
-map <leader>nt :NERDTreeToggle<CR>
+"map <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nt <esc>:NERDTreeToggle ~/
 "autocmd VimEnter * NERDTree
-let g:NERDTreeWinSize=20
+"autocmd VimEnter * wincmd p " moves cursor to filesafter opening nerdtree
+let g:NERDTreeWinSize=15
 ")
 
 "(PAPERCOLOR-THEME (colorscheme)
@@ -266,9 +330,14 @@ colorscheme PaperColor
 
 "(RAINBOW-PARENTHESES.VIM
 au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
+")
+
+"(NIJI PARENTHESES
+"let g:niji_matching_filetypes = ['markdown', 'tex', 'python']
+"let g:niji_use_legacy_colours = 1
 ")
 
 
@@ -305,18 +374,24 @@ let g:indentLine_color_term = 100
 " Disable default mapping
 let g:EasyMotion_do_mapping = 0
 " This allows you to jump onto a specific letter.
+map <leader>f <plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
 ""nmap s <Plug>(easymotion-overwin-f)
 " or `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
-""nmap s <Plug>(easymotion-overwin-f2)
+"nmap s <Plug>(easymotion-overwin-f2)
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
 " JK motions: Line motions << what is this for?
-""map <Leader>j <Plug>(easymotion-j)
-""map <Leader>k <Plug>(easymotion-k)
+"map <Leader>j <Plug>(easymotion-j)
+"map <Leader>k <Plug>(easymotion-k)
+map <leader>L <plug>(easymotion-bd-jk)
+nmap <leader>L <plug>(easymotion-overwin-line)
+" Move to word
+"map <leader>w <plug>(easymotion-bd-w)
+"nmap <leader>w <plug>(easymotion-overwin-w)
 ")
 
 "(TABULAR
@@ -350,6 +425,65 @@ let g:easytags_async = 1
 ")
 
 "(VIM-FUGITIVE
+"Problem: it does not work for symlinks
+"Solution:
+
+"First approach (broken: seems like this breaks for none symlink files 
+"function! s:MyFollowSymlink()
+    "silent! let s:fname = resolve(expand('%:p'))
+    "silent! bwipeout
+    "silent! exec "edit " .s:fname
+"endfunction
+"command! FollowSymlink call s:MyFollowSymlink()
+
+"augroup followsymlink:
+    "autocmd!
+    "autocmd BufReadPost * FollowSymlink
+"augroup END " 
+
+
+"Second approach:
+
+" Follow symlinks when opening a file {{{
+" NOTE: this happens with directory symlinks anyway (due to Vim's chdir/getcwd
+"       magic when getting filenames).
+" Sources:
+"  - https://github.com/tpope/vim-fugitive/issues/147#issuecomment-7572351
+"  - http://www.reddit.com/r/vim/comments/yhsn6/is_it_possible_to_work_around_the_symlink_bug/c5w91qw
+function! MyFollowSymlink(...)
+if exists('w:no_resolve_symlink') && w:no_resolve_symlink
+  return
+endif
+let fname = a:0 ? a:1 : expand('%')
+if fname =~ '^\w\+:/'
+  " Do not mess with 'fugitive://' etc.
+  return
+endif
+let fname = simplify(fname)
+
+let resolvedfile = resolve(fname)
+if resolvedfile == fname
+  return
+endif
+let resolvedfile = fnameescape(resolvedfile)
+let sshm = &shm
+set shortmess+=A  " silence ATTENTION message about swap file (would get displayed twice)
+exec 'file ' . resolvedfile
+let &shm=sshm
+
+" Re-init fugitive.
+call fugitive#detect(resolvedfile)
+if &modifiable
+  " Only display a note when editing a file, especially not for `:help`.
+  redraw  " Redraw now, to avoid hit-enter prompt.
+  echomsg 'Resolved symlink: =>' resolvedfile
+endif
+endfunction
+command! FollowSymlink call MyFollowSymlink()
+command! ToggleFollowSymlink let w:no_resolve_symlink = !get(w:, 'no_resolve_symlink', 0) | echo "w:no_resolve_symlink =>" w:no_resolve_symlink
+au BufReadPost * nested call MyFollowSymlink(expand('%'))
+
+
 ")
 
 "(VIM-MULTIPLE-CURSOR
@@ -384,6 +518,22 @@ endfunction
 "(VIM-GUTTER
 " help: [c, ]c jumps to hunk
 " help: <leader>hp for preview, <leader>hs for stage, <leader>hu for undo
+")
+
+"(Vim-repeat
+nnoremap <plug>NextMatch ;
+nnoremap <silent> f :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>f
+nnoremap <silent> F :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>F
+nnoremap <silent> t :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>t
+nnoremap <silent> T :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>T
+")
+
+"(VIM-SLIME
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": split($TMUX,",")[0], "target_pane": ":.1"}
+" Tip: for socket, default, for pane, $session:0.0 
+" You can identify it with the command $tmux list-panes -a
+"let g:slime_python_ipython = 1 "This not working
 ")
 
 "(VIM-SURROUND

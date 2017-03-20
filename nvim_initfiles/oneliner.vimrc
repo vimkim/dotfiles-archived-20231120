@@ -26,14 +26,11 @@ set ignorecase
 " * This should be turned on together with :set ignorecase.
 set smartcase
 
-" scrolling control
-set scrolloff=9
+set scrolloff=100 " scrolling control - leave some lines at both sides
+"set sidescrolloff=100 " for columns
 
-" line number
-set number
-
-" relative line number
-set relativenumber
+set number " line number
+set relativenumber " relative line number
 
 " make backspace work like most other apps. Alternatives: set backspace=2
 set backspace=indent,eol,start
@@ -155,3 +152,35 @@ set shell=/usr/local/bin/zsh "brew zsh location for macos
 let g:tex_conceal = ""
 
 set lazyredraw " redraw only when we need to 
+
+"jumplist gotojump " in order to invoke, :call GotoJump()
+function! GotoJump()
+  jumps
+  let j = input("Please select your jump: ")
+  if j != ''
+    let pattern = '\v\c^\+'
+    if j =~ pattern
+      let j = substitute(j, pattern, '', 'g')
+      execute "normal " . j . "\<c-i>"
+    else
+      execute "normal " . j . "\<c-o>"
+    endif
+  endif
+endfunction
+"jumplist mapping
+nnoremap <leader>ju :call GotoJump()<cr>
+
+
+"auto source vimrc
+if has("autocmd")
+    autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+set path+=** " from the thoughtbot youtube How to do 90% of what plugins do. use :find plug*
+
+set scrolljump=1
+
+map <ScrollWheelUp> <C-y>
+map <mouseup> <C-y>
+map <ScrollWheelDown> <c-e>
+map <mousedown> <C-e>

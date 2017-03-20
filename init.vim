@@ -1,4 +1,4 @@
-" locate the cursor on the file path and press gf
+  " locate the cursor on the file path and press gf
 so ~/runtime_config/nvim_initfiles/mappings.vimrc
 so ~/runtime_config/nvim_initfiles/plugins.vimrc
 so ~/runtime_config/nvim_initfiles/filetypes.vim

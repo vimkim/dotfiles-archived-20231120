@@ -1,6 +1,6 @@
 "START_OF_FILE
 "INIT.VIM FILE (.vimrc in past)
-"Creator: dequ
+"Creator: dqgthb
 "From 20160825, this .vimrc file has been transformed into init.vim.
 "Functionality for (not-neo)vim rarely tested.
 "
@@ -11,7 +11,6 @@
 "- TIPS & REMINDERS
 "- MAPPING
 "- PLUGIN
-"- FILETYPE
 "- SCHEME
 "- NECESSARY
 "- ACCESSORY
@@ -98,21 +97,16 @@
 " LEADER KEY
 let mapleader = ","
 
-"ARROWS FOR COLEMAK
-"noremap k j
-"noremap h k
-"noremap j h
-
 "ESC
 "vmap ,, <ESC>
 "imap ,, <ESC>
 "cmap ,, <C-c>
-vnoremap fw <ESC>
-inoremap fw <ESC>
-cnoremap fw <C-c>
-vnoremap wf <ESC>
-inoremap wf <ESC>
-cnoremap wf <C-c>
+"vnoremap fw <ESC>
+"inoremap fw <ESC>
+"cnoremap fw <C-c>
+"vnoremap wf <ESC>
+"inoremap wf <ESC>
+"cnoremap wf <C-c>
 
 "CURSOR
 "cursor moves visual instead of actual line
@@ -124,12 +118,17 @@ noremap k gk
 nnoremap <C-s> :update<CR>
 inoremap <c-s> <ESC>:update<CR>
 vnoremap <C-s> <esc>:w<CR>gv
+nnoremap <leader>s :update<CR>
 
 "QUIT
-" ctrl+q quits all which is not working
+" ctrl+q quits all which is not working // now works 
 nnoremap <C-q> :q<CR>
 inoremap <C-q> <ESC>:q<CR>
+nnoremap <leader>q :q<CR>
 ")
+
+"test
+nnoremap ,sq :wq<CR>
 
 "DISABLE EX-MODE
 :map Q <nop>
@@ -146,7 +145,7 @@ nnoremap <Leader><Enter> O<ESC>
 " Unfortunately, a more intuitive  choice of <S-Enter> O<ESC> not working on CLI
 
 "SUDO SAVE
-cnoremap sudow w !sudo tee %
+nnoremap :sudow :w !sudo tee %
 
 "SAVE & QUIT IN INSERT MODE
 inoremap ZZ <c-c>ZZ
@@ -169,9 +168,9 @@ nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
 
 "- C,CPP
 "Create an executable file named a.out.
-nnoremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
-nnoremap <leader>gpp :w <CR>:!g++-6 % && ./a.out <CR>
-nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
+"nnoremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
+"nnoremap <leader>gpp :w <CR>:!g++-6 % && ./a.out <CR>
+"nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 "IMPORTANT: if bugs occured, change gcc-6 to gcc
 " creates an executable file that has the same name with its .c file
 ""map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
@@ -181,14 +180,86 @@ nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 nnoremap <leader>winm :%s/\r/\r/g<CR>
 
 "Buffer shortcuts
-nnoremap bn :bn<cr>
-nnoremap bp :bp<cr>
-nnoremap bd :bd<cr>
+nnoremap gn :bn<cr>
+nnoremap gp :bp<cr>
+nnoremap gd :bd<cr>
 
+"Line-opeation shortcut
+nnoremap gw $
+nnoremap gb ^
+vnoremap gw $h
+
+"Add space in normal mode
+nnoremap <space> i<space><esc>
+
+"Y behaves y$, like C or D, instead of yy
+nnoremap Y y$
 
 " EXPERIMENTAL
 " mapping dot(.) to :norm.<CR> so it can be used in visual mode.
 ""vnoremap . :norm.<CR>
+
+" highlight last inserted text // seems like not working? for me?: It does not work if file is saved. I escape the file using <c-s>. That was the reason this does not work.
+"nnoremap gV `[v`]
+"set timeoutlen=1000 " still the above command does not properly work << not required anymore
+"set ttimeoutlen=10 " 
+
+
+
+" visual select whole line except for the carriage return (enter) <c-r>
+nnoremap gwb ^v$h
+
+"fugitive alias
+nnoremap <leader>gst :Gstatus<cr>
+nnoremap <leader>gad :Gwrite<cr>
+nnoremap <leader>gap :Git add -p %<cr>
+nnoremap <leader>ap :Git add -p %<cr>
+nnoremap <leader>gco :Gcommit --verbose<cr>
+nnoremap <leader>gc :Gcommit --verbose<cr>
+nnoremap <leader>cvc :Gcommit --verbose<cr>
+nnoremap <leader>gps :Gpush<cr>
+nnoremap <leader>gdi :Gvdiff<cr>
+nnoremap <leader>di :Gvdiff<cr>
+" not fugitive but useful for visual select + stage
+vnoremap dp :diffput<cr>
+
+" #############################
+" Extra personal aliases or shortcuts (informal)
+" #############################
+" command to show the file path
+nnoremap :filepath :echo expand('%:p')<cr>
+nnoremap :fullpath :echo expand('%:p')<cr>
+
+" mapping for replace all / substitute all 
+nnoremap :repa :%s/
+nnoremap :repl :%s/
+nnoremap :suba :%s/
+nnoremap :subs :%s/
+
+" put date on document timestamp
+nnoremap :date :put =strftime('%Y-%b-%d %a %T')<cr>
+
+" FZF
+nnoremap <leader>fzf :FZF 
+
+nnoremap :sovimrc :so $MYVIMRC<cr>
+
+let g:BASH_Ctrl_j = 'off' " does not work
+let g:ZSH_Ctrl_j = 'off'
+
+" ,pa acts the same as pasting system clipboard
+nnoremap <leader>pa "*p
+"inoremap <c-r> <c-r>* don't know why I did this
+
+nnoremap :fzf :FZF<cr>
+nnoremap <c-f> :FZF<cr>
+nnoremap <c-e> :FZF<cr>
+
+inoremap <c-BS> <DEL>
+
+nnoremap U :echo "<< ===== CHECK CAPSLOCK =====>>"<cr>
+
+nnoremap ; :
 
 "section============================================================================
 " PLUGINS
@@ -213,20 +284,7 @@ syntax off
 "* IMPORTANT: It is required that the user should run :Helptags command everytime a new plugin is installed. This method helps trigger :help <plugin_name> function. -by tpope, the creater of pathogen
 ")
 
-"(NEOCOMPLETE
-"Not using Neocomplete anymore. Changed to Deoplete for neovim compatibility.
-"It sounds strange but Neocomplete does not work for neovim. Use Deoplete instead.
-""let g:neocomplete#enable_at_startup = 1
-""let g:neocomplcache_enable_cursor_hold_i=1
-"Enable <TAB> for Neocomplete. It also helps tabs recover its original functionality.
-""inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-""            \ <SID>check_back_space() ? "\<TAB>" :
-""            \ neocomplete#start_manual_complete()
-""function! s:check_back_space() "{{{
-"    h""let col = col('.') - 1
-"    ""return !col || getline('.')[col - 1]  =~ '\s'
-""endfunction"}}}
-")
+
 
 "(VIMPLUG 
 "To install, type :
@@ -234,30 +292,39 @@ syntax off
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "use :sort /.... '.*\// to sort the lines.
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
-Plug 'kien/ctrlp.vim'
+Plug 'jiangmiao/auto-pairs'
+"Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim'
+" The below 2 plugins are not used for vim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-clang'
+"Plug 'zchee/deoplete-clang'
+"" Instead of the above two, neocomplete for vim
+"Plug 'Shougo/neocomplete.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/goyo.vim'
+Plug 'sjl/gundo.vim'
 Plug 'yggdroot/indentline'
 "Plug 'itchyny/lightline.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamcco
 Plug 'iamcco/markdown-preview.vim'
-Plug 'Shougo/neoinclude.vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
+"Plug 'Shougo/neoinclude.vim' "too slow
+Plug 'scrooloose/nerdcommenter' "too slow
+"Plug 'scrooloose/nerdtree'
 Plug 'NLKNguyen/papercolor-theme'
+"Plug 'kien/rainbow_parentheses.vim'
+"Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
-"Plug 'lervag/vimtex' 
-Plug 'honza/vim-snippets' " Snippets
+Plug 'honza/vim-snippets' " Snippets, let me put next to ultisnips
+Plug 'lervag/vimtex' 
 Plug 'tpope/vim-abolish'
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+"Plug 'bling/vim-bufferline'
+"Plug 'ap/vim-buftabline' 
 Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
 "Plug 'xolox/vim-easytags'
@@ -268,11 +335,17 @@ Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
 "Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'zefei/vim-wintabs'
 call plug#end()
 ")
 
+"(AUTO-PAIR
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutBackInsert = '<M-b>'
+")
 "(CTRLP.VIM
 " help: ,p toggles
 let g:ctrlp_map = '<leader>ctp'
@@ -283,6 +356,9 @@ nnoremap <leader>cp :CtrlP<Space>.<cr>
 
 "(GOYO
 "autocmd VimEnter * Goyo
+")
+"(GUNDO.VIM
+nnoremap <leader>gu :GundoToggle<cr>
 ")
 
 "(LIMELIGHT
@@ -300,7 +376,13 @@ let g:lightline = {'colorscheme': 'PaperColor',}
 
 "(MARKDOWN PREVIEW
 let g:mkdp_path_to_chrome = "open -a Safari"
-
+"let g:mkdp_path_to_chrome = "open -a '/Applications/Google Chrome.app'"
+"let g:mkdp_auto_start = 1
+"let g:mkdp_auto_open = 1
+let g:mkdp_auto_close = 0
+let g:mkdp_refresh_slow = 1 " refresh when save the buffer or leave from insert mode
+let g:mkdp_command_for_global = 0 " markdown preview command can be use for all files
+")
 "(SOLARIZED
 syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -310,20 +392,114 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 "(DEOPLETE
 let g:deoplete#enable_at_startup = 1
+" auto complete error temporary fix "https://github.com/Shougo/deoplete.nvim/issues/440
+"let g:deoplete#auto_complete_delay = 250
 " Use smartcase
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_smart_case = 1
+"let g:deoplete#auto_complete_start_length = 3
+let g:deoplete#disable_auto_complete = 0
 " Let <TAB> also do completion
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " close preview window on leaving the insert mode
-autocmd InsertLeave * if pumvisible() == 0 | pclose | endif
+"autocmd InsertLeave * if pumvisible() == 0 | pclose | endif
 set completeopt-=preview
+" Two lines for Disable buffer source
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources._ = ['buffer']
+let b:deoplete_ignore_sources = ['buffer']
+
 ")
 
-"(DEOPLETE-CLANG
-let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.8.1/lib/libclang.dylib'
-let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.8.1/lib/clang'
-let g:deoplete#enable_refresh_always = 1
+"(DEOPLETE-CLANG << broken now
+"let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.8.1/lib/libclang.dylib'
+"let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.8.1/lib/clang'
+"let g:deoplete#enable_refresh_always = 1
+")
+
+"(NEOCOMPLETE
+""let g:neocomplcache_enable_cursor_hold_i=1
+"Enable <TAB> for Neocomplete. It also helps tabs recover its original functionality.
+""inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+""            \ <SID>check_back_space() ? "\<TAB>" :
+""            \ neocomplete#start_manual_complete()
+""function! s:check_back_space() "{{{
+"    h""let col = col('.') - 1
+"    ""return !col || getline('.')[col - 1]  =~ '\s'
+""endfunction"}}}
+")
+"
+"(NEOCOMPLETE
+"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+"let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+"let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Define dictionary.
+"let g:neocomplete#sources#dictionary#dictionaries = {
+    "\ 'default' : '',
+    "\ 'vimshell' : $HOME.'/.vimshell_hist',
+    "\ 'scheme' : $HOME.'/.gosh_completions'
+        "\ }
+
+" Define keyword.
+"if !exists('g:neocomplete#keyword_patterns')
+    "let g:neocomplete#keyword_patterns = {}
+"endif
+"let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+"inoremap <expr><C-g>     neocomplete#undo_completion()
+"inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+  "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+"endfunction
+" <TAB>: completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 ")
 
 "(SYNTASTIC
@@ -345,12 +521,19 @@ let g:tagbar_width=30
 ")
 
 "(ULTISNIPS
-let g:UltiSnipsListSnippets = "<c-l>"
+"let g:UltiSnipsListSnippets = "<c-l>"
+let g:UltiSnipsJumpForwardTrigger = "<c-l>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+nnoremap <c-l>  i<c-l>
 " Defines the directory private snippet definition files are stored in.
 set runtimepath+=~/.vim/mySnips/"
 let g:UltiSnipsSnippetsDir = "~/.vim/mySnips/UltiSnips"
 " Defines the directories for looking for snippets. Do not mix up.
 let g:UltiSnipsSnippetsDirectories = ["~/.vim/mySnips/UltiSnips"]
+
+"for autocompletion
+inoremap <c-x><c-k> <c-x><c-k>
+inoremap <c-l> <c-l>
 ")
 
 "(VIMTEX
@@ -370,6 +553,11 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 ""autocmd FileType javascript setlocal iskeyword+=$
 ")
 
+"( IAMCCO/MARKDOWN-PREVIEW.VIM
+nnoremap :mdlp :MarkdownPreview<cr>
+nnoremap :mdsp :MarkdownPreviewStop<cr>
+")
+
 "(NERDCOMMENTER
 "let NERDSpaceDelims=1
 let NERDRemoveExtraSpaces=1
@@ -379,14 +567,28 @@ let NERDRemoveExtraSpaces=1
 " help: ,nt toggles. Then type ? for details.
 let NERDTreeShowHidden=1
 map <leader>nt :NERDTreeToggle<CR>
-""autocmd VimEnter * NERDTree
+"autocmd VimEnter * NERDTree
+let g:NERDTreeWinSize=20
 ")
 
 "(PAPERCOLOR-THEME (colorscheme)
-set t_Co=256 "This is may or may not needed.
-set bg=light
+"set t_Co=256 "This is may or may not needed.
+set bg=dark
 colorscheme PaperColor
 ")
+
+"(RAINBOW-PARENTHESES.VIM
+"au VimEnter * RainbowParenthesesToggle
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
+")
+
+"(NIJI PARENTHESES
+"let g:niji_matching_filetypes = ['markdown', 'tex', 'python']
+"let g:niji_use_legacy_colours = 1
+")
+
 
 "(AIRLINE
 let g:airline_powerline_fonts = 1
@@ -395,8 +597,9 @@ let g:airline_right_sep=''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#syntastic#enabled = 1
 "let g:airline_theme = 'light'
-let g:airline_theme ='papercolor'
+let g:airline_theme ='luna'
 ")
 
 "(VIM-MINIMAP BY SEVERIN LEMAIGNAN
@@ -464,6 +667,68 @@ highlight link cMember Italics
 let g:easytags_async = 1
 ")
 
+"(VIM-FUGITIVE
+"Problem: it does not work for symlinks
+"Solution:
+
+"First approach (broken: seems like this breaks for none symlink files 
+"function! s:MyFollowSymlink()
+    "silent! let s:fname = resolve(expand('%:p'))
+    "silent! bwipeout
+    "silent! exec "edit " .s:fname
+"endfunction
+"command! FollowSymlink call s:MyFollowSymlink()
+
+"augroup followsymlink:
+    "autocmd!
+    "autocmd BufReadPost * FollowSymlink
+"augroup END " 
+
+
+"Second approach:
+
+" Follow symlinks when opening a file {{{
+" NOTE: this happens with directory symlinks anyway (due to Vim's chdir/getcwd
+"       magic when getting filenames).
+" Sources:
+"  - https://github.com/tpope/vim-fugitive/issues/147#issuecomment-7572351
+"  - http://www.reddit.com/r/vim/comments/yhsn6/is_it_possible_to_work_around_the_symlink_bug/c5w91qw
+function! MyFollowSymlink(...)
+if exists('w:no_resolve_symlink') && w:no_resolve_symlink
+  return
+endif
+let fname = a:0 ? a:1 : expand('%')
+if fname =~ '^\w\+:/'
+  " Do not mess with 'fugitive://' etc.
+  return
+endif
+let fname = simplify(fname)
+
+let resolvedfile = resolve(fname)
+if resolvedfile == fname
+  return
+endif
+let resolvedfile = fnameescape(resolvedfile)
+let sshm = &shm
+set shortmess+=A  " silence ATTENTION message about swap file (would get displayed twice)
+exec 'file ' . resolvedfile
+let &shm=sshm
+
+" Re-init fugitive.
+call fugitive#detect(resolvedfile)
+if &modifiable
+  " Only display a note when editing a file, especially not for `:help`.
+  redraw  " Redraw now, to avoid hit-enter prompt.
+  echomsg 'Resolved symlink: =>' resolvedfile
+endif
+endfunction
+command! FollowSymlink call MyFollowSymlink()
+command! ToggleFollowSymlink let w:no_resolve_symlink = !get(w:, 'no_resolve_symlink', 0) | echo "w:no_resolve_symlink =>" w:no_resolve_symlink
+au BufReadPost * nested call MyFollowSymlink(expand('%'))
+
+
+")
+
 "(VIM-MULTIPLE-CURSOR
 " help: <c-n> for highlighting a word and continue if pressed again
 " help: <c-p> for going back, <c-x> for skipping and continue
@@ -498,9 +763,21 @@ endfunction
 " help: <leader>hp for preview, <leader>hs for stage, <leader>hu for undo
 ")
 
+"(Vim-repeat
+nnoremap <plug>NextMatch ;
+nnoremap <silent> f :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>f
+nnoremap <silent> F :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>F
+nnoremap <silent> t :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>t
+nnoremap <silent> T :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>T
+")
+
 "(VIM-SURROUND
 " mapping for anki cloze
 let g:surround_99 = "{{c1::\r}}"
+" mapping for markdown
+let g:surround_98 = "**\r**" " press b
+" mapping for latex mathmode
+let g:surround_108 = "$$ \r $$" " press l
 ")
 
 "(FILETYPE
@@ -508,29 +785,65 @@ filetype plugin indent on
 " turn off auto commenting when <cr>
 "autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o 
 " Opposite to above, turn on auto commenting 
-autocmd FileType * setlocal formatoptions +=cro
+autocmd FileType * setlocal formatoptions +=cro comments-=fb:- comments+=b:-
+
 " Check the status by set formatoptions?, then you would see jql
 
 " Syntax of these languages is fussy over tabs Vs spaces - by VimCast
 autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab "the original settings were noexpandtab but this does not work for yaml files for tmuxinator
 
 " Customizations based on house-style (arbitrary)
 autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 " Turn on auto listing
-autocmd FileType markdown setlocal formatoptions +=r formatoptions +=o
-" Anki '- enter' autolisting not working
-"add *.anki as a file extension
-au BufNewFile,BufRead *.anki set filetype=anki
-" add anki comments and format options
-autocmd FileType anki setlocal formatoptions +=r formatoptions +=o formatoptions +=l formatoptions +=n comments+=b:*,b:+,b:> comments-=fb:- comments+=b:-
+autocmd FileType markdown setlocal formatoptions +=r formatoptions +=o comments+=b:00. comments-=b:- comments+=b:-\ [\ ] comments+=b:-
+
+" {{{ CHECKBOX-VIM 
+" Thanks to Jonas Kramer (jkramer) for his 'checkbox.vim' plugin 
+" And modom for his pull request
+if exists('g:loaded_checkbox') " what is the usage of this?
+	" finish
+endif
+
+"fu! checkbox#ToggleCB()
+fu! ToggleCB()
+	let line = getline('.')
+
+	if(match(line, "\\[ \\]") != -1)
+		let line = substitute(line, "\\[ \\]", "[x]", "")
+	elseif(match(line, "\\[x\\]") != -1)
+		let line = substitute(line, '\[x\]\s*', "", "")
+    else 
+        let line = substitute(line, '\(^\s*[\*-]\s\)', '\1[ ] ', "")
+        "let line = substitute(line, '^\s*[\*-]\s', '\0[ ] ', "") "both works
+	endif
+
+	call setline('.', line)
+endf
+
+"command! ToggleCB call checkbox#ToggleCB()
+autocmd filetype markdown command! ToggleCB call ToggleCB()
+"nmap <silent> <leader>tt :ToggleCB<cr>
+"autocmd filetype markdown nmap <silent> <leader>tt :ToggleCB<cr> 
+" {{{ repeat.vim implementation
+" changed from nmap to nnoremap. Will see what happen
+autocmd filetype markdown nnoremap <plug>ToggleCheckBox :ToggleCB<cr>:call repeat#set("\<plug>ToggleCheckBox")<cr>
+autocmd filetype markdown nmap <leader>cb <plug>ToggleCheckBox
+let g:loaded_checkbox = 1
+" }}}
+"}}}
+
+"{{ Markdown tab means indent
+"fu! IndentTab()
+    "let line = getline('.')
+    "if(match(line, '^\s*[\*-]\s') != -1)
+        " - let line = substitute(line, '^\s*
+
+
 " Check the status by set formatoptions? and then you will see jqtlncro
 
-" Enter insert mode automatically when editing git commit messages 
-"autocmd FileType gitcommit 1 | startinsert "by benjifisher from so "error
-"when fugitive
 ")
 
 "Spell check for txt, md, anki
@@ -544,6 +857,31 @@ if !exists("g:syntax_on")
 endif " by Andy Ray from SO
 ")
 
+"add *.anki as a file extension
+au BufNewFile,BufRead *.anki set filetype=anki
+" add anki comments and format options
+autocmd FileType anki setlocal formatoptions +=r formatoptions +=o formatoptions +=l formatoptions +=n comments+=b:*,b:+,b:> comments-=fb:- comments+=b:-
+"<leader>anki pastes the clipboard
+autocmd Filetype anki nnoremap <leader>anki :set paste<cr>i<c-r>*<esc>:set nopaste<cr>
+"above process is automated when opening a new file
+function! AnkiAutoPaste()
+    set paste
+    "! prevents mapping
+    """""normal! "*p 
+    " removes ^m in win enter
+    """""normal! :silent %s/\r/\r/g
+    """""Either the above two commands or the below one works fine
+    normal! i*
+    set nopaste
+endfunction
+autocmd BufNewFile *.anki call AnkiAutoPaste()
+"anki auto copy to clipboard when exit
+autocmd Filetype anki nnoremap <c-q> gg"*yG:q<cr>
+
+
+" Enter insert mode automatically when editing git commit messages 
+"autocmd FileType gitcommit 1 | startinsert "by benjifisher from so "error
+"when fugitive
 let g:tex_flavor='latex'
 "section============================================================================
 " NECESSARY
@@ -692,16 +1030,41 @@ set undofile
 "set statusline+=%F
 
 "set zsh to default
-set shell=/usr/local/bin/zsh
-"with l option, this somehow sources the .zshrc
-set shell=zsh\ -l
-" Source .zshrc file
-"set shell=bash\ --login
-" behave strange << interactive mode which seems wrong. This produces tts error or something like that
-"set shell=zsh\ -i
+set shell=/usr/local/bin/zsh "brew zsh location for macos
+" with l option, this somehow sources the .zshrc
+"set shell=zsh\ -l " Works fine but disabled due to conflicts with Fugitive Gdiff
+"set shell=bash\ --login " Source .bashrc file
+"set shell=zsh\ -i " behave strange; interactive mode which seems wrong. This produces tts error or something like that
 
 "latex conceal unwanted strange math mode
 let g:tex_conceal = ""
+
+set lazyredraw " redraw only when we need to 
+
+"jumplist gotojump " in order to invoke, :call GotoJump()
+function! GotoJump()
+  jumps
+  let j = input("Please select your jump: ")
+  if j != ''
+    let pattern = '\v\c^\+'
+    if j =~ pattern
+      let j = substitute(j, pattern, '', 'g')
+      execute "normal " . j . "\<c-i>"
+    else
+      execute "normal " . j . "\<c-o>"
+    endif
+  endif
+endfunction
+"jumplist mapping
+nnoremap <leader>ju :call GotoJump()<cr>
+
+
+"auto source vimrc
+if has("autocmd")
+    autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+set path+=** " from the thoughtbot youtube How to do 90% of what plugins do. use :find plug*
 
 
 "section============================================================================
@@ -725,6 +1088,7 @@ let g:tex_conceal = ""
 ")
 
 
+inoremap <c-h> h
 
 "section============================================================================
 " MISC

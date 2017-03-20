@@ -34,7 +34,7 @@ c(){
 	elif [ -f $@ ]; then
 		viavailable "$@"
 	else
-		echo "hey, there is my_error, check .zshrc"
+        echo "Hey, such file or directory does not exist. Use v() instead of c() to create a file."
 	fi
 }
 
@@ -59,9 +59,10 @@ alias zshrc='viavailable ~/runtime_config/.zshrc'
 alias sozsh='source ~/.zshrc'
 
 # vimrc function
-alias vimrc='viavailable ~/runtime_config/.vimrc'
-alias initv='viavailable ~/runtime_config/init.vim'
-alias nvimrc='viavailable ~/runtime_config/init.vim'
+alias vimrc='nvim ~/runtime_config/.vimrc'
+alias nvimrc='nvim ~/runtime_config/init.vim'
+alias vvimrc='vim ~/runtime_config/.vimrc'
+alias vnvimrc='vim ~/runtime_config/init.vim'
 
 # accessibility aliases
 alias rm='rm -i'
@@ -88,13 +89,19 @@ alias whichsh='echo $0' #check shell
 alias gst='git status'
 alias gad='git add'
 alias gap='git add --patch'
-alias gcm='git commit --verbose'
-alias gco='git commit --verbose'
-alias gcmm='git commit --verbose -m'
+alias gc='git commit --verbose'
 alias gps='git push'
 alias gpsom='git push -u origin master'
 alias gpl='git pull'
 alias gplom='git pull origin master'
+alias gbr='git branch'
+alias gco='git checkout'
+alias gsa='git stash'
+alias glo='git log'
+alias gdi='git diff'
+alias gsh='git show'
+alias gbl='git blame'
+alias gds='git dissect'
 
 # tmux
 alias tmu='tmux'
@@ -134,7 +141,7 @@ alias py='python'
 alias sage='~/Applications/SageMath/sage'
 
 # Compiler
-#alias gcc='/usr/local/Cellar/gcc/6.2.0/bin/gcc-6'
+alias gcc='/usr/local/Cellar/gcc/6.3.0_1/bin/gcc-6'
 #alias g++='/usr/local/Cellar/gcc/6.2.0/bin/g++-6'
 
 # LaTeX
@@ -159,14 +166,52 @@ alias project='cd ~/notetaking/1_fine482/project/; ls -a'
 alias mysnips='cd ~/runtime_config/mysnips/UltiSnips; ls -a'
 
 # personal edit aliases
-alias tmuxconf='nvim ~/runtime_config/.tmux.conf'
+alias tmuxconf='viavailable ~/runtime_config/.tmux.conf'
+alias keep='viavailable ~/Google\ Drive/keep_offline.md'
+alias todo='viavailable ~/Google\ Drive/keep_offline.md'
 
 # personal cat aliases
-alias keep='cat ~/Google\ Drive/keep_offline.txt'
-alias stopwatch='cd ~/Stopwatch2Txt/; python3 ~/Stopwatch2Txt/stopwatch.py'
 
 # personal app aliases
+alias stopwatch='cd ~/Stopwatch2Txt/; python3 ~/Stopwatch2Txt/stopwatch.py'
 alias wtr='curl wttr.in/montreal'
+alias weather='curl wttr.in/montreal'
 alias jse='bundle exec jekyll serve -w' # jekyll server
 alias o='open' # mac 
 alias oas='open -a Safari' # mac
+alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs -nw'
+
+# personal url aliases
+alias gmail='open http://www.gmail.com'
+alias univmail='open https://outlook.office365.com/owa/'
+alias fb='open https://www.facebook.com'
+alias mycourses='open https://mycourses2.mcgill.ca/'
+myupdate(){
+    gmail;
+    univmail;
+    fb;
+}
+alias fido='open -a /Applications/Google\ Chrome.app https://www.fido.ca'
+alias cibc='open -a /Applications/Google\ Chrome.app www.cibc.ca'
+alias bell='open -a /Applications/Google\ Chrome.app www.bell.ca'
+
+bills(){
+    fido;
+    cibc;
+    bell;
+    echo "mcgill library!"
+}
+
+# shell level (find if nested)
+alias shlv='echo $SHLVL'
+
+studylog(){
+    viavailable ~/Google\ Drive/diary/studylog/studylog_$(date +%y-%m-%d).md
+}
+
+# FZF change completion key
+export FZF_COMPLETION_TRIGGER='/' 
+#bindkey '^p' fzf-completion
+#bindkey '^I' $fzf_default_completion # not working well
+
+alias gall='viavailable ~/Google\ Drive/diary/gall.md'

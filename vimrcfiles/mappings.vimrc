@@ -115,14 +115,23 @@ cnoremap date :put =strftime('%Y-%b-%d %a %T')
 "set ttimeoutlen=10 " 
 
 
-" replace all
-cnoremap repl %s/
 
 " visual select whole line except for the carriage return (enter) <c-r>
 nnoremap gwb ^v$h
 
 "fugitive alias
-cnoremap gst Gstatus
-cnoremap gad Gwrite
-cnoremap gco Gcommit -m "
-cnoremap gps Gpush
+nnoremap <leader>gst :Gstatus<cr>
+nnoremap <leader>gad :Gwrite<cr>
+nnoremap <leader>gco :Gcommit -m "
+nnoremap <leader>gps :Gpush<cr>
+
+" #############################
+" Extra personal aliases or shortcuts (informal)
+" #############################
+" command to show the file path
+cnoremap filepath echo expand('%:p')<cr>
+cnoremap fullpath echo expand('%:p')<cr>
+
+" mapping for replace / substitute
+cnoremap repl %s/
+cnoremap subs %s/
