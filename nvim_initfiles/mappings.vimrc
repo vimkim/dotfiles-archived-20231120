@@ -8,6 +8,9 @@
 
 " LEADER KEY
 let mapleader = ","
+inoremap <c-e> <esc>
+nnoremap <c-e> <esc>
+vnoremap <c-e> <esc>
 
 "ESC
 "vmap ,, <ESC>
@@ -26,16 +29,27 @@ noremap j gj
 noremap k gk
 
 "( ONLY WORKS when the terminal .*shrc file contains: stty -ixon
-"SAVE
-nnoremap <C-s> :update<CR>
-inoremap <c-s> <ESC>:update<CR>
-vnoremap <C-s> <esc>:w<CR>gv
+"SAVE << this is killing my fingers. I'll change ctrl to leader
+nnoremap <leader>s :update<CR>
+inoremap <leader>s <ESC>:update<CR>
+vnoremap <leader>s <esc>:w<CR>gv
+nnoremap <leader>s :update<CR>
 
 "QUIT
 " ctrl+q quits all which is not working // now works 
-nnoremap <C-q> :q<CR>
-inoremap <C-q> <ESC>:q<CR>
+nnoremap <c-q> :q<CR>
+inoremap <c-q> <ESC>:q<CR>
+nnoremap <c-q> :q<CR>
+nnoremap <leader>q :q<CR>
+inoremap <leader>q <ESC>:q<CR>
+nnoremap <leader>q :q<CR>
 ")
+
+nnoremap sq <esc>:wq<esc>
+"inoremap sq <esc>:wq<esc>
+vnoremap sq <esc>:wq<esc>
+
+
 
 "DISABLE EX-MODE
 :map Q <nop>
@@ -52,10 +66,13 @@ nnoremap <Leader><Enter> O<ESC>
 " Unfortunately, a more intuitive  choice of <S-Enter> O<ESC> not working on CLI
 
 "SUDO SAVE
-cnoremap sudow w !sudo tee %
+nnoremap :sudow :w !sudo tee > /dev/null %
 
 "SAVE & QUIT IN INSERT MODE
 inoremap ZZ <c-c>ZZ
+
+"Suspend
+nnoremap <leader>z <esc><c-z>
 
 " Map Ctrl-Backspace to delete the previous word in insert mode.
 imap <C-BS> <C-W>
@@ -71,22 +88,29 @@ nnoremap gR gD:%s/<c-r>///gc<left><left><left>
 
 "(COMPILE & RUN MAPPING
 "- PYTHON
-nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
+
+au filetype python nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
+au filetype python nnoremap <buffer> <F8> :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
+au filetype lisp nnoremap <buffer> <F8> :w<CR>:exec '!clisp' shellescape(@%, 1)<cr>
 
 "- C,CPP
 "Create an executable file named a.out.
-"nnoremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
-"nnoremap <leader>gpp :w <CR>:!g++-6 % && ./a.out <CR>
-"nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
+"noremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
+"noremap <leader>gpp :w <CR>:!g++-6 % && ./a.out <CR>
+"noremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 "IMPORTANT: if bugs occured, change gcc-6 to gcc
 " creates an executable file that has the same name with its .c file
-""map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+au filetype c nnoremap <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+au filetype c nnoremap <leader>cpp :w <CR> :!gcc % -o %< && ./%< <CR>
 ")
 
 "Replace Windows ^m enter return into Unix
 nnoremap <leader>winm :%s/\r/\r/g<CR>
 
 "Buffer shortcuts
+nnoremap ,bn :bn<cr>
+nnoremap ,bp :bp<cr>
+nnoremap ,bd :bd<cr>
 nnoremap gn :bn<cr>
 nnoremap gp :bp<cr>
 nnoremap gd :bd<cr>
@@ -134,8 +158,8 @@ vnoremap dp :diffput<cr>
 " Extra personal aliases or shortcuts (informal)
 " #############################
 " command to show the file path
-cnoremap filepath echo expand('%:p')<cr>
-cnoremap fullpath echo expand('%:p')<cr>
+nnoremap :filepath :echo expand('%:p')<cr>
+nnoremap :fullpath :echo expand('%:p')<cr>
 
 " mapping for replace all / substitute all 
 nnoremap :repa :%s/
@@ -144,9 +168,25 @@ nnoremap :suba :%s/
 nnoremap :subs :%s/
 
 " put date on document timestamp
-cnoremap date put =strftime('%Y-%b-%d %a %T')<cr>
+nnoremap :date :put =strftime('%Y-%b-%d %a %T')<cr><esc>
+inoremap :date <esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 
 " FZF
-nnoremap :e<space> :FZF 
+nnoremap <leader>fzf :FZF 
 
-cnoremap sovimrc so $MYVIMRC<cr>
+nnoremap :sovimrc :so $MYVIMRC<cr>
+
+let g:BASH_Ctrl_j = 'off' " does not work
+let g:ZSH_Ctrl_j = 'off'
+
+" ,pa acts the same as pasting system clipboard
+nnoremap <leader>pa "*p
+"inoremap <c-r> <c-r>* don't know why I did this
+
+
+inoremap <c-BS> <DEL>
+
+nnoremap U :echo "<< ===== CHECK CAPSLOCK =====>>"<cr>
+
+nnoremap ; :
+

@@ -1,6 +1,6 @@
 "START_OF_FILE
 "INIT.VIM FILE (.vimrc in past)
-"Creator: dequ
+"Creator: dqgthb
 "From 20160825, this .vimrc file has been transformed into init.vim.
 "Functionality for (not-neo)vim rarely tested.
 "
@@ -11,6 +11,7 @@
 "- TIPS & REMINDERS
 "- MAPPING
 "- PLUGIN
+"- FILETYPE
 "- SCHEME
 "- NECESSARY
 "- ACCESSORY

@@ -1,36 +1,70 @@
-snippet i "unordered item" b
-* $1
+snippet _ "_" b
+_$1_$0
 endsnippet
 
-snippet n "numbered item" b
-00. $1
-endsnippet
-
-snippet s1 "section" b
+snippet # "#" b
 # ${1:section} #
 $0
 endsnippet
-
-snippet s2 "subsection" b
+snippet ## "##" b
 ## ${1:subsection} ##
 $0
 endsnippet
-
-snippet s3 "subsubsection" b
+snippet ### "###" b
 ### ${1:subsubsection} ###
 $0
 endsnippet
-
-snippet s4 "subsubsubsection" b
+snippet s1 "#" b
+# ${1:section} #
+$0
+endsnippet
+snippet s2 "##" b
+## ${1:subsection} ##
+$0
+endsnippet
+snippet s3 "###" b
+### ${1:subsubsection} ###
+$0
+endsnippet
+snippet s4 "####" b
 #### ${1:subsubsubsection} ####
 $0
+endsnippet
+snippet s5 "#####" b
+##### ${1:subsubsubsection} #####
+$0
+endsnippet
+snippet s4 "######" b
+###### ${1:subsubsubsection} ######
+$0
+endsnippet
+
+##### Items handling
+snippet it "unordered item" b
+* $1
+endsnippet
+snippet nu "numbered item" b
+00. $1
+endsnippet
+snippet cb "checkbox" b
+- [ ] $1 
+endsnippet
+
+snippet cd "code"
+\` $1 \`$0
+endsnippet
+
+snippet code "code ```" b
+\`\`\`
+${1:Write your code here}
+\`\`\`
 endsnippet
 
 # latex only for markdown and mathjax
 snippet ali "math align" b
 $$\begin{align}
 ${1:x} &= ${2:y} \\\\
-${3:y} &= ${4:z} \\\\${5}
+${3} &= ${4:z} \\\\${5}
 \end{align}$$
 ${0}
 endsnippet
@@ -38,115 +72,136 @@ endsnippet
 ##### Latex Snippets in General #####
 
 snippet $ "inline"
-$ ${1:inline-math} $$0
+\$ ${1:${VISUAL:inline-math}} \$ $0
 endsnippet
 
 snippet $$ "math" i
-$$ ${1:${VISUAL:math}} $$$0
+\$\$
+$1 
+\$\$
+$0
 endsnippet
 
 snippet add "add math align equation" b
-${1:x} &= ${2:y} \\\\${0}
+${1} &= ${2} \\\\${0}
 endsnippet
 
 snippet fr "fraction" i
-\\frac{${1}}{${2}}${0}
-endsnippet
-snippet fra "fraction" i
-\\frac{${1}}{${2}}${0}
-endsnippet
-snippet frac "fraction" i
-\\frac{${1}}{${2}}${0}
+\\frac{ ${1} }{ ${2} } ${0}
 endsnippet
 
 snippet sq "square" i
-^{2}
+^{ 2 }
 endsnippet
 snippet sqr "sqrt" i
-\sqrt{${1}}${0}
-endsnippet
-snippet sqrt "sqrt" i
-\sqrt{${1}}${0}
-endsnippet
-snippet sqrtn "sqrt^n" i
-\sqrt[\leftroot{-3}\uproot{3}$1]{$2}$0
+\sqrt{ ${1} } ${0}
 endsnippet
 
+#\sqrt{$1}$0
+# standard
+#\\sqrt\{$1}$0 
+# second standard
+#\sqrt\{$1}$0
+# third standard
+#\sqrt\{$1} $0
+# space
+# space
+#\sqrt{$1} $0
+# space
+#\sqrt{ $1 }$0
+# space
+#\sqrt{ $1 } $0
+#\sqrt{$1}$0
+
+
+
+
+
+snippet sqrtn "sqrt^n" i
+\sqrt[ $1 ]{ $2 } $0
+endsnippet
+#\sqrt[\leftroot{-3}\uproot{3} $1 ]{ $2 } $0 # not working well
+
 snippet po "power" i
-^{${1}}${0}
+^\{ $1 } $0
 endsnippet
 snippet pow "power" i
-^{${1}}${0}
+^\{ ${1} } ${0}
 endsnippet
 
 snippet su "subscript" i
-_{${1}}${0}
+_\{ $1 } $0
 endsnippet
 snippet sub "subscript" i
-_{${1}}${0}
+_\{ ${1} } ${0}
 endsnippet
 
 snippet ( "parenthesis" i
-\left( $1 \right)$0
+\left( $1 \\right) $0
 endsnippet
 snippet { "curly braces" i
-\left{ $1 \right}$0
+\left\\{ $1 \right\\} $0
 endsnippet
 snippet [ "square bracket" i
-\left[ $1 \right]$0
+\\left[ $1 \\right] $0
 endsnippet
-snippet | "absolute" i
-\left| $1 \right|$0
+snippet abs "absolute" i
+\left| $1 \right| $0
 endsnippet
 
 snippet dif "differentiation"
- \frac{d $1}{d $2}$0
+ \\frac{d $1 }{d $2 } $0
 endsnippet
 snippet diff "differentiation"
-\frac{d $1}{d $2}$0
+\frac{d $1 }{d $2 } $0
 endsnippet
 snippet pdif "partial differentiation"
-\frac{\partial $1}{\partial $2}$0
+\frac{\partial $1 }{\partial $2 } $0
 endsnippet
 snippet pdiff "partial differentiation"
-\frac{\partial $1}{\partial $2}$0
+\frac{\partial $1 }{\partial $2 } $0
 endsnippet
 snippet pard "partial differentiation"
-\frac{\partial $1}{\partial $2}$0
+\frac{\partial $1 }{\partial $2 } $0
 endsnippet
 
 # \, small space \: medium space \; large space \! negative space
+snippet sp "space"
+\:
+endsnippet
 snippet int "integral" 
-\int{$1}$0
+\int{ $1 } $0
 endsnippet
 snippet iint "indefinite integral"
-\int{$1}\: d {$4}$0
+\int{ $1 }\: d { $4 } $0
 endsnippet
 snippet dint "definite integral"
-\int_{$1}^{$2}{$3}\: d {$4}$0
+\int_{ $1 }^{ $2 }{ $3 }\: d { $4 } $0
 endsnippet
 
 snippet sum "sum" i
-\sum_{$1}^{$2}{$3}$0
+\sum_{ $1 }^{ $2 }{ $3 } $0
 endsnippet
 
 snippet lim "limit" i
-\lim_{$1 \to $2} $0
+\lim_{ $1 \to $2 } $0
 endsnippet
 
 snippet comb "combination" i
-\left(\begin{array}{c} $1 \\ $2 \end{array}\right)$0
+\left(\begin{array}{c} $1 \\ $2 \end{array}\right) $0
 endsnippet
 
 snippet tx "text" i
-\text{$1}$0
+\text{$1} $0
 endsnippet
+
+
 
 ##### greek letters {{
 snippet alp "alpha" i
 \alpha 
 endsnippet
-snippet bet "beta" ia
+snippet bet "beta" i
 \beta 
 endsnippet
 snippet gam "gamma" i
@@ -184,29 +239,29 @@ snippet inf "infinite" i
 endsnippet
 
 snippet log "log" i
-\log_{$1}{$2}$0
+\log_{$1}{$2} $0
 endsnippet
 snippet ln "natural log" i
-\ln{$1}$0
+\ln{$1} $0
 endsnippet
 
 snippet sin "sin" i
-\sin($1)$0
+\sin($1) $0
 endsnippet
 snippet cos "cos" i
-\cos($1)$0
+\cos($1) $0
 endsnippet
 snippet tan "tan" i
-\tan($1)$0
+\tan($1) $0
 endsnippet
 snippet sininv "inverse sin" i
-\sin^{-1}($1)$0
+\sin^{-1}($1) $0
 endsnippet
 snippet cosinv "inverse cos" i
-\cos^{-1}($1)$0
+\cos^{-1}($1) $0
 endsnippet
 snippet taninv "inverse tan" i
-\tan^{-1}($1)$0
+\tan^{-1}($1) $0
 endsnippet
 	
 snippet <= "less or equal to"
@@ -215,16 +270,22 @@ endsnippet
 snippet >= "greater or equal to"
 \geq 
 endsnippet
+snippet > "greater than"
+\gt 
+endsnippet
+snippet < "less than"
+\lt 
+endsnippet
 
 ##### Operator
 snippet pl "plus +" i
-+
++ 
 endsnippet
 snippet mi "minus -" i
--
+- 
 endsnippet
 snippet eq "equals =" i
-=
+= 
 endsnippet
 snippet tim "times X" i
 \times 
@@ -233,18 +294,31 @@ snippet mult "multiplied X" i
 \times 
 endsnippet
 
+snippet dp "dot product" i
+\cdot 
+endsnippet
 snippet dotp "dot product" i
 \cdot 
+endsnippet
+snippet ... "dots ..." i
+\dots 
 endsnippet
 
 ##### Letter symbols
 snippet dot "dot" i
-\dot{$1}$0
+\dot{ $1 } $0
 endsnippet
 snippet hat "hat" i
-\hat{$1}$0
+\hat{ $1 } $0
 endsnippet
 snippet bar "bar" i
-\bar{$1}$0
+\bar{ $1 } $0
 endsnippet
 
+snippet -> "Long right arrow" i
+\Longrightarrow 
+endsnippet
+
+snippet | "integral bar" i
+\Big|_{ $1 }^{ $2 } $0
+endsnippet
