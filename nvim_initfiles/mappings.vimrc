@@ -91,6 +91,9 @@ nnoremap gR gD:%s/<c-r>///gc<left><left><left>
 
 au filetype python nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
 au filetype python nnoremap <buffer> <F8> :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
+au filetype python nnoremap <buffer> <leader>run :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
+
+"CLisp
 au filetype lisp nnoremap <buffer> <F8> :w<CR>:exec '!clisp' shellescape(@%, 1)<cr>
 
 "- C,CPP
@@ -172,7 +175,7 @@ nnoremap :date :put =strftime('%Y-%b-%d %a %T')<cr><esc>
 inoremap :date <esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 
 " FZF
-nnoremap <leader>fzf :FZF 
+nnoremap <leader>fz :FZF 
 
 nnoremap :sovimrc :so $MYVIMRC<cr>
 
