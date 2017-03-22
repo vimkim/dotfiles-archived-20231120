@@ -1,6 +1,6 @@
 ##### ALIASES #####
 # 1. ls
-# 2. viavailable
+# 2. $myvi
 # 3. cl, c, v functions
 # 4. zshrc, vimrc functions
 # 5. accessibility (e.g. rm -i)
@@ -12,9 +12,24 @@
 
 # ls aliases 
 #alias ls='ls --color=auto'
-alias l='ls -GF'
-alias la='ls -GAF'
-alias ll='ls -GAFl'
+if [[ $platform == "macos" ]]; then
+    alias ls='ls -GF'
+elif [[ $platform == "linux" ]]; then
+    if [ -x /usr/bin/dircolors ]; then
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+        alias ls='ls --color=auto'
+        #alias dir='dir --color=auto'
+        #alias vdir='vdir --color=auto'
+        alias grep='grep --color=auto' # to work, modity alias grep below
+        alias fgrep='fgrep --color=auto'
+        alias egrep='egrep --color=auto'
+    fi
+fi
+alias la='ls -A'
+alias ll='ls -l'
+alias lal='la -l'
+alias lla='la -l'
+alias l='ls'
 
 # vim config. If nvim exists, use it
 viavailable(){
@@ -25,15 +40,14 @@ viavailable(){
 		vim "$@"
 	fi
 }
-
-cl(){ builtin cd "$@" && la
+cl(){ builtin cd "$@" && ls
 }
 
 c(){
 	if [ -d $@ ]; then
 		cl "$@"
 	elif [ -f $@ ]; then
-		viavailable "$@"
+		$myvi "$@"
 	else
         echo "Hey, such file or directory does not exist. Use v() instead of c() to create a file."
 	fi
@@ -44,7 +58,7 @@ v(){
 		cl "$@"
 		#elif [ -f $@ ]; then
 	else
-		viavailable "$@"
+		$myvi "$@"
 		#else
 		#read -q "REPLY?Would you like to create a new file?"
 		#if [[ $REPLY =~ '^[Yy]$' ]]; then # $REPLY = y also works
@@ -56,9 +70,10 @@ v(){
 }
 
 # rc function
-alias zshrc='viavailable ~/runtime_config/.zshrc'
-alias bashrc='viavailable ~/runtime_config/.bashrc'
+alias zshrc='$myvi ~/runtime_config/.zshrc'
+alias bashrc='$myvi ~/runtime_config/.bashrc'
 alias sozsh='source ~/.zshrc'
+alias sobash='source ~/.bashrc'
 
 # vimrc function
 alias vimrc='nvim ~/runtime_config/.vimrc'
@@ -169,9 +184,9 @@ alias project='cd ~/notetaking/1_fine482/project/; ls -a'
 alias mysnips='cd ~/runtime_config/mysnips/UltiSnips; ls -a'
 
 # personal edit aliases
-alias tmuxconf='viavailable ~/runtime_config/.tmux.conf'
-alias keep='viavailable ~/Google\ Drive/keep_offline.md'
-alias todo='viavailable ~/Google\ Drive/keep_offline.md'
+alias tmuxconf='$myvi ~/runtime_config/.tmux.conf'
+alias keep='$myvi ~/Google\ Drive/keep_offline.md'
+alias todo='$myvi ~/Google\ Drive/keep_offline.md'
 
 # personal cat aliases
 
@@ -209,7 +224,7 @@ bills(){
 alias shlv='echo $SHLVL'
 
 studylog(){
-    viavailable ~/Google\ Drive/diary/studylog/studylog_$(date +%y-%m-%d).md
+    $myvi ~/Google\ Drive/diary/studylog/studylog_$(date +%y-%m-%d).md
 }
 
 # FZF change completion key
@@ -217,6 +232,6 @@ export FZF_COMPLETION_TRIGGER='/'
 #bindkey '^p' fzf-completion
 #bindkey '^I' $fzf_default_completion # not working well
 
-alias gall='viavailable ~/Google\ Drive/diary/gall.md'
+alias gall='$myvi ~/Google\ Drive/diary/gall.md'
 
 alias whome='cd /mnt/l/'
