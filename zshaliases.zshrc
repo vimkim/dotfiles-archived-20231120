@@ -19,6 +19,7 @@ alias ll='ls -GAFl'
 # vim config. If nvim exists, use it
 viavailable(){
 	if hash nvim 2>/dev/null; then
+        
 		nvim "$@"
 	else
 		vim "$@"
@@ -54,8 +55,9 @@ v(){
 	fi
 }
 
-# zshrc function
+# rc function
 alias zshrc='viavailable ~/runtime_config/.zshrc'
+alias bashrc='viavailable ~/runtime_config/.bashrc'
 alias sozsh='source ~/.zshrc'
 
 # vimrc function
