@@ -149,7 +149,7 @@ set shell=/usr/local/bin/zsh "brew zsh location for macos
 "set shell=zsh\ -i " behave strange; interactive mode which seems wrong. This produces tts error or something like that
 
 "latex conceal unwanted strange math mode
-let g:tex_conceal = ""
+let g:tex_conceal = "" "maybe for vim-markdown or general
 
 set lazyredraw " redraw only when we need to 
 
@@ -184,3 +184,7 @@ map <ScrollWheelUp> <C-y>
 map <mouseup> <C-y>
 map <ScrollWheelDown> <c-e>
 map <mousedown> <C-e>
+
+let g:vim_json_syntax_conceal = 0 "not working. It is said that it works for vim-json
+set conceallevel =0
+
