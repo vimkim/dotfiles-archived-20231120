@@ -190,3 +190,4 @@ nnoremap U :echo "<< ===== CHECK CAPSLOCK =====>>"<cr>
 
 nnoremap ; :
 
+nnoremap ,ffmt <esc>:set fileformat=dos
