@@ -429,6 +429,7 @@ let g:easytags_async = 1
 ")
 
 "(VIM-FUGITIVE
+set statusline+=%{fugitive#statusline()}
 "Problem: it does not work for symlinks
 "Solution:
 
@@ -534,7 +535,12 @@ nnoremap <silent> T :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>T
 
 "(VIM-SLIME
 let g:slime_target = "tmux"
-"let g:slime_default_config = {"socket_name": split($TMUX,",")[0], "target_pane": ":.1"}
+"let isitwsl=$iswsl
+"if isitwsl == 'true'
+""if $iswsl == 'true' " also works  << was not the actual reason it was because of the absence of $TMUX variable
+if $TMUX != '' "test wether I'm currently in tmux or not
+    let g:slime_default_config = {"socket_name": split($TMUX, ",")[0], "target_pane": ":.1"}
+endif
 " Tip: for socket, default, for pane, $session:0.0 
 " You can identify it with the command $tmux list-panes -a
 "let g:slime_python_ipython = 1 "This not working

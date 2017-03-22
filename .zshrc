@@ -99,9 +99,47 @@ source $ZSH/oh-my-zsh.sh
 # CUSTOMIZED
 #==========================================================================================
 
+# Detect OS
+platform='unknown'
+iswsl='false'
+unamestr=$(uname)
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+    if grep -q Microsoft /proc/version; then
+        echo "Ubuntu on Windows"
+        iswsl='true'
+    else
+        echo "Pure Linux"
+    fi
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform='macos'
+fi
+echo "platform = $platform"
+echo "iswsl = $iswsl"
+
+# Detect nvim
+nvimexist='false'
+myvi='vim'
+if hash nvim 2>/dev/null; then
+    nvimexist='true'
+    myvi='nvim'
+fi
+alias myvi='$myvi'
+echo "nvimexist = $nvimexist"
+echo "myvi = $myvi"
+
+
 # default editor (required for tmuxinator somehow)
-export EDITOR=/usr/local/bin/nvim
-export VISUAL=/usr/local/bin/nvim
+if [[ $platform == 'linux' ]]; then
+    export EDITOR=/usr/bin/nvim
+    export VISUAL=/usr/bin/nvim
+elif [[ $platform == 'macos' ]]; then
+    export EDITOR=/usr/local/bin/nvim
+    export VISUAL=/usr/local/bin/nvim
+else 
+    echo "default editor / visual not set"
+fi
+
 
 # bindkey -M viins ',,' vi-cmd-mode
 # bindkey -M viins 'wf' vi-cmd-mode
