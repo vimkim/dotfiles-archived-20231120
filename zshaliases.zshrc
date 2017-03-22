@@ -215,3 +215,5 @@ export FZF_COMPLETION_TRIGGER='/'
 #bindkey '^I' $fzf_default_completion # not working well
 
 alias gall='viavailable ~/Google\ Drive/diary/gall.md'
+
+alias whome='cd /mnt/l/'
