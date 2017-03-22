@@ -19,6 +19,7 @@ alias ll='ls -GAFl'
 # vim config. If nvim exists, use it
 viavailable(){
 	if hash nvim 2>/dev/null; then
+        
 		nvim "$@"
 	else
 		vim "$@"
@@ -54,8 +55,9 @@ v(){
 	fi
 }
 
-# zshrc function
+# rc function
 alias zshrc='viavailable ~/runtime_config/.zshrc'
+alias bashrc='viavailable ~/runtime_config/.bashrc'
 alias sozsh='source ~/.zshrc'
 
 # vimrc function
@@ -102,6 +104,7 @@ alias gdi='git diff'
 alias gsh='git show'
 alias gbl='git blame'
 alias gds='git dissect'
+alias gumd='git diff --diff-filter=U' # unmerged commits
 
 # tmux
 alias tmu='tmux'
@@ -215,3 +218,5 @@ export FZF_COMPLETION_TRIGGER='/'
 #bindkey '^I' $fzf_default_completion # not working well
 
 alias gall='viavailable ~/Google\ Drive/diary/gall.md'
+
+alias whome='cd /mnt/l/'

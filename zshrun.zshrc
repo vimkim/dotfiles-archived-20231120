@@ -1,8 +1,10 @@
-echo "##### listing all contents #####"
+#echo "##### listing all contents #####"
 RUN='ls'
-eval "$RUN"
-echo "wtr is amazing!"
+#eval "$RUN" # temp pause
+#echo "wtr is amazing!"
 RUN='wtr'
-eval "$RUN"
-RUN='ansiweather'
-eval "$RUN"
+#eval "$RUN" # temp pause
+if [[ $platform == 'macos' ]]; then
+    RUN='ansiweather'
+    eval "$RUN"
+fi
