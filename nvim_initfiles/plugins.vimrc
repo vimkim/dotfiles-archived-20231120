@@ -34,10 +34,13 @@ call plug#begin('$HOME/.config/nvim/plugged') "TODO
 "Plug 'kien/ctrlp.vim'
 "Plug 'chrisbra/csv.vim'
 " The below 2 plugins are not used for vim
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-clang'
+else
 "" Instead of the above two, neocomplete for vim
-"Plug 'Shougo/neocomplete.vim'
+    Plug 'Shougo/neocomplete.vim'
+endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
@@ -261,7 +264,11 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+if has('mac')
+    let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+else
+    let g:syntastic_python_python_exec = '/usr/bin/python3'
+endif
 ")
 
 "(TAGBAR
