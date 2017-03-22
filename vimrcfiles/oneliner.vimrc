@@ -26,14 +26,11 @@ set ignorecase
 " * This should be turned on together with :set ignorecase.
 set smartcase
 
-" scrolling control
-set scrolloff=9
+set scrolloff=100 " scrolling control - leave some lines at both sides
+"set sidescrolloff=100 " for columns
 
-" line number
-set number
-
-" relative line number
-set relativenumber
+set number " line number
+set relativenumber " relative line number
 
 " make backspace work like most other apps. Alternatives: set backspace=2
 set backspace=indent,eol,start
@@ -145,7 +142,11 @@ set undofile
 "set statusline+=%F
 
 "set zsh to default
-set shell=/usr/local/bin/zsh "brew zsh location for macos
+if has("mac")
+    set shell=/usr/local/bin/zsh "brew zsh location for macos
+elseif has("unix")
+    set shell=/usr/bin/zsh
+endif
 " with l option, this somehow sources the .zshrc
 "set shell=zsh\ -l " Works fine but disabled due to conflicts with Fugitive Gdiff
 "set shell=bash\ --login " Source .bashrc file
