@@ -97,7 +97,8 @@ nnoremap <leader>cp :CtrlP<Space>.<cr>
 ")
 
 "(FZF)
-nnoremap :fz :FZF
+nnoremap :fz :FZF 
+nnoremap ,fz :FZF 
 "nnoremap <c-f> :FZF<cr>
 ")
 "(FZF.VIM
@@ -128,8 +129,8 @@ let g:lightline = {'colorscheme': 'PaperColor',}
 let g:mkdp_path_to_chrome = "open -a Safari"
 "let g:mkdp_path_to_chrome = "open -a '/Applications/Google Chrome.app'"
 "let g:mkdp_auto_start = 1
-"let g:mkdp_auto_open = 1
-let g:mkdp_auto_close = 0
+let g:mkdp_auto_open = 1
+let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 1 " refresh when save the buffer or leave from insert mode
 let g:mkdp_command_for_global = 0 " markdown preview command can be use for all files
 ")
@@ -400,7 +401,10 @@ nmap <leader>L <plug>(easymotion-overwin-line)
 "(VIM-MARKDOWN
 nnoremap <leader>>> V:HeaderIncrease<CR>
 nnoremap <leader><< V:HeaderDecrease<CR>
-let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal = 0 " disable conceal regardless of conceallevel // I should enable this because meslo font that I'm currently using does not support bold nor italic.
+"To disable math conceal with LaTex math syntax enabled
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
 ")
 
 "(EASYTAGS
@@ -530,7 +534,7 @@ nnoremap <silent> T :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>T
 
 "(VIM-SLIME
 let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": split($TMUX,",")[0], "target_pane": ":.1"}
+"let g:slime_default_config = {"socket_name": split($TMUX,",")[0], "target_pane": ":.1"}
 " Tip: for socket, default, for pane, $session:0.0 
 " You can identify it with the command $tmux list-panes -a
 "let g:slime_python_ipython = 1 "This not working
