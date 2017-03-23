@@ -107,6 +107,10 @@ au filetype c nnoremap <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
 au filetype c nnoremap <leader>cpp :w <CR> :!gcc % -o %< && ./%< <CR>
 ")
 
+"- JAVA
+au filetype java nnoremap <F8> :w<cr>:!javac % && java %< <cr>
+au filetype java nnoremap ,ru <esc>:w<cr>:!javac % && java %< <cr>
+
 "Replace Windows ^m enter return into Unix
 nnoremap <leader>winm :%s/\r/\r/g<CR>
 
@@ -117,11 +121,14 @@ nnoremap ,bd :bd<cr>
 nnoremap gn :bn<cr>
 nnoremap gp :bp<cr>
 nnoremap gd :bd<cr>
+nnoremap ,bf :buffers<CR>:buffer<Space>
 
 "Line-opeation shortcut
 nnoremap gw $
 nnoremap gb ^
-vnoremap gw $h
+vnoremap gw $ h
+" visual select whole line except for the carriage return (enter) <c-r>
+nnoremap gwb ^v$h
 
 "Add space in normal mode
 nnoremap <space> i<space><esc>
@@ -140,8 +147,6 @@ nnoremap Y y$
 
 
 
-" visual select whole line except for the carriage return (enter) <c-r>
-nnoremap gwb ^v$h
 
 "fugitive alias
 nnoremap <leader>gst :Gstatus<cr>
@@ -177,7 +182,7 @@ inoremap :date <esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 " FZF
 nnoremap <leader>fz :FZF 
 
-nnoremap :sovimrc :so $MYVIMRC<cr>
+nnoremap :sov :so $MYVIMRC<cr>
 
 let g:BASH_Ctrl_j = 'off' " does not work
 let g:ZSH_Ctrl_j = 'off'
@@ -194,3 +199,7 @@ nnoremap U :echo "<< ===== CHECK CAPSLOCK =====>>"<cr>
 nnoremap ; :
 
 nnoremap ,ffmt <esc>:set fileformat=dos
+
+nnoremap :ft :set filetype<cr>
+
+nnoremap :vm :verbose map 
