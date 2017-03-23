@@ -30,9 +30,12 @@ syntax off
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "use :sort /.... '.*\// to sort the lines.
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
+"pluglist:
+Plug 'mileszs/ack.vim' "code search
+Plug 'w0rp/ale' "saves my life
 "Plug 'jiangmiao/auto-pairs'
-"Plug 'kien/ctrlp.vim'
-"Plug 'chrisbra/csv.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'chrisbra/csv.vim' "it works for ;sv and tsv as well
 " The below 2 plugins are not used for vim
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -56,7 +59,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'kien/rainbow_parentheses.vim'
 "Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 "Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
@@ -83,7 +86,15 @@ Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'zefei/vim-wintabs'
 call plug#end()
+
+"(ALE
+let g:ale_sign_column_always = 0
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
 ")
+
+
 
 "(AUTO-PAIR
 let g:AutoPairsFlyMode = 0
@@ -97,11 +108,19 @@ let g:ctrlp_map = '<leader>ctp'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_show_hidden = 1
 nnoremap <leader>cp :CtrlP<Space>.<cr>
+nnoremap <leader>cd <esc>:CtrlPDir ~/
 ")
 
+"CSV.VIM
+" :ArrangeColumn , :UnarrangeColumn useful
+" HJKL navigation (capital letters)
+" To override, let g:csv_delim=','
+"let g:csv_delim='\t'
+let g:csv_no_conceal = 1 " unlet g:csv_no_conceal to disable
+
 "(FZF)
-nnoremap :fz :FZF 
-nnoremap ,fz :FZF 
+nnoremap :fz :FZF ~/
+nnoremap ,fz :FZF ~/
 "nnoremap <c-f> :FZF<cr>
 ")
 "(FZF.VIM
@@ -257,9 +276,9 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 ")
 
 "(SYNTASTIC
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()} "TODO 
+"set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -279,7 +298,7 @@ let g:tagbar_width=30
 ")
 
 "(ULTISNIPS
-"let g:UltiSnipsListSnippets = "<c-l>"
+let g:UltiSnipsListSnippets = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-l>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 " Defines the directory private snippet definition files are stored in.
@@ -382,8 +401,10 @@ let g:indentLine_color_term = 100
 " Disable default mapping
 let g:EasyMotion_do_mapping = 0
 " This allows you to jump onto a specific letter.
+" the first line allows you to trigger in visual mode as well (very helpful)
 map <leader>f <plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+" allows you to move regardless of buffer (for :vsplit, etc.)
+nmap <Leader>fw <Plug>(easymotion-overwin-f)
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
 ""nmap s <Plug>(easymotion-overwin-f)
@@ -398,11 +419,19 @@ let g:EasyMotion_smartcase = 1
 map <leader>L <plug>(easymotion-bd-jk)
 nmap <leader>L <plug>(easymotion-overwin-line)
 " Move to word
-"map <leader>w <plug>(easymotion-bd-w)
-"nmap <leader>w <plug>(easymotion-overwin-w)
+"map <leader>fw <plug>(easymotion-bd-w)
+nmap <leader>emw <plug>(easymotion-overwin-w)
 ")
 
 "(TABULAR
+" :Tabularize /= useful
+" :Tabularize /=\zs more useful
+" align variable (\S <= non-whitespace character)
+vnoremap :alivar :Tabularize /\S\+;
+" MY function: undo tabularize
+vnoremap :untab :s/\v(\s)\s+/\1/gc 
+vnoremap :uncsv :s/\v\s+,\s+/,/gc
+" expl: basically, replace two or more spaces as one space vnoremap :untab s/\v(\s)\s+/ /gc " this also works
 ")
 
 "(VIM-MARKDOWN
