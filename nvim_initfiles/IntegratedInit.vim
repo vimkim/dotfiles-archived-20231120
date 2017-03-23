@@ -11,6 +11,7 @@
 "- TIPS & REMINDERS
 "- MAPPING
 "- PLUGIN
+"- FILETYPE
 "- SCHEME
 "- NECESSARY
 "- ACCESSORY
@@ -96,6 +97,9 @@
 
 " LEADER KEY
 let mapleader = ","
+inoremap <c-e> <esc>
+nnoremap <c-e> <esc>
+vnoremap <c-e> <esc>
 
 "ESC
 "vmap ,, <ESC>
@@ -114,21 +118,27 @@ noremap j gj
 noremap k gk
 
 "( ONLY WORKS when the terminal .*shrc file contains: stty -ixon
-"SAVE
-nnoremap <C-s> :update<CR>
-inoremap <c-s> <ESC>:update<CR>
-vnoremap <C-s> <esc>:w<CR>gv
+"SAVE << this is killing my fingers. I'll change ctrl to leader
+nnoremap <leader>s :update<CR>
+inoremap <leader>s <ESC>:update<CR>
+vnoremap <leader>s <esc>:w<CR>gv
 nnoremap <leader>s :update<CR>
 
 "QUIT
 " ctrl+q quits all which is not working // now works 
-nnoremap <C-q> :q<CR>
-inoremap <C-q> <ESC>:q<CR>
+nnoremap <c-q> :q<CR>
+inoremap <c-q> <ESC>:q<CR>
+nnoremap <c-q> :q<CR>
+nnoremap <leader>q :q<CR>
+inoremap <leader>q <ESC>:q<CR>
 nnoremap <leader>q :q<CR>
 ")
 
-"test
-nnoremap ,sq :wq<CR>
+nnoremap sq <esc>:wq<esc>
+"inoremap sq <esc>:wq<esc>
+vnoremap sq <esc>:wq<esc>
+
+
 
 "DISABLE EX-MODE
 :map Q <nop>
@@ -145,10 +155,13 @@ nnoremap <Leader><Enter> O<ESC>
 " Unfortunately, a more intuitive  choice of <S-Enter> O<ESC> not working on CLI
 
 "SUDO SAVE
-nnoremap :sudow :w !sudo tee %
+nnoremap :sudow :w !sudo tee > /dev/null %
 
 "SAVE & QUIT IN INSERT MODE
 inoremap ZZ <c-c>ZZ
+
+"Suspend
+nnoremap <leader>z <esc><c-z>
 
 " Map Ctrl-Backspace to delete the previous word in insert mode.
 imap <C-BS> <C-W>
@@ -164,30 +177,47 @@ nnoremap gR gD:%s/<c-r>///gc<left><left><left>
 
 "(COMPILE & RUN MAPPING
 "- PYTHON
-nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%,1)<cr>
+
+au filetype python nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
+au filetype python nnoremap <buffer> <F8> :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
+au filetype python nnoremap <buffer> <leader>run :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
+
+"CLisp
+au filetype lisp nnoremap <buffer> <F8> :w<CR>:exec '!clisp' shellescape(@%, 1)<cr>
 
 "- C,CPP
 "Create an executable file named a.out.
-"nnoremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
-"nnoremap <leader>gpp :w <CR>:!g++-6 % && ./a.out <CR>
-"nnoremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
+"noremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
+"noremap <leader>gpp :w <CR>:!g++-6 % && ./a.out <CR>
+"noremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
 "IMPORTANT: if bugs occured, change gcc-6 to gcc
 " creates an executable file that has the same name with its .c file
-""map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+au filetype c nnoremap <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+au filetype c nnoremap <leader>cpp :w <CR> :!gcc % -o %< && ./%< <CR>
 ")
+
+"- JAVA
+au filetype java nnoremap <F8> :w<cr>:!javac % && java %< <cr>
+au filetype java nnoremap ,ru <esc>:w<cr>:!javac % && java %< <cr>
 
 "Replace Windows ^m enter return into Unix
 nnoremap <leader>winm :%s/\r/\r/g<CR>
 
 "Buffer shortcuts
+nnoremap ,bn :bn<cr>
+nnoremap ,bp :bp<cr>
+nnoremap ,bd :bd<cr>
 nnoremap gn :bn<cr>
 nnoremap gp :bp<cr>
 nnoremap gd :bd<cr>
+nnoremap ,bf :buffers<CR>:buffer<Space>
 
 "Line-opeation shortcut
 nnoremap gw $
 nnoremap gb ^
-vnoremap gw $h
+vnoremap gw $ h
+" visual select whole line except for the carriage return (enter) <c-r>
+nnoremap gwb ^v$h
 
 "Add space in normal mode
 nnoremap <space> i<space><esc>
@@ -206,8 +236,6 @@ nnoremap Y y$
 
 
 
-" visual select whole line except for the carriage return (enter) <c-r>
-nnoremap gwb ^v$h
 
 "fugitive alias
 nnoremap <leader>gst :Gstatus<cr>
@@ -237,12 +265,13 @@ nnoremap :suba :%s/
 nnoremap :subs :%s/
 
 " put date on document timestamp
-nnoremap :date :put =strftime('%Y-%b-%d %a %T')<cr>
+nnoremap :date :put =strftime('%Y-%b-%d %a %T')<cr><esc>
+inoremap :date <esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 
 " FZF
-nnoremap <leader>fzf :FZF 
+nnoremap <leader>fz :FZF 
 
-nnoremap :sovimrc :so $MYVIMRC<cr>
+nnoremap :sov :so $MYVIMRC<cr>
 
 let g:BASH_Ctrl_j = 'off' " does not work
 let g:ZSH_Ctrl_j = 'off'
@@ -251,15 +280,18 @@ let g:ZSH_Ctrl_j = 'off'
 nnoremap <leader>pa "*p
 "inoremap <c-r> <c-r>* don't know why I did this
 
-nnoremap :fzf :FZF<cr>
-nnoremap <c-f> :FZF<cr>
-nnoremap <c-e> :FZF<cr>
 
 inoremap <c-BS> <DEL>
 
 nnoremap U :echo "<< ===== CHECK CAPSLOCK =====>>"<cr>
 
 nnoremap ; :
+
+nnoremap ,ffmt <esc>:set fileformat=dos
+
+nnoremap :ft :set filetype<cr>
+
+nnoremap :vm :verbose map 
 
 "section============================================================================
 " PLUGINS
@@ -292,15 +324,22 @@ syntax off
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "use :sort /.... '.*\// to sort the lines.
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
-Plug 'jiangmiao/auto-pairs'
-"Plug 'kien/ctrlp.vim'
-Plug 'chrisbra/csv.vim'
+"pluglist:
+Plug 'mileszs/ack.vim' "code search
+Plug 'w0rp/ale' "saves my life
+"Plug 'jiangmiao/auto-pairs'
+Plug 'kien/ctrlp.vim'
+Plug 'chrisbra/csv.vim' "it works for ;sv and tsv as well
 " The below 2 plugins are not used for vim
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-clang'
+else
 "" Instead of the above two, neocomplete for vim
-"Plug 'Shougo/neocomplete.vim'
+    Plug 'Shougo/neocomplete.vim'
+endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'sjl/gundo.vim'
 Plug 'yggdroot/indentline'
@@ -310,11 +349,11 @@ Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamc
 Plug 'iamcco/markdown-preview.vim'
 "Plug 'Shougo/neoinclude.vim' "too slow
 Plug 'scrooloose/nerdcommenter' "too slow
-"Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 Plug 'NLKNguyen/papercolor-theme'
-"Plug 'kien/rainbow_parentheses.vim'
+Plug 'kien/rainbow_parentheses.vim'
 "Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 "Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
@@ -336,15 +375,26 @@ Plug 'terryma/vim-multiple-cursors'
 "Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
+Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'zefei/vim-wintabs'
 call plug#end()
+
+"(ALE
+let g:ale_sign_column_always = 0
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
 ")
 
+
+
 "(AUTO-PAIR
-let g:AutoPairsFlyMode = 1
+let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<M-b>'
+au Filetype markdown let b:autopairs_loaded=1
+au filetype lisp let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"'}
 ")
 "(CTRLP.VIM
 " help: ,p toggles
@@ -352,6 +402,23 @@ let g:ctrlp_map = '<leader>ctp'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_show_hidden = 1
 nnoremap <leader>cp :CtrlP<Space>.<cr>
+nnoremap <leader>cd <esc>:CtrlPDir ~/
+")
+
+"CSV.VIM
+" :ArrangeColumn , :UnarrangeColumn useful
+" HJKL navigation (capital letters)
+" To override, let g:csv_delim=','
+"let g:csv_delim='\t'
+let g:csv_no_conceal = 1 " unlet g:csv_no_conceal to disable
+
+"(FZF)
+nnoremap :fz :FZF ~/
+nnoremap ,fz :FZF ~/
+"nnoremap <c-f> :FZF<cr>
+")
+"(FZF.VIM
+nmap <c-x><c-f> <plug>(fzf-complete-path)
 ")
 
 "(GOYO
@@ -378,8 +445,8 @@ let g:lightline = {'colorscheme': 'PaperColor',}
 let g:mkdp_path_to_chrome = "open -a Safari"
 "let g:mkdp_path_to_chrome = "open -a '/Applications/Google Chrome.app'"
 "let g:mkdp_auto_start = 1
-"let g:mkdp_auto_open = 1
-let g:mkdp_auto_close = 0
+let g:mkdp_auto_open = 1
+let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 1 " refresh when save the buffer or leave from insert mode
 let g:mkdp_command_for_global = 0 " markdown preview command can be use for all files
 ")
@@ -393,11 +460,11 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 "(DEOPLETE
 let g:deoplete#enable_at_startup = 1
 " auto complete error temporary fix "https://github.com/Shougo/deoplete.nvim/issues/440
-"let g:deoplete#auto_complete_delay = 250
+let g:deoplete#auto_complete_delay = 250
 " Use smartcase
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_smart_case = 1
-"let g:deoplete#auto_complete_start_length = 3
+let g:deoplete#auto_complete_start_length = 3
 let g:deoplete#disable_auto_complete = 0
 " Let <TAB> also do completion
 "inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -426,7 +493,7 @@ let b:deoplete_ignore_sources = ['buffer']
 ""function! s:check_back_space() "{{{
 "    h""let col = col('.') - 1
 "    ""return !col || getline('.')[col - 1]  =~ '\s'
-""endfunction"}}}
+""endfunction"}}}}}}}}}
 ")
 "
 "(NEOCOMPLETE
@@ -503,14 +570,18 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 ")
 
 "(SYNTASTIC
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()} "TODO 
+"set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+if has('mac')
+    let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+else
+    let g:syntastic_python_python_exec = '/usr/bin/python3'
+endif
 ")
 
 "(TAGBAR
@@ -521,10 +592,9 @@ let g:tagbar_width=30
 ")
 
 "(ULTISNIPS
-"let g:UltiSnipsListSnippets = "<c-l>"
+let g:UltiSnipsListSnippets = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-l>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
-nnoremap <c-l>  i<c-l>
 " Defines the directory private snippet definition files are stored in.
 set runtimepath+=~/.vim/mySnips/"
 let g:UltiSnipsSnippetsDir = "~/.vim/mySnips/UltiSnips"
@@ -554,8 +624,8 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 ")
 
 "( IAMCCO/MARKDOWN-PREVIEW.VIM
-nnoremap :mdlp :MarkdownPreview<cr>
-nnoremap :mdsp :MarkdownPreviewStop<cr>
+nnoremap :prev :MarkdownPreview<cr>
+nnoremap :nprev :MarkdownPreviewStop<cr>
 ")
 
 "(NERDCOMMENTER
@@ -566,9 +636,11 @@ let NERDRemoveExtraSpaces=1
 "(NERDTREE
 " help: ,nt toggles. Then type ? for details.
 let NERDTreeShowHidden=1
-map <leader>nt :NERDTreeToggle<CR>
+"map <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nt <esc>:NERDTreeToggle ~/
 "autocmd VimEnter * NERDTree
-let g:NERDTreeWinSize=20
+"autocmd VimEnter * wincmd p " moves cursor to filesafter opening nerdtree
+let g:NERDTreeWinSize=15
 ")
 
 "(PAPERCOLOR-THEME (colorscheme)
@@ -578,7 +650,7 @@ colorscheme PaperColor
 ")
 
 "(RAINBOW-PARENTHESES.VIM
-"au VimEnter * RainbowParenthesesToggle
+au VimEnter * RainbowParenthesesToggle
 "au Syntax * RainbowParenthesesLoadRound
 "au Syntax * RainbowParenthesesLoadSquare
 "au Syntax * RainbowParenthesesLoadBraces
@@ -623,27 +695,46 @@ let g:indentLine_color_term = 100
 " Disable default mapping
 let g:EasyMotion_do_mapping = 0
 " This allows you to jump onto a specific letter.
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+" the first line allows you to trigger in visual mode as well (very helpful)
+map <leader>f <plug>(easymotion-bd-f)
+" allows you to move regardless of buffer (for :vsplit, etc.)
+nmap <Leader>fw <Plug>(easymotion-overwin-f)
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
 ""nmap s <Plug>(easymotion-overwin-f)
 " or `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
-""nmap s <Plug>(easymotion-overwin-f2)
+"nmap s <Plug>(easymotion-overwin-f2)
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
 " JK motions: Line motions << what is this for?
-""map <Leader>j <Plug>(easymotion-j)
-""map <Leader>k <Plug>(easymotion-k)
+"map <Leader>j <Plug>(easymotion-j)
+"map <Leader>k <Plug>(easymotion-k)
+map <leader>L <plug>(easymotion-bd-jk)
+nmap <leader>L <plug>(easymotion-overwin-line)
+" Move to word
+"map <leader>fw <plug>(easymotion-bd-w)
+nmap <leader>emw <plug>(easymotion-overwin-w)
 ")
 
 "(TABULAR
+" :Tabularize /= useful
+" :Tabularize /=\zs more useful
+" align variable (\S <= non-whitespace character)
+vnoremap :alivar :Tabularize /\S\+;
+" MY function: undo tabularize
+vnoremap :untab :s/\v(\s)\s+/\1/gc 
+vnoremap :uncsv :s/\v\s+,\s+/,/gc
+" expl: basically, replace two or more spaces as one space vnoremap :untab s/\v(\s)\s+/ /gc " this also works
 ")
 
 "(VIM-MARKDOWN
 nnoremap <leader>>> V:HeaderIncrease<CR>
 nnoremap <leader><< V:HeaderDecrease<CR>
-let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal = 0 " disable conceal regardless of conceallevel // I should enable this because meslo font that I'm currently using does not support bold nor italic.
+"To disable math conceal with LaTex math syntax enabled
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
 ")
 
 "(EASYTAGS
@@ -668,6 +759,7 @@ let g:easytags_async = 1
 ")
 
 "(VIM-FUGITIVE
+set statusline+=%{fugitive#statusline()}
 "Problem: it does not work for symlinks
 "Solution:
 
@@ -769,6 +861,19 @@ nnoremap <silent> f :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>f
 nnoremap <silent> F :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>F
 nnoremap <silent> t :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>t
 nnoremap <silent> T :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>T
+")
+
+"(VIM-SLIME
+let g:slime_target = "tmux"
+"let isitwsl=$iswsl
+"if isitwsl == 'true'
+""if $iswsl == 'true' " also works  << was not the actual reason it was because of the absence of $TMUX variable
+if $TMUX != '' "test wether I'm currently in tmux or not
+    let g:slime_default_config = {"socket_name": split($TMUX, ",")[0], "target_pane": ":.1"}
+endif
+" Tip: for socket, default, for pane, $session:0.0 
+" You can identify it with the command $tmux list-panes -a
+"let g:slime_python_ipython = 1 "This not working
 ")
 
 "(VIM-SURROUND
@@ -880,8 +985,9 @@ autocmd Filetype anki nnoremap <c-q> gg"*yG:q<cr>
 
 
 " Enter insert mode automatically when editing git commit messages 
-"autocmd FileType gitcommit 1 | startinsert "by benjifisher from so "error
-"when fugitive
+"autocmd FileType gitcommit 1 | startinsert "by benjifisher from so "error when fugitive
+
+au filetype csv setlocal noexpandtab "don't expand tab if csv
 let g:tex_flavor='latex'
 "section============================================================================
 " NECESSARY
@@ -911,14 +1017,11 @@ set ignorecase
 " * This should be turned on together with :set ignorecase.
 set smartcase
 
-" scrolling control
-set scrolloff=9
+set scrolloff=100 " scrolling control - leave some lines at both sides
+"set sidescrolloff=100 " for columns
 
-" line number
-set number
-
-" relative line number
-set relativenumber
+set number " line number
+set relativenumber " relative line number
 
 " make backspace work like most other apps. Alternatives: set backspace=2
 set backspace=indent,eol,start
@@ -1020,8 +1123,13 @@ set nofoldenable
 " spell check, but not grammar. Useful for writing README
 "set spell << Currently set for txt, md, anki
 
+
 " auto change directory, works same as autochdir with less errors
+"set autochdir
 autocmd BufEnter * silent! lcd %:p:h
+" set the file's directory as pwd; useful for fzf opened files
+nnoremap :setdir :silent! lcd %:p:h<cr>
+
 
 " Saves undo's after file closes
 set undofile
@@ -1030,14 +1138,18 @@ set undofile
 "set statusline+=%F
 
 "set zsh to default
-set shell=/usr/local/bin/zsh "brew zsh location for macos
+if has("mac")
+    set shell=/usr/local/bin/zsh "brew zsh location for macos
+elseif has("unix")
+    set shell=/usr/bin/zsh
+endif
 " with l option, this somehow sources the .zshrc
 "set shell=zsh\ -l " Works fine but disabled due to conflicts with Fugitive Gdiff
 "set shell=bash\ --login " Source .bashrc file
 "set shell=zsh\ -i " behave strange; interactive mode which seems wrong. This produces tts error or something like that
 
 "latex conceal unwanted strange math mode
-let g:tex_conceal = ""
+let g:tex_conceal = "" "maybe for vim-markdown or general
 
 set lazyredraw " redraw only when we need to 
 
@@ -1064,8 +1176,28 @@ if has("autocmd")
     autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
+nnoremap :sov :so $MYVIMRC<cr>
+
 set path+=** " from the thoughtbot youtube How to do 90% of what plugins do. use :find plug*
 
+set scrolljump=1
+
+map <ScrollWheelUp> <C-y>
+map <mouseup> <C-y>
+map <ScrollWheelDown> <c-e>
+map <mousedown> <C-e>
+
+let g:vim_json_syntax_conceal = 0 "not working. It is said that it works for vim-json
+set conceallevel =0
+
+" syntax highlight too slow. Test 
+set nocursorcolumn
+set nocursorline
+"set norelativenumber
+"syntax sync minlines=256
+
+"set magic "equivalent of :%s/\m
+"\v useful as it interprets all symbols as special
 
 "section============================================================================
 "COLORSCHEMES
