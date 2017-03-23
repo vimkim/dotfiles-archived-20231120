@@ -132,8 +132,13 @@ set nofoldenable
 " spell check, but not grammar. Useful for writing README
 "set spell << Currently set for txt, md, anki
 
+
 " auto change directory, works same as autochdir with less errors
+"set autochdir
 autocmd BufEnter * silent! lcd %:p:h
+" set the file's directory as pwd; useful for fzf opened files
+nnoremap :setdir :silent! lcd %:p:h<cr>
+
 
 " Saves undo's after file closes
 set undofile
@@ -180,6 +185,8 @@ if has("autocmd")
     autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
+nnoremap :sov :so $MYVIMRC<cr>
+
 set path+=** " from the thoughtbot youtube How to do 90% of what plugins do. use :find plug*
 
 set scrolljump=1
@@ -192,3 +199,11 @@ map <mousedown> <C-e>
 let g:vim_json_syntax_conceal = 0 "not working. It is said that it works for vim-json
 set conceallevel =0
 
+" syntax highlight too slow. Test 
+set nocursorcolumn
+set nocursorline
+"set norelativenumber
+"syntax sync minlines=256
+
+"set magic "equivalent of :%s/\m
+"\v useful as it interprets all symbols as special
