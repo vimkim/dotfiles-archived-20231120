@@ -1,3 +1,13 @@
+snippet * "* *" 
+*$1*$0
+endsnippet
+snippet ita "italian"
+_$1_$0
+endsnippet
+snippet bo "bold"
+__$1__$0
+endsnippet
+
 snippet _ "_" b
 _$1_$0
 endsnippet
@@ -41,7 +51,7 @@ endsnippet
 
 ##### Items handling
 snippet it "unordered item" b
-* $1
+- $1
 endsnippet
 snippet nu "numbered item" b
 00. $1
@@ -203,7 +213,7 @@ ${4:x(n+1)}, &\text{$5 } $6 \\\ $7
 endsnippet
 
 snippet tx "text" i
-\text{$1 } $0
+\text{ $1 } $0
 endsnippet
 
 
@@ -332,4 +342,8 @@ endsnippet
 
 snippet | "integral bar" i
 \Big|_{ $1 }^{ $2 } $0
+endsnippet
+
+snippet \ "setminus" i
+\\setminus
 endsnippet
