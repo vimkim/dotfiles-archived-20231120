@@ -98,5 +98,6 @@ autocmd Filetype anki nnoremap <c-q> gg"*yG:q<cr>
 
 
 " Enter insert mode automatically when editing git commit messages 
-"autocmd FileType gitcommit 1 | startinsert "by benjifisher from so "error
-"when fugitive
+"autocmd FileType gitcommit 1 | startinsert "by benjifisher from so "error when fugitive
+
+au filetype csv setlocal noexpandtab "don't expand tab if csv
