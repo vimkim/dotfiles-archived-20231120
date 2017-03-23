@@ -31,7 +31,7 @@ syntax off
 "use :sort /.... '.*\// to sort the lines.
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
 "pluglist:
-Plug 'mileszs/ack.vim' "code search
+Plug 'mileszs/ack.vim' "code search // needs extra install of ack
 Plug 'w0rp/ale' "saves my life
 "Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
@@ -87,14 +87,17 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'zefei/vim-wintabs'
 call plug#end()
 
+"(
+" :Ack
+" go to preview, o to open, <c-n> <c-j> to navigate
+")
+
 "(ALE
 let g:ale_sign_column_always = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
 ")
-
-
 
 "(AUTO-PAIR
 let g:AutoPairsFlyMode = 0
@@ -103,12 +106,12 @@ au Filetype markdown let b:autopairs_loaded=1
 au filetype lisp let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"'}
 ")
 "(CTRLP.VIM
-" help: ,p toggles
 let g:ctrlp_map = '<leader>ctp'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_show_hidden = 1
 nnoremap <leader>cp :CtrlP<Space>.<cr>
 nnoremap <leader>cd <esc>:CtrlPDir ~/
+"navigate with <c-j><c-k>, <c-v> to change working directory
 ")
 
 "CSV.VIM
@@ -170,7 +173,7 @@ let g:deoplete#auto_complete_delay = 250
 " Use smartcase
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_complete_start_length = 3
+"let g:deoplete#auto_complete_start_length = 3
 let g:deoplete#disable_auto_complete = 0
 " Let <TAB> also do completion
 "inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
