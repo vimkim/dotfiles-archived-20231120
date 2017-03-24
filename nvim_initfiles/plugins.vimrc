@@ -355,6 +355,9 @@ let g:NERDTreeWinSize=15
 "set t_Co=256 "This is may or may not needed.
 set bg=dark
 colorscheme PaperColor
+if !has('nvim') && $iswsl=='true'
+    set t_Co=256
+endif
 ")
 
 "(RAINBOW-PARENTHESES.VIM
