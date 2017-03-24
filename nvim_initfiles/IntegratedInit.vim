@@ -573,16 +573,16 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()} "TODO 
 "set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-if has('mac')
-    let g:syntastic_python_python_exec = '/usr/local/bin/python3'
-else
-    let g:syntastic_python_python_exec = '/usr/bin/python3'
-endif
-")
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"if has('mac')
+    "let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+"else
+    "let g:syntastic_python_python_exec = '/usr/bin/python3'
+"endif
+"")
 
 "(TAGBAR
 " help: ,tb toggles tagbar. <c-w><c-w> changes window and press ? for details.
