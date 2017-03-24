@@ -137,7 +137,7 @@ set nofoldenable
 "set autochdir
 autocmd BufEnter * silent! lcd %:p:h
 " set the file's directory as pwd; useful for fzf opened files
-nnoremap :setdir :silent! lcd %:p:h<cr>
+nnoremap ;setdir :silent! lcd %:p:h<cr>
 
 
 " Saves undo's after file closes
@@ -185,7 +185,7 @@ if has("autocmd")
     autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
-nnoremap :sov :so $MYVIMRC<cr>
+noremap ;sov :so $MYVIMRC<cr>
 
 set path+=** " from the thoughtbot youtube How to do 90% of what plugins do. use :find plug*
 
