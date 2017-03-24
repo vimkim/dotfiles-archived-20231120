@@ -55,7 +55,7 @@ Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamc
 Plug 'iamcco/markdown-preview.vim'
 "Plug 'Shougo/neoinclude.vim' "too slow
 Plug 'scrooloose/nerdcommenter' "too slow
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'kien/rainbow_parentheses.vim'
 "Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
@@ -82,6 +82,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'jpalardy/vim-slime'
+Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'zefei/vim-wintabs'
@@ -89,7 +90,10 @@ call plug#end()
 
 "(
 " :Ack
+cnoreabbrev Ack Ack!
+nnoremap <leader>ak :Ack!<space>
 " go to preview, o to open, <c-n> <c-j> to navigate
+
 ")
 
 "(ALE
@@ -122,7 +126,7 @@ nnoremap <leader>cd <esc>:CtrlPDir ~/
 let g:csv_no_conceal = 1 " unlet g:csv_no_conceal to disable
 
 "(FZF)
-nnoremap :fz :FZF ~/
+nnoremap ;fz :FZF ~/
 nnoremap ,fz :FZF ~/
 "nnoremap <c-f> :FZF<cr>
 ")
@@ -333,8 +337,8 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 ")
 
 "( IAMCCO/MARKDOWN-PREVIEW.VIM
-nnoremap :prev :MarkdownPreview<cr>
-nnoremap :nprev :MarkdownPreviewStop<cr>
+nnoremap ;prev :MarkdownPreview<cr>
+nnoremap ;nprev :MarkdownPreviewStop<cr>
 ")
 
 "(NERDCOMMENTER
@@ -430,11 +434,11 @@ nmap <leader>emw <plug>(easymotion-overwin-w)
 " :Tabularize /= useful
 " :Tabularize /=\zs more useful
 " align variable (\S <= non-whitespace character)
-vnoremap :alivar :Tabularize /\S\+;
+vnoremap ;alivar :Tabularize /\S\+;
 " MY function: undo tabularize
-vnoremap :untab :s/\v(\s)\s+/\1/gc 
-vnoremap :uncsv :s/\v\s+,\s+/,/gc
-" expl: basically, replace two or more spaces as one space vnoremap :untab s/\v(\s)\s+/ /gc " this also works
+vnoremap ;untab :s/\v(\s)\s+/\1/gc 
+vnoremap ;uncsv :s/\v\s+,\s+/,/gc
+" expl: basically, replace two or more spaces as one space vnoremap ;untab s/\v(\s)\s+/ /gc " this also works
 ")
 
 "(VIM-MARKDOWN
@@ -567,6 +571,7 @@ endfunction
 "(Vim-repeat
 nnoremap <plug>NextMatch ;
 nnoremap <silent> f :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>f
+snoremap <silent> f :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>f
 nnoremap <silent> F :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>F
 nnoremap <silent> t :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>t
 nnoremap <silent> T :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>T
@@ -583,6 +588,13 @@ endif
 " Tip: for socket, default, for pane, $session:0.0 
 " You can identify it with the command $tmux list-panes -a
 "let g:slime_python_ipython = 1 "This not working
+")
+
+"(VIM-SMOOTH-SCROLL
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 1)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 1)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 ")
 
 "(VIM-SURROUND
