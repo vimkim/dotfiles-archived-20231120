@@ -108,6 +108,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
     if grep -q Microsoft /proc/version; then
         echo "Ubuntu on Windows"
         iswsl='true'
+        export iswsl # vim papercolor theme need this info
     else
         echo "Pure Linux"
     fi
