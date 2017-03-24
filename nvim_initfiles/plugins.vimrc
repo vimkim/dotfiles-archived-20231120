@@ -23,7 +23,6 @@ syntax off
 ")
 
 
-
 "(VIMPLUG 
 "To install, type :
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -34,10 +33,13 @@ call plug#begin('$HOME/.config/nvim/plugged') "TODO
 "Plug 'kien/ctrlp.vim'
 "Plug 'chrisbra/csv.vim'
 " The below 2 plugins are not used for vim
+if has('nvim')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-clang'
 "" Instead of the above two, neocomplete for vim
-"Plug 'Shougo/neocomplete.vim'
+else
+Plug 'Shougo/neocomplete.vim'
+endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
