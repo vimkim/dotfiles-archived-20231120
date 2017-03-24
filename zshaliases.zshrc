@@ -156,10 +156,15 @@ alias python='python3'
 alias py='python'
 
 # sage alias
-alias sage='~/Applications/SageMath/sage'
+# if [
+if [[ $platform == 'macos' ]]; then
+    alias sage='~/Applications/SageMath/sage'
+fi
 
 # Compiler
-alias gcc='/usr/local/Cellar/gcc/6.3.0_1/bin/gcc-6'
+if [[ $platform == 'macos' ]]; then
+    alias gcc='/usr/local/Cellar/gcc/6.3.0_1/bin/gcc-6'
+fi
 #alias g++='/usr/local/Cellar/gcc/6.2.0/bin/g++-6'
 
 # LaTeX
@@ -198,7 +203,9 @@ alias weather='curl wttr.in/montreal'
 alias jse='bundle exec jekyll serve -w' # jekyll server
 alias o='open' # mac 
 alias oas='open -a Safari' # mac
-alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs -nw'
+if [[ $platform == 'macos' ]]; then
+    alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs -nw'
+fi
 
 # personal url aliases
 alias gmail='open http://www.gmail.com'
@@ -210,9 +217,12 @@ myupdate(){
     univmail;
     fb;
 }
-alias fido='open -a /Applications/Google\ Chrome.app https://www.fido.ca'
-alias cibc='open -a /Applications/Google\ Chrome.app www.cibc.ca'
-alias bell='open -a /Applications/Google\ Chrome.app www.bell.ca'
+
+if [[ $platform == 'macos' ]]; then
+    alias fido='open -a /Applications/Google\ Chrome.app https://www.fido.ca'
+    alias cibc='open -a /Applications/Google\ Chrome.app www.cibc.ca'
+    alias bell='open -a /Applications/Google\ Chrome.app www.bell.ca'
+fi
 
 bills(){
     fido;
