@@ -29,16 +29,19 @@ syntax off
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "use :sort /.... '.*\// to sort the lines.
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
+"pluglist:
+Plug 'mileszs/ack.vim' "code search // needs extra install of ack
+Plug 'w0rp/ale' "saves my life
 "Plug 'jiangmiao/auto-pairs'
-"Plug 'kien/ctrlp.vim'
-"Plug 'chrisbra/csv.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'chrisbra/csv.vim' "it works for ;sv and tsv as well
 " The below 2 plugins are not used for vim
 if has('nvim')
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-clang'
 "" Instead of the above two, neocomplete for vim
 else
-Plug 'Shougo/neocomplete.vim'
+    Plug 'Shougo/neocomplete.vim'
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -55,7 +58,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'kien/rainbow_parentheses.vim'
 "Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 "Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
@@ -82,6 +85,17 @@ Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'zefei/vim-wintabs'
 call plug#end()
+
+"(
+" :Ack
+" go to preview, o to open, <c-n> <c-j> to navigate
+")
+
+"(ALE
+let g:ale_sign_column_always = 0
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
 ")
 
 "(AUTO-PAIR
@@ -91,15 +105,24 @@ au Filetype markdown let b:autopairs_loaded=1
 au filetype lisp let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"'}
 ")
 "(CTRLP.VIM
-" help: ,p toggles
 let g:ctrlp_map = '<leader>ctp'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_show_hidden = 1
 nnoremap <leader>cp :CtrlP<Space>.<cr>
+nnoremap <leader>cd <esc>:CtrlPDir ~/
+"navigate with <c-j><c-k>, <c-v> to change working directory
 ")
 
+"CSV.VIM
+" :ArrangeColumn , :UnarrangeColumn useful
+" HJKL navigation (capital letters)
+" To override, let g:csv_delim=','
+"let g:csv_delim='\t'
+let g:csv_no_conceal = 1 " unlet g:csv_no_conceal to disable
+
 "(FZF)
-nnoremap :fz :FZF
+nnoremap :fz :FZF ~/
+nnoremap ,fz :FZF ~/
 "nnoremap <c-f> :FZF<cr>
 ")
 "(FZF.VIM
@@ -130,8 +153,8 @@ let g:lightline = {'colorscheme': 'PaperColor',}
 let g:mkdp_path_to_chrome = "open -a Safari"
 "let g:mkdp_path_to_chrome = "open -a '/Applications/Google Chrome.app'"
 "let g:mkdp_auto_start = 1
-"let g:mkdp_auto_open = 1
-let g:mkdp_auto_close = 0
+let g:mkdp_auto_open = 1
+let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 1 " refresh when save the buffer or leave from insert mode
 let g:mkdp_command_for_global = 0 " markdown preview command can be use for all files
 ")
@@ -149,7 +172,7 @@ let g:deoplete#auto_complete_delay = 250
 " Use smartcase
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_complete_start_length = 3
+"let g:deoplete#auto_complete_start_length = 3
 let g:deoplete#disable_auto_complete = 0
 " Let <TAB> also do completion
 "inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -255,14 +278,18 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 ")
 
 "(SYNTASTIC
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()} "TODO 
+"set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+if has('mac')
+    let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+else
+    let g:syntastic_python_python_exec = '/usr/bin/python3'
+endif
 ")
 
 "(TAGBAR
@@ -273,7 +300,7 @@ let g:tagbar_width=30
 ")
 
 "(ULTISNIPS
-"let g:UltiSnipsListSnippets = "<c-l>"
+let g:UltiSnipsListSnippets = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-l>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 " Defines the directory private snippet definition files are stored in.
@@ -376,8 +403,10 @@ let g:indentLine_color_term = 100
 " Disable default mapping
 let g:EasyMotion_do_mapping = 0
 " This allows you to jump onto a specific letter.
+" the first line allows you to trigger in visual mode as well (very helpful)
 map <leader>f <plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+" allows you to move regardless of buffer (for :vsplit, etc.)
+nmap <Leader>fw <Plug>(easymotion-overwin-f)
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
 ""nmap s <Plug>(easymotion-overwin-f)
@@ -392,17 +421,28 @@ let g:EasyMotion_smartcase = 1
 map <leader>L <plug>(easymotion-bd-jk)
 nmap <leader>L <plug>(easymotion-overwin-line)
 " Move to word
-"map <leader>w <plug>(easymotion-bd-w)
-"nmap <leader>w <plug>(easymotion-overwin-w)
+"map <leader>fw <plug>(easymotion-bd-w)
+nmap <leader>emw <plug>(easymotion-overwin-w)
 ")
 
 "(TABULAR
+" :Tabularize /= useful
+" :Tabularize /=\zs more useful
+" align variable (\S <= non-whitespace character)
+vnoremap :alivar :Tabularize /\S\+;
+" MY function: undo tabularize
+vnoremap :untab :s/\v(\s)\s+/\1/gc 
+vnoremap :uncsv :s/\v\s+,\s+/,/gc
+" expl: basically, replace two or more spaces as one space vnoremap :untab s/\v(\s)\s+/ /gc " this also works
 ")
 
 "(VIM-MARKDOWN
 nnoremap <leader>>> V:HeaderIncrease<CR>
 nnoremap <leader><< V:HeaderDecrease<CR>
-let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal = 0 " disable conceal regardless of conceallevel // I should enable this because meslo font that I'm currently using does not support bold nor italic.
+"To disable math conceal with LaTex math syntax enabled
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
 ")
 
 "(EASYTAGS
@@ -427,6 +467,7 @@ let g:easytags_async = 1
 ")
 
 "(VIM-FUGITIVE
+set statusline+=%{fugitive#statusline()}
 "Problem: it does not work for symlinks
 "Solution:
 
@@ -532,11 +573,11 @@ nnoremap <silent> T :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>T
 
 "(VIM-SLIME
 let g:slime_target = "tmux"
-let isitwsl=$iswsl
-if isitwsl == 'true'
-"if $iswsl == 'true' " also works
-else
-    let g:slime_default_config = {"socket_name": split($TMUX,",")[0], "target_pane": ":.1"}
+"let isitwsl=$iswsl
+"if isitwsl == 'true'
+""if $iswsl == 'true' " also works  << was not the actual reason it was because of the absence of $TMUX variable
+if $TMUX != '' "test wether I'm currently in tmux or not
+    let g:slime_default_config = {"socket_name": split($TMUX, ",")[0], "target_pane": ":.1"}
 endif
 " Tip: for socket, default, for pane, $session:0.0 
 " You can identify it with the command $tmux list-panes -a

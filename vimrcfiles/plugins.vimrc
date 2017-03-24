@@ -390,7 +390,10 @@ nmap <leader>L <plug>(easymotion-overwin-line)
 "(VIM-MARKDOWN
 nnoremap <leader>>> V:HeaderIncrease<CR>
 nnoremap <leader><< V:HeaderDecrease<CR>
-let g:vim_markdown_conceal = 0
+"let g:vim_markdown_conceal = 0 " disable conceal regardless of conceallevel
+"To disable math conceal with LaTex math syntax enabled
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
 ")
 
 "(EASYTAGS

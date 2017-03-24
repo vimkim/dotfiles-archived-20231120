@@ -1,3 +1,13 @@
+snippet * "* *" 
+*$1*$0
+endsnippet
+snippet ita "italian"
+_$1_$0
+endsnippet
+snippet bo "bold"
+__$1__$0
+endsnippet
+
 snippet _ "_" b
 _$1_$0
 endsnippet
@@ -41,7 +51,7 @@ endsnippet
 
 ##### Items handling
 snippet it "unordered item" b
-* $1
+- $1
 endsnippet
 snippet nu "numbered item" b
 00. $1
@@ -72,7 +82,7 @@ endsnippet
 ##### Latex Snippets in General #####
 
 snippet $ "inline"
-\$ ${1:${VISUAL:inline-math}} \$ $0
+\$\$ ${1:${VISUAL:inline-math}} \$\$ $0
 endsnippet
 
 snippet $$ "math" i
@@ -187,14 +197,24 @@ snippet lim "limit" i
 \lim_{ $1 \to $2 } $0
 endsnippet
 
-snippet comb "combination" i
-\left(\begin{array}{c} $1 \\ $2 \end{array}\right) $0
+snippet vec "vector" i
+\left(\begin{array}{c} $1 \\\ $2 \end{array}\right) $0
+endsnippet
+
+snippet bino "binomial" i
+\binom{ $1 }{ $2 } $0
+endsnippet
+
+snippet case "case" i
+\begin{cases}
+${1:x(n)}, &\text{$2 } $3 \\\
+${4:x(n+1)}, &\text{$5 } $6 \\\ $7
+\end{cases}$0
 endsnippet
 
 snippet tx "text" i
-\text{$1} $0
+\text{ $1 } $0
 endsnippet
-
 
 
 ##### greek letters {{
@@ -321,4 +341,8 @@ endsnippet
 
 snippet | "integral bar" i
 \Big|_{ $1 }^{ $2 } $0
+endsnippet
+
+snippet \ "setminus" i
+\\setminus
 endsnippet

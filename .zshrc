@@ -101,8 +101,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Detect OS
 platform='unknown'
-iswsl='false'
 unamestr=$(uname)
+iswsl='false' # in order to use user-defined envvar, export required
 if [[ "$unamestr" == 'Linux' ]]; then
     platform='linux'
     if grep -q Microsoft /proc/version; then
@@ -111,12 +111,11 @@ if [[ "$unamestr" == 'Linux' ]]; then
     else
         echo "Pure Linux"
     fi
+    echo "iswsl = $iswsl"
 elif [[ "$unamestr" == 'Darwin' ]]; then
     platform='macos'
 fi
 echo "platform = $platform"
-echo "iswsl = $iswsl"
-export iswsl # needed for nvim slime socket plugin. Basically, vim/nvim cannot detect environmental variables if not exported.
 
 # Detect nvim
 nvimexist='false'
@@ -125,18 +124,17 @@ if hash nvim 2>/dev/null; then
     nvimexist='true'
     myvi='nvim'
 fi
-alias myvi='$myvi'
 echo "nvimexist = $nvimexist"
 echo "myvi = $myvi"
 
 
 # default editor (required for tmuxinator somehow)
 if [[ $platform == 'linux' ]]; then
-    export EDITOR=/usr/bin/nvim
-    export VISUAL=/usr/bin/nvim
+    export EDITOR=/usr/bin/$myvi
+    export VISUAL=/usr/bin/$myvi
 elif [[ $platform == 'macos' ]]; then
-    export EDITOR=/usr/local/bin/nvim
-    export VISUAL=/usr/local/bin/nvim
+    export EDITOR=/usr/local/bin/$myvi
+    export VISUAL=/usr/local/bin/$myvi
 else 
     echo "default editor / visual not set"
 fi
@@ -162,7 +160,7 @@ PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 export PATH
 
 # for macport
-export PATH=$PATH:/opt/local/bin
+#export PATH=$PATH:/opt/local/bin # not used
 
 # for LaTex
 export PATH=$PATH:/Library/TeX/texbin
