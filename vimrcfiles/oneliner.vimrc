@@ -135,7 +135,7 @@ set nofoldenable
 " auto change directory, works same as autochdir with less errors
 autocmd BufEnter * silent! lcd %:p:h
 " set the file's directory as pwd; useful for fzf opened files
-nnoremap :setdir silent! lcd %:p:h
+nnoremap ;setdir silent! lcd %:p:h
 
 
 
