@@ -66,7 +66,7 @@ nnoremap <Leader><Enter> O<ESC>
 " Unfortunately, a more intuitive  choice of <S-Enter> O<ESC> not working on CLI
 
 "SUDO SAVE
-nnoremap :sudow :w !sudo tee > /dev/null %
+nnoremap ;sudow :w !sudo tee > /dev/null %
 
 "SAVE & QUIT IN INSERT MODE
 inoremap ZZ <c-c>ZZ
@@ -166,23 +166,23 @@ vnoremap dp :diffput<cr>
 " Extra personal aliases or shortcuts (informal)
 " #############################
 " command to show the file path
-nnoremap :filepath :echo expand('%:p')<cr>
-nnoremap :fullpath :echo expand('%:p')<cr>
+nnoremap ;filepath :echo expand('%:p')<cr>
+nnoremap ;fullpath :echo expand('%:p')<cr>
 
 " mapping for replace all / substitute all 
-nnoremap :repa :%s/
-nnoremap :repl :%s/
-nnoremap :suba :%s/
-nnoremap :subs :%s/
+nnoremap ;repa :%s/
+nnoremap ;repl :%s/
+nnoremap ;suba :%s/
+nnoremap ;subs :%s/
 
 " put date on document timestamp
-nnoremap :date :put =strftime('%Y-%b-%d %a %T')<cr><esc>
-inoremap :date <esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
+nnoremap ;date :put =strftime('%Y-%b-%d %a %T')<cr><esc>
+inoremap ;date <esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 
 " FZF
 nnoremap <leader>fz :FZF 
 
-nnoremap :sov :so $MYVIMRC<cr>
+nnoremap ;sov :so $MYVIMRC<cr>
 
 let g:BASH_Ctrl_j = 'off' " does not work
 let g:ZSH_Ctrl_j = 'off'
@@ -200,6 +200,8 @@ nnoremap ; :
 
 nnoremap ,ffmt <esc>:set fileformat=dos
 
-nnoremap :ft :set filetype<cr>
+nnoremap ;ft :set filetype<cr>
 
-nnoremap :vm :verbose map 
+nnoremap ;vm :verbose map 
+
+nnoremap ;nl :put =range(
