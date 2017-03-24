@@ -23,7 +23,6 @@ syntax off
 ")
 
 
-
 "(VIMPLUG 
 "To install, type :
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -40,8 +39,8 @@ Plug 'chrisbra/csv.vim' "it works for ;sv and tsv as well
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-clang'
-else
 "" Instead of the above two, neocomplete for vim
+else
     Plug 'Shougo/neocomplete.vim'
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -360,6 +359,9 @@ let g:NERDTreeWinSize=15
 "set t_Co=256 "This is may or may not needed.
 set bg=dark
 colorscheme PaperColor
+if !has('nvim') && $iswsl=='true'
+    set t_Co=256
+endif
 ")
 
 "(RAINBOW-PARENTHESES.VIM

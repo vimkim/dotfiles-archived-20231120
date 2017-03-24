@@ -29,33 +29,40 @@ syntax off
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "use :sort /.... '.*\// to sort the lines.
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
-Plug 'kien/ctrlp.vim'
-Plug 'chrisbra/csv.vim'
+"Plug 'jiangmiao/auto-pairs'
+"Plug 'kien/ctrlp.vim'
+"Plug 'chrisbra/csv.vim'
 " The below 2 plugins are not used for vim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-clang'
  " Instead of the above two, neocomplete for vim
 Plug 'Shougo/neocomplete.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'sjl/gundo.vim'
 Plug 'yggdroot/indentline'
 "Plug 'itchyny/lightline.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamcco
 Plug 'iamcco/markdown-preview.vim'
-Plug 'Shougo/neoinclude.vim'
-Plug 'scrooloose/nerdcommenter'
+"Plug 'Shougo/neoinclude.vim' "too slow
+Plug 'scrooloose/nerdcommenter' "too slow
 Plug 'scrooloose/nerdtree'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'kien/rainbow_parentheses.vim'
+"Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
-"Plug 'lervag/vimtex' 
-Plug 'honza/vim-snippets' " Snippets
+Plug 'honza/vim-snippets' " Snippets, let me put next to ultisnips
+Plug 'lervag/vimtex' 
 Plug 'tpope/vim-abolish'
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+"Plug 'bling/vim-bufferline'
+"Plug 'ap/vim-buftabline' 
 Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
 "Plug 'xolox/vim-easytags'
@@ -66,11 +73,20 @@ Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
 "Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-repeat'
+Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'zefei/vim-wintabs'
 call plug#end()
 ")
 
+"(AUTO-PAIR
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsShortcutBackInsert = '<M-b>'
+au Filetype markdown let b:autopairs_loaded=1
+au filetype lisp let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"'}
+")
 "(CTRLP.VIM
 " help: ,p toggles
 let g:ctrlp_map = '<leader>ctp'
@@ -79,8 +95,19 @@ let g:ctrlp_show_hidden = 1
 nnoremap <leader>cp :CtrlP<Space>.<cr>
 ")
 
+"(FZF)
+nnoremap :fz :FZF
+"nnoremap <c-f> :FZF<cr>
+")
+"(FZF.VIM
+nmap <c-x><c-f> <plug>(fzf-complete-path)
+")
+
 "(GOYO
 "autocmd VimEnter * Goyo
+")
+"(GUNDO.VIM
+nnoremap <leader>gu :GundoToggle<cr>
 ")
 
 "(LIMELIGHT
@@ -99,8 +126,8 @@ let g:lightline = {'colorscheme': 'PaperColor',}
 "(MARKDOWN PREVIEW
 let g:mkdp_path_to_chrome = "open -a Safari"
 "let g:mkdp_path_to_chrome = "open -a '/Applications/Google Chrome.app'"
-let g:mkdp_auto_start = 1
-let g:mkdp_auto_open = 1
+"let g:mkdp_auto_start = 1
+"let g:mkdp_auto_open = 1
 let g:mkdp_auto_close = 0
 let g:mkdp_refresh_slow = 1 " refresh when save the buffer or leave from insert mode
 let g:mkdp_command_for_global = 0 " markdown preview command can be use for all files
@@ -119,7 +146,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 "let g:deoplete#enable_smart_case = 1
 "" Let <TAB> also do completion
 "inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-"" close preview window on leaving the insert mode
+" close preview window on leaving the insert mode
 "autocmd InsertLeave * if pumvisible() == 0 | pclose | endif
 "set completeopt-=preview
 ")
@@ -139,7 +166,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 ""function! s:check_back_space() "{{{
 "    h""let col = col('.') - 1
 "    ""return !col || getline('.')[col - 1]  =~ '\s'
-""endfunction"}}}
+""endfunction"}}}}}}}}}
 ")
 "
 "(NEOCOMPLETE
@@ -234,12 +261,18 @@ let g:tagbar_width=30
 ")
 
 "(ULTISNIPS
-let g:UltiSnipsListSnippets = "<c-l>"
+"let g:UltiSnipsListSnippets = "<c-l>"
+let g:UltiSnipsJumpForwardTrigger = "<c-l>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 " Defines the directory private snippet definition files are stored in.
 set runtimepath+=~/.vim/mySnips/"
 let g:UltiSnipsSnippetsDir = "~/.vim/mySnips/UltiSnips"
 " Defines the directories for looking for snippets. Do not mix up.
 let g:UltiSnipsSnippetsDirectories = ["~/.vim/mySnips/UltiSnips"]
+
+"for autocompletion
+inoremap <c-x><c-k> <c-x><c-k>
+inoremap <c-l> <c-l>
 ")
 
 "(VIMTEX
@@ -259,6 +292,11 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 ""autocmd FileType javascript setlocal iskeyword+=$
 ")
 
+"( IAMCCO/MARKDOWN-PREVIEW.VIM
+nnoremap :prev :MarkdownPreview<cr>
+nnoremap :nprev :MarkdownPreviewStop<cr>
+")
+
 "(NERDCOMMENTER
 "let NERDSpaceDelims=1
 let NERDRemoveExtraSpaces=1
@@ -267,16 +305,31 @@ let NERDRemoveExtraSpaces=1
 "(NERDTREE
 " help: ,nt toggles. Then type ? for details.
 let NERDTreeShowHidden=1
-map <leader>nt :NERDTreeToggle<CR>
+"map <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nt <esc>:NERDTreeToggle ~/
 "autocmd VimEnter * NERDTree
-let g:NERDTreeWinSize=20
+"autocmd VimEnter * wincmd p " moves cursor to filesafter opening nerdtree
+let g:NERDTreeWinSize=15
 ")
 
 "(PAPERCOLOR-THEME (colorscheme)
 "set t_Co=256 "This is may or may not needed.
-set bg=light
+set bg=dark
 colorscheme PaperColor
 ")
+
+"(RAINBOW-PARENTHESES.VIM
+au VimEnter * RainbowParenthesesToggle
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
+")
+
+"(NIJI PARENTHESES
+"let g:niji_matching_filetypes = ['markdown', 'tex', 'python']
+"let g:niji_use_legacy_colours = 1
+")
+
 
 "(AIRLINE
 let g:airline_powerline_fonts = 1
@@ -285,8 +338,9 @@ let g:airline_right_sep=''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#syntastic#enabled = 1
 "let g:airline_theme = 'light'
-let g:airline_theme ='papercolor'
+let g:airline_theme ='luna'
 ")
 
 "(VIM-MINIMAP BY SEVERIN LEMAIGNAN
@@ -310,18 +364,24 @@ let g:indentLine_color_term = 100
 " Disable default mapping
 let g:EasyMotion_do_mapping = 0
 " This allows you to jump onto a specific letter.
+map <leader>f <plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
 ""nmap s <Plug>(easymotion-overwin-f)
 " or `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
-""nmap s <Plug>(easymotion-overwin-f2)
+"nmap s <Plug>(easymotion-overwin-f2)
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
 " JK motions: Line motions << what is this for?
-""map <Leader>j <Plug>(easymotion-j)
-""map <Leader>k <Plug>(easymotion-k)
+"map <Leader>j <Plug>(easymotion-j)
+"map <Leader>k <Plug>(easymotion-k)
+map <leader>L <plug>(easymotion-bd-jk)
+nmap <leader>L <plug>(easymotion-overwin-line)
+" Move to word
+"map <leader>w <plug>(easymotion-bd-w)
+"nmap <leader>w <plug>(easymotion-overwin-w)
 ")
 
 "(TABULAR
@@ -453,10 +513,33 @@ endfunction
 " help: <leader>hp for preview, <leader>hs for stage, <leader>hu for undo
 ")
 
+"(Vim-repeat
+nnoremap <plug>NextMatch ;
+nnoremap <silent> f :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>f
+nnoremap <silent> F :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>F
+nnoremap <silent> t :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>t
+nnoremap <silent> T :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>T
+")
+
+"(VIM-SLIME
+let g:slime_target = "tmux"
+let isitwsl=$iswsl
+if isitwsl == 'true'
+"if $iswsl == 'true' " also works
+else
+    let g:slime_default_config = {"socket_name": split($TMUX,",")[0], "target_pane": ":.1"}
+endif
+" Tip: for socket, default, for pane, $session:0.0 
+" You can identify it with the command $tmux list-panes -a
+"let g:slime_python_ipython = 1 "This not working
+")
+
 "(VIM-SURROUND
 " mapping for anki cloze
 let g:surround_99 = "{{c1::\r}}"
-let g:surround_98 = "**\r**"
-let g:surround_108 = "$$ \r $$"
+" mapping for markdown
+let g:surround_98 = "**\r**" " press b
+" mapping for latex mathmode
+let g:surround_108 = "$$ \r $$" " press l
 ")
 
