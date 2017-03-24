@@ -116,6 +116,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 echo "platform = $platform"
 echo "iswsl = $iswsl"
+export iswsl # needed for nvim slime socket plugin. Basically, vim/nvim cannot detect environmental variables if not exported.
 
 # Detect nvim
 nvimexist='false'
