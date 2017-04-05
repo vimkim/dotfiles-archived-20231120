@@ -130,6 +130,8 @@ alias gbl='git blame'
 alias gds='git dissect'
 alias gumd='git diff --diff-filter=U' # unmerged commits
 alias gerase='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
+alias gitcre='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
+alias gcre='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
 
 # tmux
 alias tmu='tmux'
@@ -258,3 +260,9 @@ export FZF_COMPLETION_TRIGGER='/'
 alias gall='$myvi ~/Google\ Drive/diary/gall.md'
 
 alias whome='cd /mnt/l/'
+
+# make
+alias mcl='make clean'
+
+# ctags
+alias tagen="ctags -R ."
