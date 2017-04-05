@@ -129,6 +129,7 @@ alias gsh='git show'
 alias gbl='git blame'
 alias gds='git dissect'
 alias gumd='git diff --diff-filter=U' # unmerged commits
+alias gerase='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
 
 # tmux
 alias tmu='tmux'
