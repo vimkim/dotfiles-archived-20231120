@@ -123,3 +123,5 @@ set -o vi
 
 # if login, run la
 # la
+
+export HISTCONTROL=ignoreboth:erasedups

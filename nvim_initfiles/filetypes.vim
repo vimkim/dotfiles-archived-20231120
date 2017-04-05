@@ -16,7 +16,7 @@ autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 " my markdown expandtab
-autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 noexpandtab
+"autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 noexpandtab "disabled because it does not work as expected for lists
 " Turn on auto listing
 autocmd FileType markdown setlocal formatoptions +=r formatoptions +=o comments+=b:00. comments-=b:- comments+=b:-\ [\ ] comments+=b:-
 
@@ -103,3 +103,5 @@ autocmd Filetype anki nnoremap <c-q> gg"*yG:q<cr>
 "autocmd FileType gitcommit 1 | startinsert "by benjifisher from so "error when fugitive
 
 au filetype csv setlocal noexpandtab "don't expand tab if csv
+
+autocmd filetype javascript setlocal equalprg=js-beautify\ --stdin

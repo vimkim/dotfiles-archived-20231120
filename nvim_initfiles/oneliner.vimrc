@@ -30,13 +30,14 @@ set scrolloff=100 " scrolling control - leave some lines at both sides
 "set sidescrolloff=100 " for columns
 
 set number " line number
-set relativenumber " relative line number
+"set relativenumber " relative line number
 
 " make backspace work like most other apps. Alternatives: set backspace=2
 set backspace=indent,eol,start
 
 " MACVIM ZOOM
 set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
+
 
 " visual bell
 set visualbell
@@ -117,14 +118,16 @@ set hidden
 " Default history is only 20
 set history=100
 " Use more levels of undo
-set undolevels=100  
+set undolevels=255
 
 "zc will close the fold, zo will open the fold, za will toggle the fold under
 "the current cursor.
 "zC, zO, zA applies the same, recursively.
 "zR opens all folds, zM closes all folds
-set foldmethod=indent
-set nofoldenable
+"set foldmethod=indent
+"set foldmethod=syntax
+"set foldenable
+"set nofoldenable
 
 " Omny? this sucks
 "set omnifunc=syntaxcomplete#Complete
@@ -134,10 +137,11 @@ set nofoldenable
 
 
 " auto change directory, works same as autochdir with less errors
-"set autochdir
-autocmd BufEnter * silent! lcd %:p:h
-" set the file's directory as pwd; useful for fzf opened files
-nnoremap ;setdir :silent! lcd %:p:h<cr>
+set autochdir
+"autocmd BufEnter * silent! lcd %:p:h
+" set the file's directory as pwd; useful for fzf opened files // set working directory. 
+" somehow fzf runs this command after opening new files..
+nnoremap ;swd :silent! lcd %:p:h<cr>
 
 
 " Saves undo's after file closes
@@ -206,4 +210,3 @@ set nocursorline
 "syntax sync minlines=256
 
 "set magic "equivalent of :%s/\m
-"\v useful as it interprets all symbols as special

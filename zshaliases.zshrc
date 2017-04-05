@@ -69,6 +69,15 @@ v(){
 	fi
 }
 
+vim_with_date(){ 
+    $myvi "$(date +%y%m%d)_$1"
+}
+alias vda='vim_with_date'
+mkdir_with_date(){
+    mkdir "$(date +%y%m%d)_$1"
+}
+alias mda='mkdir_with_date'
+
 # rc function
 alias zshrc='$myvi ~/runtime_config/.zshrc'
 alias bashrc='$myvi ~/runtime_config/.bashrc'
@@ -206,6 +215,7 @@ alias oas='open -a Safari' # mac
 if [[ $platform == 'macos' ]]; then
     alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs -nw'
 fi
+alias e='emacs'
 
 # personal url aliases
 alias gmail='open http://www.gmail.com'
@@ -217,6 +227,8 @@ myupdate(){
     univmail;
     fb;
 }
+
+alias oac='open -a /Applications/Google\ Chrome.app'
 
 if [[ $platform == 'macos' ]]; then
     alias fido='open -a /Applications/Google\ Chrome.app https://www.fido.ca'
@@ -233,7 +245,6 @@ bills(){
 
 # shell level (find if nested)
 alias shlv='echo $SHLVL'
-
 studylog(){
     $myvi ~/Google\ Drive/diary/studylog/studylog_$(date +%y-%m-%d).md
 }

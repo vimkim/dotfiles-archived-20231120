@@ -116,6 +116,30 @@ vnoremap <c-e> <esc>
 "cursor moves visual instead of actual line
 noremap j gj
 noremap k gk
+noremap gj j
+noremap gk k
+nnoremap gI g^i
+au filetype text,markdown nnoremap I g^i
+au filetype text,markdown nnoremap gI I
+nnoremap gA g$a
+au filetype text,markdown nnoremap A g$a
+au filetype text,markdown nnoremap gA A
+nnoremap go g$a
+"au filetype text,markdown nnoremap o g$a
+"au filetype text,markdown nnoremap go o
+nnoremap gO g^i
+"au filetype text,markdown nnoremap O g^i
+"au filetype text,markdown nnoremap gO O
+noremap gdd g^dg$
+"au filetype text,markdown nnoremap dd g^dg$
+"au filetype text,markdown nnoremap gdd dd
+noremap gcc g^dg$i
+au filetype text,markdown nnoremap cc g^dg$i
+au filetype text,markdown nnoremap gcc cc
+noremap gC dg$i
+au filetype text,markdown nnoremap C dg$i
+au filetype text,markdown nnoremap gC C
+
 
 "( ONLY WORKS when the terminal .*shrc file contains: stty -ixon
 "SAVE << this is killing my fingers. I'll change ctrl to leader
@@ -155,7 +179,7 @@ nnoremap <Leader><Enter> O<ESC>
 " Unfortunately, a more intuitive  choice of <S-Enter> O<ESC> not working on CLI
 
 "SUDO SAVE
-nnoremap :sudow :w !sudo tee > /dev/null %
+nnoremap ;sudow :w !sudo tee > /dev/null %
 
 "SAVE & QUIT IN INSERT MODE
 inoremap ZZ <c-c>ZZ
@@ -164,7 +188,10 @@ inoremap ZZ <c-c>ZZ
 nnoremap <leader>z <esc><c-z>
 
 " Map Ctrl-Backspace to delete the previous word in insert mode.
-imap <C-BS> <C-W>
+" does not work
+inoremap <C-BS> <C-W> 
+" seems terminal does not identify the difference between <c-bs> and <bs>
+"inoremap <C-Q> <C-\><C-O>dB
 
 " Map local replace
 nnoremap gr gd[{V%::s/<c-r>///gc<left><left><left>
@@ -180,10 +207,13 @@ nnoremap gR gD:%s/<c-r>///gc<left><left><left>
 
 au filetype python nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
 au filetype python nnoremap <buffer> <F8> :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
-au filetype python nnoremap <buffer> <leader>run :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
+au filetype python nnoremap <buffer> <leader>ru :!python3 % <CR>
 
 "CLisp
 au filetype lisp nnoremap <buffer> <F8> :w<CR>:exec '!clisp' shellescape(@%, 1)<cr>
+
+"HTML
+au filetype html nnoremap <buffer> <leader>ru :!open -a /Applications/Google\ Chrome.app %<cr>
 
 "- C,CPP
 "Create an executable file named a.out.
@@ -193,31 +223,34 @@ au filetype lisp nnoremap <buffer> <F8> :w<CR>:exec '!clisp' shellescape(@%, 1)<
 "IMPORTANT: if bugs occured, change gcc-6 to gcc
 " creates an executable file that has the same name with its .c file
 au filetype c nnoremap <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+au filetype c nnoremap <leader>ru :w <CR> :!gcc % -o %< && ./%< <CR>
 au filetype c nnoremap <leader>cpp :w <CR> :!gcc % -o %< && ./%< <CR>
 ")
 
 "- JAVA
 au filetype java nnoremap <F8> :w<cr>:!javac % && java %< <cr>
-au filetype java nnoremap ,ru <esc>:w<cr>:!javac % && java %< <cr>
+au filetype java nnoremap <leader>ru <esc>:w<cr>:!javac % && java %< <cr>
 
 "Replace Windows ^m enter return into Unix
 nnoremap <leader>winm :%s/\r/\r/g<CR>
 
 "Buffer shortcuts
-nnoremap ,bn :bn<cr>
-nnoremap ,bp :bp<cr>
-nnoremap ,bd :bd<cr>
-nnoremap gn :bn<cr>
-nnoremap gp :bp<cr>
-nnoremap gd :bd<cr>
-nnoremap ,bf :buffers<CR>:buffer<Space>
+nnoremap <leader>bn :bn<cr>
+nnoremap <leader>bp :bp<cr>
+nnoremap <leader>bd :bd<cr>
+nnoremap <leader>bq :bd<cr>
+nnoremap <leader>bf :buffers<CR>:buffer<Space>
+"nnoremap gn :bn<cr>
+"nnoremap gp :bp<cr>
+"nnoremap gd :bd<cr>
+"nnoremap gq :bd<cr>
 
 "Line-opeation shortcut
 nnoremap gw $
 nnoremap gb ^
-vnoremap gw $ h
-" visual select whole line except for the carriage return (enter) <c-r>
-nnoremap gwb ^v$h
+vnoremap gw $h
+" visual select whole line except for the carriage return (enter) <c-r> if followed by h
+"nnoremap V 0v$ "not work with easy-motion
 
 "Add space in normal mode
 nnoremap <space> i<space><esc>
@@ -255,30 +288,38 @@ vnoremap dp :diffput<cr>
 " Extra personal aliases or shortcuts (informal)
 " #############################
 " command to show the file path
-nnoremap :filepath :echo expand('%:p')<cr>
-nnoremap :fullpath :echo expand('%:p')<cr>
+nnoremap ;filepath :echo expand('%:p')<cr>
+nnoremap ;fullpath :echo expand('%:p')<cr>
 
 " mapping for replace all / substitute all 
-nnoremap :repa :%s/
-nnoremap :repl :%s/
-nnoremap :suba :%s/
-nnoremap :subs :%s/
+nnoremap ;repa :%s/
+nnoremap ;repl :%s/
+nnoremap ;suba :%s/
+nnoremap ;subs :%s/
+" try to use cgn text object as well, much faster
 
 " put date on document timestamp
-nnoremap :date :put =strftime('%Y-%b-%d %a %T')<cr><esc>
-inoremap :date <esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
+nnoremap ;date :put =strftime('%Y-%b-%d %a %Hh')<cr><esc>
+"nnoremap ;date :put =strftime('%Y-%b-%d %a %T')<cr><esc>
+inoremap ;date <esc>:put =strftime('%Y-%b-%d %a %Hh')<cr><esc>
+"inoremap ;date <esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 
 " FZF
 nnoremap <leader>fz :FZF 
 
-nnoremap :sov :so $MYVIMRC<cr>
+nnoremap ;sov :so $MYVIMRC<cr>
 
 let g:BASH_Ctrl_j = 'off' " does not work
 let g:ZSH_Ctrl_j = 'off'
 
 " ,pa acts the same as pasting system clipboard
 nnoremap <leader>pa "*p
-"inoremap <c-r> <c-r>* don't know why I did this
+au filetype text,markdown nnoremap <c-v> <esc>:set paste<cr>"*p<esc>:set nopaste<cr>
+au filetype text,markdown inoremap <c-v> <c-\><c-o>:set paste<cr><esc>"*p<esc>:set nopaste<cr>a
+au filetype text,markdown nnoremap ,vb <c-v>
+"inoremap <c-r> <c-r>* don't know why I did this.. so stupid
+au filetype text,markdown vnoremap <leader>co "*y
+au filetype text,markdown vnoremap <c-c> "*y
 
 
 inoremap <c-BS> <DEL>
@@ -289,15 +330,24 @@ nnoremap ; :
 
 nnoremap ,ffmt <esc>:set fileformat=dos
 
-nnoremap :ft :set filetype<cr>
+nnoremap ;ft :set filetype<cr>
 
-nnoremap :vm :verbose map 
+nnoremap ;vm :verbose map
+
+nnoremap ;nl :put =range(
+
+"better indentation
+vnoremap > >gv
+vnoremap < <gv
+
+
+
 
 "section============================================================================
 " PLUGINS
 "===================================================================================
 
-"Discard all previous settings.
+"Discard all ancient vi settings.
 set nocompatible
 
 "(For Pathogen, "This is what you should have at the top of your ~/.vimrc" - by romainl
@@ -317,7 +367,6 @@ syntax off
 ")
 
 
-
 "(VIMPLUG 
 "To install, type :
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -325,18 +374,18 @@ syntax off
 "use :sort /.... '.*\// to sort the lines.
 call plug#begin('$HOME/.config/nvim/plugged') "TODO
 "pluglist:
-Plug 'mileszs/ack.vim' "code search
+Plug 'mileszs/ack.vim' "code search // needs extra install of ack
 Plug 'w0rp/ale' "saves my life
-"Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim' "it works for ;sv and tsv as well
 " The below 2 plugins are not used for vim
 if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-clang'
-else
 "" Instead of the above two, neocomplete for vim
-    Plug 'Shougo/neocomplete.vim'
+else
+    "Plug 'Shougo/neocomplete.vim'
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -349,7 +398,7 @@ Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamc
 Plug 'iamcco/markdown-preview.vim'
 "Plug 'Shougo/neoinclude.vim' "too slow
 Plug 'scrooloose/nerdcommenter' "too slow
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'kien/rainbow_parentheses.vim'
 "Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
@@ -376,19 +425,38 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'jpalardy/vim-slime'
+Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'tpope/vim-unimpaired'
 Plug 'zefei/vim-wintabs'
+Plug 'valloric/youcompleteme'
+Plug 'rdnetto/YCM-Generator', { 'branch' : 'stable' }
 call plug#end()
+
+"(
+" :Ack
+cnoreabbrev Ack Ack!
+nnoremap <leader>ask :Ack!<space>
+nnoremap ;ask :Ack!<space>
+" go to preview, o to open, <c-n> <c-j> to navigate
+
+")
 
 "(ALE
 let g:ale_sign_column_always = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
+" error navigation, therefore ]l, ]l with unimpaired plugin might not be necessary
+nmap <c-k> <plug>(ale_previous_wrap)
+nmap <c-j> <plug>(ale_next_wrap)
+" use quickfix instead of loclist
+"let g:ale_set_loclist = 0
+"let g:ale_set_quickfix = 1
+"let g:ale_open_list = 1
+"let g:ale_keep_list_window_open = 1
 ")
-
-
 
 "(AUTO-PAIR
 let g:AutoPairsFlyMode = 0
@@ -397,12 +465,12 @@ au Filetype markdown let b:autopairs_loaded=1
 au filetype lisp let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"'}
 ")
 "(CTRLP.VIM
-" help: ,p toggles
 let g:ctrlp_map = '<leader>ctp'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_show_hidden = 1
 nnoremap <leader>cp :CtrlP<Space>.<cr>
 nnoremap <leader>cd <esc>:CtrlPDir ~/
+"navigate with <c-j><c-k>, <c-v> to change working directory
 ")
 
 "CSV.VIM
@@ -413,12 +481,12 @@ nnoremap <leader>cd <esc>:CtrlPDir ~/
 let g:csv_no_conceal = 1 " unlet g:csv_no_conceal to disable
 
 "(FZF)
-nnoremap :fz :FZF ~/
-nnoremap ,fz :FZF ~/
-"nnoremap <c-f> :FZF<cr>
+nnoremap ;fz :FZF ~/
+nnoremap fz :FZF ~/
+nnoremap <c-x><c-f> :FZF<cr>
 ")
 "(FZF.VIM
-nmap <c-x><c-f> <plug>(fzf-complete-path)
+"nmap <c-x><c-f> <plug>(fzf-complete-path)
 ")
 
 "(GOYO
@@ -446,7 +514,7 @@ let g:mkdp_path_to_chrome = "open -a Safari"
 "let g:mkdp_path_to_chrome = "open -a '/Applications/Google Chrome.app'"
 "let g:mkdp_auto_start = 1
 let g:mkdp_auto_open = 1
-let g:mkdp_auto_close = 1
+let g:mkdp_auto_close = 0
 let g:mkdp_refresh_slow = 1 " refresh when save the buffer or leave from insert mode
 let g:mkdp_command_for_global = 0 " markdown preview command can be use for all files
 ")
@@ -464,7 +532,7 @@ let g:deoplete#auto_complete_delay = 250
 " Use smartcase
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_complete_start_length = 3
+"let g:deoplete#auto_complete_start_length = 3
 let g:deoplete#disable_auto_complete = 0
 " Let <TAB> also do completion
 "inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -573,16 +641,16 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()} "TODO 
 "set statusline+=%*
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"if has('mac')
-    "let g:syntastic_python_python_exec = '/usr/local/bin/python3'
-"else
-    "let g:syntastic_python_python_exec = '/usr/bin/python3'
-"endif
-"")
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+if has('mac')
+    let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+else
+    let g:syntastic_python_python_exec = '/usr/bin/python3'
+endif
+")
 
 "(TAGBAR
 " help: ,tb toggles tagbar. <c-w><c-w> changes window and press ? for details.
@@ -624,8 +692,8 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 ")
 
 "( IAMCCO/MARKDOWN-PREVIEW.VIM
-nnoremap :prev :MarkdownPreview<cr>
-nnoremap :nprev :MarkdownPreviewStop<cr>
+nnoremap ;prev :MarkdownPreview<cr>
+nnoremap ;nprev :MarkdownPreviewStop<cr>
 ")
 
 "(NERDCOMMENTER
@@ -646,7 +714,14 @@ let g:NERDTreeWinSize=15
 "(PAPERCOLOR-THEME (colorscheme)
 "set t_Co=256 "This is may or may not needed.
 set bg=dark
+"Show Whitespace
+" Must be inserted Before colorscheme command
+autocmd colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
+au InsertLeave * match ExtraWhitespace /\s\+$/
 colorscheme PaperColor
+if !has('nvim') && $iswsl=='true'
+    set t_Co=256
+endif
 ")
 
 "(RAINBOW-PARENTHESES.VIM
@@ -721,11 +796,12 @@ nmap <leader>emw <plug>(easymotion-overwin-w)
 " :Tabularize /= useful
 " :Tabularize /=\zs more useful
 " align variable (\S <= non-whitespace character)
-vnoremap :alivar :Tabularize /\S\+;
+vnoremap ;alivar :Tabularize /\S\+;
 " MY function: undo tabularize
-vnoremap :untab :s/\v(\s)\s+/\1/gc 
-vnoremap :uncsv :s/\v\s+,\s+/,/gc
-" expl: basically, replace two or more spaces as one space vnoremap :untab s/\v(\s)\s+/ /gc " this also works
+vnoremap ;untab :s/\v(\s)\s+/\1/gc 
+vnoremap ;uncsv :s/\v\s+,\s+/,/gc
+" expl: basically, replace two or more spaces as one space vnoremap ;untab s/\v(\s)\s+/ /gc " this also works
+" for latex equation aligning, :Tabularize /\\\\$
 ")
 
 "(VIM-MARKDOWN
@@ -828,7 +904,7 @@ au BufReadPost * nested call MyFollowSymlink(expand('%'))
 " By default, multicursor starts with <c-n>. Change with the following:
 let g:multi_cursor_start_key='<leader>mc'
 " multi_cursor_quit_key
-let g:multi_cursor_quit_key=','
+let g:multi_cursor_quit_key='<C-c>'
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
   if exists(':NeoCompleteLock')==2
@@ -858,6 +934,7 @@ endfunction
 "(Vim-repeat
 nnoremap <plug>NextMatch ;
 nnoremap <silent> f :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>f
+snoremap <silent> f :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>f
 nnoremap <silent> F :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>F
 nnoremap <silent> t :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>t
 nnoremap <silent> T :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>T
@@ -876,6 +953,13 @@ endif
 "let g:slime_python_ipython = 1 "This not working
 ")
 
+"(VIM-SMOOTH-SCROLL
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 1)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 1)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+")
+
 "(VIM-SURROUND
 " mapping for anki cloze
 let g:surround_99 = "{{c1::\r}}"
@@ -883,6 +967,11 @@ let g:surround_99 = "{{c1::\r}}"
 let g:surround_98 = "**\r**" " press b
 " mapping for latex mathmode
 let g:surround_108 = "$$ \r $$" " press l
+")
+
+"(YouCompleteMe
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_python_binary_path = 'python'
 ")
 
 "(FILETYPE
@@ -902,6 +991,8 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab "the original settings 
 autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+" my markdown expandtab
+"autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 noexpandtab "disabled because it does not work as expected for lists
 " Turn on auto listing
 autocmd FileType markdown setlocal formatoptions +=r formatoptions +=o comments+=b:00. comments-=b:- comments+=b:-\ [\ ] comments+=b:-
 
@@ -1021,13 +1112,14 @@ set scrolloff=100 " scrolling control - leave some lines at both sides
 "set sidescrolloff=100 " for columns
 
 set number " line number
-set relativenumber " relative line number
+"set relativenumber " relative line number
 
 " make backspace work like most other apps. Alternatives: set backspace=2
 set backspace=indent,eol,start
 
 " MACVIM ZOOM
 set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
+
 
 " visual bell
 set visualbell
@@ -1108,14 +1200,15 @@ set hidden
 " Default history is only 20
 set history=100
 " Use more levels of undo
-set undolevels=100  
+set undolevels=255
 
 "zc will close the fold, zo will open the fold, za will toggle the fold under
 "the current cursor.
 "zC, zO, zA applies the same, recursively.
 "zR opens all folds, zM closes all folds
 set foldmethod=indent
-set nofoldenable
+set foldenable
+"set nofoldenable
 
 " Omny? this sucks
 "set omnifunc=syntaxcomplete#Complete
@@ -1125,10 +1218,11 @@ set nofoldenable
 
 
 " auto change directory, works same as autochdir with less errors
-"set autochdir
-autocmd BufEnter * silent! lcd %:p:h
-" set the file's directory as pwd; useful for fzf opened files
-nnoremap :setdir :silent! lcd %:p:h<cr>
+set autochdir
+"autocmd BufEnter * silent! lcd %:p:h
+" set the file's directory as pwd; useful for fzf opened files // set working directory. 
+" somehow fzf runs this command after opening new files..
+nnoremap ;swd :silent! lcd %:p:h<cr>
 
 
 " Saves undo's after file closes
@@ -1176,7 +1270,7 @@ if has("autocmd")
     autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
-nnoremap :sov :so $MYVIMRC<cr>
+noremap ;sov :so $MYVIMRC<cr>
 
 set path+=** " from the thoughtbot youtube How to do 90% of what plugins do. use :find plug*
 
@@ -1197,17 +1291,40 @@ set nocursorline
 "syntax sync minlines=256
 
 "set magic "equivalent of :%s/\m
-"\v useful as it interprets all symbols as special
+
+" continuous multicolumn scroll
+noremap <silent> <Leader>ac :exe AddColumn()<CR>
+function! AddColumn()
+  exe "norm \<C-u>"
+  let @z=&so
+  set noscb so=0
+  bo vs
+  exe "norm \<PageDown>"
+  setl scrollbind
+  wincmd p
+  setl scrollbind
+  let &so=@z
+endfunction\v useful as it interprets all symbols as special
+
+
+nnoremap <silent> <Leader>ac :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
+
 
 "section============================================================================
 "COLORSCHEMES
 "===================================================================================
 
+"""" IMPORTANT
+"Show Whitespace
+" Must be inserted Before colorscheme command
+"autocmd colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
+"au InsertLeave * match ExtraWhitespace /\s\+$/
+
 "Currently using solarized colorscheme. Check the plugin.
 
 "colorscheme monokain
 
-"((gruvbox) 
+"((gruvbox)
 "colorscheme gruvbox
 "set bg=dark
 ")

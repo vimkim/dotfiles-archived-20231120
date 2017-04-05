@@ -2,11 +2,19 @@ snippet inclu "initialization" b
 #include<stdio.h>
 int main(){
 	$1
-	
+
 	return 0;
 }
 endsnippet
 
 snippet pri "print" b
 printf("$1\n"$2);$3
+endsnippet
+
+snippet code "code"
+printf(">>>>> CODE: ${1:${VISUAL:print code}}\n");
+endsnippet
+
+snippet com "comment"
+printf("<<<<< COMMENT: $1\n");$0
 endsnippet

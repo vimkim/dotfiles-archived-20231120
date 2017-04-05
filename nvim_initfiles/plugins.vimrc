@@ -3,7 +3,7 @@
 " PLUGINS
 "===================================================================================
 
-"Discard all previous settings.
+"Discard all ancient vi settings.
 set nocompatible
 
 "(For Pathogen, "This is what you should have at the top of your ~/.vimrc" - by romainl
@@ -32,7 +32,8 @@ call plug#begin('$HOME/.config/nvim/plugged') "TODO
 "pluglist:
 Plug 'mileszs/ack.vim' "code search // needs extra install of ack
 Plug 'w0rp/ale' "saves my life
-"Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
+"Plug 'vim-scripts/Better-Javascript-Indentation' "not work"
 Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim' "it works for ;sv and tsv as well
 " The below 2 plugins are not used for vim
@@ -41,13 +42,14 @@ if has('nvim')
 "Plug 'zchee/deoplete-clang'
 "" Instead of the above two, neocomplete for vim
 else
-    Plug 'Shougo/neocomplete.vim'
+    "Plug 'Shougo/neocomplete.vim'
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'sjl/gundo.vim'
 Plug 'yggdroot/indentline'
+Plug 'vim-scripts/JavaScript-Indent'
 "Plug 'itchyny/lightline.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamcco
@@ -75,6 +77,9 @@ Plug 'easymotion/vim-easymotion'
 "Plug 'xolox/vim-misc' " must follow easytags
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']}
+"Plug 'maksimr/vim-jsbeautify'
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx']}
 Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
 "Plug 'xuhdev/vim-latex-live-preview'
@@ -84,13 +89,17 @@ Plug 'jpalardy/vim-slime'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'tpope/vim-unimpaired'
 Plug 'zefei/vim-wintabs'
+"Plug 'valloric/youcompleteme'
+Plug 'rdnetto/YCM-Generator', { 'branch' : 'stable' }
 call plug#end()
 
 "(
 " :Ack
 cnoreabbrev Ack Ack!
-nnoremap <leader>ak :Ack!<space>
+nnoremap <leader>ask :Ack!<space>
+nnoremap ;ask :Ack!<space>
 " go to preview, o to open, <c-n> <c-j> to navigate
 
 ")
@@ -100,6 +109,14 @@ let g:ale_sign_column_always = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
+" error navigation, therefore ]l, ]l with unimpaired plugin might not be necessary
+nmap <c-k> <plug>(ale_previous_wrap)
+nmap <c-j> <plug>(ale_next_wrap)
+" use quickfix instead of loclist
+"let g:ale_set_loclist = 0
+"let g:ale_set_quickfix = 1
+"let g:ale_open_list = 1
+"let g:ale_keep_list_window_open = 1
 ")
 
 "(AUTO-PAIR
@@ -122,15 +139,16 @@ nnoremap <leader>cd <esc>:CtrlPDir ~/
 " HJKL navigation (capital letters)
 " To override, let g:csv_delim=','
 "let g:csv_delim='\t'
+"inoremap ;date <esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 let g:csv_no_conceal = 1 " unlet g:csv_no_conceal to disable
 
 "(FZF)
 nnoremap ;fz :FZF ~/
 nnoremap ,fz :FZF ~/
-"nnoremap <c-f> :FZF<cr>
+nnoremap <c-x><c-f> :FZF<cr>
 ")
 "(FZF.VIM
-nmap <c-x><c-f> <plug>(fzf-complete-path)
+"nmap <c-x><c-f> <plug>(fzf-complete-path)
 ")
 
 "(GOYO
@@ -149,8 +167,8 @@ let g:limelight_conceal_ctermfg = 245
 "autocmd! User GoyoLeave Limelight!
 ")
 
-"(LIGHTLINE
-let g:lightline = {'colorscheme': 'PaperColor',}
+"(LIGHTLINE " not using"
+"let g:lightline = {'colorscheme': 'PaperColor',}
 ")
 
 "(MARKDOWN PREVIEW
@@ -158,7 +176,7 @@ let g:mkdp_path_to_chrome = "open -a Safari"
 "let g:mkdp_path_to_chrome = "open -a '/Applications/Google Chrome.app'"
 "let g:mkdp_auto_start = 1
 let g:mkdp_auto_open = 1
-let g:mkdp_auto_close = 1
+let g:mkdp_auto_close = 0
 let g:mkdp_refresh_slow = 1 " refresh when save the buffer or leave from insert mode
 let g:mkdp_command_for_global = 0 " markdown preview command can be use for all files
 ")
@@ -170,116 +188,119 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 ")
 
 "(DEOPLETE
-let g:deoplete#enable_at_startup = 1
-" auto complete error temporary fix "https://github.com/Shougo/deoplete.nvim/issues/440
-let g:deoplete#auto_complete_delay = 250
-" Use smartcase
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_smart_case = 1
-"let g:deoplete#auto_complete_start_length = 3
-let g:deoplete#disable_auto_complete = 0
-" Let <TAB> also do completion
-"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" close preview window on leaving the insert mode
-"autocmd InsertLeave * if pumvisible() == 0 | pclose | endif
-set completeopt-=preview
-" Two lines for Disable buffer source
-let g:deoplete#ignore_sources = {}
-let g:deoplete#ignore_sources._ = ['buffer']
-let b:deoplete_ignore_sources = ['buffer']
+if has('nvim')
+    let g:deoplete#enable_at_startup = 1
+    " auto complete error temporary fix "https://github.com/Shougo/deoplete.nvim/issues/440
+    let g:deoplete#auto_complete_delay = 250
+    " Use smartcase
+    let g:deoplete#enable_ignore_case = 1
+    let g:deoplete#enable_smart_case = 1
+    "let g:deoplete#auto_complete_start_length = 3
+    let g:deoplete#disable_auto_complete = 0
+    " Let <TAB> also do completion
+    "inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+    " close preview window on leaving the insert mode
+    "autocmd InsertLeave * if pumvisible() == 0 | pclose | endif
+    set completeopt-=preview
+    " Two lines for Disable buffer source
+    let g:deoplete#ignore_sources = {}
+    let g:deoplete#ignore_sources._ = ['buffer']
+    let b:deoplete_ignore_sources = ['buffer']
+    ")
 
-")
-
-"(DEOPLETE-CLANG << broken now
-"let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.8.1/lib/libclang.dylib'
-"let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.8.1/lib/clang'
-"let g:deoplete#enable_refresh_always = 1
-")
-
-"(NEOCOMPLETE
-""let g:neocomplcache_enable_cursor_hold_i=1
-"Enable <TAB> for Neocomplete. It also helps tabs recover its original functionality.
-""inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-""            \ <SID>check_back_space() ? "\<TAB>" :
-""            \ neocomplete#start_manual_complete()
-""function! s:check_back_space() "{{{
-"    h""let col = col('.') - 1
-"    ""return !col || getline('.')[col - 1]  =~ '\s'
-""endfunction"}}}}}}}}}
-")
-"
-"(NEOCOMPLETE
-"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-"let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-"let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" Define dictionary.
-"let g:neocomplete#sources#dictionary#dictionaries = {
-    "\ 'default' : '',
-    "\ 'vimshell' : $HOME.'/.vimshell_hist',
-    "\ 'scheme' : $HOME.'/.gosh_completions'
-        "\ }
-
-" Define keyword.
-"if !exists('g:neocomplete#keyword_patterns')
-    "let g:neocomplete#keyword_patterns = {}
-"endif
-"let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-"inoremap <expr><C-g>     neocomplete#undo_completion()
-"inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-  "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-"endfunction
-" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
+    "(DEOPLETE-CLANG
+    let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/4.0.0/lib/libclang.dylib'
+    let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/4.0.0/lib/clang'
+    "let g:deoplete#enable_refresh_always = 1
+    ")
 endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-")
+if !has('nvim')
+    "(NEOCOMPLETE
+    ""let g:neocomplcache_enable_cursor_hold_i=1
+    "Enable <TAB> for Neocomplete. It also helps tabs recover its original functionality.
+    ""inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+    ""            \ <SID>check_back_space() ? "\<TAB>" :
+    ""            \ neocomplete#start_manual_complete()
+    ""function! s:check_back_space() "{{{
+    "    h""let col = col('.') - 1
+    "    ""return !col || getline('.')[col - 1]  =~ '\s'
+    ""endfunction"}}}}}}}}}
+    ")
+    "
+    "(NEOCOMPLETE
+    "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+    " Disable AutoComplPop.
+    let g:acp_enableAtStartup = 0
+    " Use neocomplete.
+    let g:neocomplete#enable_at_startup = 1
+    " Use smartcase.
+    "let g:neocomplete#enable_smart_case = 1
+    " Set minimum syntax keyword length.
+    "let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+    " Define dictionary.
+    "let g:neocomplete#sources#dictionary#dictionaries = {
+        "\ 'default' : '',
+        "\ 'vimshell' : $HOME.'/.vimshell_hist',
+        "\ 'scheme' : $HOME.'/.gosh_completions'
+            "\ }
+
+    " Define keyword.
+    "if !exists('g:neocomplete#keyword_patterns')
+        "let g:neocomplete#keyword_patterns = {}
+    "endif
+    "let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+    " Plugin key-mappings.
+    "inoremap <expr><C-g>     neocomplete#undo_completion()
+    "inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+    " Recommended key-mappings.
+    " <CR>: close popup and save indent.
+    "inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    "function! s:my_cr_function()
+      "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+      " For no inserting <CR> key.
+      "return pumvisible() ? "\<C-y>" : "\<CR>"
+    "endfunction
+    " <TAB>: completion.
+    "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    " <C-h>, <BS>: close popup and delete backword char.
+    "inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+    "inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+    " Close popup by <Space>.
+    "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+    " AutoComplPop like behavior.
+    "let g:neocomplete#enable_auto_select = 1
+
+    " Shell like behavior(not recommended).
+    "set completeopt+=longest
+    "let g:neocomplete#enable_auto_select = 1
+    "let g:neocomplete#disable_auto_complete = 1
+    "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+    " Enable omni completion.
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+    " Enable heavy omni completion.
+    if !exists('g:neocomplete#sources#omni#input_patterns')
+      let g:neocomplete#sources#omni#input_patterns = {}
+    endif
+    "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+    "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+    "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+    " For perlomni.vim setting.
+    " https://github.com/c9s/perlomni.vim
+    let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+    ")
+endif
 
 "(SYNTASTIC
 "set statusline+=%#warningmsg#
@@ -314,8 +335,8 @@ let g:UltiSnipsSnippetsDir = "~/.vim/mySnips/UltiSnips"
 let g:UltiSnipsSnippetsDirectories = ["~/.vim/mySnips/UltiSnips"]
 
 "for autocompletion
-inoremap <c-x><c-k> <c-x><c-k>
-inoremap <c-l> <c-l>
+"inoremap <c-x><c-k> <c-x><c-k>
+"inoremap <c-l> <c-l>
 ")
 
 "(VIMTEX
@@ -358,6 +379,9 @@ let g:NERDTreeWinSize=15
 "(PAPERCOLOR-THEME (colorscheme)
 "set t_Co=256 "This is may or may not needed.
 set bg=dark
+"Show Whitespace: Must be inserted Before colorscheme command
+autocmd colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
+au InsertLeave * match ExtraWhitespace /\s\+$/
 colorscheme PaperColor
 if !has('nvim') && $iswsl=='true'
     set t_Co=256
@@ -441,6 +465,7 @@ vnoremap ;alivar :Tabularize /\S\+;
 vnoremap ;untab :s/\v(\s)\s+/\1/gc 
 vnoremap ;uncsv :s/\v\s+,\s+/,/gc
 " expl: basically, replace two or more spaces as one space vnoremap ;untab s/\v(\s)\s+/ /gc " this also works
+" for latex equation aligning, :Tabularize /\\\\$
 ")
 
 "(VIM-MARKDOWN
@@ -450,6 +475,7 @@ let g:vim_markdown_conceal = 0 " disable conceal regardless of conceallevel // I
 "To disable math conceal with LaTex math syntax enabled
 let g:tex_conceal = ""
 let g:vim_markdown_math = 1
+let g:vim_markdown_folding_level = 3
 ")
 
 "(EASYTAGS
@@ -543,7 +569,7 @@ au BufReadPost * nested call MyFollowSymlink(expand('%'))
 " By default, multicursor starts with <c-n>. Change with the following:
 let g:multi_cursor_start_key='<leader>mc'
 " multi_cursor_quit_key
-let g:multi_cursor_quit_key=','
+let g:multi_cursor_quit_key='<C-c>'
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
   if exists(':NeoCompleteLock')==2
@@ -606,5 +632,10 @@ let g:surround_99 = "{{c1::\r}}"
 let g:surround_98 = "**\r**" " press b
 " mapping for latex mathmode
 let g:surround_108 = "$$ \r $$" " press l
+")
+
+"(YouCompleteMe
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_python_binary_path = 'python'
 ")
 

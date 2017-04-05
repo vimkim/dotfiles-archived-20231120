@@ -8,4 +8,3 @@ so ~/runtime_config/nvim_initfiles/colorschemes.vimrc
 so ~/runtime_config/nvim_initfiles/misc.vimrc
 so ~/runtime_config/nvim_initfiles/gistfile.vim
 "~/runtime_config/nvim_initfiles/vimtips.txt
-

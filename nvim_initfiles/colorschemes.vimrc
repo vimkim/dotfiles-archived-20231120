@@ -3,11 +3,17 @@
 "COLORSCHEMES
 "===================================================================================
 
+"""" IMPORTANT
+"Show Whitespace
+" Must be inserted Before colorscheme command
+"autocmd colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
+"au InsertLeave * match ExtraWhitespace /\s\+$/
+
 "Currently using solarized colorscheme. Check the plugin.
 
 "colorscheme monokain
 
-"((gruvbox) 
+"((gruvbox)
 "colorscheme gruvbox
 "set bg=dark
 ")

@@ -11,7 +11,7 @@ export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="random"
-#strug.zsh-theme
+#strug.zsh-theme << recommended!
 #intheloop.zsh-theme
 #fox.zsh-theme
 #zonathan.zsh-theme
@@ -169,6 +169,10 @@ export PATH=$PATH:/Library/TeX/texbin
 # for tmux-powerline # currently not using it
 PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
+# for fzf ctrl+r, remove duplicates
+setopt hist_ignore_dups
+setopt HIST_IGNORE_ALL_DUPS
+
 ##### EXTRA SOURCING #####
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -179,3 +183,4 @@ source ~/runtime_config/tmuxinatorfiles/tmuxinator.zsh
 source ~/runtime_config/zshaliases.zshrc
 # Run at initialization
 source ~/runtime_config/zshrun.zshrc
+
