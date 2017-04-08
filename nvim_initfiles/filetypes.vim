@@ -104,4 +104,9 @@ autocmd Filetype anki nnoremap <c-q> gg"*yG:q<cr>
 
 au filetype csv setlocal noexpandtab "don't expand tab if csv
 
-autocmd filetype javascript setlocal equalprg=js-beautify\ --stdin
+" javascript ?
+"autocmd filetype javascript setlocal equalprg=js-beautify\ --stdin
+
+au filetype markdown nnoremap ;ti i# <esc>:put =expand('%:t:r')<cr>kJ
+
+

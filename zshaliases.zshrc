@@ -29,7 +29,7 @@ alias la='ls -A'
 alias ll='ls -l'
 alias lal='la -l'
 alias lla='la -l'
-alias l='ls'
+alias l='ls -A'
 
 # vim config. If nvim exists, use it
 viavailable(){
@@ -40,7 +40,7 @@ viavailable(){
 		vim "$@"
 	fi
 }
-cl(){ builtin cd "$@" && ls
+cl(){ builtin cd "$@" && ls -A
 }
 
 c(){
@@ -195,6 +195,7 @@ alias luu="ssh dkim87@ubuntu.cs.mcgill.ca"
 # personal cd aliases
 alias runtime_config='cd ~/runtime_config; ls -a'
 alias myman='cd ~/mymanual; ls -a'
+alias mym='cd ~/mymanual; ls -a'
 alias anki='cd ~/anki/; ls -a'
 alias notetaking='cd ~/notetaking/; ls -a'
 alias project='cd ~/notetaking/1_fine482/project/; ls -a'
@@ -235,8 +236,8 @@ alias oac='open -a /Applications/Google\ Chrome.app'
 
 if [[ $platform == 'macos' ]]; then
     alias fido='open -a /Applications/Google\ Chrome.app https://www.fido.ca'
-    alias cibc='open -a /Applications/Google\ Chrome.app www.cibc.ca'
-    alias bell='open -a /Applications/Google\ Chrome.app www.bell.ca'
+    alias cibc='open -a /Applications/Google\ Chrome.app https://www.cibc.ca'
+    alias bell='open -a /Applications/Google\ Chrome.app https://www.bell.ca'
 fi
 
 bills(){
@@ -253,7 +254,7 @@ studylog(){
 }
 
 # FZF change completion key
-export FZF_COMPLETION_TRIGGER='/' 
+#export FZF_COMPLETION_TRIGGER='/' 
 #bindkey '^p' fzf-completion
 #bindkey '^I' $fzf_default_completion # not working well
 
@@ -262,7 +263,19 @@ alias gall='$myvi ~/Google\ Drive/diary/gall.md'
 alias whome='cd /mnt/l/'
 
 # make
+alias cpmake='cp ~/runtime_config/Makefile_C_general ./Makefile'
+alias cppmake='cp ~/runtime_config/Makefile_CPP_general ./Makefile'
+
 alias mcl='make clean'
 
 # ctags
 alias tagen="ctags -R ."
+
+# cgdb
+alias gdb="cgdb"
+
+# debug like a sir 
+alias cpdebug='cp ~/mymanual/clang/debug/debug.h .'
+
+# open as finder
+alias oaf='open -a finder'

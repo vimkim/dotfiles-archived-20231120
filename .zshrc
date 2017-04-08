@@ -183,4 +183,3 @@ source ~/runtime_config/tmuxinatorfiles/tmuxinator.zsh
 source ~/runtime_config/zshaliases.zshrc
 # Run at initialization
 source ~/runtime_config/zshrun.zshrc
-

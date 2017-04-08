@@ -1,7 +1,4 @@
-
-"section============================================================================
-" MAPPING
-"===================================================================================
+" ##### mapping #####
 
 "Useful Tip:
 "- :verbose map <KEY> will tell you if the mapping is already taken by other function.
@@ -210,7 +207,7 @@ nnoremap ;subs :%s/
 " try to use cgn text object as well, much faster
 
 " put date on document timestamp
-nnoremap ;date <esc>k:put =strftime('%Y-%b-%d %a %Hh')<cr><esc>
+nnoremap ;date <esc>:put =strftime('%Y-%b-%d %a %Hh')<cr>kJ<esc>
 inoremap ;date <esc>k<esc>:put =strftime('%Y-%b-%d %a %Hh')<cr><esc>
 nnoremap ;time <esc>k:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 inoremap ;time <esc>k<esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
@@ -267,3 +264,9 @@ endfunction\v useful as it interprets all symbols as special
 "In order to close this, <c-w><c-c>
 
 nnoremap ;tagen :!ctags -R .
+
+" fold easy - toggle
+nnoremap zt zA
+
+" remove trailing whitespace
+nnoremap ,rmt :%s/\s\+$//gc<cr>

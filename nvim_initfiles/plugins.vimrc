@@ -34,15 +34,16 @@ Plug 'mileszs/ack.vim' "code search // needs extra install of ack
 Plug 'w0rp/ale' "saves my life
 Plug 'jiangmiao/auto-pairs'
 "Plug 'vim-scripts/Better-Javascript-Indentation' "not work"
+"Plug 'jeaye/color_coded'
 Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim' "it works for ;sv and tsv as well
 " The below 2 plugins are not used for vim
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'zchee/deoplete-clang'
+    Plug 'zchee/deoplete-clang'
 "" Instead of the above two, neocomplete for vim
 else
-    "Plug 'Shougo/neocomplete.vim'
+    Plug 'Shougo/neocomplete.vim'
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -59,22 +60,23 @@ Plug 'scrooloose/nerdcommenter' "too slow
 "Plug 'scrooloose/nerdtree'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'chrisbra/Recover.vim'
 "Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
 "Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 "Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
 Plug 'honza/vim-snippets' " Snippets, let me put next to ultisnips
-Plug 'lervag/vimtex' 
+Plug 'lervag/vimtex'
 Plug 'tpope/vim-abolish'
 "Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'bling/vim-bufferline'
-"Plug 'ap/vim-buftabline' 
+"Plug 'ap/vim-buftabline'
 Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
-"Plug 'xolox/vim-easytags'
-"Plug 'xolox/vim-misc' " must follow easytags
+Plug 'xolox/vim-misc' " must be before easytags
+Plug 'xolox/vim-easytags'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']}
@@ -88,10 +90,10 @@ Plug 'tpope/vim-repeat'
 Plug 'jpalardy/vim-slime'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-surround'
-Plug 'dhruvasagar/vim-table-mode'
+"Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-unimpaired'
 Plug 'zefei/vim-wintabs'
-"Plug 'valloric/youcompleteme'
+Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch' : 'stable' }
 call plug#end()
 
@@ -106,8 +108,8 @@ nnoremap ;ask :Ack!<space>
 
 "(ALE
 let g:ale_sign_column_always = 0
-let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
 " error navigation, therefore ]l, ]l with unimpaired plugin might not be necessary
 nmap <c-k> <plug>(ale_previous_wrap)
@@ -146,6 +148,7 @@ let g:csv_no_conceal = 1 " unlet g:csv_no_conceal to disable
 nnoremap ;fz :FZF ~/
 nnoremap ,fz :FZF ~/
 nnoremap <c-x><c-f> :FZF<cr>
+let g:fzf_launcher = "/usr/local/bin/fzf_launcher.sh %s"
 ")
 "(FZF.VIM
 "nmap <c-x><c-f> <plug>(fzf-complete-path)
@@ -190,7 +193,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 "(DEOPLETE
 if has('nvim')
     let g:deoplete#enable_at_startup = 1
-    " auto complete error temporary fix "https://github.com/Shougo/deoplete.nvim/issues/440
+    " auto complete error temporary fix "https://github.com/Shougo/deoplete.nvim/issues/440"
     let g:deoplete#auto_complete_delay = 250
     " Use smartcase
     let g:deoplete#enable_ignore_case = 1
@@ -206,20 +209,21 @@ if has('nvim')
     let g:deoplete#ignore_sources = {}
     let g:deoplete#ignore_sources._ = ['buffer']
     let b:deoplete_ignore_sources = ['buffer']
+    "let g:deoplete#enable_refresh_always = 1
     ")
 
     "(DEOPLETE-CLANG
     let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/4.0.0/lib/libclang.dylib'
     let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/4.0.0/lib/clang'
-    "let g:deoplete#enable_refresh_always = 1
     ")
 endif
 
 if !has('nvim')
     "(NEOCOMPLETE
-    ""let g:neocomplcache_enable_cursor_hold_i=1
+
+    "let g:neocomplcache_enable_cursor_hold_i=1
     "Enable <TAB> for Neocomplete. It also helps tabs recover its original functionality.
-    ""inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+    "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
     ""            \ <SID>check_back_space() ? "\<TAB>" :
     ""            \ neocomplete#start_manual_complete()
     ""function! s:check_back_space() "{{{
@@ -234,6 +238,7 @@ if !has('nvim')
     let g:acp_enableAtStartup = 0
     " Use neocomplete.
     let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#auto_complete_delay = 255
     " Use smartcase.
     "let g:neocomplete#enable_smart_case = 1
     " Set minimum syntax keyword length.
@@ -493,10 +498,13 @@ let g:vim_markdown_folding_level = 3
 let g:easytags_include_members = 1
 " special scheme for member variables? Italics also available?
 "highlight link cMember Special
-highlight link cMember Italics
+"highlight link cMember Italics
 ""let g:easytags_on_cursorhold=1
 " run asynchronouse tags file updates
+let g:easytags_cmd = '/usr/local/bin/ctags'
 let g:easytags_async = 1
+let g:easytags_file = '~/.vimtags'
+"let g:easytags_dynamic_files = 1
 ")
 
 "(VIM-FUGITIVE
@@ -637,5 +645,6 @@ let g:surround_108 = "$$ \r $$" " press l
 "(YouCompleteMe
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_python_binary_path = 'python'
+let g:ycm_global_ycm_extra_conf = '~/runtime_config/.ycm_extra_conf_general.py'
 ")
 
