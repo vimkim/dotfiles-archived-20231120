@@ -210,3 +210,5 @@ set nocursorline
 "syntax sync minlines=256
 
 "set magic "equivalent of :%s/\m
+
+set synmaxcol=255

@@ -39,28 +39,28 @@ Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim' "it works for ;sv and tsv as well
 " The below 2 plugins are not used for vim
 if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-clang'
+    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    "Plug 'zchee/deoplete-clang'
 "" Instead of the above two, neocomplete for vim
 else
-    Plug 'Shougo/neocomplete.vim'
+    "Plug 'Shougo/neocomplete.vim'
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
+"Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/goyo.vim'
 Plug 'sjl/gundo.vim'
 Plug 'yggdroot/indentline'
 Plug 'vim-scripts/JavaScript-Indent'
 "Plug 'itchyny/lightline.vim'
-Plug 'junegunn/limelight.vim'
+"Plug 'junegunn/limelight.vim'
 Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamcco
 Plug 'iamcco/markdown-preview.vim'
 "Plug 'Shougo/neoinclude.vim' "too slow
 Plug 'scrooloose/nerdcommenter' "too slow
-"Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'chrisbra/Recover.vim'
+Plug 'chrisbra/Recover.vim' "temp file diff
 "Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
 "Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
@@ -68,12 +68,12 @@ Plug 'godlygeek/tabular'
 Plug 'SirVer/ultisnips' "Snippets Engine
 Plug 'honza/vim-snippets' " Snippets, let me put next to ultisnips
 Plug 'lervag/vimtex'
-Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-abolish' "help writing
 "Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'bling/vim-bufferline'
 "Plug 'ap/vim-buftabline'
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
 Plug 'xolox/vim-misc' " must be before easytags
 Plug 'xolox/vim-easytags'
@@ -83,12 +83,12 @@ Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']}
 "Plug 'maksimr/vim-jsbeautify'
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx']}
 Plug 'plasticboy/vim-markdown'
-Plug 'terryma/vim-multiple-cursors'
+"Plug 'terryma/vim-multiple-cursors'
 "Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'jpalardy/vim-slime'
-Plug 'terryma/vim-smooth-scroll'
+"Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-surround'
 "Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-unimpaired'
@@ -134,6 +134,7 @@ let g:ctrlp_show_hidden = 1
 nnoremap <leader>cp :CtrlP<Space>.<cr>
 nnoremap <leader>cd <esc>:CtrlPDir ~/
 "navigate with <c-j><c-k>, <c-v> to change working directory
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 ")
 
 "CSV.VIM
@@ -376,9 +377,10 @@ let NERDRemoveExtraSpaces=1
 let NERDTreeShowHidden=1
 "map <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>nt <esc>:NERDTreeToggle ~/
+nnoremap <f11> <esc>:NERDTreeToggle<cr>
 "autocmd VimEnter * NERDTree
 "autocmd VimEnter * wincmd p " moves cursor to filesafter opening nerdtree
-let g:NERDTreeWinSize=15
+let g:NERDTreeWinSize=20
 ")
 
 "(PAPERCOLOR-THEME (colorscheme)
@@ -627,10 +629,10 @@ endif
 ")
 
 "(VIM-SMOOTH-SCROLL
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 1)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 1)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+"noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 1)<CR>
+"noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 1)<CR>
+"noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+"noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 ")
 
 "(VIM-SURROUND
@@ -646,5 +648,6 @@ let g:surround_108 = "$$ \r $$" " press l
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_python_binary_path = 'python'
 let g:ycm_global_ycm_extra_conf = '~/runtime_config/.ycm_extra_conf_general.py'
+let g:ycm_confirm_extra_conf = 0 "ask at bufenter
 ")
 

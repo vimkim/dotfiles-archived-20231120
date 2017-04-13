@@ -269,4 +269,4 @@ nnoremap ;tagen :!ctags -R .
 nnoremap zt zA
 
 " remove trailing whitespace
-nnoremap ,rmt :%s/\s\+$//gc<cr>
+nnoremap ;rmt :%s/\s\+$//gc<cr>

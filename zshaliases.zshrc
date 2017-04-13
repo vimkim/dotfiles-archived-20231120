@@ -205,6 +205,7 @@ alias mysnips='cd ~/runtime_config/mysnips/UltiSnips; ls -a'
 alias tmuxconf='$myvi ~/runtime_config/.tmux.conf'
 alias keep='$myvi ~/Google\ Drive/keep_offline.md'
 alias todo='$myvi ~/Google\ Drive/keep_offline.md'
+alias todostack='$myvi ~/.todostack.md'
 alias toask='$myvi ~/Google\ Drive/ask_offline.md'
 
 # personal cat aliases
@@ -279,3 +280,5 @@ alias cpdebug='cp ~/mymanual/clang/debug/debug.h .'
 
 # open as finder
 alias oaf='open -a finder'
+
+alias shs='ssh -p 1004 s2016112648@linux.mme.dongguk.edu'
