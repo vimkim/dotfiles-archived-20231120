@@ -501,9 +501,12 @@ let g:easytags_include_members = 1
 "highlight link cMember Italics
 ""let g:easytags_on_cursorhold=1
 " run asynchronouse tags file updates
-let g:easytags_cmd = '/usr/local/bin/ctags'
+if has('mac')
+    let g:easytags_cmd = '/usr/local/bin/ctags'
+endif
 let g:easytags_async = 1
 let g:easytags_file = '~/.vimtags'
+let g:easytags_suppress_ctags_warning = 1
 "let g:easytags_dynamic_files = 1
 ")
 
