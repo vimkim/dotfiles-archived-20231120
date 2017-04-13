@@ -212,3 +212,10 @@ set nocursorline
 "set magic "equivalent of :%s/\m
 
 set synmaxcol=255
+
+"set noimd
+
+" Pressing ESC while typing in Korean would automatically change the layout to English
+"if has('mac') && filereadable('/usr/local/lib/libInputSourceSwitcher.dylib')
+    "autocmd InsertLeave * call libcall('/usr/local/lib/libInputSourceSwitcher.dylib', 'Xkb_Switch_setXkbLayout', 'com.apple.keylayout.US')
+"endif "strange behavior
