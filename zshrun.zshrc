@@ -11,7 +11,7 @@ if [[ $platform == 'macos' ]]; then
     eval "$RUN"
 fi
 
-if [[ $platform == 'linux']]; then
+if [[ $platform == 'linux' ]]; then
     RUN='ansiweather'
     eval "$RUN"
 fi
