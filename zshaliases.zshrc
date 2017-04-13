@@ -71,47 +71,84 @@ alias la='ls -a' # -A inferior
 alias ll='ls -la'
 alias lal='la -l'
 alias lla='la -l'
-alias l='ls -A'
+alias l='ls -a'
 
 # vim config. If nvim exists, use it
-viavailable(){
-	if hash nvim 2>/dev/null; then
-        
-		nvim "$@"
-	else
-		vim "$@"
-	fi
-}
-cl(){ builtin cd "$@" && ls -A
+#viavailable(){
+    #if hash nvim 2>/dev/null; then
+
+        #nvim "$@"
+    #else
+        #vim "$@"
+    #fi
+#}
+cl(){
+    builtin cd "$@" && ls -a
 }
 
-c(){
-	if [ -d $@ ]; then
-		cl "$@"
-	elif [ -f $@ ]; then
-		$myvi "$@"
-	else
-        echo "Hey, such file or directory does not exist. Use v() instead of c() to create a file."
-	fi
-}
+myshell='what is my shell?'
+myshell=$0
+echo "myshell = $myshell"
+if [ $myshell == 'bash' ]; then
+    c(){
+        if [[ $# -eq 0 ]]; then
+            echo "cd to home"
+            cl ~
+        elif [[ -d $@ ]]; then
+            cl "$@"
+        elif [[ -f $@ ]]; then
+            $myvi "$@"
+        else
+            #read -r -p "create new file? [y/N] " response
+            #if [[ $response =~ ^([Yy]|[yY][eE][sS])$ ]]; then
+            #viavailable "$@"
+            #else
+            #echo "Hey, such file or directory does not exist. Use v() instead of c() to create a new file"
+            #fi
+            echo "Hey, such file or directory does not exist. Use v() instead of c() to create a new file"
+        fi
+    } # unlike v(), if new files are intended to be created, then it asks once more.
 
-v(){
-	if [ -d $@ ]; then
-		cl "$@"
-		#elif [ -f $@ ]; then
-	else
-		$myvi "$@"
-		#else
-		#read -q "REPLY?Would you like to create a new file?"
-		#if [[ $REPLY =~ '^[Yy]$' ]]; then # $REPLY = y also works
-		#nvim "$@"
-		#else
-		#echo "hey, there is my_error, check .zshrc"
-		#fi
-	fi
-}
+    v(){
+        if [[ -d $@ ]]; then
+            cl "$@"
+            #elif [ -f $@ ]; then
+        else
+            $myvi "$@"
+        fi
+    }
+elif [ $myshell == 'zsh' ]; then
+    c(){
+        if [ -d $@ ]; then
+            cl "$@"
+        elif [ -f $@ ]; then
+            $myvi "$@"
+        else
+            echo "Hey, such file or directory does not exist. Use v() instead of c() to create a file."
+        fi
+    }
 
-vim_with_date(){ 
+    v(){
+        if [ -d $@ ]; then
+            cl "$@"
+            #elif [ -f $@ ]; then
+        else
+            $myvi "$@"
+            #else
+            #read -q "REPLY?Would you like to create a new file?"
+            #if [[ $REPLY =~ '^[Yy]$' ]]; then # $REPLY = y also works
+            #nvim "$@"
+            #else
+            #echo "hey, there is my_error, check .zshrc"
+            #fi
+        fi
+    }
+else
+    :
+fi
+
+
+vim_with_date(){
     $myvi "$(date +%y%m%d)_$1"
 }
 alias vda='vim_with_date'
@@ -145,10 +182,10 @@ alias fzgrep='grep -nir'
 #alias ask='grep -nir'
 alias ask='grep -nir -A 2'
 function askman { 
-	ask "$@" ~/mymanual/
+    ask "$@" ~/mymanual/
 }
 function askhere { 
-	ask "$@" . 
+    ask "$@" . 
 }
 alias dog='pygmentize -g' # cat with syntax
 alias whichsh='echo $0' #check shell
