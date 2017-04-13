@@ -140,5 +140,6 @@ source ~/runtime_config/tmuxinatorfiles/tmuxinator.zsh
 
 # Aliases
 source ~/runtime_config/zshaliases.zshrc
+source ~/runtime_config/zsh-cvfunc.zshrc
 # Run at initialization
 source ~/runtime_config/zshrun.zshrc

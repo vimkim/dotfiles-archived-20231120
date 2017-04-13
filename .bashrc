@@ -1,16 +1,3 @@
-if grep -q Microsoft /proc/version; then
-    echo "Ubuntu on Windows"
-else
-    echo "Not on Windows"
-fi
-
-
-# Launch Zsh
-if grep -q Microsoft /proc/version; then
-    if [ -t 1 ]; then
-        exec zsh
-    fi
-fi
 
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
 
@@ -125,3 +112,8 @@ set -o vi
 # la
 
 export HISTCONTROL=ignoreboth:erasedups
+
+source ~/runtime_config/zshaliases.zshrc
+source ~/runtime_config/bashcv.bashrc
+source ~/runtime_config/zshrun.zshrc
+
