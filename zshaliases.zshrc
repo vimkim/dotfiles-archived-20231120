@@ -82,7 +82,6 @@ viavailable(){
 		vim "$@"
 	fi
 }
-myvi='vim'
 cl(){ builtin cd "$@" && ls -A
 }
 
