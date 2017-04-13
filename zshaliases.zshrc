@@ -10,14 +10,15 @@
 # 9. Languages: R,Python,C,Latex,etc.
 # 10. PERSONAL
 
-# ls aliases 
+# ls aliases
 #alias ls='ls --color=auto'
 if [[ $platform == "macos" ]]; then
     alias ls='ls -GF'
 elif [[ $platform == "linux" ]]; then
     if [ -x /usr/bin/dircolors ]; then
         test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-        alias ls='ls --color=auto'
+        # ls -G # This excludes group name. unnecessary
+        alias ls='ls --color=auto -F'
         #alias dir='dir --color=auto'
         #alias vdir='vdir --color=auto'
         alias grep='grep --color=auto' # to work, modity alias grep below
@@ -40,6 +41,7 @@ viavailable(){
 		vim "$@"
 	fi
 }
+myvi='vim'
 cl(){ builtin cd "$@" && ls -A
 }
 
