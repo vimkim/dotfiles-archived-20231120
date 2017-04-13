@@ -1,3 +1,44 @@
+# Detect OS
+platform='unknown'
+unamestr=$(uname)
+iswsl='false' # in order to use user-defined envvar, export required
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+    if grep -q Microsoft /proc/version; then
+        echo "Ubuntu on Windows"
+        iswsl='true'
+        export iswsl # vim papercolor theme need this info
+    else
+        echo "Pure Linux"
+    fi
+    echo "iswsl = $iswsl"
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform='macos'
+fi
+echo "platform = $platform"
+
+# Detect nvim
+nvimexist='false'
+myvi='vim'
+if hash nvim 2>/dev/null; then
+    nvimexist='true'
+    myvi='nvim'
+fi
+echo "nvimexist = $nvimexist"
+echo "myvi = $myvi"
+
+
+# default editor (required for tmuxinator somehow)
+if [[ $platform == 'linux' ]]; then
+    export EDITOR=/usr/bin/$myvi
+    export VISUAL=/usr/bin/$myvi
+elif [[ $platform == 'macos' ]]; then
+    export EDITOR=/usr/local/bin/$myvi
+    export VISUAL=/usr/local/bin/$myvi
+else 
+    echo "default editor / visual not set"
+fi
+
 ##### ALIASES #####
 # 1. ls
 # 2. $myvi
@@ -25,8 +66,8 @@ elif [[ $platform == "linux" ]]; then
         alias egrep='egrep --color=auto'
     fi
 fi
-alias la='ls -A'
-alias ll='ls -l'
+alias la='ls -a' # -A inferior
+alias ll='ls -la'
 alias lal='la -l'
 alias lla='la -l'
 alias l='ls -A'
@@ -189,7 +230,7 @@ fi
 
 # ssh shortcut
 alias lmm="ssh dkim87@mimi.cs.mcgill.ca"
-alias llx="ssh dkim87@linux.cs.mcgil l.ca"
+alias llx="ssh dkim87@linux.cs.mcgill.ca"
 alias luu="ssh dkim87@ubuntu.cs.mcgill.ca"
 
 # personal cd aliases
@@ -281,4 +322,5 @@ alias cpdebug='cp ~/mymanual/clang/debug/debug.h .'
 # open as finder
 alias oaf='open -a finder'
 
-alias shs='ssh -p 1004 s2016112648@linux.mme.dongguk.edu'
+# alias shs="ssh -p '1004' 's2016112648@linux.mme.dongguk.edu'" # not work
+alias shs='expect ~/exp.sh'
