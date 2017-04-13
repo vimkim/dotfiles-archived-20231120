@@ -99,47 +99,6 @@ source $ZSH/oh-my-zsh.sh
 # CUSTOMIZED
 #==========================================================================================
 
-# Detect OS
-platform='unknown'
-unamestr=$(uname)
-iswsl='false' # in order to use user-defined envvar, export required
-if [[ "$unamestr" == 'Linux' ]]; then
-    platform='linux'
-    if grep -q Microsoft /proc/version; then
-        echo "Ubuntu on Windows"
-        iswsl='true'
-        export iswsl # vim papercolor theme need this info
-    else
-        echo "Pure Linux"
-    fi
-    echo "iswsl = $iswsl"
-elif [[ "$unamestr" == 'Darwin' ]]; then
-    platform='macos'
-fi
-echo "platform = $platform"
-
-# Detect nvim
-nvimexist='false'
-myvi='vim'
-if hash nvim 2>/dev/null; then
-    nvimexist='true'
-    myvi='nvim'
-fi
-echo "nvimexist = $nvimexist"
-echo "myvi = $myvi"
-
-
-# default editor (required for tmuxinator somehow)
-if [[ $platform == 'linux' ]]; then
-    export EDITOR=/usr/bin/$myvi
-    export VISUAL=/usr/bin/$myvi
-elif [[ $platform == 'macos' ]]; then
-    export EDITOR=/usr/local/bin/$myvi
-    export VISUAL=/usr/local/bin/$myvi
-else 
-    echo "default editor / visual not set"
-fi
-
 
 # bindkey -M viins ',,' vi-cmd-mode
 # bindkey -M viins 'wf' vi-cmd-mode
