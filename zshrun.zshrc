@@ -10,3 +10,8 @@ if [[ $platform == 'macos' ]]; then
     RUN='cat ~/Google\ Drive/keep_offline.md'
     eval "$RUN"
 fi
+
+if [[ $platform == 'linux' ]]; then
+    RUN='ansiweather'
+    eval "$RUN"
+fi
