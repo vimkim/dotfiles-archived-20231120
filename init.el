@@ -147,13 +147,15 @@
 ;; remember the cursor position of files when reopen
 
 (save-place-mode 1)
-;;(if (version< emacs-s))
+(if (version< emacs-version "25.0")
+    (progn
+      (require 'saveplace)
+      (setq-default save-place t))
+  (save-place-mode 1))
+
 
 ;; cool gdb
 (setq gdb-many-windows t)
-
-
-
 
 ;; backup files go to ~/.saves
 (setq backup-directory-alist `(("." . "~/.saves")))
