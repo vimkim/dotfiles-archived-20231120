@@ -28,7 +28,11 @@ syntax off
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "use :sort /.... '.*\// to sort the lines.
-call plug#begin('$HOME/.config/nvim/plugged') "TODO
+if has('nvim')
+    call plug#begin('$HOME/.config/nvim/plugged') "TODO
+else
+    call plug#begin('$HOME/.vim/plugged') 
+endif
 "pluglist:
 Plug 'mileszs/ack.vim' "code search // needs extra install of ack
 Plug 'w0rp/ale' "saves my life
