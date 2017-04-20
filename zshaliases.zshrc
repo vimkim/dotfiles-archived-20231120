@@ -1,4 +1,6 @@
 # zsh c,v
+# test emacs
+#myvi=emacs
 c(){
     if [ -d $@ ]; then
         cl "$@"

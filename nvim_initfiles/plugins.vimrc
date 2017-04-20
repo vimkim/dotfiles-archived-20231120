@@ -36,29 +36,31 @@ Plug 'jiangmiao/auto-pairs'
 "Plug 'vim-scripts/Better-Javascript-Indentation' "not work"
 "Plug 'jeaye/color_coded'
 Plug 'kien/ctrlp.vim'
-Plug 'chrisbra/csv.vim' "it works for ;sv and tsv as well
+Plug 'chrisbra/csv.vim', { 'for': 'csv' } "it works for ;sv and tsv as well
 " The below 2 plugins are not used for vim
 if has('nvim')
     "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    "unfortunately not very useful, except for filepath completeion. However, this can be replaced by <c-x><c-f>
     "Plug 'zchee/deoplete-clang'
 "" Instead of the above two, neocomplete for vim
 else
     "Plug 'Shougo/neocomplete.vim'
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'junegunn/fzf.vim'
-"Plug 'junegunn/goyo.vim'
+Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/goyo.vim')
 Plug 'sjl/gundo.vim'
 Plug 'yggdroot/indentline'
-Plug 'vim-scripts/JavaScript-Indent'
+Plug 'vim-scripts/JavaScript-Indent', { 'for': 'javascript' }
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 "Plug 'itchyny/lightline.vim'
 "Plug 'junegunn/limelight.vim'
 Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamcco
-Plug 'iamcco/markdown-preview.vim'
+Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
 "Plug 'Shougo/neoinclude.vim' "too slow
 Plug 'scrooloose/nerdcommenter' "too slow
 Plug 'scrooloose/nerdtree'
-Plug 'NLKNguyen/papercolor-theme'
+"Plug 'NLKNguyen/papercolor-theme'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'chrisbra/Recover.vim' "temp file diff
 "Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
@@ -67,7 +69,7 @@ Plug 'godlygeek/tabular'
 "Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
 Plug 'honza/vim-snippets' " Snippets, let me put next to ultisnips
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'tpope/vim-abolish' "help writing
 "Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -77,24 +79,27 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
 Plug 'xolox/vim-misc' " must be before easytags
 Plug 'xolox/vim-easytags'
+Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']}
 "Plug 'maksimr/vim-jsbeautify'
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx']}
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
+Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
 "Plug 'terryma/vim-multiple-cursors'
 "Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
-Plug 'jpalardy/vim-slime'
+Plug 'jpalardy/vim-slime', { 'for': [ 'python', 'R', 'lisp' ] }
 "Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-surround'
 "Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-unimpaired'
 Plug 'zefei/vim-wintabs'
-Plug 'Valloric/YouCompleteMe'
-Plug 'rdnetto/YCM-Generator', { 'branch' : 'stable' }
+"Plug 'Valloric/YouCompleteMe'
+Plug 'rdnetto/YCM-Generator', { 'for': ['c','cpp'], 'branch' : 'stable' }
 call plug#end()
 
 "(
@@ -176,8 +181,8 @@ let g:limelight_conceal_ctermfg = 245
 ")
 
 "(MARKDOWN PREVIEW
-let g:mkdp_path_to_chrome = "open -a Safari"
-"let g:mkdp_path_to_chrome = "open -a '/Applications/Google Chrome.app'"
+"let g:mkdp_path_to_chrome = "open -a Safari"
+let g:mkdp_path_to_chrome = "open -a '/Applications/Google Chrome.app'"
 "let g:mkdp_auto_start = 1
 let g:mkdp_auto_open = 1
 let g:mkdp_auto_close = 0
@@ -288,11 +293,11 @@ if !has('nvim')
     "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
     " Enable omni completion.
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    "autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
     " Enable heavy omni completion.
     if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -383,17 +388,17 @@ nnoremap <f11> <esc>:NERDTreeToggle<cr>
 let g:NERDTreeWinSize=20
 ")
 
-"(PAPERCOLOR-THEME (colorscheme)
-"set t_Co=256 "This is may or may not needed.
+"COLORSCHEME GENERAL
 set bg=dark
 "Show Whitespace: Must be inserted Before colorscheme command
 autocmd colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertLeave * match ExtraWhitespace /\s\+$/
-colorscheme PaperColor
+" sometimes colorschemes does not work in vim. We need t_Co=256 then.
 if !has('nvim') && $iswsl=='true'
     set t_Co=256
 endif
-")
+colorscheme zenburn
+"colorscheme PaperColor
 
 "(RAINBOW-PARENTHESES.VIM
 au VimEnter * RainbowParenthesesToggle
@@ -483,6 +488,7 @@ let g:vim_markdown_conceal = 0 " disable conceal regardless of conceallevel // I
 let g:tex_conceal = ""
 let g:vim_markdown_math = 1
 let g:vim_markdown_folding_level = 3
+"let g:vim_markdown_fold_on_headings = 1
 ")
 
 "(EASYTAGS
@@ -510,6 +516,14 @@ let g:easytags_async = 1
 let g:easytags_file = '~/.vimtags'
 let g:easytags_suppress_ctags_warning = 1
 "let g:easytags_dynamic_files = 1
+")
+
+"(VIM-EXCHANGE
+" Defaults key-mappings
+" nmap cx <Plug>(Exchange)
+" vmap X <plug>(Exchange)
+" nmap cxc <Plug>(ExchangeClear)
+" nmap cxx <Plug>(ExchangeLine)
 ")
 
 "(VIM-FUGITIVE

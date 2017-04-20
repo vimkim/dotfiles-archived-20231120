@@ -15,3 +15,6 @@ if [[ $platform == 'linux' ]]; then
     RUN='ansiweather'
     eval "$RUN"
 fi
+
+RUN='unco'
+eval "$RUN"

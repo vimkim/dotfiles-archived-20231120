@@ -106,12 +106,14 @@ alias vimrc='nvim ~/runtime_config/.vimrc'
 alias nvimrc='nvim ~/runtime_config/init.vim'
 alias vvimrc='vim ~/runtime_config/.vimrc'
 alias vnvimrc='vim ~/runtime_config/init.vim'
+alias initel='emacs ~/runtime_config/init.el'
 
 # accessibility aliases
-alias rm='rm -i'
+alias rm='rm -iv'
 alias mv='mv -iv'
 alias ei='exit'
 alias cm='chmod -v'
+alias cp='cp -iv'
 alias md='mkdir'
 alias mkd='mkdir'
 alias grep='grep --color'
@@ -181,8 +183,8 @@ alias ra=r_ranger
 alias rso='Rscript' # r source
 
 #Python shortcut
-alias python='python3'
-alias py='python'
+#alias python='python3'
+alias py='python3'
 
 # sage alias
 # if [
@@ -234,8 +236,11 @@ alias weather='curl wttr.in/montreal'
 alias jse='bundle exec jekyll serve -w' # jekyll server
 alias o='open' # mac 
 alias oas='open -a Safari' # mac
+alias oac='open -a /Applications/Google\ Chrome.app'
 if [[ $platform == 'macos' ]]; then
-    alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs -nw'
+    alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs -nw' #nw stands for no graphical window; use terminal
+    #alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs'
+    echo "use mac-emacs"
 fi
 alias e='emacs'
 
@@ -250,7 +255,6 @@ myupdate(){
     fb;
 }
 
-alias oac='open -a /Applications/Google\ Chrome.app'
 
 if [[ $platform == 'macos' ]]; then
     alias fido='open -a /Applications/Google\ Chrome.app https://www.fido.ca'
@@ -296,7 +300,23 @@ alias gdb="cgdb"
 alias cpdebug='cp ~/mymanual/clang/debug/debug.h .'
 
 # open as finder
-alias oaf='open -a finder'
+alias oaf='open -a finder .'
 
 # alias shs="ssh -p '1004' 's2016112648@linux.mme.dongguk.edu'" # not work
 alias shs='expect ~/exp.sh'
+
+alias skim-pdf-bg-color='osascript ~/runtime_config/skim-pdf-bgcolor.scpt'
+
+alias unco='uncommitted ~/hs-quest ~/mymanual ~/mygitbooks ~/runtime_config'
+
+alias music='$myvi ~/Google\ Drive/song-list.md'
+alias song='$myvi ~/Google\ Drive/song-list.md'
+
+alias bookyrun='~/booky/booky.sh'
+alias cour='cl ~/courses'
+
+alias school='cd ~/Google\ Drive/school'
+
+# pandoc markdown header style == to # (from setext to atx)
+alias pandoc='pandoc --atx-headers'
+alias emd='cl ~/.emacs.d/'

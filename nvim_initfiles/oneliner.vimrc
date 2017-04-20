@@ -139,7 +139,7 @@ set undolevels=255
 " auto change directory, works same as autochdir with less errors
 set autochdir
 "autocmd BufEnter * silent! lcd %:p:h
-" set the file's directory as pwd; useful for fzf opened files // set working directory. 
+" set the file's directory as pwd; useful for fzf opened files // set working directory.
 " somehow fzf runs this command after opening new files..
 nnoremap ;swd :silent! lcd %:p:h<cr>
 
@@ -203,7 +203,7 @@ map <mousedown> <C-e>
 let g:vim_json_syntax_conceal = 0 "not working. It is said that it works for vim-json
 set conceallevel =0
 
-" syntax highlight too slow. Test 
+" syntax highlight too slow. Test
 set nocursorcolumn
 set nocursorline
 "set norelativenumber
@@ -211,6 +211,7 @@ set nocursorline
 
 "set magic "equivalent of :%s/\m
 
+"syntax highlight limit for speed
 set synmaxcol=255
 
 "set noimd

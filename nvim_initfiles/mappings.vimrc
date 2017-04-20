@@ -5,9 +5,6 @@
 
 " LEADER KEY
 let mapleader = ","
-inoremap <c-e> <esc>
-nnoremap <c-e> <esc>
-vnoremap <c-e> <esc>
 
 "ESC
 "vmap ,, <ESC>
@@ -81,7 +78,7 @@ nnoremap QQ <c-c>:q<cr>
 
 "NEW LINE
 " insert new line without entering insert mode.
-nnoremap <Enter> o<ESC>
+"nnoremap <Enter> o<ESC>
 " insert new line above the cursor without entering insert mode.
 nnoremap <Leader><Enter> O<ESC>
 " Unfortunately, a more intuitive  choice of <S-Enter> O<ESC> not working on CLI
@@ -140,7 +137,8 @@ au filetype java nnoremap <F8> :w<cr>:!javac % && java %< <cr>
 au filetype java nnoremap <leader>ru <esc>:w<cr>:!javac % && java %< <cr>
 
 "Replace Windows ^m enter return into Unix
-nnoremap <leader>winm :%s/\r/\r/g<CR>
+nnoremap <leader>enter :%s/\r/\r/g<CR>
+nnoremap ;enter :%s/\r/\r/g<CR>
 
 "Buffer shortcuts
 nnoremap <leader>bn :bn<cr>
@@ -198,6 +196,11 @@ vnoremap dp :diffput<cr>
 " command to show the file path
 nnoremap ;filepath :echo expand('%:p')<cr>
 nnoremap ;fullpath :echo expand('%:p')<cr>
+" filepath short
+nnoremap ;fp :echo expand('%:p')<cr>
+" filename short
+nnoremap ;fn :echo expand('%:p')<cr>
+
 
 " mapping for replace all / substitute all 
 nnoremap ;repa :%s/
@@ -208,9 +211,9 @@ nnoremap ;subs :%s/
 
 " put date on document timestamp
 nnoremap ;date <esc>:put =strftime('%Y-%b-%d %a %Hh')<cr>kJ<esc>
-inoremap ;date <esc>k<esc>:put =strftime('%Y-%b-%d %a %Hh')<cr><esc>
+"inoremap ;date <esc>k<esc>:put =strftime('%Y-%b-%d %a %Hh')<cr><esc>
 nnoremap ;time <esc>k:put =strftime('%Y-%b-%d %a %T')<cr><esc>
-inoremap ;time <esc>k<esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
+"inoremap ;time <esc>k<esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 
 nnoremap ;sov :so $MYVIMRC<cr>
 
@@ -218,13 +221,12 @@ let g:BASH_Ctrl_j = 'off' " does not work
 let g:ZSH_Ctrl_j = 'off'
 
 " ,pa acts the same as pasting system clipboard
-nnoremap <leader>pa "*p
-au filetype text,markdown nnoremap <c-v> <esc>:set paste<cr>"*p<esc>:set nopaste<cr>
-au filetype text,markdown inoremap <c-v> <c-\><c-o>:set paste<cr><esc>"*p<esc>:set nopaste<cr>a
-au filetype text,markdown nnoremap ,vb <c-v>
+"au filetype text,markdown nnoremap <c-v> <esc>:set paste<cr>"*p<esc>:set nopaste<cr>
+"au filetype text,markdown inoremap <c-v> <c-\><c-o>:set paste<cr><esc>"*p<esc>:set nopaste<cr>a
+"au filetype text,markdown nnoremap ,vb <c-v>
 "inoremap <c-r> <c-r>* don't know why I did this.. so stupid
-au filetype text,markdown vnoremap <leader>co "*y
-au filetype text,markdown vnoremap <c-c> "*y
+"au filetype text,markdown vnoremap <leader>co "*y
+"au filetype text,markdown vnoremap <c-c> "*y
 
 
 inoremap <c-BS> <DEL>
@@ -270,3 +272,40 @@ nnoremap zt zA
 
 " remove trailing whitespace
 nnoremap ;rmt :%s/\s\+$//gc<cr>
+
+" easier paste
+nnoremap ;<c-v> <esc>"*p
+inoremap ;<c-v> <esc>"*p
+vnoremap ;<c-c> "*y
+
+" emacs style line
+nnoremap <c-a> ^
+nnoremap <c-e> $
+
+" select last yanked text
+nnoremap <leader>V `[v`]
+
+" Ko-lang support " buggy; does not work as expected"
+"nnoremap ,ㅇ <esc>:update<cr>
+"inoremap ,ㅇ <esc>:update<cr>
+"nnoremap ㅣ i
+"nnoremap ㅁ a
+"nnoremap ㅎㅎ dd
+"nnoremap ㅗ h
+"nnoremap ㅛ j
+"nnoremap ㅜ k
+"nnoremap ㅕ l
+
+" markdown header mapping
+nnoremap ,# yyp<c-v>$r-<cr>
+
+" vim as a calculator
+inoremap ;calc <c-o>yiW<End>=<c-r>=<c-r>0<cr>
+
+"vim navigation enable
+"nnoremap j n
+"nnoremap k i
+"nnoremap l e
+"nnoremap n j
+"nnoremap e k
+"nnoremap i l

@@ -1,3 +1,21 @@
 snippet pr "print"
 print($1)$2
 endsnippet
+
+snippet type "type and dir"
+print("type($1):", type($1))
+print("dir($1):", dir($1))$0
+endsnippet
+
+snippet pv "print variable and value"
+print("$1 -> value:", $1)$0
+endsnippet
+
+snippet debug "debug var"
+print("<<<<<")
+print("$1's value:", $1)
+print("type($1):", type($1))
+print("dir($1):", dir($1))
+print(">>>>>")$0
+endsnippet
+

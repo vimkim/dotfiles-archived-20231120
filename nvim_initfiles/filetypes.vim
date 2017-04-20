@@ -107,6 +107,9 @@ au filetype csv setlocal noexpandtab "don't expand tab if csv
 " javascript ?
 "autocmd filetype javascript setlocal equalprg=js-beautify\ --stdin
 
-au filetype markdown nnoremap ;ti i# <esc>:put =expand('%:t:r')<cr>kJ
+"title mapping
+"au filetype markdown nnoremap ;ti i# <esc>:put =expand('%:t:r')<cr>kJ
+au filetype markdown nnoremap ;title <esc>:put =expand('%:t:r')<cr>kJyyp<c-v>$r=<cr>
+
 
 
