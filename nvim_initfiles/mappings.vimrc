@@ -237,7 +237,7 @@ nnoremap U :echo "<< ===== CHECK CAPSLOCK =====>>"<cr>
 
 nnoremap ; :
 
-nnoremap ,ffmt <esc>:set fileformat=dos
+nnoremap ;ffmt <esc>:set fileformat=dos
 
 nnoremap ;ft :set filetype<cr>
 
@@ -278,7 +278,7 @@ nnoremap ;rmt :%s/\s\+$//gc<cr>
 " easier paste
 nnoremap ;<c-v> "*p
 inoremap ;<c-v> <esc>"*p
-vnoremap ;<c-c> "*y
+xnoremap ;<c-y> "*y "<c-c> does not work
 
 " emacs style line
 nnoremap <c-a> ^

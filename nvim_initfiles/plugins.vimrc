@@ -1,5 +1,4 @@
-
-"section============================================================================
+" section============================================================================
 " PLUGINS
 "===================================================================================
 
@@ -102,7 +101,7 @@ Plug 'tpope/vim-surround'
 "Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-unimpaired'
 Plug 'zefei/vim-wintabs'
-"Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'for': ['c','cpp'], 'branch' : 'stable' }
 call plug#end()
 
@@ -156,7 +155,6 @@ let g:csv_no_conceal = 1 " unlet g:csv_no_conceal to disable
 
 "(FZF)
 nnoremap ;fz :FZF ~/
-nnoremap ,fz :FZF ~/
 nnoremap <c-x><c-f> :FZF<cr>
 let g:fzf_launcher = "/usr/local/bin/fzf_launcher.sh %s"
 ")
@@ -453,7 +451,7 @@ let g:EasyMotion_do_mapping = 0
 " the first line allows you to trigger in visual mode as well (very helpful)
 map <leader>f <plug>(easymotion-bd-f)
 " allows you to move regardless of buffer (for :vsplit, etc.)
-nmap <Leader>fw <Plug>(easymotion-overwin-f)
+nmap <Leader>emf <Plug>(easymotion-overwin-f)
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
 ""nmap s <Plug>(easymotion-overwin-f)
@@ -478,7 +476,7 @@ nmap <leader>emw <plug>(easymotion-overwin-w)
 " align variable (\S <= non-whitespace character)
 vnoremap ;alivar :Tabularize /\S\+;
 " MY function: undo tabularize
-vnoremap ;untab :s/\v(\s)\s+/\1/gc 
+vnoremap ;untab :s/\v(\s)\s+/\1/gc
 vnoremap ;uncsv :s/\v\s+,\s+/,/gc
 " expl: basically, replace two or more spaces as one space vnoremap ;untab s/\v(\s)\s+/ /gc " this also works
 " for latex equation aligning, :Tabularize /\\\\$
