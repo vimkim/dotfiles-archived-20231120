@@ -316,10 +316,16 @@ alias music='$myvi ~/Google\ Drive/song-list.md'
 alias song='$myvi ~/Google\ Drive/song-list.md'
 
 alias bookyrun='~/booky/booky.sh'
+
 alias cour='cl ~/courses'
 
 alias school='cd ~/Google\ Drive/school'
 
 # pandoc markdown header style == to # (from setext to atx)
 alias pandoc='pandoc --atx-headers'
+
+# emacs directory
 alias emd='cl ~/.emacs.d/'
+
+# custom alias
+alias ali='$myvi ~/runtime_config/temp-aliaslist.sh'

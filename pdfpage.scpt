@@ -7,4 +7,9 @@ on run argv
         tell document 1 to go to page pageNum
         activate
     end tell
+tell application "Skim"
+	tell document 1
+			set view settings to {scale factor:3.0, auto scales:false}
+	end tell
+end tell
 end run
