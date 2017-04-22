@@ -6,20 +6,33 @@
 (setq visible-bell 1)
 ;;(menu-bar-mode -1)
 (tool-bar-mode -1)
-(global-linum-mode t)
+
 (setq inhibit-startup-screen t) ; no welcome page
 ;;(x-focus-frame nil)
 
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
+;;(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
+(global-linum-mode t)
+(setq linum-format "%d \u2502")
+;;(use-package linum-relative
+;;:ensure linum-relative)
+;;(require 'linum-relative)
+;;(linum-relative-on)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (ack ## autopair pkg-info evil dash))))
+ '(global-undo-tree-mode t)
+ '(package-selected-packages
+   (quote
+    (popwin smooth-scroll smooth-scrolling fiplr helm sublimity centered-cursor-mode ack ## autopair pkg-info evil dash)))
+ '(undo-tree-auto-save-history t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -33,6 +46,7 @@
   (add-hook 'python-mode-hook 'jedi:setup)
   (add-hook 'python-mode-hook 'jedi:ac-setup)
   )
+
 ;; (add-to-list 'load-path "~/.emacs.d/evil")
 (use-package evil
   :ensure evil)
@@ -75,6 +89,11 @@
 (evil-leader/set-leader ",")
 (evil-leader/set-key
   "bd" 'kill-buffer
+  "bn" 'next-buffer
+  "bp" 'previous-buffer
+  ;;"bl" 'list-buffers
+  "bl" 'ibuffer
+  "bs" 'ido-switch-buffer
   "s" 'save-buffer
   "q" 'save-buffers-kill-terminal)
 (use-package key-chord
@@ -92,6 +111,8 @@
 ;(key-chord-define evil-normal-state-map ",q" 'save-buffers-kill-terminal)
 (define-key evil-insert-state-map "\C-q" 'my-esc-quit)
 (define-key evil-normal-state-map "\C-q" 'save-buffers-kill-terminal)
+(define-key evil-normal-state-map "\C-n" 'evil-next-line)
+(define-key evil-normal-state-map "\C-p" 'evil-previous-line)
 
 (defun my-esc-save()
   (interactive)
@@ -115,45 +136,25 @@
   :init
   (global-flycheck-mode))
 (require 'flycheck)
+;; c-c ! l
 
 ;;;; MAPPING
 ;; gj, gk mapping
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
 ;; ;->: mapping
-;;(define-key evil-normal-state-map (kbd ";") 'evil-ex &optional INITIAL-INPUT) ; not work
-;; esc quits
-(defun minibuffer-keyboard-quit ()
-  "Abort recursive edit.
-In Delete Selection mode, if the mark is active, just deactivate it; then it takes a second \\[keyboard-quit] to abort the minibuffer."
-  (interactive)
-  (if (and delete-selection-mode transient-mark-mode mark-active)
-      (setq deactivate-mark  t)
-    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-    (abort-recursive-edit)))
-(define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-(global-set-key [escape] 'evil-exit-emacs-state)
-
-
-;; start maximized:w
+(define-key evil-normal-state-map (kbd ";") 'evil-ex)
 
 ;;autoindent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 (use-package autopair
   :ensure autopair)
-
 (require 'autopair)
 (autopair-global-mode)
 
 ;; remember the cursor position of files when reopen
-
 (save-place-mode 1)
 (if (version< emacs-version "25.0")
     (progn
@@ -161,10 +162,8 @@ In Delete Selection mode, if the mark is active, just deactivate it; then it tak
       (setq-default save-place t))
   (save-place-mode 1))
 
-
 ;; cool gdb
 (setq gdb-many-windows t) ; assignment to free variable warning?
-
 
 ;; backup files go to ~/.saves
 (setq backup-directory-alist `(("." . "~/.saves")))
@@ -187,23 +186,15 @@ In Delete Selection mode, if the mark is active, just deactivate it; then it tak
   :ensure yasnippet)
 (require 'yasnippet)
 (yas-global-mode 1)
+;; trigger snippet inside trigger
+(setq yas/triggers-in-field t); Enable nested triggering of snippets
+;; map to c-l and c-k
+;;(define-key yas-keymap (kbd "C-l") 'yas-next-field-or-maybe-expand)
+(define-key yas-keymap "\C-l" 'yas-prev-field)
 
-;;; auto-complete
-(use-package auto-complete
-  :ensure auto-complete)
-(require 'auto-complete)
-(ac-config-default)
-(global-auto-complete-mode t)
-;; Bad config (it might be annoying sometimes)
-;;(define-key ac-completing-map "\C-n" 'ac-next)
-;;(define-key ac-completing-map "\C-p" 'ac-precious)
-;; Mapping only when completion menu is displayed
-(setq ac-use-menu-map t)
-(define-key ac-menu-map "\C-n" 'ac-next)
-(define-key ac-menu-map "\C-p" 'ac-previous)
-;;(setq ac-ignore-case t)
-(setq ac-ignore-case 'smart)
-;;(setq ac-ignore-case nil)
+
+;; yasnippet + ac
+(setq-default ac-sources (push 'ac-source-yasnippet ac-sources))
 
 (scroll-bar-mode -1);; hide scroll bar
 ;;(set-specifier vertical-scrollbar-visible-p nil)
@@ -217,12 +208,9 @@ In Delete Selection mode, if the mark is active, just deactivate it; then it tak
 ;; emacswiki complete file name
 
 (global-set-key (kbd "M-/") 'hippie-expand) ; I like this! It prompts auto-completion list
-
-
-
 ;; switch to minibuffer no matter what
 (defun switch-to-minibuffer ()
-  "Switch to minibuffer window"
+  "Switch to minibuffer window."
   (interactive)
   (if (active-minibuffer-window)
       (select-window (active-minibuffer-window))
@@ -234,4 +222,67 @@ In Delete Selection mode, if the mark is active, just deactivate it; then it tak
 (use-package ack
   :ensure ack)
 (require 'ack)
+
+(use-package centered-cursor-mode
+  :ensure centered-cursor-mode)
+(require 'centered-cursor-mode)
+(global-centered-cursor-mode +1)
+
+(use-package ido
+  :ensure ido)
+(require 'ido)
+(ido-mode 1)
+(setq ido-separator "\n")
+
+(defun switch-to-minibuffer-window ()
+  "Switch to minibuffer window (if active)."
+  (interactive)
+  (when (active-minibuffer-window)
+    (select-frame-set-input-focus (window-frame (active-minibuffer-window)))
+    (select-window (active-minibuffer-window))))
+(global-set-key (kbd "<f7>") 'switch-to-minibuffer-window)
+(use-package undo-tree
+  :ensure undo-tree)
+(require 'undo-tree)
+(global-undo-tree-mode t) ; use c-x u and hjkl
+
+;;advanced buffer navigation
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;; Makes *scratch* empty.
+(setq initial-scratch-message "")
+;; Removes *scratch* from buffer after the mode has been set.
+(defun remove-scratch-buffer ()
+  "Remove *scratch* and *messages*."
+  (if (get-buffer "*scratch*")
+      (kill-buffer "*scratch*")))
+(add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
+;; Removes *messages* from the buffer.
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
+;; thanks for the source: https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
+
+(use-package helm
+  :ensure helm)
+(require 'helm-config)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x r b") #'helm-bookmarks)
+(global-set-key (kbd "M-x") #'helm-M-x)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
+(helm-mode 1)
+
+(use-package fiplr
+  :ensure fiplr)
+(global-set-key (kbd "C-x f") 'fiplr-find-file)
+
+(use-package auto-complete
+  :ensure auto-complete)
+(ac-config-default)
+
+;; Sane behavior of popup windows
+(use-package popwin
+  :ensure popwin)
+(require 'popwin)
+(popwin-mode 1)
+
 ;;; init.el ends here
