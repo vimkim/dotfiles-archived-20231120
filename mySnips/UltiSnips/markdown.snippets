@@ -1,4 +1,4 @@
-snippet * "* *" 
+snippet * "* *"
 *$1*$0
 endsnippet
 snippet ita "italian"
@@ -73,10 +73,10 @@ endsnippet
 
 # latex only for markdown and mathjax
 snippet ali "math align" b
-$$\begin{align}
+\$\$\\begin\{align}
 ${1:x} &= ${2:y} \\\\
 ${3} &= ${4:z} \\\\${5}
-\end{align}$$
+\\end\{align}\$\$
 ${0}
 endsnippet
 
@@ -98,40 +98,40 @@ ${1} &= ${2} \\\\${0}
 endsnippet
 
 snippet fr "fraction" i
-\\frac{ ${1} }{ ${2} } ${0}
+\\frac\{ ${1} }\{ ${2} } ${0}
 endsnippet
 
 snippet sq "square" i
-^{ 2 }
+^\{ 2 }
 endsnippet
 snippet sqr "sqrt" i
-\sqrt{ ${1} } ${0}
+\\sqrt\{ ${1} } ${0}
 endsnippet
 
-#\sqrt{$1}$0
+#\\sqrt\{$1}$0
 # standard
 #\\sqrt\{$1}$0 
 # second standard
-#\sqrt\{$1}$0
+#\\sqrt\{$1}$0
 # third standard
-#\sqrt\{$1} $0
+#\\sqrt\{$1} $0
 # space
 # space
-#\sqrt{$1} $0
+#\\sqrt\{$1} $0
 # space
-#\sqrt{ $1 }$0
+#\\sqrt\{ $1 }$0
 # space
-#\sqrt{ $1 } $0
-#\sqrt{$1}$0
+#\\sqrt\{ $1 } $0
+#\\sqrt\{$1}$0
 
 
 
 
 
 snippet sqrtn "sqrt^n" i
-\sqrt[ $1 ]{ $2 } $0
+\\sqrt[ $1 ]\{ $2 } $0
 endsnippet
-#\sqrt[\leftroot{-3}\uproot{3} $1 ]{ $2 } $0 # not working well
+#\\sqrt[\\leftroot\{-3}\\uproot\{3} $1 ]\{ $2 } $0 # not working well
 
 snippet po "power" i
 ^\{ $1 } $0
@@ -148,160 +148,160 @@ _\{ ${1} } ${0}
 endsnippet
 
 snippet ( "parenthesis" i
-\left( $1 \\right) $0
+\\left( $1 \\right) $0
 endsnippet
 snippet { "curly braces" i
-\left\\{ $1 \right\\} $0
+\\left\{ $1 \\right } $0
 endsnippet
 snippet [ "square bracket" i
 \\left[ $1 \\right] $0
 endsnippet
 snippet abs "absolute" i
-\left| $1 \right| $0
+\\left| $1 \\right| $0
 endsnippet
 
 snippet dif "differentiation"
- \\frac{d $1 }{d $2 } $0
+ \\frac\{d $1 }\{d $2 } $0
 endsnippet
 snippet diff "differentiation"
-\frac{d $1 }{d $2 } $0
+\\frac\{d $1 }\{d $2 } $0
 endsnippet
 snippet pdif "partial differentiation"
-\frac{\partial $1 }{\partial $2 } $0
+\\frac\{\\partial $1 }\{\\partial $2 } $0
 endsnippet
 snippet pdiff "partial differentiation"
-\frac{\partial $1 }{\partial $2 } $0
+\\frac\{\\partial $1 }\{\\partial $2 } $0
 endsnippet
 snippet pard "partial differentiation"
-\frac{\partial $1 }{\partial $2 } $0
+\\frac\{\\partial $1 }\{\\partial $2 } $0
 endsnippet
 
 # \, small space \: medium space \; large space \! negative space
 snippet sp "space"
-\:
+\\:
 endsnippet
 snippet int "integral" 
-\int{ $1 } $0
+\\int\{ $1 } $0
 endsnippet
 snippet iint "indefinite integral"
-\int{ $1 }\: d { $4 } $0
+\\int\{ $1 }\\: d \{ $4 } $0
 endsnippet
 snippet dint "definite integral"
-\int_{ $1 }^{ $2 }{ $3 }\: d { $4 } $0
+\\int_\{ $1 }^\{ $2 }\{ $3 }\\: d \{ $4 } $0
 endsnippet
 
 snippet sum "sum" i
-\sum_{ $1 }^{ $2 }{ $3 } $0
+\\sum_\{ $1 }^\{ $2 }\{ $3 } $0
 endsnippet
 
 snippet lim "limit" i
-\lim_{ $1 \to $2 } $0
+\\lim_\{ $1 \\to $2 } $0
 endsnippet
 
 snippet vec "vector" i
-\left(\begin{array}{c} $1 \\\ $2 \end{array}\right) $0
+\\left(\\begin\{array}\{c} $1 \\\ $2 \\end\{array}\\right) $0
 endsnippet
 
 snippet bino "binomial" i
-\binom{ $1 }{ $2 } $0
+\\binom\{ $1 }\{ $2 } $0
 endsnippet
 
 snippet case "case" i
-\begin{cases}
-${1:x(n)}, &\text{$2 } $3 \\\
-${4:x(n+1)}, &\text{$5 } $6 \\\ $7
-\end{cases}$0
+\\begin\{cases}
+${1:x(n)}, &\\text\{$2 } $3 \\\
+${4:x(n+1)}, &\\text\{$5 } $6 \\\ $7
+\\end\{cases}$0
 endsnippet
 
 snippet tx "text" i
-\text{ $1 } $0
+\\text\{ $1 } $0
 endsnippet
 
 
-##### greek letters {{
+##### greek letters \{{
 snippet alp "alpha" i
-\alpha 
+\\alpha 
 endsnippet
 snippet bet "beta" i
-\beta 
+\\beta 
 endsnippet
 snippet gam "gamma" i
-\gamma 
+\\gamma 
 endsnippet
 snippet del "delta" i
-\delta 
+\\delta 
 endsnippet
 snippet Del "Delta" i
-\Delta 
+\\Delta 
 endsnippet
 snippet eps "Epsilon" i
-\epsilon 
+\\epsilon 
 endsnippet
 snippet the "theta" i
-\theta 
+\\theta 
 endsnippet
 snippet lam "lambda" i
-\lambda 
+\\lambda 
 endsnippet
 snippet mu "mu" i
-\mu 
+\\mu 
 endsnippet
 snippet pi "pi" i
-\pi 
+\\pi 
 endsnippet
 snippet sig "sigma" i
-\sigma 
+\\sigma 
 endsnippet
 	
 ##### greeks end }}
 
 snippet inf "infinite" i
-\infty 
+\\infty 
 endsnippet
 
 snippet log "log" i
-\log_{$1}{$2} $0
+\\log_\{$1}\{$2} $0
 endsnippet
 snippet ln "natural log" i
-\ln{$1} $0
+\\ln\{$1} $0
 endsnippet
 
 snippet sin "sin" i
-\sin($1) $0
+\\sin($1) $0
 endsnippet
 snippet cos "cos" i
-\cos($1) $0
+\\cos($1) $0
 endsnippet
 snippet tan "tan" i
-\tan($1) $0
+\\tan($1) $0
 endsnippet
 snippet sininv "inverse sin" i
-\sin^{-1}($1) $0
+\\sin^\{-1}($1) $0
 endsnippet
 snippet cosinv "inverse cos" i
-\cos^{-1}($1) $0
+\\cos^\{-1}($1) $0
 endsnippet
 snippet taninv "inverse tan" i
-\tan^{-1}($1) $0
+\\tan^\{-1}($1) $0
 endsnippet
 
 snippet =/= "not equal to"
-\neq 
+\\neq 
 endsnippet
-snippet =\= "not equal to"
-\neq 
+snippet =\\= "not equal to"
+\\neq 
 endsnippet
 snippet <= "less or equal to"
-\leq 
+\\leq 
 endsnippet
 snippet >= "greater or equal to"
-\geq 
+\\geq 
 endsnippet
 snippet > "greater than"
-\gt 
+\\gt 
 endsnippet
 snippet < "less than"
-\lt 
+\\lt 
 endsnippet
 
 ##### Operator
@@ -315,39 +315,39 @@ snippet eq "equals =" i
 = 
 endsnippet
 snippet tim "times X" i
-\times 
+\\times 
 endsnippet
 snippet mult "multiplied X" i
-\times 
+\\times 
 endsnippet
 
 snippet dp "dot product" i
-\cdot 
+\\cdot 
 endsnippet
 snippet dotp "dot product" i
-\cdot 
+\\cdot 
 endsnippet
 snippet ... "dots ..." i
-\dots 
+\\dots 
 endsnippet
 
 ##### Letter symbols
 snippet dot "dot" i
-\dot{ $1 } $0
+\\dot\{ $1 } $0
 endsnippet
 snippet hat "hat" i
-\hat{ $1 } $0
+\\hat\{ $1 } $0
 endsnippet
 snippet bar "bar" i
-\bar{ $1 } $0
+\\bar\{ $1 } $0
 endsnippet
 
 snippet -> "Long right arrow" i
-\Longrightarrow 
+\\Longrightarrow 
 endsnippet
 
 snippet | "integral bar" i
-\Big|_{ $1 }^{ $2 } $0
+\\Big|_\{ $1 }^\{ $2 } $0
 endsnippet
 
 snippet \ "setminus" i
