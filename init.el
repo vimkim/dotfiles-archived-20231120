@@ -3,6 +3,13 @@
 ;;hello Emacs!
 ;;; Code:
 ;;; Basic Configurations
+(fset 'yes-or-no-p 'y-or-n-p)
+;; backup files go to ~/.saves
+(setq backup-directory-alist `(("." . "~/.saves")))
+;; back up by copy; safe and slow
+;;(setq backup-by-copying t)
+;;(setq make-backup-files nil) ;stop creating backup~ files
+(setq auto-save-default nil) ;stop creating #autosave# files
 (setq visible-bell 1)
 ;;(menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -18,6 +25,7 @@
 (package-initialize)
 (global-linum-mode t)
 (setq linum-format "%d \u2502")
+
 ;;(use-package linum-relative
 ;;:ensure linum-relative)
 ;;(require 'linum-relative)
@@ -31,7 +39,7 @@
  '(global-undo-tree-mode t)
  '(package-selected-packages
    (quote
-    (popwin smooth-scroll smooth-scrolling fiplr helm sublimity centered-cursor-mode ack ## autopair pkg-info evil dash)))
+    (shackle popwin smooth-scroll smooth-scrolling fiplr helm sublimity centered-cursor-mode ack ## autopair pkg-info evil dash)))
  '(undo-tree-auto-save-history t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -123,7 +131,6 @@
   (evil-normal-state)
   (save-buffers-kill-terminal))
 
-
 ;; flycheck prerequisite
 (use-package exec-path-from-shell
   :ensure t)
@@ -136,6 +143,8 @@
   :init
   (global-flycheck-mode))
 (require 'flycheck)
+(evil-set-initial-state 'flycheck-error-list-mode 'emacs)
+;(add-hook 'flycheck-error-list-mode-hook 'turn-off-evil-mode)
 ;; c-c ! l
 
 ;;;; MAPPING
@@ -165,12 +174,6 @@
 ;; cool gdb
 (setq gdb-many-windows t) ; assignment to free variable warning?
 
-;; backup files go to ~/.saves
-(setq backup-directory-alist `(("." . "~/.saves")))
-;; back up by copy; safe and slow
-;;(setq backup-by-copying t)
-;;(setq make-backup-files nil) ;stop creating backup~ files
-(setq auto-save-default nil) ;stop creating #autosave# files
 
 ;;;; theme
 ;; zenburn
@@ -187,7 +190,7 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 ;; trigger snippet inside trigger
-(setq yas/triggers-in-field t); Enable nested triggering of snippets
+(setq yas-triggers-in-field t); Enable nested triggering of snippets
 ;; map to c-l and c-k
 ;;(define-key yas-keymap (kbd "C-l") 'yas-next-field-or-maybe-expand)
 (define-key yas-keymap "\C-l" 'yas-prev-field)
@@ -198,8 +201,6 @@
 
 (scroll-bar-mode -1);; hide scroll bar
 ;;(set-specifier vertical-scrollbar-visible-p nil)
-(fset 'yes-or-no-p 'y-or-n-p)
-(provide 'init)
 
 ;; Not much useful
 ;;(autoload 'comint-dynamic-complete-filename "comint" nil t)
@@ -278,11 +279,29 @@
 (use-package auto-complete
   :ensure auto-complete)
 (ac-config-default)
+;; C-n C-p
+(setq ac-use-menu-map t)
+(define-key ac-menu-map "\C-n" 'ac-next)
+(define-key ac-menu-map "\C-p" 'ac-previous)
 
-;; Sane behavior of popup windows
+;; Sane behavior of popup windows (move focus to popup)
 (use-package popwin
   :ensure popwin)
+(add-to-list 'popwin:special-display-config `(flycheck-error-list-mode :height 0.5 :regexp t :position bottom))
 (require 'popwin)
 (popwin-mode 1)
+;;shackle does similar
+(use-package shackle
+  :ensure shackle)
+(require 'shackle)
 
+;; macos clipboard copy / paste
+;; M-| (shell-command-on-region) pbpaste RET
+(defun pbcopy-macos ()
+  (interactive)
+  (call-process-region (point) (mark) "pbcopy")
+  (setq deactivate-mark t))
+(global-set-key (kbd "C-c c") 'pbcopy-macos)
+
+(provide 'init)
 ;;; init.el ends here
