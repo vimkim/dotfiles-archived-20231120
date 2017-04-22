@@ -100,10 +100,12 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # CUSTOMIZED
 #==========================================================================================
 
-
+# for vi-mode for zsh prompt
 # bindkey -M viins ',,' vi-cmd-mode
 # bindkey -M viins 'wf' vi-cmd-mode
 # bindkey -M viins 'fw' vi-cmd-mode
+bindkey -M viins ',s' vi-cmd-mode
+
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 # archey
 #screenfetch -v
@@ -144,5 +146,6 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 # Aliases
 source ~/runtime_config/shell-aliases.sh
 source ~/runtime_config/zshaliases.zshrc
+source ~/runtime_config/temp-aliaslist.sh
 # Run at initialization
 source ~/runtime_config/zshrun.zshrc
