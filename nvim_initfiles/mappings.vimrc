@@ -61,6 +61,7 @@ nnoremap <c-q> :q<CR>
 nnoremap <leader>q :q<CR>
 inoremap <leader>q <ESC>:q<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>w :Gwrite<cr>:Gcommit --verbose<cr>
 ")
 
 nnoremap sq <esc>:wq<esc>
@@ -179,6 +180,7 @@ nnoremap Y y$
 "fugitive alias
 nnoremap <leader>gst :Gstatus<cr>
 nnoremap <leader>gad :Gwrite<cr>
+nnoremap <leader>gwi :Gwrite<cr>
 nnoremap <leader>gap :Git add -p %<cr>
 nnoremap <leader>ap :Git add -p %<cr>
 nnoremap <leader>gco :Gcommit --verbose<cr>
@@ -274,7 +276,7 @@ nnoremap zt zA
 nnoremap ;rmt :%s/\s\+$//gc<cr>
 
 " easier paste
-nnoremap ;<c-v> <esc>"*p
+nnoremap ;<c-v> "*p
 inoremap ;<c-v> <esc>"*p
 vnoremap ;<c-c> "*y
 
