@@ -107,6 +107,8 @@ alias nvimrc='nvim ~/runtime_config/init.vim'
 alias vvimrc='vim ~/runtime_config/.vimrc'
 alias vnvimrc='vim ~/runtime_config/init.vim'
 alias initel='emacs ~/runtime_config/init.el'
+alias ginitel='gemacs ~/runtime_config/init.el'
+alias vinitel='$myvi ~/runtime_config/init.el'
 
 # accessibility aliases
 alias rm='rm -iv'
@@ -239,10 +241,11 @@ alias oas='open -a Safari' # mac
 alias oac='open -a /Applications/Google\ Chrome.app'
 if [[ $platform == 'macos' ]]; then
     alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs -nw' #nw stands for no graphical window; use terminal
-    #alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs'
+    alias gemacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs' #gui emacs
     echo "use mac-emacs"
 fi
 alias e='emacs'
+alias ge=gemacs
 
 # personal url aliases
 alias gmail='open http://www.gmail.com'
