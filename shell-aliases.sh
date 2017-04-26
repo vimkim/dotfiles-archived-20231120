@@ -26,7 +26,8 @@ if hash nvim 2>/dev/null; then
 fi
 echo "nvimexist = $nvimexist"
 echo "myvi = $myvi"
-
+## now everything is going to be emacs
+myvi=emacsclient
 
 # default editor (required for tmuxinator somehow)
 if [[ $platform == 'linux' ]]; then
@@ -241,6 +242,7 @@ alias oas='open -a Safari' # mac
 alias oac='open -a /Applications/Google\ Chrome.app'
 if [[ $platform == 'macos' ]]; then
     alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs -nw' #nw stands for no graphical window; use terminal
+    alias emacs=emacsclient
     alias gemacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs' #gui emacs
     echo "use mac-emacs"
 fi

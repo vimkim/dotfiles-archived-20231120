@@ -14,7 +14,7 @@
 ;;(menu-bar-mode -1)
 (tool-bar-mode -1)
 
-(setq inhibit-startup-screen t) ; no welcome page
+;;(setq inhibit-startup-screen t) ; no welcome page
 ;;(x-focus-frame nil)
 
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -40,6 +40,7 @@
  '(package-selected-packages
    (quote
     (shackle popwin smooth-scroll smooth-scrolling fiplr helm sublimity centered-cursor-mode ack ## autopair pkg-info evil dash)))
+ '(server-mode t)
  '(undo-tree-auto-save-history t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -96,14 +97,16 @@
 (global-evil-leader-mode) ; You should enable this before evil mode, otherwise does not work in initial buffers (*scratch*, etc.).
 (evil-leader/set-leader ",")
 (evil-leader/set-key
-  "bd" 'kill-buffer
+  ;;"bd" 'kill-buffer
+  "bd" 'kill-this-buffer
   "bn" 'next-buffer
   "bp" 'previous-buffer
   ;;"bl" 'list-buffers
   "bl" 'ibuffer
   "bs" 'ido-switch-buffer
   "s" 'save-buffer
-  "q" 'save-buffers-kill-terminal)
+  ;;"q" 'save-buffers-kill-terminal
+  "q" 'kill-this-buffer)
 (use-package key-chord
   :ensure key-chord)
 (require 'key-chord)
@@ -118,7 +121,8 @@
 ;(key-chord-define evil-insert-state-map ",q" 'my-esc-quit)
 ;(key-chord-define evil-normal-state-map ",q" 'save-buffers-kill-terminal)
 (define-key evil-insert-state-map "\C-q" 'my-esc-quit)
-(define-key evil-normal-state-map "\C-q" 'save-buffers-kill-terminal)
+;;(define-key evil-normal-state-map "\C-q" 'save-buffers-kill-terminal)
+(define-key evil-normal-state-map "\C-q" 'kill-this-buffer)
 (define-key evil-normal-state-map "\C-n" 'evil-next-line)
 (define-key evil-normal-state-map "\C-p" 'evil-previous-line)
 
@@ -129,7 +133,8 @@
 (defun my-esc-quit()
   (interactive)
   (evil-normal-state)
-  (save-buffers-kill-terminal))
+  ;;(save-buffers-kill-terminal)
+  (kill-this-buffer))
 
 ;; flycheck prerequisite
 (use-package exec-path-from-shell
@@ -144,6 +149,9 @@
   (global-flycheck-mode))
 (require 'flycheck)
 (evil-set-initial-state 'flycheck-error-list-mode 'emacs)
+(set-face-attribute 'flycheck-warning nil
+                   :foreground "yellow"
+                    :background "red")
 ;(add-hook 'flycheck-error-list-mode-hook 'turn-off-evil-mode)
 ;; c-c ! l
 
@@ -224,10 +232,11 @@
   :ensure ack)
 (require 'ack)
 
-(use-package centered-cursor-mode
-  :ensure centered-cursor-mode)
-(require 'centered-cursor-mode)
-(global-centered-cursor-mode +1)
+;; centered line
+;;(use-package centered-cursor-mode
+;;  :ensure centered-cursor-mode)
+;;(require 'centered-cursor-mode)
+;;(global-centered-cursor-mode +1)
 
 (use-package ido
   :ensure ido)

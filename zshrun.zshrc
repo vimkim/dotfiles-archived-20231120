@@ -18,3 +18,10 @@ fi
 
 RUN='unco'
 eval "$RUN"
+RUN='echo "library books return"'
+eval "$RUN"
+eval "$RUN"
+RUN='echo "대관세찰"'
+eval "$RUN"
+RUN='echo "이 문제는 어떻게 푸는 거에요?"'
+eval "$RUN"

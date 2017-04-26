@@ -346,6 +346,9 @@ set runtimepath+=~/.vim/mySnips/"
 let g:UltiSnipsSnippetsDir = "~/.vim/mySnips/UltiSnips"
 " Defines the directories for looking for snippets. Do not mix up.
 let g:UltiSnipsSnippetsDirectories = ["~/.vim/mySnips/UltiSnips"]
+" maybe python bug fix? https://github.com/SirVer/ultisnips/issues/510 " no it does not solve
+au CmdwinEnter * call UltiSnips#LeavingBuffer()
+au CmdwinLeave * call UltiSnips#LeavingBuffer()
 
 "for autocompletion
 "inoremap <c-x><c-k> <c-x><c-k>
@@ -668,5 +671,7 @@ let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_python_binary_path = 'python'
 let g:ycm_global_ycm_extra_conf = '~/runtime_config/.ycm_extra_conf_general.py'
 let g:ycm_confirm_extra_conf = 0 "ask at bufenter
+set completeopt=menu
+let g:ycm_add_preview_to_completeopt = 0
 ")
 
