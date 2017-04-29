@@ -12,42 +12,52 @@
 (setq auto-save-default nil) ;stop creating #autosave# files
 (setq visible-bell 1)
 ;;(menu-bar-mode -1)
+
 (tool-bar-mode -1)
 
+(require 'whitespace)
+(setq whitespace-display-mappings
+   ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
+  '(
+    (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+    (newline-mark 10 [182 10]) ; 10 LINE FEED
+    (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
+    ))
+(setq whitespace-style '(face tabs trailing tab-mark space-mark))
+(set-face-attribute 'whitespace-tab nil
+                    :background "#f0f0f0"
+                    :foreground "#00a8a8"
+                    :weight 'bold)
+(set-face-attribute 'whitespace-trailing nil
+                    :background "#e4eeff"
+                    :foreground "#183bc8"
+                    :weight 'normal)
+(add-hook 'prog-mode-hook 'whitespace-mode)
+
+(global-whitespace-mode 1)
+
 ;;(setq inhibit-startup-screen t) ; no welcome page
+
 ;;(x-focus-frame nil)
 
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
-;;(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (require 'package)
+;;(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+;;			 ("marmalade" . "https://marmalade-repo.org/packages/")
+;;			 ("melpa" . "https://melpa.org/packages/")))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
+
+(require 'use-package)
+
 (global-linum-mode t)
-(setq linum-format "%d \u2502")
+;;(setq linum-format "%d\t \u2502")
+(setq linum-format "%d\t")
+;;(setq linum-format "%d~")
 
 ;;(use-package linum-relative
 ;;:ensure linum-relative)
 ;;(require 'linum-relative)
 ;;(linum-relative-on)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(global-undo-tree-mode t)
- '(package-selected-packages
-   (quote
-    (shackle popwin smooth-scroll smooth-scrolling fiplr helm sublimity centered-cursor-mode ack ## autopair pkg-info evil dash)))
- '(server-mode t)
- '(undo-tree-auto-save-history t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 (use-package jedi
   :ensure t
@@ -71,7 +81,7 @@
 (global-evil-surround-mode 1)
 (use-package evil-nerd-commenter
   :ensure evil-nerd-commenter)
-(require 'evil-nerd-commenter)
+(require 'evil-nerd-commenter) ;; C-c l
 (use-package evil-exchange
   :ensure evil-exchange)
 (require 'evil-exchange)
@@ -106,7 +116,10 @@
   "bs" 'ido-switch-buffer
   "s" 'save-buffer
   ;;"q" 'save-buffers-kill-terminal
-  "q" 'kill-this-buffer)
+  "q" 'kill-this-buffer
+  "ci" 'evilnc-comment-or-uncomment-lines
+  "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+  "ll" 'evilnc-quick-comment-or-uncomment-to-the-line)
 (use-package key-chord
   :ensure key-chord)
 (require 'key-chord)
@@ -116,10 +129,10 @@
   :ensure key-seq)
 (key-seq-define evil-insert-state-map ",s" 'my-esc-save)
 (key-seq-define evil-insert-state-map ",q" 'my-esc-quit)
-;(key-chord-define evil-insert-state-map ",s" 'my-esc-save)
-;(key-chord-define evil-normal-state-map ",s" 'save-buffer)
-;(key-chord-define evil-insert-state-map ",q" 'my-esc-quit)
-;(key-chord-define evil-normal-state-map ",q" 'save-buffers-kill-terminal)
+					;(key-chord-define evil-insert-state-map ",s" 'my-esc-save)
+					;(key-chord-define evil-normal-state-map ",s" 'save-buffer)
+					;(key-chord-define evil-insert-state-map ",q" 'my-esc-quit)
+					;(key-chord-define evil-normal-state-map ",q" 'save-buffers-kill-terminal)
 (define-key evil-insert-state-map "\C-q" 'my-esc-quit)
 ;;(define-key evil-normal-state-map "\C-q" 'save-buffers-kill-terminal)
 (define-key evil-normal-state-map "\C-q" 'kill-this-buffer)
@@ -148,11 +161,11 @@
   :init
   (global-flycheck-mode))
 (require 'flycheck)
-(evil-set-initial-state 'flycheck-error-list-mode 'emacs)
+;;(evil-set-initial-state 'flycheck-error-list-mode 'emacs)
 (set-face-attribute 'flycheck-warning nil
-                   :foreground "yellow"
-                    :background "red")
-;(add-hook 'flycheck-error-list-mode-hook 'turn-off-evil-mode)
+		    :foreground "yellow"
+		    :background "red")
+					;(add-hook 'flycheck-error-list-mode-hook 'turn-off-evil-mode)
 ;; c-c ! l
 
 ;;;; MAPPING
@@ -163,8 +176,12 @@
 ;; ;->: mapping
 (define-key evil-normal-state-map (kbd ";") 'evil-ex)
 
+;;tab to space indent
+(setq-default indent-tabs-mode nil)
+
 ;;autoindent
 (define-key global-map (kbd "RET") 'newline-and-indent)
+(setq-default c-basic-offset 4)
 
 (use-package autopair
   :ensure autopair)
@@ -185,10 +202,18 @@
 
 ;;;; theme
 ;; zenburn
+
 (use-package zenburn-theme
-  :ensure zenburn-theme)
+:ensure zenburn-theme)
 (require 'zenburn-theme)
 (load-theme 'zenburn t)
+
+;; (use-package hc-zenburn-theme
+;;   :ensure hc-zenburn-theme)
+;; (require 'hc-zenburn-theme)
+;; (load-theme 'hc-zenburn t)
+
+;; font size 20pt
 (set-face-attribute 'default nil :height 200)
 ;;; c-x c-- & c-x c-=
 
@@ -201,6 +226,7 @@
 (setq yas-triggers-in-field t); Enable nested triggering of snippets
 ;; map to c-l and c-k
 ;;(define-key yas-keymap (kbd "C-l") 'yas-next-field-or-maybe-expand)
+(define-key yas-keymap (kbd "C-l") 'yas-next-field)
 (define-key yas-keymap "\C-l" 'yas-prev-field)
 
 
@@ -278,7 +304,7 @@
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x r b") #'helm-bookmarks)
 (global-set-key (kbd "M-x") #'helm-M-x)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
+;;(global-set-key (kbd "C-x C-f") #'helm-find-files)
 (helm-mode 1)
 
 (use-package fiplr
@@ -293,20 +319,27 @@
 (define-key ac-menu-map "\C-n" 'ac-next)
 (define-key ac-menu-map "\C-p" 'ac-previous)
 
+;; (use-package company
+;;   :ensure company)
+;; (require 'company)
+;; (global-company-mode t)
+
 ;; Sane behavior of popup windows (move focus to popup)
 (use-package popwin
   :ensure popwin)
 (add-to-list 'popwin:special-display-config `(flycheck-error-list-mode :height 0.5 :regexp t :position bottom))
 (require 'popwin)
 (popwin-mode 1)
+
 ;;shackle does similar
-(use-package shackle
-  :ensure shackle)
-(require 'shackle)
+;;(use-package shackle
+;;  :ensure shackle)
+;;(require 'shackle)
 
 ;; macos clipboard copy / paste
 ;; M-| (shell-command-on-region) pbpaste RET
 (defun pbcopy-macos ()
+  "'mac-os' copy to clipboard."
   (interactive)
   (call-process-region (point) (mark) "pbcopy")
   (setq deactivate-mark t))
@@ -314,3 +347,19 @@
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (popwin fiplr helm ack yasnippet zenburn-theme autopair flycheck exec-path-from-shell key-seq key-chord evil-leader evil-exchange evil-nerd-commenter evil-surround evil jedi use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; following functions evil-normal-state might not be evaluated at runtime - completely normal

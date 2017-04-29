@@ -27,7 +27,7 @@ fi
 echo "nvimexist = $nvimexist"
 echo "myvi = $myvi"
 ## now everything is going to be emacs
-myvi=emacsclient
+#myvi=emacsclient
 
 # default editor (required for tmuxinator somehow)
 if [[ $platform == 'linux' ]]; then
@@ -109,6 +109,8 @@ alias vvimrc='vim ~/runtime_config/.vimrc'
 alias vnvimrc='vim ~/runtime_config/init.vim'
 alias initel='emacs ~/runtime_config/init.el'
 alias ginitel='gemacs ~/runtime_config/init.el'
+alias enitel='emacsclient ~/runtime_config/init.el'
+alias initel='emacs ~/runtime_config/init.el'
 alias vinitel='$myvi ~/runtime_config/init.el'
 
 # accessibility aliases
@@ -173,6 +175,7 @@ alias muxo='mux open'
 alias muxs='mux start'
 alias muxst='mux start stream'
 alias muxstop='mux start stopwatch'
+alias muxe='mux start emacs'
 
 # ranger 
 # when quit ranger, change shell directory to last visited ranger directory
@@ -198,8 +201,8 @@ fi
 # Compiler
 if [[ $platform == 'macos' ]]; then
     alias gcc='/usr/local/Cellar/gcc/6.3.0_1/bin/gcc-6'
+    alias g++='/usr/local/Cellar/gcc/6.3.0_1/bin/g++-6'
 fi
-#alias g++='/usr/local/Cellar/gcc/6.2.0/bin/g++-6'
 
 # LaTeX
 #alias pdflatex='/usr/local/texlive/2016/bin/x86_64-darwin/pdflatex'
@@ -241,13 +244,25 @@ alias o='open' # mac
 alias oas='open -a Safari' # mac
 alias oac='open -a /Applications/Google\ Chrome.app'
 if [[ $platform == 'macos' ]]; then
-    alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs -nw' #nw stands for no graphical window; use terminal
-    alias emacs=emacsclient
-    alias gemacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs' #gui emacs
+    #alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs -nw' #nw stands for no graphical window; use terminal
+    alias emacs='/usr/local/bin/emacs -nw'
+    #alias gemacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs' #gui emacs
+    alias gemacs='/usr/local/bin/emacs'
     echo "use mac-emacs"
 fi
-alias e='emacs'
-alias ge=gemacs
+#alias e='emacsclient -t'
+#alias ge='emacsclient -c -a emacs'
+alias em='emacs'
+alias gem='gemacs'
+alias ec='emacsclient -t'
+alias gec='emacsclient'
+alias eda='emacs --daemon'
+alias geda='gemacs --daemon'
+alias iseda='ps x | grep "emacs"'
+alias killeda='emacsclient -e "(kill-emacs)"' # kill emacs server and daemon
+alias freda='killeda && eda' # refresh eda
+alias e='emacsclient -t'
+alias ge='emacsclient'
 
 # personal url aliases
 alias gmail='open http://www.gmail.com'
@@ -331,3 +346,4 @@ alias emd='cl ~/.emacs.d/'
 
 # custom alias
 alias ali='$myvi ~/runtime_config/temp-aliaslist.sh'
+alias soali='source ~/runtime_config/temp-aliaslist.sh'
