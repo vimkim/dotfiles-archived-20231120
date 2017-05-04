@@ -62,6 +62,7 @@ nnoremap <leader>q :q<CR>
 inoremap <leader>q <ESC>:q<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :Gwrite<cr>:Gcommit --verbose<cr>
+"nnoremap <c-x><c-c> :q<cr> "does not work, why?
 ")
 
 nnoremap sq <esc>:wq<esc>
