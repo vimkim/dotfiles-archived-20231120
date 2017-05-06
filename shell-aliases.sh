@@ -251,9 +251,9 @@ if [[ $platform == 'macos' ]]; then
     echo "use mac-emacs"
 fi
 #alias e='emacsclient -t'
-#alias ge='emacsclient -c -a emacs'
+alias ge='emacsclient -c -a emacs'
 alias em='emacs'
-alias gem='gemacs'
+alias gema='gemacs'
 alias ec='emacsclient -t'
 alias gec='emacsclient'
 alias eda='emacs --daemon'
@@ -305,6 +305,7 @@ alias gall='$myvi ~/Google\ Drive/diary/gall.md'
 alias whome='cd /mnt/l/'
 
 # make
+alias m=make
 alias cpmake='cp ~/runtime_config/Makefile_C_general ./Makefile'
 alias cppmake='cp ~/runtime_config/Makefile_CPP_general ./Makefile'
 
@@ -347,3 +348,5 @@ alias emd='cl ~/.emacs.d/'
 # custom alias
 alias ali='$myvi ~/runtime_config/temp-aliaslist.sh'
 alias soali='source ~/runtime_config/temp-aliaslist.sh'
+
+alias clr='clear' # clear terminal screen
