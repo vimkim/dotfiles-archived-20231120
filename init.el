@@ -17,12 +17,12 @@
 
 (require 'whitespace)
 (setq whitespace-display-mappings
-   ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
-  '(
-    (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-    (newline-mark 10 [182 10]) ; 10 LINE FEED
-    (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
-    ))
+      ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
+      '(
+        (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+        (newline-mark 10 [182 10]) ; 10 LINE FEED
+        (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
+        ))
 (setq whitespace-style '(face tabs trailing tab-mark space-mark))
 (set-face-attribute 'whitespace-tab nil
                     :background "#f0f0f0"
@@ -50,8 +50,8 @@
 (require 'use-package)
 
 (global-linum-mode t)
-;;(setq linum-format "%d\t \u2502")
-(setq linum-format "%d\t")
+(setq linum-format "%d \u2502")
+;;(setq linum-format "%d \t")
 ;;(setq linum-format "%d~")
 
 ;;(use-package linum-relative
@@ -129,10 +129,10 @@
   :ensure key-seq)
 (key-seq-define evil-insert-state-map ",s" 'my-esc-save)
 (key-seq-define evil-insert-state-map ",q" 'my-esc-quit)
-					;(key-chord-define evil-insert-state-map ",s" 'my-esc-save)
-					;(key-chord-define evil-normal-state-map ",s" 'save-buffer)
-					;(key-chord-define evil-insert-state-map ",q" 'my-esc-quit)
-					;(key-chord-define evil-normal-state-map ",q" 'save-buffers-kill-terminal)
+                                        ;(key-chord-define evil-insert-state-map ",s" 'my-esc-save)
+                                        ;(key-chord-define evil-normal-state-map ",s" 'save-buffer)
+                                        ;(key-chord-define evil-insert-state-map ",q" 'my-esc-quit)
+                                        ;(key-chord-define evil-normal-state-map ",q" 'save-buffers-kill-terminal)
 (define-key evil-insert-state-map "\C-q" 'my-esc-quit)
 ;;(define-key evil-normal-state-map "\C-q" 'save-buffers-kill-terminal)
 (define-key evil-normal-state-map "\C-q" 'kill-this-buffer)
@@ -163,10 +163,11 @@
 (require 'flycheck)
 ;;(evil-set-initial-state 'flycheck-error-list-mode 'emacs)
 (set-face-attribute 'flycheck-warning nil
-		    :foreground "yellow"
-		    :background "red")
-					;(add-hook 'flycheck-error-list-mode-hook 'turn-off-evil-mode)
+                    :foreground "yellow"
+                    :background "red")
+                                        ;(add-hook 'flycheck-error-list-mode-hook 'turn-off-evil-mode)
 ;; c-c ! l
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;;;; MAPPING
 ;; gj, gk mapping
@@ -202,11 +203,10 @@
 
 ;;;; theme
 ;; zenburn
-
-(use-package zenburn-theme
-:ensure zenburn-theme)
-(require 'zenburn-theme)
-(load-theme 'zenburn t)
+;;(use-package zenburn-theme
+;;  :ensure zenburn-theme)
+;;(require 'zenburn-theme)
+;;(load-theme 'zenburn t)
 
 ;; (use-package hc-zenburn-theme
 ;;   :ensure hc-zenburn-theme)
@@ -281,6 +281,11 @@
   :ensure undo-tree)
 (require 'undo-tree)
 (global-undo-tree-mode t) ; use c-x u and hjkl
+;;(undo-tree-auto-save-history t) ;use m-x customize-group instead.
+(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+;;(setq backup-directory-alist `(("." . "~/.saves")))
+
+;; save undo history
 
 ;;advanced buffer navigation
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -345,6 +350,58 @@
   (setq deactivate-mark t))
 (global-set-key (kbd "C-c c") 'pbcopy-macos)
 
+(use-package helm-etags-plus
+  :ensure helm-etags-plus)
+;; supports multiple tag files
+;;(setq tags-table-list '("/path/of/tags1" "/path/of/tags2"))
+
+;;(use-package ctags-update
+;; :ensure ctags-update)
+;;(autoload 'turn-on-ctags-auto-update-mode "ctags-update" "turn on 'ctags-auto-update-mode'." t)
+;;(add-hook 'c-mode-common-hook  'turn-on-ctags-auto-update-mode)
+;;(add-hook 'emacs-lisp-mode-hook  'turn-on-ctags-auto-update-mode)
+
+;; if you want to update (create) TAGS manually
+;;(autoload 'ctags-update "ctags-update" "update TAGS using ctags" t)
+;;(global-set-key "\C-cE" 'ctags-update)
+
+(use-package tabbar
+  :ensure tabbar)
+(tabbar-mode t)
+
+(defadvice find-tag (around refresh-etags activate)
+  "Rerun etags and reload tags if tag not found and redo find-tag.  If buffer is modified, ask about save before running etags.  "
+  (let ((extension (file-name-extension (buffer-file-name))))
+    (condition-case err
+        ad-do-it
+      (error (and (buffer-modified-p)
+                  (not (ding))
+                  (y-or-n-p "Buffer is modified, save it? ")
+                  (save-buffer))
+             (er-refresh-etags extension)
+             ad-do-it))))
+
+(defun er-refresh-etags (&optional extension)
+  "Run etags on all peer files in current dir and reload them silently."
+  (interactive)
+  (shell-command (format "etags *.%s" (or extension "el")))
+  (let ((tags-revert-without-query t))  ; don't query, revert silently
+    (visit-tags-table default-directory nil)))
+
+;; mac + iterm2 mouse support
+(unless window-system
+  (require 'mouse)
+  (xterm-mouse-mode t)
+  (global-set-key [mouse-4] (lambda ()
+                              (interactive)
+                              (scroll-down 1)))
+  (global-set-key [mouse-5] (lambda ()
+                              (interactive)
+                              (scroll-up 1)))
+  (defun track-mouse (e))
+  (setq mouse-sel-mode t)
+  )
+
 (provide 'init)
 ;;; init.el ends here
 (custom-set-variables
@@ -354,7 +411,8 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (popwin fiplr helm ack yasnippet zenburn-theme autopair flycheck exec-path-from-shell key-seq key-chord evil-leader evil-exchange evil-nerd-commenter evil-surround evil jedi use-package))))
+    (tabbar popwin fiplr helm ack yasnippet zenburn-theme autopair flycheck exec-path-from-shell key-seq key-chord evil-leader evil-exchange evil-nerd-commenter evil-surround evil jedi use-package)))
+ '(undo-tree-auto-save-history t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
