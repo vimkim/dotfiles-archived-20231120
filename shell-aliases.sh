@@ -17,6 +17,28 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 echo "platform = $platform"
 
+# emacs aliases
+if [[ $platform == 'macos' ]]; then
+    #alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs -nw' #nw stands for no graphical window; use terminal
+    alias emacs='/usr/local/bin/emacs -nw'
+    #alias gemacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs' #gui emacs
+    alias gemacs='/usr/local/bin/emacs'
+    echo "use mac-emacs"
+fi
+#alias e='emacsclient -t'
+alias ge='emacsclient -c -a emacs'
+alias em='emacs'
+alias gema='gemacs'
+alias ec='emacsclient -t'
+alias gec='emacsclient'
+alias eda='emacs --daemon'
+alias geda='gemacs --daemon'
+alias iseda='ps x | grep "emacs"'
+alias killeda='emacsclient -e "(kill-emacs)"' # kill emacs server and daemon
+alias freda='killeda && eda' # refresh eda
+alias e='emacsclient -t'
+alias ge='emacsclient'
+
 # Detect nvim
 nvimexist='false'
 myvi='vim'
@@ -24,6 +46,10 @@ if hash nvim 2>/dev/null; then
     nvimexist='true'
     myvi='nvim'
 fi
+
+# if emacs is  normal, use emacsclient. Otherwise comment it out
+myvi='emacsclient'
+
 echo "nvimexist = $nvimexist"
 echo "myvi = $myvi"
 ## now everything is going to be emacs
@@ -243,26 +269,6 @@ alias jse='bundle exec jekyll serve -w' # jekyll server
 alias o='open' # mac 
 alias oas='open -a Safari' # mac
 alias oac='open -a /Applications/Google\ Chrome.app'
-if [[ $platform == 'macos' ]]; then
-    #alias emacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs -nw' #nw stands for no graphical window; use terminal
-    alias emacs='/usr/local/bin/emacs -nw'
-    #alias gemacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs' #gui emacs
-    alias gemacs='/usr/local/bin/emacs'
-    echo "use mac-emacs"
-fi
-#alias e='emacsclient -t'
-alias ge='emacsclient -c -a emacs'
-alias em='emacs'
-alias gema='gemacs'
-alias ec='emacsclient -t'
-alias gec='emacsclient'
-alias eda='emacs --daemon'
-alias geda='gemacs --daemon'
-alias iseda='ps x | grep "emacs"'
-alias killeda='emacsclient -e "(kill-emacs)"' # kill emacs server and daemon
-alias freda='killeda && eda' # refresh eda
-alias e='emacsclient -t'
-alias ge='emacsclient'
 
 # personal url aliases
 alias gmail='open http://www.gmail.com'
@@ -334,6 +340,8 @@ alias music='$myvi ~/Google\ Drive/song-list.md'
 alias song='$myvi ~/Google\ Drive/song-list.md'
 
 alias bookyrun='~/booky/booky.sh'
+alias bookyincrement='$myvi ~/booky/increment.py'
+alias bookyrunincrement='python ~/booky/increment.py'
 
 alias cour='cl ~/courses'
 
@@ -350,3 +358,7 @@ alias ali='$myvi ~/runtime_config/temp-aliaslist.sh'
 alias soali='source ~/runtime_config/temp-aliaslist.sh'
 
 alias clr='clear' # clear terminal screen
+
+alias mouseread='defaults read .GlobalPreferences com.apple.mouse.scaling'
+alias mousewritemo='defaults write .GlobalPreferences com.apple.mouse.scaling -1'
+alias mousewriteo='defaults write .GlobalPreferences com.apple.mouse.scaling 1'
