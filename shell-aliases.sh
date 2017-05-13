@@ -36,7 +36,7 @@ alias geda='gemacs --daemon'
 alias iseda='ps x | grep "emacs"'
 alias killeda='emacsclient -e "(kill-emacs)"' # kill emacs server and daemon
 alias freda='killeda && eda' # refresh eda
-alias e='emacsclient -t'
+#alias e='emacsclient -t'
 alias ge='emacsclient'
 
 # Detect nvim
@@ -46,11 +46,10 @@ if hash nvim 2>/dev/null; then
     nvimexist='true'
     myvi='nvim'
 fi
-
+echo "nvimexist = $nvimexist"
 # if emacs is  normal, use emacsclient. Otherwise comment it out
 myvi='emacsclient'
 
-echo "nvimexist = $nvimexist"
 echo "myvi = $myvi"
 ## now everything is going to be emacs
 #myvi=emacsclient

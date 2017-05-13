@@ -11,7 +11,7 @@ c(){
     fi
 }
 
-v(){
+e(){
     if [ -d $@ ]; then
         cl "$@"
         #elif [ -f $@ ]; then

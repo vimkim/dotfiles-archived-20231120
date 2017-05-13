@@ -3,6 +3,7 @@
 ;;hello Emacs!
 ;;; Code:
 ;;; Basic Configurations
+(setq debug-on-error t)
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; backup files go to ~/.saves
 (setq backup-directory-alist `(("." . "~/.saves")))
@@ -128,6 +129,7 @@
   :ensure key-seq)
 (key-seq-define evil-insert-state-map ",s" 'my-esc-save)
 (key-seq-define evil-insert-state-map ",q" 'my-esc-quit)
+(key-seq-define evil-normal-state-map "gf" 'helm-find-files)
                                         ;(key-chord-define evil-insert-state-map ",s" 'my-esc-save)
                                         ;(key-chord-define evil-normal-state-map ",s" 'save-buffer)
                                         ;(key-chord-define evil-insert-state-map ",q" 'my-esc-quit)
@@ -295,7 +297,7 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Makes *scratch* empty.
-;;(setq initial-scratch-message "")
+(setq initial-scratch-message "")
 ;; Removes *scratch* from buffer after the mode has been set.
 (defun remove-scratch-buffer ()
   "Remove *scratch* and *messages*."
@@ -303,8 +305,8 @@
       (kill-buffer "*scratch*")))
 (add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
 ;; Removes *messages* from the buffer.
-;;(setq-default message-log-max nil)
-;;(kill-buffer "*Messages*")
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
 
 ;; thanks for the source: https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
 
@@ -316,6 +318,7 @@
 (global-set-key (kbd "M-x") #'helm-M-x)
 ;;(global-set-key (kbd "C-x C-f") #'helm-find-files)
 (helm-mode 1)
+
 
 (use-package fiplr
   :ensure fiplr)
