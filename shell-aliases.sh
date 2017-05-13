@@ -48,26 +48,27 @@ if hash nvim 2>/dev/null; then
 fi
 echo "nvimexist = $nvimexist"
 # if emacs is  normal, use emacsclient. Otherwise comment it out
-myvi='emacsclient'
+#myed=$myvi
+myed='emacsclient'
 
-echo "myvi = $myvi"
+echo "myed = $myed"
 ## now everything is going to be emacs
-#myvi=emacsclient
+#myed=emacsclient
 
 # default editor (required for tmuxinator somehow)
 if [[ $platform == 'linux' ]]; then
-    export EDITOR=/usr/bin/$myvi
-    export VISUAL=/usr/bin/$myvi
+    export EDITOR=/usr/bin/$myed
+    export VISUAL=/usr/bin/$myed
 elif [[ $platform == 'macos' ]]; then
-    export EDITOR=/usr/local/bin/$myvi
-    export VISUAL=/usr/local/bin/$myvi
+    export EDITOR=/usr/local/bin/$myed
+    export VISUAL=/usr/local/bin/$myed
 else 
     echo "default editor / visual not set"
 fi
 
 ##### ALIASES #####
 # 1. ls
-# 2. $myvi
+# 2. $myed
 # 3. cl, c, v functions
 # 4. zshrc, vimrc functions
 # 5. accessibility (e.g. rm -i)
@@ -78,9 +79,10 @@ fi
 # 10. PERSONAL
 
 # ls aliases
-#alias ls='ls --color=auto'
+# alias ls='ls --color=auto'
 if [[ $platform == "macos" ]]; then
-    alias ls='ls -GF'
+    # alias ls='ls -GF'
+    alias ls='ls --color=auto -F'
 elif [[ $platform == "linux" ]]; then
     if [ -x /usr/bin/dircolors ]; then
         test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -113,7 +115,7 @@ cl(){
 }
 
 vim_with_date(){
-    $myvi "$(date +%y%m%d)_$1"
+    $myed "$(date +%y%m%d)_$1"
 }
 alias vda='vim_with_date'
 mkdir_with_date(){
@@ -123,7 +125,7 @@ alias mda='mkdir_with_date'
 
 # rc function
 alias zshrc='$myvi ~/runtime_config/.zshrc'
-alias bashrc='$myvi ~/runtime_config/.bashrc'
+alias bashrc='$myed ~/runtime_config/.bashrc'
 alias sozsh='source ~/.zshrc'
 alias sobash='source ~/.bashrc'
 
@@ -136,7 +138,7 @@ alias initel='emacs ~/runtime_config/init.el'
 alias ginitel='gemacs ~/runtime_config/init.el'
 alias enitel='emacsclient ~/runtime_config/init.el'
 alias initel='emacs ~/runtime_config/init.el'
-alias vinitel='$myvi ~/runtime_config/init.el'
+alias vinitel='$myed ~/runtime_config/init.el'
 
 # accessibility aliases
 alias rm='rm -iv'
@@ -252,11 +254,11 @@ alias project='cd ~/notetaking/1_fine482/project/; ls -a'
 alias mysnips='cd ~/runtime_config/mysnips/UltiSnips; ls -a'
 
 # personal edit aliases
-alias tmuxconf='$myvi ~/runtime_config/.tmux.conf'
-alias keep='$myvi ~/Google\ Drive/keep_offline.md'
-alias todo='$myvi ~/Google\ Drive/keep_offline.md'
-alias todostack='$myvi ~/.todostack.md'
-alias toask='$myvi ~/Google\ Drive/ask_offline.md'
+alias tmuxconf='$myed ~/runtime_config/.tmux.conf'
+alias keep='$myed ~/Google\ Drive/keep_offline.md'
+alias todo='$myed ~/Google\ Drive/keep_offline.md'
+alias todostack='$myed ~/.todostack.md'
+alias toask='$myed ~/Google\ Drive/ask_offline.md'
 
 # personal cat aliases
 
@@ -297,7 +299,7 @@ bills(){
 # shell level (find if nested)
 alias shlv='echo $SHLVL'
 studylog(){
-    $myvi ~/Google\ Drive/diary/studylog/studylog_$(date +%y-%m-%d).md
+    $myed ~/Google\ Drive/diary/studylog/studylog_$(date +%y-%m-%d).md
 }
 
 # FZF change completion key
@@ -305,7 +307,7 @@ studylog(){
 #bindkey '^p' fzf-completion
 #bindkey '^I' $fzf_default_completion # not working well
 
-alias gall='$myvi ~/Google\ Drive/diary/gall.md'
+alias gall='$myed ~/Google\ Drive/diary/gall.md'
 
 alias whome='cd /mnt/l/'
 
@@ -335,12 +337,12 @@ alias skim-pdf-bg-color='osascript ~/runtime_config/skim-pdf-bgcolor.scpt'
 
 alias unco='uncommitted ~/hs-quest ~/mymanual ~/mygitbooks ~/runtime_config'
 
-alias music='$myvi ~/Google\ Drive/song-list.md'
-alias song='$myvi ~/Google\ Drive/song-list.md'
+alias music='$myed ~/Google\ Drive/song-list.md'
+alias song='$myed ~/Google\ Drive/song-list.md'
 
 alias bookyrun='~/booky/booky.sh'
-alias bookyincrement='$myvi ~/booky/increment.py'
-alias bookyrunincrement='python ~/booky/increment.py'
+alias bookyincrement='$myed ~/booky/increment.py'
+alias bookyrun_increment='python ~/booky/increment.py'
 
 alias cour='cl ~/courses'
 
@@ -361,3 +363,5 @@ alias clr='clear' # clear terminal screen
 alias mouseread='defaults read .GlobalPreferences com.apple.mouse.scaling'
 alias mousewritemo='defaults write .GlobalPreferences com.apple.mouse.scaling -1'
 alias mousewriteo='defaults write .GlobalPreferences com.apple.mouse.scaling 1'
+
+alias books='cl ~/Google\ Drive/books/comp'
