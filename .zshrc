@@ -145,7 +145,7 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # Aliases
 source ~/runtime_config/shell-aliases.sh
-source ~/runtime_config/zshaliases.zshrc
+source ~/runtime_config/zshaliases.zsh
 source ~/runtime_config/temp-aliaslist.sh
 # Run at initialization
 source ~/runtime_config/zshrun.zshrc
