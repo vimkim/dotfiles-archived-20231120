@@ -60,11 +60,10 @@
 ;;(linum-relative-on)
 
 (use-package jedi
-  :ensure t
-  :init
-  (add-hook 'python-mode-hook 'jedi:setup)
-  (add-hook 'python-mode-hook 'jedi:ac-setup)
-  )
+  :ensure jedi)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t) ; optional
+(add-hook 'python-mode-hook 'jedi:ac-setup)
 
 ;; (add-to-list 'load-path "~/.emacs.d/evil")
 (use-package evil
@@ -182,7 +181,12 @@
 
 ;;autoindent
 (define-key global-map (kbd "RET") 'newline-and-indent)
-(setq-default c-basic-offset 4)
+;; c specific
+(require 'cc-mode)
+;;(setq-default c-basic-offset 4) ;simple indent width
+(setq c-default-style "bsd"
+      c-basic-offset 4)
+
 
 (use-package autopair
   :ensure autopair)
@@ -203,10 +207,10 @@
 
 ;;;; theme
 ;; zenburn
-;;(use-package zenburn-theme
-;;  :ensure zenburn-theme)
-;;(require 'zenburn-theme)
-;;(load-theme 'zenburn t)
+(use-package zenburn-theme
+  :ensure zenburn-theme)
+(require 'zenburn-theme)
+(load-theme 'zenburn t)
 
 ;; (use-package hc-zenburn-theme
 ;;   :ensure hc-zenburn-theme)
@@ -291,7 +295,7 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Makes *scratch* empty.
-(setq initial-scratch-message "")
+;;(setq initial-scratch-message "")
 ;; Removes *scratch* from buffer after the mode has been set.
 (defun remove-scratch-buffer ()
   "Remove *scratch* and *messages*."
@@ -299,8 +303,9 @@
       (kill-buffer "*scratch*")))
 (add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
 ;; Removes *messages* from the buffer.
-(setq-default message-log-max nil)
-(kill-buffer "*Messages*")
+;;(setq-default message-log-max nil)
+;;(kill-buffer "*Messages*")
+
 ;; thanks for the source: https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
 
 (use-package helm
@@ -402,8 +407,34 @@
   (setq mouse-sel-mode t)
   )
 
+(use-package visual-regexp
+  :ensure visual-regexp)
+(require 'visual-regexp)
+(define-key global-map (kbd "C-c r") 'vr/replace)
+(define-key global-map (kbd "C-c q") 'vr/query-replace)
+(define-key global-map (kbd "C-c m") 'vr/mc-mark)
+(use-package visual-regexp-steroids
+  :ensure visual-regexp-steroids)
+(require 'visual-regexp-steroids)
+
+(defun allman-to-kandr()
+  (interactive)
+  ;;(vr/query-replace ")\s*{" "){" (point-min) (point-max)))
+  (vr/query-replace "custom" "hey" (point-min) (point-max)))
+
+
+(defun hello()
+  "hello world and you can call it via M-x hello."
+  (interactive)
+  (message "Hello world!"))
+
+(defun hello(someone)
+  "Say hello to SOMEONE via M-x hello."
+  (interactive "swho do you want to say hello to? ")
+  (message "hello %s!" someone))
+
 (provide 'init)
-;;; init.el ends here
+;;; nit.el ends here
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
