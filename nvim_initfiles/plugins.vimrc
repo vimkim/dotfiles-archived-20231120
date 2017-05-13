@@ -80,8 +80,8 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'ap/vim-buftabline'
 "Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
-Plug 'xolox/vim-misc' " must be before easytags
-Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-misc' " must be before easytags
+"Plug 'xolox/vim-easytags'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -111,7 +111,6 @@ cnoreabbrev Ack Ack!
 nnoremap <leader>ask :Ack!<space>
 nnoremap ;ask :Ack!<space>
 " go to preview, o to open, <c-n> <c-j> to navigate
-
 ")
 
 "(ALE
