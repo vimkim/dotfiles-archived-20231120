@@ -7,7 +7,8 @@ if [[ $iswsl == 'true' ]]; then
 # Launch Zsh if WSL
     if grep -q Microsoft /proc/version; then
         if [ -t 1 ]; then
-            exec zsh
+            # exec zsh
+            :
         fi
     fi
 fi

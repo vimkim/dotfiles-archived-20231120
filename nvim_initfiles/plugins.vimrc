@@ -63,7 +63,7 @@ Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
 "Plug 'Shougo/neoinclude.vim' "too slow
 Plug 'scrooloose/nerdcommenter' "too slow
 Plug 'scrooloose/nerdtree'
-"Plug 'NLKNguyen/papercolor-theme'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'chrisbra/Recover.vim' "temp file diff
 "Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
@@ -401,8 +401,8 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 if !has('nvim') && $iswsl=='true'
     set t_Co=256
 endif
-colorscheme zenburn
-"colorscheme PaperColor
+"colorscheme zenburn
+colorscheme PaperColor
 
 "(RAINBOW-PARENTHESES.VIM
 au VimEnter * RainbowParenthesesToggle
