@@ -95,11 +95,9 @@ elif [[ $platform == "linux" ]]; then
         alias egrep='egrep --color=auto'
     fi
 fi
-alias la='ls -a' # -A inferior
-alias ll='ls -la'
-alias lal='la -l'
-alias lla='la -l'
-alias l='ls -a'
+alias la='ls -A' # -A is cleaner than -a imo. (-A does not include . and ..)
+alias ll='ls -lA'
+alias l='ls -A'
 
 # vim config. If nvim exists, use it
 #viavailable(){
@@ -312,9 +310,10 @@ alias gall='$myed ~/Google\ Drive/diary/gall.md'
 alias whome='cd /mnt/l/'
 
 # make
-alias m=make
+# alias m=make # another m function created
 alias cpmake='cp ~/runtime_config/Makefile_C_general ./Makefile'
 alias cppmake='cp ~/runtime_config/Makefile_CPP_general ./Makefile'
+alias plmake='cp ~/runtime_config/Makefile_Perl_general ./Makefile'
 
 alias mcl='make clean'
 
@@ -354,9 +353,12 @@ alias pandoc='pandoc --atx-headers'
 # emacs directory
 alias emd='cl ~/.emacs.d/'
 
+# shell alias management shortcut
+alias ali='$myvi ~/runtime_config/shell-aliases.sh'
+alias soali='source ~/runtime_config/shell-aliases.sh'
 # custom alias
-alias ali='$myvi ~/runtime_config/temp-aliaslist.sh'
-alias soali='source ~/runtime_config/temp-aliaslist.sh'
+alias cusa='$myvi ~/runtime_config/temp-aliaslist.sh'
+alias socusa='source ~/runtime_config/temp-aliaslist.sh'
 
 alias clr='clear' # clear terminal screen
 
@@ -365,3 +367,32 @@ alias mousewritemo='defaults write .GlobalPreferences com.apple.mouse.scaling -1
 alias mousewriteo='defaults write .GlobalPreferences com.apple.mouse.scaling 1'
 
 alias books='cl ~/Google\ Drive/books/comp'
+
+alias voca='$myvi ~/Google\ Drive/study/voca/teps1.csv'
+
+alias javarun='javac main.java; java main'
+alias pyrun='py main.py'
+alias pyrun2='python2 main.py'
+
+run_what=""
+alias check_run_what='echo $run_what'
+alias set_run_c="run_what='c'"
+alias set_run_py="run_what='python3'"
+alias set_run_py2="run_what='python2'"
+
+m(){
+    echo "this is m function."
+    if [[ "$run_what" == 'c' ]]; then
+        echo "this is make for c or cpp."
+        make
+    elif [[ "$run_what" == 'python3' ]]; then
+        echo "this is python3."
+        pyrun
+    elif [[ "$run_what" == 'python2' ]]; then
+        echo "this is python2."
+        pyrun2
+    else
+        echo "\$run_what value is not initialized. Use set_run_* option. Use check_run_what to check its value."
+    fi
+}
+
