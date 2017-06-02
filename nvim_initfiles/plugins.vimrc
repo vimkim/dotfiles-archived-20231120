@@ -94,6 +94,7 @@ Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
 "Plug 'terryma/vim-multiple-cursors'
 "Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-obsession'
+Plug 'mattn/vim-particle'
 Plug 'tpope/vim-repeat'
 Plug 'jpalardy/vim-slime', { 'for': [ 'python', 'R', 'lisp' ] }
 "Plug 'terryma/vim-smooth-scroll'
