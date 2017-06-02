@@ -3,7 +3,7 @@
 ;;hello Emacs!
 ;;; Code:
 ;;; Basic Configurations
-(setq debug-on-error t)
+;;(setq debug-on-error t)
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; backup files go to ~/.saves
 (setq backup-directory-alist `(("." . "~/.saves")))
@@ -88,7 +88,7 @@
 ;; change default key bindings (if you want) here, before (evil-exchange-install) is called
 ;; (setq evil-exchange-key (kbd "zx"))
 (evil-exchange-install)
-(evil-exchange-cx-install)
+(evil-exchange-cx-install) ;; does not work I guess? the shortcut for this is gx
 
 ;;;; cursor color control
 (setq evil-emacs-state-cursor '("red" box))
@@ -130,10 +130,10 @@
 (key-seq-define evil-insert-state-map ",s" 'my-esc-save)
 (key-seq-define evil-insert-state-map ",q" 'my-esc-quit)
 (key-seq-define evil-normal-state-map "gf" 'helm-find-files)
-                                        ;(key-chord-define evil-insert-state-map ",s" 'my-esc-save)
-                                        ;(key-chord-define evil-normal-state-map ",s" 'save-buffer)
-                                        ;(key-chord-define evil-insert-state-map ",q" 'my-esc-quit)
-                                        ;(key-chord-define evil-normal-state-map ",q" 'save-buffers-kill-terminal)
+;;(key-chord-define evil-insert-state-map ",s" 'my-esc-save)
+;;(key-chord-define evil-normal-state-map ",s" 'save-buffer)
+;;(key-chord-define evil-insert-state-map ",q" 'my-esc-quit)
+;;(key-chord-define evil-normal-state-map ",q" 'save-buffers-kill-terminal)
 (define-key evil-insert-state-map "\C-q" 'my-esc-quit)
 ;;(define-key evil-normal-state-map "\C-q" 'save-buffers-kill-terminal)
 (define-key evil-normal-state-map "\C-q" 'kill-this-buffer)
@@ -177,6 +177,12 @@
 
 ;; ;->: mapping
 (define-key evil-normal-state-map (kbd ";") 'evil-ex)
+
+;; evil-easymotion
+(use-package evil-easymotion
+  :ensure evil-easymotion)
+;;(evilem-default-keybindings ",")
+
 
 ;;tab to space indent
 (setq-default indent-tabs-mode nil)
@@ -242,13 +248,17 @@
 (scroll-bar-mode -1);; hide scroll bar
 ;;(set-specifier vertical-scrollbar-visible-p nil)
 
-;; Not much useful
-;;(autoload 'comint-dynamic-complete-filename "comint" nil t)
-;;(global-set-key "\M-]" 'comint-dynamic-complete-filename)
-
 ;; emacswiki complete file name
-
 (global-set-key (kbd "M-/") 'hippie-expand) ; I like this! It prompts auto-completion list
+;;(fset 'my-complete-file-name
+;;      (make-hippie-expand-function '(try-complete-file-name-partially
+;;                                     try-complete-file-name)))
+;;(global-set-key "\M-/" 'my-complete-file-name)
+
+;; filepath complete using comint
+;;(autoload 'comint-dynamic-complete-filename "comint" nil t) ;; this works, but not with filepath containing spaces like Google\ Drive
+;;(global-set-key "\M-/" 'comint-dynamic-complete-filename)
+
 ;; switch to minibuffer no matter what
 (defun switch-to-minibuffer ()
   "Switch to minibuffer window."
@@ -310,15 +320,14 @@
 
 ;; thanks for the source: https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
 
-(use-package helm
-  :ensure helm)
-(require 'helm-config)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
-(global-set-key (kbd "C-x r b") #'helm-bookmarks)
-(global-set-key (kbd "M-x") #'helm-M-x)
-;;(global-set-key (kbd "C-x C-f") #'helm-find-files)
-(helm-mode 1)
-
+;;(use-package helm
+;;  :ensure helm)
+;;(require 'helm-config)
+;;(global-set-key (kbd "C-x b") 'helm-buffers-list)
+;;(global-set-key (kbd "C-x r b") #'helm-bookmarks)
+;;(global-set-key (kbd "M-x") #'helm-M-x)
+;;;;(global-set-key (kbd "C-x C-f") #'helm-find-files)
+;;(helm-mode 1)
 
 (use-package fiplr
   :ensure fiplr)
@@ -425,7 +434,6 @@
   ;;(vr/query-replace ")\s*{" "){" (point-min) (point-max)))
   (vr/query-replace "custom" "hey" (point-min) (point-max)))
 
-
 (defun hello()
   "hello world and you can call it via M-x hello."
   (interactive)
@@ -435,6 +443,35 @@
   "Say hello to SOMEONE via M-x hello."
   (interactive "swho do you want to say hello to? ")
   (message "hello %s!" someone))
+
+(use-package csv-mode
+  :ensure csv-mode)
+(require 'csv-mode)
+(setq csv-separators '("," ";" "|" "\t"))
+;; M-x toggle-truncate-lines
+;; M-x csv-align-fields
+;; M-x csv-unalign-fields
+;; M-x csv-transpose
+
+;; meta key esc phi problem solving \370
+(set-keyboard-coding-system nil)
+
+;; (defun animated-self-insert ()
+;;   (let* ((undo-entry (car buffer-undo-list))
+;;          (beginning (and (consp undo-entry) (car undo-entry)))
+;;          (end (and (consp undo-entry) (cdr undo-entry)))
+;;          (str (when (and (numberp beginning)
+;;                        (numberp end))
+;;                 (buffer-substring-no-properties beginning end)))
+;;          (animate-n-steps 3))
+;;     (when str
+;;       (delete-region beginning end)
+;;       (animate-string str (1- (line-number-at-pos)) (current-column)))))
+;; (add-hook 'post-self-insert-hook 'animated-self-insert)
+
+;; (use-package powerline-evil
+;;   :ensure powerline-evil)
+;; (require 'powerline-evil)
 
 (provide 'init)
 ;;; nit.el ends here
