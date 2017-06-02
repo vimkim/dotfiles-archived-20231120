@@ -9,7 +9,7 @@ on run argv
     end tell
 tell application "Skim"
 	tell document 1
-			set view settings to {scale factor:1.5, auto scales:false}
+			set view settings to {scale factor:3.0, auto scales:false}
 	end tell
 end tell
 end run
