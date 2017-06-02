@@ -1,0 +1,10 @@
+
+CC=perl
+CCFLAGS=
+LDFLAGS=
+SOURCES=$(wildcard *.pl)
+OBJECTS=
+TARGET=main.pl
+
+all: $(TARGET)
+	perl main.pl
