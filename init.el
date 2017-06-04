@@ -51,7 +51,8 @@
 (require 'use-package)
 
 (global-linum-mode t)
-(setq linum-format "%d \u2502")
+(defvar linum-format)
+(setq linum-format "%d \u2502") ; assignment to free variable without defvar
 ;;(setq linum-format "%d \t")
 ;;(setq linum-format "%d~")
 
@@ -140,24 +141,25 @@
 (define-key evil-normal-state-map "\C-n" 'evil-next-line)
 (define-key evil-normal-state-map "\C-p" 'evil-previous-line)
 
+(declare-function evil-force-normal-state "init.el" nil) ;; just to suppress the runtime warning
 (defun my-esc-save()
   (interactive)
-  (evil-normal-state)
+  (evil-force-normal-state)
   (save-buffer))
 (defun my-esc-quit()
   (interactive)
-  (evil-normal-state)
+  (evil-force-normal-state)
   ;;(save-buffers-kill-terminal)
   (kill-this-buffer))
 
-;; flycheck prerequisite
+;; flycheck macos prerequisite
 (use-package exec-path-from-shell
   :ensure t)
 (require 'exec-path-from-shell)
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 ;; flycheck
-(use-package flycheck
+(use-package flycheck ;; C-c ! l to list ;; C-c ! n (or p) to jump ;; Inside list, use n and p
   :ensure t
   :init
   (global-flycheck-mode))
@@ -166,7 +168,7 @@
 (set-face-attribute 'flycheck-warning nil
                     :foreground "yellow"
                     :background "red")
-                                        ;(add-hook 'flycheck-error-list-mode-hook 'turn-off-evil-mode)
+;;(add-hook 'flycheck-error-list-mode-hook 'turn-off-evil-mode)
 ;; c-c ! l
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
@@ -183,7 +185,6 @@
   :ensure evil-easymotion)
 ;;(evilem-default-keybindings ",")
 
-
 ;;tab to space indent
 (setq-default indent-tabs-mode nil)
 
@@ -194,7 +195,6 @@
 ;;(setq-default c-basic-offset 4) ;simple indent width
 (setq c-default-style "bsd"
       c-basic-offset 4)
-
 
 (use-package autopair
   :ensure autopair)
@@ -210,8 +210,8 @@
   (save-place-mode 1))
 
 ;; cool gdb
-(setq gdb-many-windows t) ; assignment to free variable warning?
-
+(defvar gdb-many-windows)
+(setq gdb-many-windows t) ; assignment to free variable warning without defvar gdb-many-windows
 
 ;;;; theme
 ;; zenburn
@@ -236,14 +236,22 @@
 (yas-global-mode 1)
 ;; trigger snippet inside trigger
 (setq yas-triggers-in-field t); Enable nested triggering of snippets
+;; tab to nil then reassign
+;;(define-key yas-minor-mode-map (kbd "<tab>") nil)
+;;(define-key yas-minor-mode-map (kbd "TAB") nil)
+;;(define-key yas-minor-mode-map (kbd "<tab>") 'yas-expand)
+;;(define-key yas-minor-mode-map (kbd "TAB") 'yas-expand)
+(define-key yas-keymap (kbd "TAB") nil)
+(define-key yas-keymap (kbd "TAB") 'yas-expand)
 ;; map to c-l and c-k
 ;;(define-key yas-keymap (kbd "C-l") 'yas-next-field-or-maybe-expand)
 (define-key yas-keymap (kbd "C-l") 'yas-next-field)
-(define-key yas-keymap "\C-l" 'yas-prev-field)
-
-
+                                        ;(define-key global-map (kbd "C-k") nil)
+;;(define-key evil-insert-state-map (kbd "C-k") nil) ; insert diagraph? What is this?
+;;(global-unset-key (kbd "C-k")) ; unnecessary
+(define-key yas-keymap (kbd "C-k") 'yas-prev-field) ; works
 ;; yasnippet + ac
-(setq-default ac-sources (push 'ac-source-yasnippet ac-sources))
+;;(setq-default ac-sources (push 'ac-source-yasnippet ac-sources))
 
 (scroll-bar-mode -1);; hide scroll bar
 ;;(set-specifier vertical-scrollbar-visible-p nil)
@@ -284,7 +292,13 @@
   :ensure ido)
 (require 'ido)
 (ido-mode 1)
-(setq ido-separator "\n")
+;;(setq ido-separator "\n") ; obsolete
+;;(setq ido-decorations "\n")
+(use-package ido-vertical-mode
+  :ensure ido-vertical-mode)
+(require 'ido-vertical-mode)
+(ido-vertical-mode 1)
+(setq ido-vertical-define-keys 'C-n-and-C-p-only)
 
 (defun switch-to-minibuffer-window ()
   "Switch to minibuffer window (if active)."
@@ -333,18 +347,86 @@
   :ensure fiplr)
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
 
-(use-package auto-complete
-  :ensure auto-complete)
-(ac-config-default)
-;; C-n C-p
-(setq ac-use-menu-map t)
-(define-key ac-menu-map "\C-n" 'ac-next)
-(define-key ac-menu-map "\C-p" 'ac-previous)
+;; (use-package auto-complete
+;;   :ensure auto-complete)
+;; (ac-config-default)
+;; ;; C-n C-p
+;; (setq ac-use-menu-map t)
+;; (define-key ac-menu-map "\C-n" 'ac-next)
+;; (define-key ac-menu-map "\C-p" 'ac-previous)
 
-;; (use-package company
-;;   :ensure company)
-;; (require 'company)
-;; (global-company-mode t)
+(use-package company
+  :ensure company)
+(require 'company)
+(global-company-mode 1)
+;; remap
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  ;;(define-key company-active-map (kbd "C-n") #'company-complete-common-or-cycle)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous)
+  (define-key company-active-map (kbd "RET") nil) ; mapped to tab instead
+  )
+
+;; AC like customization - understood
+(setq company-frontends
+      '(company-pseudo-tooltip-unless-just-one-frontend
+        company-preview-frontend
+        company-echo-metadata-frontend))
+(setq company-require-match 'never)
+;;(setq company-auto-complete t)
+;;(setq company-auto-complete-chars (kbd "SPC"))
+
+;; Company-AC setup
+(defun my-company-visible-and-explicit-action-p () ;; what does this do?
+  "??."
+    (and (company-tooltip-visible-p)
+         (company-explicit-action-p)))
+(defun company-ac-setup () ;; Almost redundant but does the job.
+  "Set up `company-mode' to behave similarly to `auto-complete-mode'."
+  (setq company-require-match nil)
+  (setq company-auto-complete #'my-company-visible-and-explicit-action-p)
+  (setq company-frontends '(company-echo-metadata-frontend
+                            company-pseudo-tooltip-unless-just-one-frontend-with-delay
+                            company-preview-frontend))
+;;  (define-key company-active-map [tab]
+;;    'company-select-next-if-tooltip-visible-or-complete-selection)
+;;  (define-key company-active-map (kbd "TAB")
+;;    'company-select-next-if-tooltip-visible-or-complete-selection)
+  (define-key company-active-map (kbd "TAB")
+    'company-complete-selection)
+  )
+(company-ac-setup)
+
+(use-package irony
+  :ensure irony)
+(require 'irony)
+(use-package company-irony
+  :ensure company-irony)
+
+;; extra settings
+(setq company-idle-delay 0.1) ; company delay until suggestions are shown
+;;(setq company-transformers '(company-sort-by-occurrence)) ; weight by frequency
+(setq company-transformers '(company-sort-by-backend-importance))
+
+;;company + yasnippet
+; Add yasnippet support for all company backends
+;; https://github.com/syl20bnr/spacemacs/pull/179
+(defvar company-mode/enable-yas t
+  "Enable yasnippet for all backends.")
+(defun company-mode/backend-with-yas (backend)
+  "BACKEND ??."
+  (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+      backend
+    (append (if (consp backend) backend (list backend))
+            '(:with company-yasnippet))))
+(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+
+(use-package company-c-headers
+  :ensure company-c-headers)
+(add-to-list 'company-backends 'company-c-headers)
+
 
 ;; Sane behavior of popup windows (move focus to popup)
 (use-package popwin
@@ -387,7 +469,7 @@
 (tabbar-mode t)
 
 (defadvice find-tag (around refresh-etags activate)
-  "Rerun etags and reload tags if tag not found and redo find-tag.  If buffer is modified, ask about save before running etags.  "
+  "Rerun etags and reload tags if tag not found and redo `find-tag'.  If buffer is modified, ask about save before running etags."
   (let ((extension (file-name-extension (buffer-file-name))))
     (condition-case err
         ad-do-it
@@ -399,7 +481,7 @@
              ad-do-it))))
 
 (defun er-refresh-etags (&optional extension)
-  "Run etags on all peer files in current dir and reload them silently."
+  "Run etags on all peer files in current dir and reload them silently.  Argument EXTENSION should appear?."
   (interactive)
   (shell-command (format "etags *.%s" (or extension "el")))
   (let ((tags-revert-without-query t))  ; don't query, revert silently
@@ -416,6 +498,7 @@
                               (interactive)
                               (scroll-up 1)))
   (defun track-mouse (e))
+  (defvar mouse-sel-mode)
   (setq mouse-sel-mode t)
   )
 
@@ -434,13 +517,12 @@
   ;;(vr/query-replace ")\s*{" "){" (point-min) (point-max)))
   (vr/query-replace "custom" "hey" (point-min) (point-max)))
 
-(defun hello()
-  "hello world and you can call it via M-x hello."
-  (interactive)
-  (message "Hello world!"))
-
-(defun hello(someone)
-  "Say hello to SOMEONE via M-x hello."
+;;(defun hello()
+;;  "hello world and you can call it via M-x hello."
+;;  (interactive)
+;;  (message "Hello world!"))
+(defun hello (someone)
+  "Say hello to SOMEONE via \\<m-x>."
   (interactive "swho do you want to say hello to? ")
   (message "hello %s!" someone))
 
@@ -469,12 +551,15 @@
 ;;       (animate-string str (1- (line-number-at-pos)) (current-column)))))
 ;; (add-hook 'post-self-insert-hook 'animated-self-insert)
 
-;; (use-package powerline-evil
-;;   :ensure powerline-evil)
-;; (require 'powerline-evil)
+(use-package powerline-evil
+  :ensure powerline-evil)
+(require 'powerline-evil)
 
-(provide 'init)
-;;; nit.el ends here
+(use-package rainbow-delimiters
+  :ensure rainbow-delimiters)
+(require 'rainbow-delimiters)
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -492,3 +577,5 @@
  )
 
 ;; following functions evil-normal-state might not be evaluated at runtime - completely normal
+(provide 'init)
+;;; init.el ends here
