@@ -5,9 +5,11 @@ $if mode=vi
     
     set keymap vi-insert
     # ",,": vi-movement-mode
+    ",s": vi-movement-mode
 $endif
 
 set show-all-if-ambiguous on
 set completion-ignore-case on
 TAB: menu-complete
 
+set bell-style none
