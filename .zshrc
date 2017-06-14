@@ -113,7 +113,7 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 # vim save ctrl s {{{ 
 #alias vim="stty stop '' -ixoff ; vim"
 #ttyctl -f
-stty -ixon
+#stty -ixon
 # }}}
 
 ##### PATH #####
