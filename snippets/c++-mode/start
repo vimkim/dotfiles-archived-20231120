@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: start coding. happy coding!
+# key: start
+# --
+#include <iostream>
+#include<iomanip>
+using namespace std;
+$1
+int main(int argc, const char *argv[]){
+    $2
+
+return 0;
+}

@@ -27,7 +27,7 @@ if [[ $platform == 'macos' ]]; then
 fi
 #alias e='emacsclient -t'
 alias ge='emacsclient -c -a emacs'
-alias em='emacs'
+alias ema='emacs'
 alias gema='gemacs'
 alias ec='emacsclient -t'
 alias gec='emacsclient'
@@ -141,7 +141,7 @@ alias vinitel='$myed ~/runtime_config/init.el'
 # accessibility aliases
 alias rm='rm -iv'
 alias mv='mv -iv'
-alias ei='exit'
+alias ex='exit'
 alias cm='chmod -v'
 alias cp='cp -iv'
 alias md='mkdir'
@@ -225,8 +225,10 @@ fi
 
 # Compiler
 if [[ $platform == 'macos' ]]; then
-    alias gcc='/usr/local/Cellar/gcc/6.3.0_1/bin/gcc-6'
-    alias g++='/usr/local/Cellar/gcc/6.3.0_1/bin/g++-6'
+    #alias gcc='/usr/local/Cellar/gcc/6.3.0_1/bin/gcc-6'
+    #alias g++='/usr/local/Cellar/gcc/6.3.0_1/bin/g++-6'
+    alias gcc='/usr/local/Cellar/gcc/7.1.0/bin/gcc-7'
+    alias g++='/usr/local/Cellar/gcc/7.1.0/bin/g++-7'
 fi
 
 # LaTeX
@@ -249,7 +251,8 @@ alias mym='cd ~/mymanual; ls -a'
 alias anki='cd ~/anki/; ls -a'
 alias notetaking='cd ~/notetaking/; ls -a'
 alias project='cd ~/notetaking/1_fine482/project/; ls -a'
-alias mysnips='cd ~/runtime_config/mysnips/UltiSnips; ls -a'
+#alias mysnips='cd ~/runtime_config/mysnips/UltiSnips; ls -a'
+alias snip='cd ~/runtime_config/snippets; ls -a'
 
 # personal edit aliases
 alias tmuxconf='$myed ~/runtime_config/.tmux.conf'
@@ -311,11 +314,10 @@ alias whome='cd /mnt/l/'
 
 # make
 # alias m=make # another m function created
-alias cpmake='cp ~/runtime_config/Makefile_C_general ./Makefile'
-alias cppmake='cp ~/runtime_config/Makefile_CPP_general ./Makefile'
-alias plmake='cp ~/runtime_config/Makefile_Perl_general ./Makefile'
-
-alias mcl='make clean'
+alias makec='cp ~/runtime_config/Makefile_C_general ./Makefile'
+alias makecpp='cp ~/runtime_config/Makefile_CPP_general ./Makefile'
+alias makepl='cp ~/runtime_config/Makefile_Perl_general ./Makefile'
+alias makesdl2='cp ~/runtime_config/makefiles/sdl2.Makefile ./Makefile'
 
 # ctags
 alias tagen="ctags -R ."
@@ -323,7 +325,7 @@ alias tagen="ctags -R ."
 # cgdb
 alias gdb="cgdb"
 
-# debug like a sir 
+# debug like a sir
 alias cpdebug='cp ~/mymanual/clang/debug/debug.h .'
 
 # open as finder
@@ -334,7 +336,7 @@ alias shs='expect ~/exp.sh'
 
 alias skim-pdf-bg-color='osascript ~/runtime_config/skim-pdf-bgcolor.scpt'
 
-alias unco='uncommitted ~/hs-quest ~/mymanual ~/mygitbooks ~/runtime_config'
+alias unco='uncommitted ~/hs-quest ~/mymanual ~/mygitbooks ~/runtime_config ~/praclang'
 
 alias music='$myed ~/Google\ Drive/song-list.md'
 alias song='$myed ~/Google\ Drive/song-list.md'
@@ -357,10 +359,11 @@ alias emd='cl ~/.emacs.d/'
 alias ali='$myvi ~/runtime_config/shell-aliases.sh'
 alias soali='source ~/runtime_config/shell-aliases.sh'
 # custom alias
-alias cusa='$myvi ~/runtime_config/temp-aliaslist.sh'
-alias socusa='source ~/runtime_config/temp-aliaslist.sh'
+alias cua='$myvi ~/runtime_config/temp-aliaslist.sh'
+alias socua='source ~/runtime_config/temp-aliaslist.sh'
 
 alias clr='clear' # clear terminal screen
+alias cls='clear' # clear terminal screen; MS windows compatible
 
 alias mouseread='defaults read .GlobalPreferences com.apple.mouse.scaling'
 alias mousewritemo='defaults write .GlobalPreferences com.apple.mouse.scaling -1'
@@ -373,26 +376,69 @@ alias voca='$myvi ~/Google\ Drive/study/voca/teps1.csv'
 alias javarun='javac main.java; java main'
 alias pyrun='py main.py'
 alias pyrun2='python2 main.py'
+alias plrun='perl main.pl'
+#alias clisprun='clisp main.lisp'
+#alias clisprun='clisp -lp .'
+alias clisprun='clisp -i main.lisp'
 
 run_what=""
 alias check_run_what='echo $run_what'
-alias set_run_c="run_what='c'"
-alias set_run_py="run_what='python3'"
-alias set_run_py2="run_what='python2'"
+alias run_c="run_what='c'"
+alias run_cpp="run_what='cpp'"
+alias run_py="run_what='python3'"
+alias run_py2="run_what='python2'"
+alias run_java="run_what='java'"
+alias run_pl="run_what='perl'"
+alias run_cl="run_what='clisp'"
 
 m(){
     echo "this is m function."
     if [[ "$run_what" == 'c' ]]; then
-        echo "this is make for c or cpp."
-        make
+        echo "this is make for c"
+        make --makefile=~/runtime_config/Makefile_C_general
+    elif [[ "$run_what" == 'cpp' ]]; then
+        echo "this is make for cpp"
+        make --makefile=~/runtime_config/Makefile_CPP_general
     elif [[ "$run_what" == 'python3' ]]; then
         echo "this is python3."
         pyrun
     elif [[ "$run_what" == 'python2' ]]; then
         echo "this is python2."
         pyrun2
+    elif [[ "$run_what" == 'java' ]]; then
+        echo "this is java."
+        javarun
+    elif [[ "$run_what" == 'perl' ]]; then
+        echo "this is perl."
+        plrun
+    elif [[ "$run_what" == 'clisp' ]]; then
+        echo "this is clisp."
+        clisprun
     else
-        echo "\$run_what value is not initialized. Use set_run_* option. Use check_run_what to check its value."
+        echo "\$run_what value is not initialized. Use run_* option. Use check_run_what to check its value."
     fi
 }
 
+mcl(){
+    echo "running mcl..."
+    if [[ "$run_what" == 'c' ]]; then
+        make --makefile=~/runtime_config/Makefile_C_general clean
+    elif [[ "$run_what" == 'cpp' ]]; then
+        make --makefile=~/runtime_config/Makefile_CPP_general clean
+    else
+        echo "run_c or run_cpp?"
+    fi
+}
+
+mkc(){
+    mkdir $@;
+    cd $@;
+}
+alias mc='mkc'
+
+setopt extended_glob
+#alias em='e main.^(o|h)*'
+alias em='e main.*~main.o~main.h~main.class'
+alias ei='e main.*~main.o~main.h~main.class'
+
+alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?

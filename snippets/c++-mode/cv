@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cv (my) cout var value
+# key: cv
+# --
+std::cout << std::setw(20) << std::left << "<< $1 >> " << std::setw(20) << " has value: " << $1 << "\n";

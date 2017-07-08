@@ -1,0 +1,9 @@
+set surround
+set ignorecase
+
+
+nnoremap ,s <esc>:w<cr>
+inoremap ,s <esc>:w<cr>
+nnoremap ,q <esc>:q<cr>
+inoremap ,q <esc>:q<cr>
+nnoremap <c-p> <m-s-O>

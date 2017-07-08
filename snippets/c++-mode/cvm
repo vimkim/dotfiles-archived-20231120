@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cvm (my)cout var memory and value
+# key: cvm
+# --
+std::cout << std::setw(20) << std::left << "<< $1 >> " << std::setw(20) << " goes to memory: " << std::setw(20) << &$1 << std::setw(25) << " and set(get) value of " << $1 << "\n";$0

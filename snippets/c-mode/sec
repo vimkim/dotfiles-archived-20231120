@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:sec(my) Section
+# key:sec
+# --
+/*** $1 ***/$0

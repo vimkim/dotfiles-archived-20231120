@@ -110,6 +110,8 @@
 (evil-leader/set-key
   ;;"bd" 'kill-buffer
   "bd" 'kill-this-buffer
+  "dw" 'delete-window
+  "bw" 'kill-buffer-and-window ; useful for closing yasnippet
   "bn" 'next-buffer
   "bp" 'previous-buffer
   ;;"bl" 'list-buffers
@@ -118,9 +120,12 @@
   "s" 'save-buffer
   ;;"q" 'save-buffers-kill-terminal
   "q" 'kill-this-buffer
+  "p" 'fiplr-find-file
+  "f" 'fiplr-find-file
   "ci" 'evilnc-comment-or-uncomment-lines
   "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
   "ll" 'evilnc-quick-comment-or-uncomment-to-the-line)
+
 (use-package key-chord
   :ensure key-chord)
 (require 'key-chord)
@@ -170,7 +175,13 @@
                     :background "red")
 ;;(add-hook 'flycheck-error-list-mode-hook 'turn-off-evil-mode)
 ;; c-c ! l
+(setq-default flycheck-c/c++-gcc-executable "g++-7")
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++17")))
+(add-to-list 'flycheck-disabled-checkers 'c/c++-clang)
+(add-hook 'c++-mode-hook (lambda () (setq-default flycheck-gcc-language-standard "c++17")))
+(setq-default flycheck-disabled-checkers '(c/c++-clang))
+;;(add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++17")))
 
 ;;;; MAPPING
 ;; gj, gk mapping
@@ -239,10 +250,12 @@
 ;; tab to nil then reassign
 ;;(define-key yas-minor-mode-map (kbd "<tab>") nil)
 ;;(define-key yas-minor-mode-map (kbd "TAB") nil)
-;;(define-key yas-minor-mode-map (kbd "<tab>") 'yas-expand)
-;;(define-key yas-minor-mode-map (kbd "TAB") 'yas-expand)
-(define-key yas-keymap (kbd "TAB") nil)
-(define-key yas-keymap (kbd "TAB") 'yas-expand)
+(define-key yas-minor-mode-map (kbd "<tab>") 'yas-expand)
+(define-key yas-minor-mode-map (kbd "TAB") 'yas-expand)
+;;(define-key yas-keymap (kbd "<tab>") 'yas-expand)
+;;(define-key yas-keymap (kbd "TAB") 'yas-expand)
+(define-key yas-keymap (kbd "<tab>") nil)
+(define-key yas-keymap (kbd "TAB") nil) ;; this is required for company complete tab
 ;; map to c-l and c-k
 ;;(define-key yas-keymap (kbd "C-l") 'yas-next-field-or-maybe-expand)
 (define-key yas-keymap (kbd "C-l") 'yas-next-field)
@@ -252,6 +265,8 @@
 (define-key yas-keymap (kbd "C-k") 'yas-prev-field) ; works
 ;; yasnippet + ac
 ;;(setq-default ac-sources (push 'ac-source-yasnippet ac-sources))
+;; dropdown when multiple snippets with the same key.
+(setq yas-prompt-functions '(yas-x-prompt yas-dropdown-prompt))
 
 (scroll-bar-mode -1);; hide scroll bar
 ;;(set-specifier vertical-scrollbar-visible-p nil)
@@ -346,6 +361,10 @@
 (use-package fiplr
   :ensure fiplr)
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
+(setq fiplr-ignored-globs '(
+                            (directories (".git" ".svn"))
+                            (files ("*.o" "*~"))
+                            ))
 
 ;; (use-package auto-complete
 ;;   :ensure auto-complete)
@@ -367,14 +386,16 @@
   ;;(define-key company-active-map (kbd "C-n") #'company-complete-common-or-cycle)
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
   (define-key company-active-map (kbd "RET") nil) ; mapped to tab instead
+  (define-key company-active-map (kbd "TAB")
+    'company-complete-selection)
   )
 
 ;; AC like customization - understood
-(setq company-frontends
-      '(company-pseudo-tooltip-unless-just-one-frontend
-        company-preview-frontend
-        company-echo-metadata-frontend))
-(setq company-require-match 'never)
+;;(setq company-frontends
+;;      '(company-pseudo-tooltip-unless-just-one-frontend
+;;        company-preview-frontend
+;;        company-echo-metadata-frontend))
+;;(setq company-require-match 'never)
 ;;(setq company-auto-complete t)
 ;;(setq company-auto-complete-chars (kbd "SPC"))
 
@@ -394,10 +415,9 @@
 ;;    'company-select-next-if-tooltip-visible-or-complete-selection)
 ;;  (define-key company-active-map (kbd "TAB")
 ;;    'company-select-next-if-tooltip-visible-or-complete-selection)
-  (define-key company-active-map (kbd "TAB")
-    'company-complete-selection)
   )
 (company-ac-setup)
+
 
 (use-package irony
   :ensure irony)
@@ -406,7 +426,7 @@
   :ensure company-irony)
 
 ;; extra settings
-(setq company-idle-delay 0.1) ; company delay until suggestions are shown
+(setq company-idle-delay 0.5) ; company delay until suggestions are shown
 ;;(setq company-transformers '(company-sort-by-occurrence)) ; weight by frequency
 (setq company-transformers '(company-sort-by-backend-importance))
 
@@ -423,10 +443,85 @@
             '(:with company-yasnippet))))
 (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 
+;; company and yasnippet tab fix
+(defun check-expansion ()
+  (save-excursion
+    (if (looking-at "\\_>") t
+      (backward-char 1)
+      (if (looking-at "\\.") t
+    (backward-char 1)
+    (if (looking-at "->") t nil)))))
+
+(defun do-yas-expand ()
+  "Hello world."
+  (let ((yas-fallback-behavior 'return-nil))
+    (yas-expand)))
+
+(defun tab-indent-or-complete ()
+  "Hello world."
+  (interactive)
+  (cond
+   ((minibufferp)
+    (minibuffer-complete))
+   (t
+    (indent-for-tab-command)
+    (if (or (not yas-minor-mode)
+        (null (do-yas-expand)))
+    (if (check-expansion)
+        (progn
+          (company-manual-begin)
+          (if (null company-candidates)
+          (progn
+            (company-abort)
+            (indent-for-tab-command)))))))))
+
+(defun tab-complete-or-next-field ()
+  "Hello world."
+  (interactive)
+  (if (or (not yas-minor-mode)
+      (null (do-yas-expand)))
+      (if company-candidates
+      (company-complete-selection)
+    (if (check-expansion)
+      (progn
+        (company-manual-begin)
+        (if (null company-candidates)
+        (progn
+          (company-abort)
+          (yas-next-field))))
+      (yas-next-field)))))
+
+(defun expand-snippet-or-complete-selection ()
+  "Hello world."
+  (interactive)
+  (if (or (not yas-minor-mode)
+      (null (do-yas-expand))
+      (company-abort))
+      (company-complete-selection)))
+
+(defun abort-company-or-yas ()
+  "Hello world."
+  (interactive)
+  (if (null company-candidates)
+      (yas-abort-snippet)
+    (company-abort)))
+
+;; tabmap
+;;(global-set-key [tab] 'tab-indent-or-complete)
+;;(global-set-key (kbd "TAB") 'tab-indent-or-complete)
+(global-set-key [(control return)] 'company-complete-common)
+;;(define-key company-active-map [tab] 'expand-snippet-or-complete-selection)
+;;(define-key company-active-map (kbd "TAB") 'expand-snippet-or-complete-selection)
+;;(define-key yas-minor-mode-map [tab] nil)
+;;(define-key yas-minor-mode-map (kbd "TAB") nil)
+;;(define-key yas-keymap [tab] 'tab-complete-or-next-field)
+;;(define-key yas-keymap (kbd "TAB") 'tab-complete-or-next-field)
+;;(define-key yas-keymap [(control tab)] 'yas-next-field)
+;;(define-key yas-keymap (kbd "C-g") 'abort-company-or-yas)
+
 (use-package company-c-headers
   :ensure company-c-headers)
 (add-to-list 'company-backends 'company-c-headers)
-
 
 ;; Sane behavior of popup windows (move focus to popup)
 (use-package popwin
@@ -551,14 +646,23 @@
 ;;       (animate-string str (1- (line-number-at-pos)) (current-column)))))
 ;; (add-hook 'post-self-insert-hook 'animated-self-insert)
 
+(use-package powerline
+  :ensure powerline)
+(require 'powerline)
+
 (use-package powerline-evil
   :ensure powerline-evil)
 (require 'powerline-evil)
 
+;; Byte-compile is necessary for speed
+;; M-x byte-compile-file <location of rainbow-delimiters.el>
 (use-package rainbow-delimiters
   :ensure rainbow-delimiters)
 (require 'rainbow-delimiters)
-
+;;(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode) ; works only for clojure
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode) ; enable in all programming modes
+;; global-rainbow-delimiteres-mode was removed because of the bugs
+;; To toggle, \\M-x ranbow-delimiters-mode
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

@@ -143,6 +143,9 @@ source ~/runtime_config/tmuxinatorfiles/tmuxinator.zsh
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
+# for ncurses for mac
+export PATH="/usr/local/opt/ncurses/bin:$PATH"
+
 # Aliases
 source ~/runtime_config/shell-aliases.sh
 source ~/runtime_config/zshaliases.zsh

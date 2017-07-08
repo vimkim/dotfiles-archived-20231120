@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: start coding. happy coding!
+# key: start
+# --
+#include<stdio.h>
+
+int main(int argc, char *argv[]){
+    $1
+
+return 0;
+}

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: pv (my) print value
+# key: pv
+# --
+printf("%-20s %-20s %${2:d}\n", "<< $1 >> ", " has value of ", $1);$0

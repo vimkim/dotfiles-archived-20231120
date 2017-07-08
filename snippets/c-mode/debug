@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: debug(my)debug
+# key: debug
+# --
+//*my debug. To disable, use :%s/\/\/\*my/\/*my/gc
+$1
+//*/$0

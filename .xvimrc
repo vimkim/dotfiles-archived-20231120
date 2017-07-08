@@ -1,0 +1,11 @@
+set number
+
+
+imap <c-{> <esc>
+imap <c-s> <esc>:w<cr>
+nmap <c-s> :w<cr>
+vmap <c-s> :w<cr>
+imap snip<tab> snap
+imap ,s <esc>:w<cr>
+nmap ,s <esc>:w<cr>
+
