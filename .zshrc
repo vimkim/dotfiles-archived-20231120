@@ -146,6 +146,11 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 # for ncurses for mac
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
 
+# run tmux automatically
+if [[ $SHLVL == 1 ]]; then
+    tmux attach || tmux new
+fi
+
 # Aliases
 source ~/runtime_config/shell-aliases.sh
 source ~/runtime_config/zshaliases.zsh

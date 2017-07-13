@@ -442,3 +442,4 @@ alias em='e main.*~main.o~main.h~main.class'
 alias ei='e main.*~main.o~main.h~main.class'
 
 alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?
+
