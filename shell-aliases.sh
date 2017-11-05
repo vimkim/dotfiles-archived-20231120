@@ -511,7 +511,7 @@ if [[ $platform == 'linux' ]]; then
     alias rmt="trash"
 elif [[ $platform == 'macos' ]]; then
     alias rmt="rmtrash"
-else 
+else
     echo "rmt not set yet in this OS"
 fi
 
