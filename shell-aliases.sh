@@ -1,5 +1,6 @@
 # Detect OS
 platform='unknown'
+distro='unknown'
 unamestr=$(uname)
 iswsl='false' # in order to use user-defined envvar, export required
 if [[ "$unamestr" == 'Linux' ]]; then
@@ -16,6 +17,12 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     platform='macos'
 fi
 echo "platform = $platform"
+
+# find Linux distro
+if [[ $(uname -n) == 'raspberrypi' ]]; then
+    distro='pi'
+fi
+
 
 # emacs aliases
 if [[ $platform == 'macos' ]]; then
@@ -336,7 +343,15 @@ alias gdb="cgdb"
 alias cpdebug='cp ~/mymanual/clang/debug/debug.h .'
 
 # open as finder
-alias oaf='open -a finder .'
+if [[ $platform == 'linux' ]]; then
+    if [[ $distro == 'pi' ]]; then
+        alias oaf='pcmanfm .'
+    fi
+elif [[ $platform == 'macos' ]]; then
+    alias oaf='open -a finder .'
+else
+    echo "oaf not set yet in this OS"
+fi
 
 # alias shs="ssh -p '1004' 's2016112648@linux.mme.dongguk.edu'" # not work
 alias shs='expect ~/exp.sh'
@@ -457,7 +472,13 @@ alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?
 alias pd='popd'
 
 alias rm="echo Use 'rmt(rmtrash)', or the full path i.e. '/bin/rm'"
-alias rmt="rmtrash"
+if [[ $platform == 'linux' ]]; then
+    alias rmt="trash"
+elif [[ $platform == 'macos' ]]; then
+    alias rmt="rmtrash"
+else 
+    echo "rmt not set yet in this OS"
+fi
 
 alias more="less"
 
@@ -470,3 +491,6 @@ alias momentum="cl ~/Documents/MATLAB/momentum"
 alias grepstar="ps aux | grep 'StarCraft'"
 alias awkstar="ps aux | grep 'StarCraft' | awk '{print \$2}'"
 alias killstar="kill -9 \$(ps aux | grep 'StarCraft' | awk '{print \$2}')" # '$' must be escaped with \, but using functions are better - superuser.com
+
+alias se="sudoedit"
+
