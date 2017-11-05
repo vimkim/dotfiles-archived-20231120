@@ -41,3 +41,12 @@ v(){
     fi
 }
 
+e(){
+    if [[ -d $@ ]]; then
+        cl "$@"
+        #elif [ -f $@ ]; then
+    else
+        $myed "$@"
+    fi
+}
+

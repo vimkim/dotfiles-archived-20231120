@@ -2,6 +2,12 @@
 # Common aliases which works for both zsh and bash (and probably others too).
 # Be careful. When assigning variable, no space between variable name and '=' sign. Spaces matter in scripting.
 
+# Detect Shell
+echo "****************************************************"
+echo "\$0: $0"
+echo "\$SHLVL: $SHLVL"
+echo "****************************************************"
+
 # Detect OS
 platform='unknown'
 distro='unknown'
@@ -9,24 +15,25 @@ unamestr=$(uname)
 iswsl='false' # in order to use user-defined envvar, export required
 if [[ "$unamestr" == 'Linux' ]]; then
     platform='linux'
+
     if grep -q Microsoft /proc/version; then
-        echo "Ubuntu on Windows"
+        echo "Windows Subsystem Linux"
         iswsl='true'
         export iswsl # vim papercolor theme need this info
     else
         echo "Pure Linux"
     fi
-    echo "iswsl = $iswsl"
 elif [[ "$unamestr" == 'Darwin' ]]; then
     platform='macos'
 fi
-echo "platform = $platform"
+echo "\$platform: $platform"
 
 # find Linux distro
-if [[ $(uname -n) == 'raspberrypi' ]]; then
     distro='pi'
-echo "linux distro = $distro"
+if [[ $(uname -n) == 'raspberrypi' ]]; then
+    echo "\$distro: $distro"
 fi
+echo "****************************************************"
 
 
 # emacs aliases
@@ -51,14 +58,22 @@ alias freda='killeda && eda' # refresh eda
 #alias e='emacsclient -t'
 alias ge='emacsclient'
 
+myvi='vi'
+# Detect vim
+vimexist='false'
+if hash vim 2>/dev/null; then
+    vimexist='true'
+    myvi='vim'
+fi
+echo "\$vimexist: $vimexist"
+
 # Detect nvim
 nvimexist='false'
-myvi='vim'
 if hash nvim 2>/dev/null; then
     nvimexist='true'
     myvi='nvim'
 fi
-echo "nvimexist = $nvimexist"
+echo "\$nvimexist: $nvimexist"
 
 emacsexist='false'
 myemacs='unknown'
@@ -68,7 +83,7 @@ if hash emacs 2>/dev/null; then
     #myemacs='emacs'
     myemacs='emacsclient'
 fi
-echo "emacsexist = $emacsexist"
+echo "\$emacsexist: $emacsexist"
 
 # Select myed
 myed='unknown'
@@ -76,10 +91,10 @@ if [[ $emacsexist == 'true' ]]; then
     echo "first"
     myed=$myemacs
 else
-    echo "second"
     myed=$myvi
 fi
-echo "myed=$myed"
+echo "\$myed: $myed"
+echo "****************************************************"
 
 # default editor (required for tmuxinator somehow)
 if [[ $platform == 'linux' ]]; then
@@ -91,6 +106,8 @@ elif [[ $platform == 'macos' ]]; then
 else
     echo "default editor / visual not set"
 fi
+echo "\$EDITOR: $EDITOR"
+echo "\$VISUAL: $VISUAL"
 
 ##### ALIASES #####
 # 1. ls
