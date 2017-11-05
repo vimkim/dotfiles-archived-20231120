@@ -27,6 +27,9 @@ syntax off
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "use :sort /.... '.*\// to sort the lines.
+function! DoRemote(arg)
+    UpdateRemotePlugins
+endfunction
 if has('nvim')
     call plug#begin('$HOME/.config/nvim/plugged') "TODO
 else
@@ -91,6 +94,7 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx']}
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
+Plug 'daeyun/vim-matlab', { 'do': function('DoRemote')}
 "Plug 'terryma/vim-multiple-cursors'
 "Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-obsession'
@@ -592,6 +596,13 @@ command! ToggleFollowSymlink let w:no_resolve_symlink = !get(w:, 'no_resolve_sym
 au BufReadPost * nested call MyFollowSymlink(expand('%'))
 
 
+")
+
+"(VIM-MATLAB
+au filetype matlab nnoremap ,ls :MatlabLaunchServer<CR>
+let g:matlab_auto_mappings = 1 "default
+let g:matlab_server_launcher = 'tmux' "default is vim
+let g:matlab_server_split = 'vertical' "or horizontal
 ")
 
 "(VIM-MULTIPLE-CURSOR

@@ -151,6 +151,9 @@ if [[ $SHLVL == 1 ]]; then
     tmux attach || tmux new
 fi
 
+# matlab
+export PATH="/Applications/MATLAB_R2017a.app/bin:$PATH"
+
 # Aliases
 source ~/runtime_config/shell-aliases.sh
 source ~/runtime_config/zshaliases.zsh

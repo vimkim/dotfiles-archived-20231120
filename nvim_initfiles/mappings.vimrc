@@ -122,6 +122,9 @@ au filetype lisp nnoremap <buffer> <F8> :w<CR>:exec '!clisp' shellescape(@%, 1)<
 "HTML
 au filetype html nnoremap <buffer> <leader>ru :!open -a /Applications/Google\ Chrome.app %<cr>
 
+"matlab
+au filetype matlab nnoremap <buffer> <leader>ru :MatlabCliOpenInMatlabEditor<cr>
+
 "- C,CPP
 "Create an executable file named a.out.
 "noremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
@@ -312,3 +315,4 @@ inoremap ;calc <c-o>yiW<End>=<c-r>=<c-r>0<cr>
 "nnoremap n j
 "nnoremap e k
 "nnoremap i l
+

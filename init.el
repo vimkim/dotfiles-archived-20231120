@@ -14,45 +14,46 @@
 (setq visible-bell 1)
 ;;(menu-bar-mode -1)
 
-(tool-bar-mode -1)
-
-(require 'whitespace)
-(setq whitespace-display-mappings
-      ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
-      '(
-        (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-        (newline-mark 10 [182 10]) ; 10 LINE FEED
-        (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
-        ))
-(setq whitespace-style '(face tabs trailing tab-mark space-mark))
-(set-face-attribute 'whitespace-tab nil
-                    :background "#f0f0f0"
-                    :foreground "#00a8a8"
-                    :weight 'bold)
-(set-face-attribute 'whitespace-trailing nil
-                    :background "#e4eeff"
-                    :foreground "#183bc8"
-                    :weight 'normal)
-(add-hook 'prog-mode-hook 'whitespace-mode)
-
-(global-whitespace-mode 1)
-
-;;(setq inhibit-startup-screen t) ; no welcome page
-
-;;(x-focus-frame nil)
+;;(tool-bar-mode -1)
 
 (require 'package)
-;;(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-;;			 ("marmalade" . "https://marmalade-repo.org/packages/")
-;;			 ("melpa" . "https://melpa.org/packages/")))
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+			 ("marmalade" . "https://marmalade-repo.org/packages/")
+			 ("melpa" . "https://melpa.org/packages/")))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
 (require 'use-package)
 
+;;(require 'whitespace)
+;;(setq whitespace-display-mappings
+;;      ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
+;;      '(
+;;        (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+;;        (newline-mark 10 [182 10]) ; 10 LINE FEED
+;;        (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
+;;        ))
+;;(setq whitespace-style '(face tabs trailing tab-mark space-mark))
+;;(set-face-attribute 'whitespace-tab nil
+;;                    :background "#f0f0f0"
+;;                    :foreground "#00a8a8"
+;;                    :weight 'bold)
+;;(set-face-attribute 'whitespace-trailing nil
+;;                    :background "#e4eeff"
+;;                    :foreground "#183bc8"
+;;                    :weight 'normal)
+;;(add-hook 'prog-mode-hook 'whitespace-mode)
+;;
+;;(global-whitespace-mode 1)
+
+;;(setq inhibit-startup-screen t) ; no welcome page
+
+;;(x-focus-frame nil)
+
+
 (global-linum-mode t)
 (defvar linum-format)
-(setq linum-format "%d \u2502") ; assignment to free variable without defvar
+;;(setq linum-format "%d \u2502") ; assignment to free variable without defvar
 ;;(setq linum-format "%d \t")
 ;;(setq linum-format "%d~")
 
@@ -266,9 +267,12 @@
 ;; yasnippet + ac
 ;;(setq-default ac-sources (push 'ac-source-yasnippet ac-sources))
 ;; dropdown when multiple snippets with the same key.
-(setq yas-prompt-functions '(yas-x-prompt yas-dropdown-prompt))
 
-(scroll-bar-mode -1);; hide scroll bar
+;; TODO
+;; I guess this one is crucial. Though it breaks the (yas-visit-snippet-file) function
+;;(setq yas-prompt-functions '(yas-x-prompt yas-dropdown-prompt))
+
+;;(scroll-bar-mode -1);; hide scroll bar
 ;;(set-specifier vertical-scrollbar-visible-p nil)
 
 ;; emacswiki complete file name
@@ -664,6 +668,19 @@
 ;; global-rainbow-delimiteres-mode was removed because of the bugs
 ;; To toggle, \\M-x ranbow-delimiters-mode
 
+;; Korean settings
+;;(set-language-environment "Korean")
+(prefer-coding-system 'utf-8)
+
+
+;; matlab
+;; s.el, flycheck, company-mode are dependencies
+(use-package s
+  :ensure s)
+(use-package matlab-mode
+  :ensure matlab-mode)
+(require 'matlab-mode)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -671,7 +688,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (tabbar popwin fiplr helm ack yasnippet zenburn-theme autopair flycheck exec-path-from-shell key-seq key-chord evil-leader evil-exchange evil-nerd-commenter evil-surround evil jedi use-package)))
+    (s tabbar popwin fiplr helm ack yasnippet zenburn-theme autopair flycheck exec-path-from-shell key-seq key-chord evil-leader evil-exchange evil-nerd-commenter evil-surround evil jedi use-package)))
  '(undo-tree-auto-save-history t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

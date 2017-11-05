@@ -112,14 +112,21 @@ cl(){
     builtin cd "$@" && ls -a
 }
 
-vim_with_date(){
+edit_with_date(){
     $myed "$(date +%y%m%d)_$1"
 }
-alias vda='vim_with_date'
+
+vim_with_date(){
+    $myvi "$(date +%y%m%d)_$1"
+}
+
+alias ewd='edit_with_date'
+alias vwd='vim_with_date'
+
 mkdir_with_date(){
     mkdir "$(date +%y%m%d)_$1"
 }
-alias mda='mkdir_with_date'
+alias mwd='mkdir_with_date'
 
 # rc function
 alias zshrc='$myvi ~/runtime_config/.zshrc'
@@ -136,7 +143,7 @@ alias initel='emacs ~/runtime_config/init.el'
 alias ginitel='gemacs ~/runtime_config/init.el'
 alias enitel='emacsclient ~/runtime_config/init.el'
 alias initel='emacs ~/runtime_config/init.el'
-alias vinitel='$myed ~/runtime_config/init.el'
+alias vinitel='vim ~/runtime_config/init.el'
 
 # accessibility aliases
 alias rm='rm -iv'
@@ -358,9 +365,12 @@ alias emd='cl ~/.emacs.d/'
 # shell alias management shortcut
 alias ali='$myvi ~/runtime_config/shell-aliases.sh'
 alias soali='source ~/runtime_config/shell-aliases.sh'
+
 # custom alias
 alias cua='$myvi ~/runtime_config/temp-aliaslist.sh'
+alias cus='$myvi ~/runtime_config/temp-aliaslist.sh'
 alias socua='source ~/runtime_config/temp-aliaslist.sh'
+alias socus='source ~/runtime_config/temp-aliaslist.sh'
 
 alias clr='clear' # clear terminal screen
 alias cls='clear' # clear terminal screen; MS windows compatible
@@ -440,6 +450,23 @@ setopt extended_glob
 #alias em='e main.^(o|h)*'
 alias em='e main.*~main.o~main.h~main.class'
 alias ei='e main.*~main.o~main.h~main.class'
+alias vm='nvim main.*~main.o~main.h~main.class'
 
 alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?
 
+alias pd='popd'
+
+alias rm="echo Use 'rmt(rmtrash)', or the full path i.e. '/bin/rm'"
+alias rmt="rmtrash"
+
+alias more="less"
+
+alias oh="open *.html"
+
+#alias matlab_dir="cd ~/courses/fine452/assignments/a1/MATLAB/momentum; ls -a"
+alias matlab_dir="cd ~/courses/fine452/assignments/a2/; ls -a;"
+alias momentum="cl ~/Documents/MATLAB/momentum"
+
+alias grepstar="ps aux | grep 'StarCraft'"
+alias awkstar="ps aux | grep 'StarCraft' | awk '{print \$2}'"
+alias killstar="kill -9 \$(ps aux | grep 'StarCraft' | awk '{print \$2}')" # '$' must be escaped with \, but using functions are better - superuser.com
