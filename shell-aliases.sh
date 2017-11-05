@@ -1,3 +1,7 @@
+##### Shell Aliases #####
+# Common aliases which works for both zsh and bash (and probably others too).
+# Be careful. When assigning variable, no space between variable name and '=' sign. Spaces matter in scripting.
+
 # Detect OS
 platform='unknown'
 distro='unknown'
@@ -21,6 +25,7 @@ echo "platform = $platform"
 # find Linux distro
 if [[ $(uname -n) == 'raspberrypi' ]]; then
     distro='pi'
+echo "linux distro = $distro"
 fi
 
 
@@ -54,13 +59,27 @@ if hash nvim 2>/dev/null; then
     myvi='nvim'
 fi
 echo "nvimexist = $nvimexist"
-# if emacs is  normal, use emacsclient. Otherwise comment it out
-#myed=$myvi
-myed='emacsclient'
 
-echo "myed = $myed"
-## now everything is going to be emacs
-#myed=emacsclient
+emacsexist='false'
+myemacs='unknown'
+# Detect emacs
+if hash emacs 2>/dev/null; then
+    emacsexist='true'
+    #myemacs='emacs'
+    myemacs='emacsclient'
+fi
+echo "emacsexist = $emacsexist"
+
+# Select myed
+myed='unknown'
+if [[ $emacsexist == 'true' ]]; then
+    echo "first"
+    myed=$myemacs
+else
+    echo "second"
+    myed=$myvi
+fi
+echo "myed=$myed"
 
 # default editor (required for tmuxinator somehow)
 if [[ $platform == 'linux' ]]; then
@@ -69,7 +88,7 @@ if [[ $platform == 'linux' ]]; then
 elif [[ $platform == 'macos' ]]; then
     export EDITOR=/usr/local/bin/$myed
     export VISUAL=/usr/local/bin/$myed
-else 
+else
     echo "default editor / visual not set"
 fi
 
@@ -137,7 +156,7 @@ alias mwd='mkdir_with_date'
 
 # rc function
 alias zshrc='$myvi ~/runtime_config/.zshrc'
-alias bashrc='$myed ~/runtime_config/.bashrc'
+alias bashrc='$myvi ~/runtime_config/.bashrc'
 alias sozsh='source ~/.zshrc'
 alias sobash='source ~/.bashrc'
 
@@ -461,7 +480,6 @@ mkc(){
 }
 alias mc='mkc'
 
-setopt extended_glob
 #alias em='e main.^(o|h)*'
 alias em='e main.*~main.o~main.h~main.class'
 alias ei='e main.*~main.o~main.h~main.class'
@@ -492,5 +510,6 @@ alias grepstar="ps aux | grep 'StarCraft'"
 alias awkstar="ps aux | grep 'StarCraft' | awk '{print \$2}'"
 alias killstar="kill -9 \$(ps aux | grep 'StarCraft' | awk '{print \$2}')" # '$' must be escaped with \, but using functions are better - superuser.com
 
+alias sudoe="sudoedit"
 alias se="sudoedit"
 

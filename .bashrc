@@ -114,5 +114,5 @@ set -o vi
 export HISTCONTROL=ignoreboth:erasedups
 
 source ~/runtime_config/shell-aliases.sh
-source ~/runtime_config/bashaliases.bashrc
-source ~/runtime_config/zshrun.zshrc
+source ~/runtime_config/bashaliases.bash
+#source ~/runtime_config/zshrun.zsh

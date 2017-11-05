@@ -1,6 +1,4 @@
 # zsh c,v
-# test emacs
-#myed=emacs
 c(){
     if [ -d $@ ]; then
         cl "$@"
@@ -42,3 +40,6 @@ v(){
         #fi
     fi
 }
+
+# extra zsh options
+setopt extended_glob # only for zsh

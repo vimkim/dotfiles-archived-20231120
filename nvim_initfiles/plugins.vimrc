@@ -353,6 +353,7 @@ let g:UltiSnipsSnippetsDirectories = ["~/.vim/mySnips/UltiSnips"]
 " maybe python bug fix? https://github.com/SirVer/ultisnips/issues/510 " no it does not solve
 au CmdwinEnter * call UltiSnips#LeavingBuffer()
 au CmdwinLeave * call UltiSnips#LeavingBuffer()
+" If prompts 'ultisnips requires py > 2.7 or whatever', then install vim-nox or vim-gtk
 
 "for autocompletion
 "inoremap <c-x><c-k> <c-x><c-k>
