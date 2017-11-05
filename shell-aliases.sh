@@ -5,6 +5,7 @@
 # Detect Shell
 echo "****************************************************"
 echo "\$0: $0"
+echo "\$SHELL: $SHELL"
 echo "\$SHLVL: $SHLVL"
 echo "****************************************************"
 
@@ -88,7 +89,6 @@ echo "\$emacsexist: $emacsexist"
 # Select myed
 myed='unknown'
 if [[ $emacsexist == 'true' ]]; then
-    echo "first"
     myed=$myemacs
 else
     myed=$myvi

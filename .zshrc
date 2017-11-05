@@ -159,4 +159,11 @@ source ~/runtime_config/shell-aliases.sh
 source ~/runtime_config/zshaliases.zsh
 source ~/runtime_config/temp-aliaslist.sh
 # Run at initialization
-source ~/runtime_config/zshrun.zsh
+#source ~/runtime_config/zshrun.zsh
+
+# print path
+echo "****************************************************"
+echo "\$PATH: $PATH"
+echo "\$PWD: $PWD"
+echo "****************************************************"
+
