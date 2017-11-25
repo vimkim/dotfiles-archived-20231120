@@ -76,6 +76,13 @@ if hash nvim 2>/dev/null; then
 fi
 echo "\$nvimexist: $nvimexist"
 
+# Detect mvim
+if mvimexist='false'
+if hash mvim 2> /dev/null; then
+    mvimexist='true'
+    myvi='mvim --remote'
+fi
+
 emacsexist='false'
 myemacs='unknown'
 # Detect emacs
@@ -94,7 +101,6 @@ else
     myed=$myvi
 fi
 echo "\$myed: $myed"
-echo "****************************************************"
 
 # default editor (required for tmuxinator somehow)
 if [[ $platform == 'linux' ]]; then
@@ -108,6 +114,15 @@ else
 fi
 echo "\$EDITOR: $EDITOR"
 echo "\$VISUAL: $VISUAL"
+echo "****************************************************"
+echo "Installed?"
+type git
+type python
+type python2
+type python3
+type tmux
+type java
+
 
 ##### ALIASES #####
 # 1. ls
@@ -139,8 +154,8 @@ elif [[ $platform == "linux" ]]; then
     fi
 fi
 alias la='ls -A' # -A is cleaner than -a imo. (-A does not include . and ..)
-alias ll='ls -lA'
-alias l='ls -A'
+alias ll='ls -la' # however, when observing permissions, -a is more useful.
+alias l='ls -a'
 
 # vim config. If nvim exists, use it
 #viavailable(){
@@ -519,10 +534,6 @@ alias more="less"
 
 alias oh="open *.html"
 
-#alias matlab_dir="cd ~/courses/fine452/assignments/a1/MATLAB/momentum; ls -a"
-alias matlab_dir="cd ~/courses/fine452/assignments/a2/; ls -a;"
-alias momentum="cl ~/Documents/MATLAB/momentum"
-
 alias grepstar="ps aux | grep 'StarCraft'"
 alias awkstar="ps aux | grep 'StarCraft' | awk '{print \$2}'"
 alias killstar="kill -9 \$(ps aux | grep 'StarCraft' | awk '{print \$2}')" # '$' must be escaped with \, but using functions are better - superuser.com
@@ -530,3 +541,5 @@ alias killstar="kill -9 \$(ps aux | grep 'StarCraft' | awk '{print \$2}')" # '$'
 alias sudoe="sudoedit"
 alias se="sudoedit"
 
+alias jt="jupyter"
+alias jn="jupyter notebook"

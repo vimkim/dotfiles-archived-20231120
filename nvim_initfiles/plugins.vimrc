@@ -145,6 +145,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_show_hidden = 1
 nnoremap <leader>cp :CtrlP<Space>.<cr>
 nnoremap <leader>cd <esc>:CtrlPDir ~/
+nnoremap ,bl :CtrlPBuffer<cr>
 "navigate with <c-j><c-k>, <c-v> to change working directory
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 ")
