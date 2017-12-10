@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<root>
+    
+    <!--RSTUDIO-->
+    <appdef>
+        <appname>RSTUDIO</appname>
+        <equal>org.rstudio.RStudio</equal>
+    </appdef>
+    <item>
+        <name>RStudio: application to ctrl</name>
+        <identifier>private.rstudiodef</identifier>
+        <only>RSTUDIO</only>
+        <autogen>__KeyToKey__ KeyCode::PC_APPLICATION, KeyCode::CONTROL_L</autogen>
+    </item>
+
+    <item>
+        <name>RStudio: Simulaneous ,s for Esc</name>
+        <identifier>private.rsutioesc</identifier>
+        <only>RSTUDIO</only>
+        <autogen>
+            __SimultaneousKeyPresses__
+            KeyCode::COMMA, KeyCode::D,
+            KeyCode::ESCAPE
+        </autogen>
+    </item>
+    <item>
+        <name>RStudio: a to z</name>
+        <identifier>private.atoz</identifier>
+        <only>RSTUDIO</only>
+        <autogen>
+            __KeyToKey__
+            KeyCode::Z,
+            KeyCode::ESCAPE
+        </autogen>
+    </item>
+
+    <appdef>
+        <appname>PYCHARM</appname>
+        <equal>com.jetbrains.pycharm</equal>
+    </appdef>
+    <item>
+        <name>PyCharm: application to ctrl</name>
+        <identifier>private.pycharmdef</identifier>
+        <only>PYCHARM</only>
+        <autogen>__KeyToKey__ KeyCode::PC_APPLICATION, KeyCode::CONTROL_L</autogen>
+    </item>
+
+    <appdef>
+        <appname>XCODE</appname>
+        <equal>com.apple.dt.Xcode</equal>
+    </appdef>
+    <item>
+        <name>Xcode: application to ctrl</name>
+        <identifier>private.xcodedef</identifier>
+        <only>XCODE</only>
+        <autogen>__KeyToKey__ KeyCode::PC_APPLICATION, KeyCode::CONTROL_L</autogen>
+    </item>
+    
+    <appdef>
+        <appname>VSCODE</appname>
+        <equal>com.microsoft.VSCode</equal>
+    </appdef>
+    <item>
+        <name>VSCode: application to ctrl</name>
+        <identifier>private.vscodedef</identifier>
+        <only>VSCODE</only>
+        <autogen>__KeyToKey__ KeyCode::PC_APPLICATION, KeyCode::CONTROL_L</autogen>
+    </item>
+
+</root>
