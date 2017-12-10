@@ -43,7 +43,6 @@ if [[ $platform == 'macos' ]]; then
     alias emacs='/usr/local/bin/emacs -nw'
     #alias gemacs='/usr/local/Cellar/emacs/25.1/Emacs.app/Contents/MacOS/Emacs' #gui emacs
     alias gemacs='/usr/local/bin/emacs'
-    echo "use mac-emacs"
 fi
 #alias e='emacsclient -t'
 alias ge='emacsclient -c -a emacs'
@@ -77,11 +76,25 @@ fi
 echo "\$nvimexist: $nvimexist"
 
 # Detect mvim
-if mvimexist='false'
+mvimexist='false'
 if hash mvim 2> /dev/null; then
     mvimexist='true'
-    myvi='mvim --remote'
+    #myvi='mvim --remote-silent'
+    myvi=(mvim --remote-silent) #http://zsh.sourceforge.net/FAQ/zshfaq03.html
 fi
+if [[ $platform == 'macos' ]]; then
+    echo "\$mvimexist: $mvimexist"
+fi
+
+# Detect nvr
+nvrexist='false'
+if hash nvr 2> /dev/null; then
+    nvrexist='true'
+    myvi='nvr -s'
+fi
+echo "\$nvrexist: $nvrexist"
+
+export myvi
 
 emacsexist='false'
 myemacs='unknown'
@@ -100,6 +113,7 @@ if [[ $emacsexist == 'true' ]]; then
 else
     myed=$myvi
 fi
+echo "\$myvi: $myvi"
 echo "\$myed: $myed"
 
 # default editor (required for tmuxinator somehow)
@@ -116,6 +130,10 @@ echo "\$EDITOR: $EDITOR"
 echo "\$VISUAL: $VISUAL"
 echo "****************************************************"
 echo "Installed?"
+type vim
+type nvim
+type mvim
+type emacs
 type git
 type python
 type python2
@@ -137,10 +155,14 @@ type java
 # 10. PERSONAL
 
 # ls aliases
-# alias ls='ls --color=auto'
 if [[ $platform == "macos" ]]; then
-    # alias ls='ls -GF'
-    alias ls='ls --color=auto -F'
+    if [[ -a /usr/local/bin/gls ]]; then # using gnu ls
+        alias ls='/usr/local/bin/gls --color=auto -F'
+    elif [[ -a /bin/ls ]]; then # use mac default ls
+        alias ls='ls -GF'
+    else
+        echo "wrong ls"
+    fi
 elif [[ $platform == "linux" ]]; then
     if [ -x /usr/bin/dircolors ]; then
         test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -177,31 +199,52 @@ edit_with_date(){
 vim_with_date(){
     $myvi "$(date +%y%m%d)_$1"
 }
-
-alias ewd='edit_with_date'
-alias vwd='vim_with_date'
-
 mkdir_with_date(){
     mkdir "$(date +%y%m%d)_$1"
 }
+alias ewd='edit_with_date'
+alias vwd='vim_with_date'
 alias mwd='mkdir_with_date'
 
 # rc function
 alias zshrc='$myvi ~/runtime_config/.zshrc'
 alias bashrc='$myvi ~/runtime_config/.bashrc'
+alias vzshrc='vim ~/runtime_config/.zshrc'
+alias vbashrc='vim ~/runtime_config/.bashrc'
+alias nvzshrc='nvim ~/runtime_config/.zshrc'
+alias nvbashrc='nvim ~/runtime_config/.bashrc'
+alias mvzshrc='mvim ~/runtime_config/.zshrc'
+alias mvbashrc='mvim ~/runtime_config/.bashrc'
+# shell alias management shortcut
+alias ali='$=myvi ~/runtime_config/shell-aliases.sh' # this works for zsh, but not in bash. Tips from: https://stackoverflow.com/questions/8299610/zsh-command-not-found-for-editor
+alias ali='eval $myvi ~/runtime_config/shell-aliases.sh' # This works for zsh and bash.
+alias ali="$myvi ~/runtime_config/shell-aliases.sh" # double quote works. Single quote doesn't. This works for both zsh and bash.
+
+alias vali='vim ~/runtime_config/shell-aliases.sh'
+alias nali='nvim ~/runtime_config/shell-aliases.sh'
+alias mali='mvim ~/runtime_config/shell-aliases.sh'
+alias cua='$myvi ~/runtime_config/temp-aliaslist.sh'
 alias sozsh='source ~/.zshrc'
 alias sobash='source ~/.bashrc'
+alias soali='source ~/runtime_config/shell-aliases.sh'
+alias socua='source ~/runtime_config/temp-aliaslist.sh'
+alias socus='source ~/runtime_config/temp-aliaslist.sh'
+
 
 # vimrc function
-alias vimrc='nvim ~/runtime_config/.vimrc'
-alias nvimrc='nvim ~/runtime_config/init.vim'
+alias vimrc="$myvi ~/runtime_config/.vimrc"
 alias vvimrc='vim ~/runtime_config/.vimrc'
+alias nvvimrc="nvim ~/runtime_config/.vimrc"
+alias mvimrc='mvim ~/runtime_config/.vimrc'
+alias nvimrc="$myvi ~/runtime_config/init.vim"
 alias vnvimrc='vim ~/runtime_config/init.vim'
+alias mvnvimrc='mvim ~/runtime_config/init.vim'
+alias nvnvimrc="nvim ~/runtime_config/init.vim"
 alias initel='emacs ~/runtime_config/init.el'
 alias ginitel='gemacs ~/runtime_config/init.el'
 alias enitel='emacsclient ~/runtime_config/init.el'
 alias initel='emacs ~/runtime_config/init.el'
-alias vinitel='vim ~/runtime_config/init.el'
+alias vinitel="$myvi ~/runtime_config/init.el"
 
 # accessibility aliases
 alias rm='rm -iv'
@@ -428,16 +471,6 @@ alias pandoc='pandoc --atx-headers'
 # emacs directory
 alias emd='cl ~/.emacs.d/'
 
-# shell alias management shortcut
-alias ali='$myvi ~/runtime_config/shell-aliases.sh'
-alias soali='source ~/runtime_config/shell-aliases.sh'
-
-# custom alias
-alias cua='$myvi ~/runtime_config/temp-aliaslist.sh'
-alias cus='$myvi ~/runtime_config/temp-aliaslist.sh'
-alias socua='source ~/runtime_config/temp-aliaslist.sh'
-alias socus='source ~/runtime_config/temp-aliaslist.sh'
-
 alias clr='clear' # clear terminal screen
 alias cls='clear' # clear terminal screen; MS windows compatible
 
@@ -515,13 +548,13 @@ alias mc='mkc'
 #alias em='e main.^(o|h)*'
 alias em='e main.*~main.o~main.h~main.class'
 alias ei='e main.*~main.o~main.h~main.class'
-alias vm='nvim main.*~main.o~main.h~main.class'
+alias vm='$myvi main.*~main.o~main.h~main.class'
 
 alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?
 
 alias pd='popd'
 
-alias rm="echo Use 'rmt(rmtrash)', or the full path i.e. '/bin/rm'"
+alias rm="echo Use 'rmt(remove to trash)', or the full path i.e. '/bin/rm'"
 if [[ $platform == 'linux' ]]; then
     alias rmt="trash"
 elif [[ $platform == 'macos' ]]; then
@@ -543,3 +576,8 @@ alias se="sudoedit"
 
 alias jt="jupyter"
 alias jn="jupyter notebook"
+
+alias lmk="latexmk -pdf -pvc" # -pdf: use pdf instead of dvi, ps, etc. / -pv: preview the resulting output. / -pvc: preview the output continuously.
+
+alias undoclear='rmt ~/.vim/undodir/*'
+alias swapclear='rmt ~/.vim/swapdir/*'

@@ -1,8 +1,8 @@
 "(FILETYPE
 filetype plugin indent on
 " turn off auto commenting when <cr>
-"autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o 
-" Opposite to above, turn on auto commenting 
+"autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o
+" Opposite to above, turn on auto commenting
 autocmd FileType * setlocal formatoptions +=cro comments-=fb:- comments+=b:-
 
 " Check the status by set formatoptions?, then you would see jql
@@ -87,7 +87,7 @@ autocmd Filetype anki nnoremap <leader>anki :set paste<cr>i<c-r>*<esc>:set nopas
 function! AnkiAutoPaste()
     set paste
     "! prevents mapping
-    """""normal! "*p 
+    """""normal! "*p
     " removes ^m in win enter
     """""normal! :silent %s/\r/\r/g
     """""Either the above two commands or the below one works fine
@@ -99,7 +99,7 @@ autocmd BufNewFile *.anki call AnkiAutoPaste()
 autocmd Filetype anki nnoremap <c-q> gg"*yG:q<cr>
 
 
-" Enter insert mode automatically when editing git commit messages 
+" Enter insert mode automatically when editing git commit messages
 "autocmd FileType gitcommit 1 | startinsert "by benjifisher from so "error when fugitive
 
 au filetype csv setlocal noexpandtab "don't expand tab if csv

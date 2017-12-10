@@ -1,16 +1,18 @@
 # zsh c,v
 c(){
-    if [ -d $@ ]; then
+    if [[ -d $@ ]]; then
         cl "$@"
-    elif [ -f $@ ]; then
+    elif [[ -f $@ ]]; then
         $myed "$@"
+    elif [[ $# == 0 ]]; then
+        cl;
     else
         echo "Hey, such file or directory does not exist. Use v() instead of c() to create a file."
     fi
 }
 
 e(){
-    if [ -d $@ ]; then
+    if [[ -d $@ ]]; then
         cl "$@"
         #elif [ -f $@ ]; then
     else
@@ -26,11 +28,11 @@ e(){
 }
 
 v(){
-    if [ -d $@ ]; then
+    if [[ -d $@ ]]; then
         cl "$@"
-        #elif [ -f $@ ]; then
+        #elif [[ -f $@ ]]; then
     else
-        $myvi "$@"
+        eval $=myvi "$@" # for mvim, $myvi must be array. myvi=(mvim --remote-silent)
         #else
         #read -q "REPLY?Would you like to create a new file?"
         #if [[ $REPLY =~ '^[Yy]$' ]]; then # $REPLY = y also works

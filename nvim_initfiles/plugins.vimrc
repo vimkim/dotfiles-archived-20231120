@@ -88,6 +88,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/vim-grammarous'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']}
 "Plug 'maksimr/vim-jsbeautify'
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx']}
@@ -96,7 +97,7 @@ Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
 Plug 'daeyun/vim-matlab', { 'do': function('DoRemote')}
 "Plug 'terryma/vim-multiple-cursors'
-"Plug 'xuhdev/vim-latex-live-preview'
+Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-obsession'
 Plug 'mattn/vim-particle'
 Plug 'tpope/vim-repeat'
@@ -143,10 +144,11 @@ au filetype lisp let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"'}
 let g:ctrlp_map = '<leader>ctp'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_show_hidden = 1
-nnoremap <leader>cp :CtrlP<Space>.<cr>
+nnoremap <leader>cp :CtrlP<Space>
+" navigate with <c-j><c-k>, <c-v> to change working directory
 nnoremap <leader>cd <esc>:CtrlPDir ~/
 nnoremap ,bl :CtrlPBuffer<cr>
-"navigate with <c-j><c-k>, <c-v> to change working directory
+nnoremap ,ls :CtrlPBuffer<cr>
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 ")
 
@@ -159,8 +161,8 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 let g:csv_no_conceal = 1 " unlet g:csv_no_conceal to disable
 
 "(FZF)
-nnoremap ;fz :FZF ~/
-nnoremap <c-x><c-f> :FZF<cr>
+"nnoremap ;fz :FZF ~/
+"nnoremap <c-x><c-f> :FZF<cr>
 let g:fzf_launcher = "/usr/local/bin/fzf_launcher.sh %s"
 ")
 "(FZF.VIM
@@ -553,8 +555,7 @@ set statusline+=%{fugitive#statusline()}
 "augroup followsymlink:
     "autocmd!
     "autocmd BufReadPost * FollowSymlink
-"augroup END " 
-
+"augroup END "
 
 "Second approach:
 
@@ -601,7 +602,7 @@ au BufReadPost * nested call MyFollowSymlink(expand('%'))
 ")
 
 "(VIM-MATLAB
-au filetype matlab nnoremap ,ls :MatlabLaunchServer<CR>
+au filetype matlab nnoremap ,matser :MatlabLaunchServer<CR>
 let g:matlab_auto_mappings = 1 "default
 let g:matlab_server_launcher = 'tmux' "default is vim
 let g:matlab_server_split = 'vertical' "or horizontal

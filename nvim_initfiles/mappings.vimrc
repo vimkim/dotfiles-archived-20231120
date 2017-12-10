@@ -54,13 +54,16 @@ vnoremap <leader>s <esc>:w<CR>gv
 nnoremap <leader>s :update<CR>
 
 "QUIT
-" ctrl+q quits all which is not working // now works 
+" ctrl+q quits all which is not working // now works
 nnoremap <c-q> :q<CR>
 inoremap <c-q> <ESC>:q<CR>
 nnoremap <c-q> :q<CR>
 nnoremap <leader>q :q<CR>
 inoremap <leader>q <ESC>:q<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>q :bd<CR>
+inoremap <leader>q <ESC>:bd<CR>
+nnoremap <leader>q :bd<CR>
 nnoremap <leader>w :Gwrite<cr>:Gcommit --verbose<cr>
 "nnoremap <c-x><c-c> :q<cr> "does not work, why?
 ")
@@ -96,7 +99,7 @@ nnoremap <leader>z <esc><c-z>
 
 " Map Ctrl-Backspace to delete the previous word in insert mode.
 " does not work
-inoremap <C-BS> <C-W> 
+inoremap <C-BS> <C-W>
 " seems terminal does not identify the difference between <c-bs> and <bs>
 "inoremap <C-Q> <C-\><C-O>dB
 
@@ -316,3 +319,6 @@ inoremap ;calc <c-o>yiW<End>=<c-r>=<c-r>0<cr>
 "nnoremap e k
 "nnoremap i l
 
+nnoremap ,ls :ls<cr>
+
+nnoremap dq d

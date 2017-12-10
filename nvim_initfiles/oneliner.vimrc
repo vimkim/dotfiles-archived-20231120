@@ -146,6 +146,7 @@ nnoremap ;swd :silent! lcd %:p:h<cr>
 
 " Saves undo's after file closes
 set undofile
+set undodir=~/.vim/undodir
 
 " Full path to the status line visible
 "set statusline+=%F
@@ -220,3 +221,5 @@ set synmaxcol=255
 "if has('mac') && filereadable('/usr/local/lib/libInputSourceSwitcher.dylib')
     "autocmd InsertLeave * call libcall('/usr/local/lib/libInputSourceSwitcher.dylib', 'Xkb_Switch_setXkbLayout', 'com.apple.keylayout.US')
 "endif "strange behavior
+
+set backupdir=~/.vim/swapdir
