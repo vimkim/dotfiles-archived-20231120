@@ -31,35 +31,36 @@ function! DoRemote(arg)
     UpdateRemotePlugins
 endfunction
 if has('nvim')
-    call plug#begin('$HOME/.config/nvim/plugged') "TODO
+    call plug#begin('$HOME/.config/nvim/plugged')
 else
-    call plug#begin('$HOME/.vim/plugged') 
+    call plug#begin('$HOME/.vim/plugged')
 endif
 "pluglist:
 Plug 'mileszs/ack.vim' "code search // needs extra install of ack
 Plug 'w0rp/ale' "saves my life
-Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs' " This plugin is buggy with Korean inputs when 'set noimd'.
 "Plug 'vim-scripts/Better-Javascript-Indentation' "not work"
 "Plug 'jeaye/color_coded'
 Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' } "it works for ;sv and tsv as well
-" The below 2 plugins are not used for vim
-if has('nvim')
+"Plug 'Raimondi/delimitMate' " This plugin is also buggy with Korean inputs when 'set noimd'. // Actually, It turned out that this is because of macvim itself. Go to Advanced setting and turn off 'inline marked' and 'core renderer' settings. Also, 'set guifontwide=NanumGothic:h22' helped.
+if has('nvim') " The below 2 plugins are not used for vim
     "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     "unfortunately not very useful, except for filepath completeion. However, this can be replaced by <c-x><c-f>
     "Plug 'zchee/deoplete-clang'
-"" Instead of the above two, neocomplete for vim
-else
+else " Instead of the above two, neocomplete for vim
     "Plug 'Shougo/neocomplete.vim'
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "Plug 'junegunn/goyo.vim')
+
 Plug 'sjl/gundo.vim'
 Plug 'yggdroot/indentline'
 Plug 'vim-scripts/JavaScript-Indent', { 'for': 'javascript' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 "Plug 'itchyny/lightline.vim'
+
 "Plug 'junegunn/limelight.vim'
 Plug 'iamcco/mathjax-support-for-mkdp' "should be above markdown-preview of iamcco
 Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
@@ -74,6 +75,7 @@ Plug 'chrisbra/Recover.vim' "temp file diff
 Plug 'godlygeek/tabular'
 "Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
+
 Plug 'honza/vim-snippets' " Snippets, let me put next to ultisnips
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'tpope/vim-abolish' "help writing
@@ -134,12 +136,13 @@ nmap <c-j> <plug>(ale_next_wrap)
 "let g:ale_keep_list_window_open = 1
 ")
 
-"(AUTO-PAIR
+"(AUTO-PAIRS
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<M-b>'
 au Filetype markdown let b:autopairs_loaded=1
 au filetype lisp let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"'}
 ")
+
 "(CTRLP.VIM
 let g:ctrlp_map = '<leader>ctp'
 let g:ctrlp_cmd = 'CtrlP'

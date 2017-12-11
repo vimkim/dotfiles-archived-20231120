@@ -296,7 +296,7 @@ nnoremap <leader>V `[v`]
 
 " Ko-lang support " buggy; does not work as expected"
 "nnoremap ,ㅇ <esc>:update<cr>
-"inoremap ,ㅇ <esc>:update<cr>
+inoremap ,ㅇ <esc>:update<cr> " does not work cuz korean inputs 
 "nnoremap ㅣ i
 "nnoremap ㅁ a
 "nnoremap ㅎㅎ dd
@@ -322,3 +322,8 @@ inoremap ;calc <c-o>yiW<End>=<c-r>=<c-r>0<cr>
 nnoremap ,ls :ls<cr>
 
 nnoremap dq d
+
+inoremap ,. <esc>:update<cr>
+nnoremap ,. :update<cr>
+inoremap ., <esc>:update<cr>
+nnoremap ., :update<cr>

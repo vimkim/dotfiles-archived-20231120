@@ -36,7 +36,14 @@ set number " line number
 set backspace=indent,eol,start
 
 " MACVIM ZOOM
-set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
+
+set encoding=utf-8
+set fileencoding=utf-8
+" GUI
+if has("mac")
+    set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
+    set guifontwide=NanumGothic:h22
+endif
 
 
 " visual bell
@@ -215,7 +222,8 @@ set nocursorline
 "syntax highlight limit for speed
 set synmaxcol=255
 
-"set noimd
+" enable english even if korean
+set noimd
 
 " Pressing ESC while typing in Korean would automatically change the layout to English
 "if has('mac') && filereadable('/usr/local/lib/libInputSourceSwitcher.dylib')

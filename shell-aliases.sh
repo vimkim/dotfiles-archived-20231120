@@ -85,12 +85,13 @@ fi
 if [[ $platform == 'macos' ]]; then
     echo "\$mvimexist: $mvimexist"
 fi
+alias mvr="mvim --remote-silent"
 
 # Detect nvr
 nvrexist='false'
 if hash nvr 2> /dev/null; then
     nvrexist='true'
-    myvi='nvr -s'
+    myvi=(nvr -s)
 fi
 echo "\$nvrexist: $nvrexist"
 
@@ -133,6 +134,7 @@ echo "Installed?"
 type vim
 type nvim
 type mvim
+type nvr
 type emacs
 type git
 type python
