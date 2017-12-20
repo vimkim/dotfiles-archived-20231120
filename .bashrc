@@ -14,10 +14,10 @@ viavailable(){
 #alias ls='ls --color=auto'
 alias la="ls -GAF"
 alias ll="ls -GAFl"
-alias l='ls' 
+alias l='ls'
 
 #cl, c, v config
-cl(){ 
+cl(){
 	builtin  cd "$@" && la
 }
 
@@ -116,6 +116,10 @@ export HISTCONTROL=ignoreboth:erasedups
 source ~/runtime_config/shell-aliases.sh
 source ~/runtime_config/bashaliases.bash
 #source ~/runtime_config/zshrun.zsh
+
+# for vim to react to c-q and c-s
+stty start undef
+
 echo "****************************************************"
 echo "\$PATH: $PATH"
 echo "****************************************************"

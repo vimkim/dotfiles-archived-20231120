@@ -230,4 +230,10 @@ set noimd
     "autocmd InsertLeave * call libcall('/usr/local/lib/libInputSourceSwitcher.dylib', 'Xkb_Switch_setXkbLayout', 'com.apple.keylayout.US')
 "endif "strange behavior
 
-set backupdir=~/.vim/swapdir
+" Attempt to create the directory. If it already exists, mkdir will signal an error, but it is ignored.
+" silent !mkdir ~/.vim/swapdir > /dev/null 2>&1
+" This is operating system independent
+if !isdirectory($HOME . "/.vim/swapdir")
+    call mkdir($HOME . "/.vim/swapdir", "p")
+endif
+set backupdir=$HOME/.vim/swapdir
