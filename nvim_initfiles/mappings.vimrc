@@ -325,5 +325,3 @@ nnoremap dq d
 
 inoremap ,. <esc>:update<cr>
 nnoremap ,. :update<cr>
-inoremap ., <esc>:update<cr>
-nnoremap ., :update<cr>

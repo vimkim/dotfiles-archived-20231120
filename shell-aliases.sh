@@ -506,10 +506,10 @@ m(){
     echo "this is m function."
     if [[ "$run_what" == 'c' ]]; then
         echo "this is make for c"
-        make --makefile=~/runtime_config/Makefile_C_general
+        make --makefile=~/runtime_config/forMake/Makefile_C_general
     elif [[ "$run_what" == 'cpp' ]]; then
         echo "this is make for cpp"
-        make --makefile=~/runtime_config/Makefile_CPP_general
+        make --makefile=~/runtime_config/forMake/Makefile_CPP_general
     elif [[ "$run_what" == 'python3' ]]; then
         echo "this is python3."
         pyrun
@@ -533,9 +533,9 @@ m(){
 mcl(){
     echo "running mcl..."
     if [[ "$run_what" == 'c' ]]; then
-        make --makefile=~/runtime_config/Makefile_C_general clean
+        make --makefile=~/runtime_config/forMake/Makefile_C_general clean
     elif [[ "$run_what" == 'cpp' ]]; then
-        make --makefile=~/runtime_config/Makefile_CPP_general clean
+        make --makefile=~/runtime_config/forMake/Makefile_CPP_general clean
     else
         echo "run_c or run_cpp?"
     fi

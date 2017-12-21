@@ -4,7 +4,6 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/dqmacair/.oh-my-zsh
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
