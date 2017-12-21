@@ -9,32 +9,32 @@ echo "\$SHELL: $SHELL"
 echo "\$SHLVL: $SHLVL"
 echo "****************************************************"
 
-# Detect OS
-platform='unknown'
-distro='unknown'
-unamestr=$(uname)
-iswsl='false' # in order to use user-defined envvar, export required
-if [[ "$unamestr" == 'Linux' ]]; then
-    platform='linux'
-
-    if grep -q Microsoft /proc/version; then
-        echo "Windows Subsystem Linux"
-        iswsl='true'
-        export iswsl # vim papercolor theme need this info
-    else
-        echo "Pure Linux"
-    fi
-elif [[ "$unamestr" == 'Darwin' ]]; then
-    platform='macos'
-fi
-echo "\$platform: $platform"
-
-# find Linux distro
-    distro='pi'
-if [[ $(uname -n) == 'raspberrypi' ]]; then
-    echo "\$distro: $distro"
-fi
-echo "****************************************************"
+## # Detect OS
+## platform='unknown'
+## distro='unknown'
+## unamestr=$(uname)
+## iswsl='false' # in order to use user-defined envvar, export required
+## if [[ "$unamestr" == 'Linux' ]]; then
+##     platform='linux'
+##
+##     if grep -q Microsoft /proc/version; then
+##         echo "Windows Subsystem Linux"
+##         iswsl='true'
+##         export iswsl # vim papercolor theme need this info
+##     else
+##         echo "Pure Linux"
+##     fi
+## elif [[ "$unamestr" == 'Darwin' ]]; then
+##     platform='macos'
+## fi
+## echo "\$platform: $platform"
+##
+## # find Linux distro
+##     distro='pi'
+## if [[ $(uname -n) == 'raspberrypi' ]]; then
+##     echo "\$distro: $distro"
+## fi
+## echo "****************************************************"
 
 
 # emacs aliases
@@ -209,14 +209,14 @@ alias vwd='vim_with_date'
 alias mwd='mkdir_with_date'
 
 # rc function
-alias zshrc='$myvi ~/runtime_config/.zshrc'
-alias bashrc='$myvi ~/runtime_config/.bashrc'
-alias vzshrc='vim ~/runtime_config/.zshrc'
-alias vbashrc='vim ~/runtime_config/.bashrc'
-alias nvzshrc='nvim ~/runtime_config/.zshrc'
-alias nvbashrc='nvim ~/runtime_config/.bashrc'
-alias mvzshrc='mvim ~/runtime_config/.zshrc'
-alias mvbashrc='mvim ~/runtime_config/.bashrc'
+alias zshrc='$myvi ~/runtime_config/zsh/ohmyzsh/.zshrc'
+alias bashrc='$myvi ~/runtime_config/bash/.bashrc'
+alias vzshrc='vim ~/runtime_config/zsh/ohmyzsh/.zshrc'
+alias vbashrc='vim ~/runtime_config/bash/.bashrc'
+alias nvzshrc='nvim ~/runtime_config/ohmyzsh/.zshrc'
+alias nvbashrc='nvim ~/runtime_config/bash/.bashrc'
+alias mvzshrc='mvim ~/runtime_config/ohmyzsh/.zshrc'
+alias mvbashrc='mvim ~/runtime_config/bash/.bashrc'
 # shell alias management shortcut
 alias ali='$=myvi ~/runtime_config/shell-aliases.sh' # this works for zsh, but not in bash. Tips from: https://stackoverflow.com/questions/8299610/zsh-command-not-found-for-editor
 alias ali='eval $myvi ~/runtime_config/shell-aliases.sh' # This works for zsh and bash.
@@ -234,19 +234,19 @@ alias socus='source ~/runtime_config/temp-aliaslist.sh'
 
 
 # vimrc function
-alias vimrc="$myvi ~/runtime_config/.vimrc"
-alias vvimrc='vim ~/runtime_config/.vimrc'
-alias nvvimrc="nvim ~/runtime_config/.vimrc"
-alias mvimrc='mvim ~/runtime_config/.vimrc'
-alias nvimrc="$myvi ~/runtime_config/init.vim"
-alias vnvimrc='vim ~/runtime_config/init.vim'
-alias mvnvimrc='mvim ~/runtime_config/init.vim'
-alias nvnvimrc="nvim ~/runtime_config/init.vim"
-alias initel='emacs ~/runtime_config/init.el'
-alias ginitel='gemacs ~/runtime_config/init.el'
-alias enitel='emacsclient ~/runtime_config/init.el'
-alias initel='emacs ~/runtime_config/init.el'
-alias vinitel="$myvi ~/runtime_config/init.el"
+alias vimrc="$myvi ~/runtime_config/vim/.vimrc"
+alias vvimrc='vim ~/runtime_config/vim/.vimrc'
+alias nvvimrc="nvim ~/runtime_config/vim/.vimrc"
+alias mvimrc='mvim ~/runtime_config/vim/.vimrc'
+alias nvimrc="$myvi ~/runtime_config/nvim/init.vim"
+alias vnvimrc='vim ~/runtime_config/nvim/init.vim'
+alias mvnvimrc='mvim ~/runtime_config/nvim/init.vim'
+alias nvnvimrc="nvim ~/runtime_config/nvim/init.vim"
+alias initel='emacs ~/runtime_config/emacs/init.el'
+alias ginitel='gemacs ~/runtime_config/emacs/init.el'
+alias enitel='emacsclient ~/runtime_config/emacs/init.el'
+alias initel='emacs ~/runtime_config/emacs/init.el'
+alias vinitel="$myvi ~/runtime_config/emacs/init.el"
 
 # accessibility aliases
 alias rm='rm -iv'
@@ -261,16 +261,16 @@ alias fzg='grep -nir'
 alias fzgrep='grep -nir'
 #alias ask='grep -nir'
 alias ask='grep -nir -A 2'
-function askman { 
+function askman {
     ask "$@" ~/mymanual/
 }
-function askhere { 
-    ask "$@" . 
+function askhere {
+    ask "$@" .
 }
 alias dog='pygmentize -g' # cat with syntax
 alias whichsh='echo $0' #check shell
 
-#git 
+#git
 alias gst='git status'
 alias gad='git add'
 alias gap='git add --patch'
@@ -312,7 +312,7 @@ alias muxst='mux start stream'
 alias muxstop='mux start stopwatch'
 alias muxe='mux start emacs'
 
-# ranger 
+# ranger
 # when quit ranger, change shell directory to last visited ranger directory
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 alias r_ranger='SHELL=~/.config/ranger/r.shell ranger' # source shell aliases
@@ -378,7 +378,7 @@ alias stopwatch='cd ~/Stopwatch2Txt/; python3 ~/Stopwatch2Txt/stopwatch.py'
 alias wtr='curl wttr.in/montreal'
 alias weather='curl wttr.in/montreal'
 alias jse='bundle exec jekyll serve -w' # jekyll server
-alias o='open' # mac 
+alias o='open' # mac
 alias oas='open -a Safari' # mac
 alias oac='open -a /Applications/Google\ Chrome.app'
 
@@ -414,7 +414,7 @@ studylog(){
 }
 
 # FZF change completion key
-#export FZF_COMPLETION_TRIGGER='/' 
+#export FZF_COMPLETION_TRIGGER='/'
 #bindkey '^p' fzf-completion
 #bindkey '^I' $fzf_default_completion # not working well
 

@@ -197,7 +197,7 @@ nnoremap <leader>gps :Gpush<cr>
 nnoremap <leader>gdi :Gvdiff<cr>
 nnoremap <leader>di :Gvdiff<cr>
 " not fugitive but useful for visual select + stage
-vnoremap dp :diffput<cr>
+vnoremap ,dp :diffput<cr>
 
 " #############################
 " Extra personal aliases or shortcuts (informal)
@@ -211,7 +211,7 @@ nnoremap ;fp :echo expand('%:p')<cr>
 nnoremap ;fn :echo expand('%:p')<cr>
 
 
-" mapping for replace all / substitute all 
+" mapping for replace all / substitute all
 nnoremap ;repa :%s/
 nnoremap ;repl :%s/
 nnoremap ;suba :%s/

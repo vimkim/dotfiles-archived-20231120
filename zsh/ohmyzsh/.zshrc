@@ -1,23 +1,21 @@
-#unalias -a
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/dqmacair/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+#ZSH_THEME="robbyrussell"
 ZSH_THEME="random"
-#strug.zsh-theme << recommended!
-#intheloop.zsh-theme
-#fox.zsh-theme
-#zonathan.zsh-theme
-#af-magit theme << ---- line separate, simple
-#tjkirch_mod << neat, colorful, clear
-#arrow << neat
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -61,13 +59,16 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(
+  git
+  vi-mode
+)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -83,7 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -93,76 +94,9 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
 
 #==========================================================================================
 # CUSTOMIZED
 #==========================================================================================
 
-# for vi-mode for zsh prompt
-# bindkey -M viins ',,' vi-cmd-mode
-# bindkey -M viins 'wf' vi-cmd-mode
-# bindkey -M viins 'fw' vi-cmd-mode
-bindkey -M viins ',s' vi-cmd-mode
-
-export NVIM_TUI_ENABLE_TRUE_COLOR=1
-# archey
-#screenfetch -v
-
-# vim save ctrl s {{{ 
-#alias vim="stty stop '' -ixoff ; vim"
-#ttyctl -f
-stty -ixon
-# }}}
-
-##### PATH #####
-# Setting PATH for Python 3.5
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
-export PATH
-
-# for macport
-#export PATH=$PATH:/opt/local/bin # not used
-
-# for LaTex
-export PATH=$PATH:/Library/TeX/texbin
-
-# for tmux-powerline # currently not using it
-PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
-
-# for fzf ctrl+r, remove duplicates
-setopt hist_ignore_dups
-setopt HIST_IGNORE_ALL_DUPS
-
-##### EXTRA SOURCING #####
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# for tmuxinator
-source ~/runtime_config/tmuxinatorfiles/tmuxinator.zsh
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
-# for ncurses for mac
-export PATH="/usr/local/opt/ncurses/bin:$PATH"
-
-# run tmux automatically
-if [[ $SHLVL == 1 ]]; then
-    tmux attach || tmux new
-fi
-
-# matlab
-export PATH="/Applications/MATLAB_R2017a.app/bin:$PATH"
-
-# Aliases
-source ~/runtime_config/shell-aliases.sh
-source ~/runtime_config/zshaliases.zsh
-source ~/runtime_config/temp-aliaslist.sh
-# Run at initialization
-#source ~/runtime_config/zshrun.zsh
-
-# print path
-echo "****************************************************"
-echo "\$PATH: $PATH"
-echo "\$PWD: $PWD"
-echo "****************************************************"
-
+source ~/runtime_config/zsh/zsh_custom.zsh
