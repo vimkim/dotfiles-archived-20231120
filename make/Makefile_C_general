@@ -1,5 +1,5 @@
 CC=gcc
-CCFLAGS=-g -Wall -Wextra
+CCFLAGS=-g -Wall -Wextra -W -pedantic
 LDFLAGS=
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)

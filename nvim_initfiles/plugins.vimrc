@@ -45,11 +45,11 @@ Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' } "it works for ;sv and tsv as well
 "Plug 'Raimondi/delimitMate' " This plugin is also buggy with Korean inputs when 'set noimd'. // Actually, It turned out that this is because of macvim itself. Go to Advanced setting and turn off 'inline marked' and 'core renderer' settings. Also, 'set guifontwide=NanumGothic:h22' helped.
 if has('nvim') " The below 2 plugins are not used for vim
-    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     "unfortunately not very useful, except for filepath completeion. However, this can be replaced by <c-x><c-f>
     "Plug 'zchee/deoplete-clang'
 else " Instead of the above two, neocomplete for vim
-    "Plug 'Shougo/neocomplete.vim'
+    Plug 'Shougo/neocomplete.vim'
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -463,9 +463,11 @@ let g:indentLine_color_term = 100
 let g:EasyMotion_do_mapping = 0
 " This allows you to jump onto a specific letter.
 " the first line allows you to trigger in visual mode as well (very helpful)
+"map <leader>f <plug>(easymotion-bd-f)
 map <leader>f <plug>(easymotion-bd-f)
+map ff <plug>(easymotion-bd-f)
 " allows you to move regardless of buffer (for :vsplit, etc.)
-nmap <Leader>emf <Plug>(easymotion-overwin-f)
+nnoremap <Leader>emf <Plug>(easymotion-overwin-f)
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
 ""nmap s <Plug>(easymotion-overwin-f)
@@ -686,7 +688,7 @@ let g:surround_108 = "$$ \r $$" " press l
 "(YouCompleteMe
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_python_binary_path = 'python'
-let g:ycm_global_ycm_extra_conf = '~/runtime_config/.ycm_extra_conf_general.py'
+let g:ycm_global_ycm_extra_conf = '~/runtime_config/vim/.ycm_extra_conf_general.py'
 let g:ycm_confirm_extra_conf = 0 "ask at bufenter
 set completeopt=menu
 let g:ycm_add_preview_to_completeopt = 0

@@ -14,6 +14,7 @@ setopt HIST_IGNORE_ALL_DUPS
 
 # for fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # for fzf ctrl+r, remove duplicates
 setopt hist_ignore_dups
 setopt HIST_IGNORE_ALL_DUPS
@@ -27,9 +28,9 @@ if [[ $SHLVL == 1 ]]; then
 fi
 
 # Aliases
-source ~/runtime_config/shell-aliases.sh
-source ~/runtime_config/zshaliases.zsh
-source ~/runtime_config/temp-aliaslist.sh
+source ~/runtime_config/shell/shell_alias.sh
+source ~/runtime_config/zsh/zsh_alias.zsh
+source ~/runtime_config/shell/temp_alias.sh
 # Run at initialization
 #source ~/runtime_config/zshrun.zsh
 

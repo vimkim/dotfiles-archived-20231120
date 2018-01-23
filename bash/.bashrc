@@ -105,17 +105,17 @@ export PATH
 # Python
 export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.5/bin
 
+# for bash vi (.inputrc is for all sh)
 set -o vi
+
+# fzf bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# if login, run la
-# la
-
+# remote duplicates
 export HISTCONTROL=ignoreboth:erasedups
 
-source ~/runtime_config/shell-aliases.sh
-source ~/runtime_config/bashaliases.bash
-#source ~/runtime_config/zshrun.zsh
+source ~/runtime_config/shell/shell-alias.sh
+source ~/runtime_config/shell/bash_alias.bash
 
 # for vim to react to c-q and c-s
 stty start undef
@@ -123,3 +123,4 @@ stty start undef
 echo "****************************************************"
 echo "\$PATH: $PATH"
 echo "****************************************************"
+

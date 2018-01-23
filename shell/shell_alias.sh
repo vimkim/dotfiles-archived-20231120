@@ -218,20 +218,21 @@ alias nvbashrc='nvim ~/runtime_config/bash/.bashrc'
 alias mvzshrc='mvim ~/runtime_config/ohmyzsh/.zshrc'
 alias mvbashrc='mvim ~/runtime_config/bash/.bashrc'
 # shell alias management shortcut
-alias ali='$=myvi ~/runtime_config/shell-aliases.sh' # this works for zsh, but not in bash. Tips from: https://stackoverflow.com/questions/8299610/zsh-command-not-found-for-editor
-alias ali='eval $myvi ~/runtime_config/shell-aliases.sh' # This works for zsh and bash.
-alias ali="$myvi ~/runtime_config/shell-aliases.sh" # double quote works. Single quote doesn't. This works for both zsh and bash.
+alias ali='$=myvi ~/runtime_config/shell/shell_alias.sh' # this works for zsh, but not in bash. Tips from: https://stackoverflow.com/questions/8299610/zsh-command-not-found-for-editor
+alias ali='eval $myvi ~/runtime_config/shell/shell_alias.sh' # This works for zsh and bash.
+alias ali="$myvi ~/runtime_config/shell/shell_alias.sh" # double quote works. Single quote doesn't. This works for both zsh and bash.
 
-alias vali='vim ~/runtime_config/shell-aliases.sh'
-alias nali='nvim ~/runtime_config/shell-aliases.sh'
-alias mali='mvim ~/runtime_config/shell-aliases.sh'
-alias cua='$myvi ~/runtime_config/temp-aliaslist.sh'
+alias vali='vim ~/runtime_config/shell/shell_aliases.sh'
+alias nali='nvim ~/runtime_config/shell/shell_aliases.sh'
+alias mali='mvim ~/runtime_config/shell/shell_aliases.sh'
+alias cua='$myvi ~/runtime_config/shell/temp_alias.sh'
+alias cuali='cua'
+alias custum_alias='cua'
 alias sozsh='source ~/.zshrc'
 alias sobash='source ~/.bashrc'
-alias soali='source ~/runtime_config/shell-aliases.sh'
-alias socua='source ~/runtime_config/temp-aliaslist.sh'
-alias socus='source ~/runtime_config/temp-aliaslist.sh'
-
+alias soali='source ~/runtime_config/shell/shell_alias.sh'
+alias socua='source ~/runtime_config/shell/temp_alias.sh'
+alias socus='source ~/runtime_config/shell/temp_alias.sh'
 
 # vimrc function
 alias vimrc="$myvi ~/runtime_config/vim/.vimrc"
@@ -333,12 +334,14 @@ if [[ $platform == 'macos' ]]; then
     alias sage='~/Applications/SageMath/sage'
 fi
 
-# Compiler
+# brew gcc/g++
+    # warning: brew install/upgrade gcc does not link /usr/local/bin/gcc to gcc.
+    # It only links gcc-N command, where N is the version number.
+    # therefore, use gcc-N instead of gcc
 if [[ $platform == 'macos' ]]; then
-    #alias gcc='/usr/local/Cellar/gcc/6.3.0_1/bin/gcc-6'
-    #alias g++='/usr/local/Cellar/gcc/6.3.0_1/bin/g++-6'
-    alias gcc='/usr/local/Cellar/gcc/7.1.0/bin/gcc-7'
-    alias g++='/usr/local/Cellar/gcc/7.1.0/bin/g++-7'
+    # do not forget to change these aliases after upgrading brew gcc.
+    alias gcc='gcc-7'
+    alias g++='g++-7'
 fi
 
 # LaTeX
@@ -506,10 +509,10 @@ m(){
     echo "this is m function."
     if [[ "$run_what" == 'c' ]]; then
         echo "this is make for c"
-        make --makefile=~/runtime_config/forMake/Makefile_C_general
+        make --makefile=~/runtime_config/make/Makefile_C_general
     elif [[ "$run_what" == 'cpp' ]]; then
         echo "this is make for cpp"
-        make --makefile=~/runtime_config/forMake/Makefile_CPP_general
+        make --makefile=~/runtime_config/make/Makefile_CPP_general
     elif [[ "$run_what" == 'python3' ]]; then
         echo "this is python3."
         pyrun
@@ -533,9 +536,9 @@ m(){
 mcl(){
     echo "running mcl..."
     if [[ "$run_what" == 'c' ]]; then
-        make --makefile=~/runtime_config/forMake/Makefile_C_general clean
+        make --makefile=~/runtime_config/make/Makefile_C_general clean
     elif [[ "$run_what" == 'cpp' ]]; then
-        make --makefile=~/runtime_config/forMake/Makefile_CPP_general clean
+        make --makefile=~/runtime_config/make/Makefile_CPP_general clean
     else
         echo "run_c or run_cpp?"
     fi
@@ -583,3 +586,5 @@ alias lmk="latexmk -pdf -pvc" # -pdf: use pdf instead of dvi, ps, etc. / -pv: pr
 
 alias undoclear='rmt ~/.vim/undodir/*'
 alias swapclear='rmt ~/.vim/swapdir/*'
+
+alias question='vim ~/Google\ Drive/question.txt'
