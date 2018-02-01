@@ -3,7 +3,10 @@ https://sourceforge.net/p/skim-app/wiki/Hidden_Preferences/
 The default value for SKMoveReadingBarModifiers is 'Option'
 This code changes the modifier key from 'Option' to 'Control'
 
-$ defaults write SKMoveReadingBarModifiers -integer 262144
+defaults write SKMoveReadingBarModifiers -integer 262144
+defaults write SKMoveReadingBarModifiers -integer 524288
+defaults read SKMoveReadingBarModifiers
+defaults delete -app Skim SKMoveReadingBarModifiers
 
 masks:
 Shift=131072

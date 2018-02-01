@@ -1,0 +1,15 @@
+https://apple.stackexchange.com/questions/101090/list-of-all-packages-installed-using-homebrew
+
+$ xargs brew install < brew_list.txt
+
+Or checkout this:
+$ brew bundle dump
+$ mv Brewfile ~/runtime_config
+
+and then later,
+$ mv ~/runtime_config/Brewfile ~
+$ brew bundle
+$ brew bundle cleanup
+
+
+

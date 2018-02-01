@@ -100,8 +100,6 @@ source $ZSH/oh-my-zsh.sh
 #==========================================================================================
 
 source ~/runtime_config/zsh/zsh_custom.zsh
+# I don't add anything down here. If added, then they must be something automatically appended by third party programs.
+# If revised and confirmed, move them to zsh_custom.zsh.
 
-# for fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # automatically append by fzf when ./install
-
-export PATH=/Users/dqmacair/.local/bin/luna-studio:$PATH

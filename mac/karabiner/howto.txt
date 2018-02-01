@@ -1,0 +1,8 @@
+## How to remap capslock to command key in general, while remap it to control key in terminal, macvim, etc.
+
+0) disable system preference settings.
+1) In Seil, change the caps lock key to keycode 110 (application key).
+2) In Karabiner, check 'Application to Command_L' (this will automatically remap Application to Control in Terminal, Screen sharing, MacVim, RDC, Emacs, X11, VNC)
+
+## Why Remap R_Ctrl to R_Option
+In Skim, the reading bar can be moved with Option+arrow keys. If using laptop keyboard directly, that is fine. While using windows-based keyboard such as corsair cherry MX, pressing RAlt is located quite far away from the arrow keys. It is therefore more comfortable to press RCtrl together with arrow keys than RAlt key. Therefore I remap RCtrl to RAlt to achieve the expected functionality while moving around the reading bar in Skim.

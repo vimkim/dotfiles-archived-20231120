@@ -45,11 +45,12 @@ Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' } "it works for ;sv and tsv as well
 "Plug 'Raimondi/delimitMate' " This plugin is also buggy with Korean inputs when 'set noimd'. // Actually, It turned out that this is because of macvim itself. Go to Advanced setting and turn off 'inline marked' and 'core renderer' settings. Also, 'set guifontwide=NanumGothic:h22' helped.
 if has('nvim') " The below 2 plugins are not used for vim
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    "unfortunately not very useful, except for filepath completeion. However, this can be replaced by <c-x><c-f>
+    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    " unfortunately not very useful, except for filepath completeion. However, this can be replaced by <c-x><c-f>
+    " maybe some bugs with markdown files.
     "Plug 'zchee/deoplete-clang'
 else " Instead of the above two, neocomplete for vim
-    Plug 'Shougo/neocomplete.vim'
+    "Plug 'Shougo/neocomplete.vim'
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -58,7 +59,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'sjl/gundo.vim'
 Plug 'yggdroot/indentline'
 Plug 'vim-scripts/JavaScript-Indent', { 'for': 'javascript' }
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+"Plug 'davidhalter/jedi-vim', { 'for': 'python' } " too slow
 "Plug 'itchyny/lightline.vim'
 
 "Plug 'junegunn/limelight.vim'
@@ -177,6 +178,11 @@ let g:fzf_launcher = "/usr/local/bin/fzf_launcher.sh %s"
 ")
 "(GUNDO.VIM
 nnoremap <leader>gu :GundoToggle<cr>
+")
+
+"(JEDI-VIM
+let g:jedi#force_py_version = 3 " this prevents the error message: the detected python version (2) is not functional
+let g:jedi#popup_on_dot = 0 " too slow
 ")
 
 "(LIMELIGHT

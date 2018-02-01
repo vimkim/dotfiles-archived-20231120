@@ -1,4 +1,16 @@
+# run tmux automatically
+if [[ $SHLVL == 1 ]]; then
+    tmux attach || tmux new
+fi
 source ~/runtime_config/zsh/detect_OS.zsh
+
+# Aliases
+source ~/runtime_config/shell/shell_alias.sh
+source ~/runtime_config/zsh/zsh_alias.zsh
+source ~/runtime_config/shell/temp_alias.sh
+# Run at initialization
+#source ~/runtime_config/zshrun.zsh
+
 
 # for oh-my-zsh plugin vi-mode mapping
 bindkey -M viins ',s' vi-cmd-mode
@@ -19,26 +31,6 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt hist_ignore_dups
 setopt HIST_IGNORE_ALL_DUPS
 
-# matlab
-export PATH="/Applications/MATLAB_R2017a.app/bin:$PATH"
-
-# run tmux automatically
-if [[ $SHLVL == 1 ]]; then
-    tmux attach || tmux new
-fi
-
-# Aliases
-source ~/runtime_config/shell/shell_alias.sh
-source ~/runtime_config/zsh/zsh_alias.zsh
-source ~/runtime_config/shell/temp_alias.sh
-# Run at initialization
-#source ~/runtime_config/zshrun.zsh
-
-##### PATH #####
-# Setting PATH for Python 3.5
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
-export PATH
 
 # for LaTex
 export PATH=$PATH:/Library/TeX/texbin
@@ -51,14 +43,29 @@ PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" 
 # for tmuxinator
 source ~/runtime_config/tmuxinatorfiles/tmuxinator.zsh
 
+# for brew gnu tools and manuals
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # for ncurses for mac
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
 
+# for fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # automatically append by fzf when ./install
+
+export PATH=/Users/dqmacair/.local/bin/luna-studio:$PATH
+
+# sshd, installed by homebrew, is in /usr/local/sbin.
+export PATH="/usr/local/sbin:$PATH"
+
+# matlab
+export PATH="/Applications/MATLAB_R2017a.app/bin:$PATH"
+
 # print path
 echo "****************************************************"
 echo "\$PATH: $PATH"
+# if having trouble with path (something weird appears in path), check out /etc/paths and /etc/paths.d
+# also check .zprofile, .zshenv, .zlogin, etc.
+# Once it took me some time to detect an undesired python path being added to $PATH in .zprofile.
 echo "\$PWD: $PWD"
 echo "****************************************************"

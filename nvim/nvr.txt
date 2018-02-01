@@ -1,0 +1,2 @@
+Sometimes nvr does not work, creating new socket over and over.
+This can be prevented by deleting /tmp/socket.

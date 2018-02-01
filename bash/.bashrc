@@ -68,14 +68,12 @@ alias luu="ssh dkim87@ubuntu.cs.mcgill.ca"
 
 #bindkey -v
 
-export PATH="/usr/local/bin:$PATH"
+# if brew is installed but /usr/local/bin is not added to your path,
+# uncomment the following line.
+#export PATH="/usr/local/bin:$PATH"
 
 #Rscript shortcut
 alias rsc='Rscript'
-
-#Python shortcut
-alias python='python3'
-alias py='python'
 
 # better than cat
 alias dog='pygmentize -g'
@@ -97,13 +95,6 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 #screenfetch -v
 
 
-# Setting PATH for Python 3.5
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH
-
-# Python
-export PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.5/bin
 
 # for bash vi (.inputrc is for all sh)
 set -o vi
@@ -114,8 +105,8 @@ set -o vi
 # remote duplicates
 export HISTCONTROL=ignoreboth:erasedups
 
-source ~/runtime_config/shell/shell-alias.sh
-source ~/runtime_config/shell/bash_alias.bash
+source ~/runtime_config/shell/shell_alias.sh
+source ~/runtime_config/bash/bash_alias.bash
 
 # for vim to react to c-q and c-s
 stty start undef

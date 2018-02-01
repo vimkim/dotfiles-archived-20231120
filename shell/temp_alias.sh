@@ -8,6 +8,6 @@ alias hw='skimp ~/Downloads/hs-homework.pdf 1'
 #####
 ####
 
-alias bookali='vim ~/runtime_config/bookali.sh'
+alias bookali='$myed ~/runtime_config/bookali.sh'
 source ~/runtime_config/bookali.sh
 alias sobookali='source ~/runtime_config/bookali.sh'

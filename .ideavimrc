@@ -1,0 +1,3 @@
+set surround
+inoremap ,s <esc>
+nnoremap ,s <esc>

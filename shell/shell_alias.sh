@@ -94,7 +94,6 @@ if hash nvr 2> /dev/null; then
     myvi=(nvr -s)
 fi
 echo "\$nvrexist: $nvrexist"
-
 export myvi
 
 emacsexist='false'
@@ -116,6 +115,9 @@ else
 fi
 echo "\$myvi: $myvi"
 echo "\$myed: $myed"
+# for now myed is myvi
+myed=$myvi # this spits an error
+myed=($myvi)
 
 # default editor (required for tmuxinator somehow)
 if [[ $platform == 'linux' ]]; then
@@ -137,9 +139,37 @@ type mvim
 type nvr
 type emacs
 type git
+
+# brew gcc/g++
+    # warning: brew install/upgrade gcc does not link /usr/local/bin/gcc to gcc.
+    # It only links gcc-N command, where N is the version number.
+    # therefore, use gcc-N instead of gcc
+if [[ $platform == 'macos' ]]; then
+    # do not forget to change these aliases after upgrading brew gcc.
+    alias gcc='gcc-7'
+    alias g++='g++-7'
+    alias cc='gcc-7'
+    alias c+='g++-7'
+fi
+type gcc
+type g++
+
+# brew python2/python3
+if [[ $platform == 'macos' ]]; then
+    # warning: python is /usr/bin/python, which is system builtin.
+    # brew does not update/link automatically.
+    # I should use python2 or python3 to use brew python.
+    #alias python='echo "!!!!! ##### warning: py2 or py3 to use brew python ##### !!!!!"; python'
+    alias python='/usr/local/bin/python3'
+    alias py='/usr/local/bin/python3'
+    alias py2='/usr/local/bin/python2'
+    alias py3='/usr/local/bin/python3'
+    alias pip='/usr/local/bin/pip3'
+fi
 type python
 type python2
 type python3
+
 type tmux
 type java
 
@@ -231,6 +261,7 @@ alias custum_alias='cua'
 alias sozsh='source ~/.zshrc'
 alias sobash='source ~/.bashrc'
 alias soali='source ~/runtime_config/shell/shell_alias.sh'
+source ~/runtime_config/shell/temp_alias.sh
 alias socua='source ~/runtime_config/shell/temp_alias.sh'
 alias socus='source ~/runtime_config/shell/temp_alias.sh'
 
@@ -323,25 +354,11 @@ alias ra=r_ranger
 
 #Rscript shortcut
 alias rso='Rscript' # r source
-
-#Python shortcut
-#alias python='python3'
-alias py='python3'
+alias rsc='Rscript'
 
 # sage alias
-# if [
 if [[ $platform == 'macos' ]]; then
-    alias sage='~/Applications/SageMath/sage'
-fi
-
-# brew gcc/g++
-    # warning: brew install/upgrade gcc does not link /usr/local/bin/gcc to gcc.
-    # It only links gcc-N command, where N is the version number.
-    # therefore, use gcc-N instead of gcc
-if [[ $platform == 'macos' ]]; then
-    # do not forget to change these aliases after upgrading brew gcc.
-    alias gcc='gcc-7'
-    alias g++='g++-7'
+    # installed by brew cask. Now no alias required.
 fi
 
 # LaTeX
@@ -500,6 +517,7 @@ alias check_run_what='echo $run_what'
 alias run_c="run_what='c'"
 alias run_cpp="run_what='cpp'"
 alias run_py="run_what='python3'"
+alias run_asm="run_what='asm'"
 alias run_py2="run_what='python2'"
 alias run_java="run_what='java'"
 alias run_pl="run_what='perl'"
@@ -513,6 +531,9 @@ m(){
     elif [[ "$run_what" == 'cpp' ]]; then
         echo "this is make for cpp"
         make --makefile=~/runtime_config/make/Makefile_CPP_general
+    elif [[ "$run_what" == 'asm' ]]; then
+        echo "this is make for asm"
+        nasm -f macho64 main.asm && ld -o main main.o && ./main && rm -f main.o main 1> /dev/null # reason to do this = to prevent msgs 'removed main.o, removed main, etc.'
     elif [[ "$run_what" == 'python3' ]]; then
         echo "this is python3."
         pyrun
@@ -588,3 +609,8 @@ alias undoclear='rmt ~/.vim/undodir/*'
 alias swapclear='rmt ~/.vim/swapdir/*'
 
 alias question='vim ~/Google\ Drive/question.txt'
+
+# aliases are not available when using sudo. The line below seems useless but it solves the issue.
+# https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
+alias sudo='sudo '
+

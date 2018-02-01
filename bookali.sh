@@ -6,7 +6,17 @@ alias hw='skimp ~/Downloads/hs-homework.pdf 1'
 
 #####
 alias dir='cl ~/praclang/c/TCPL/'
+alias econometrics='cl ~/books/econ/econometrics'
+alias econo='econometrics'
 
+##### econometrics
+alias dummie='open ~/books/econ/econometrics/stock/dummies.pdf'
+
+stockdir=~/books/econ/econometrics/stock
+alias stock='open $stockdir/stock3rdUpdate.pdf'
+alias stockNoUpdate='open $stockdir/stock_intro_3rd.pdf'
+alias stockSolution='open $stockdir/solution.pdf'
+alias econometrics_videos='open -a "/Applications/Google Chrome.app" "https://www.youtube.com/watch?v=M_5SLG7sUa0&index=1&list=PLwJRxp3blEvZyQBTTOMFRP_TDaSdly3gU"'
 ##### Books
 alias ctxt="skimp ~/Google\ Drive/books/comp/TCPL-c89.pdf 1"
 alias atxt="skimp ~/Google\ Drive/books/comp/assembly-language-step-by-step_new.pdf 90"
