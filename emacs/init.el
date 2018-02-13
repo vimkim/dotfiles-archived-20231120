@@ -2,6 +2,21 @@
 ;;; Commentary:
 ;;hello Emacs!
 ;;; Code:
+
+;; TIP: system-type is a variable used to detect OS:
+;; - gnu
+;; - gnu/linux
+;; - darwin
+;; - ms-dos
+;; - windows-nt
+;; - cygwin
+
+
+;; security
+;; for macos tls security connection
+(require 'gnutls)
+(add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
+
 ;;; Basic Configurations
 ;;(setq debug-on-error t)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -50,9 +65,17 @@
 
 ;;(x-focus-frame nil)
 
+(load-file "~/.emacs.d/initfiles/global.el")
 
-(global-linum-mode t)
-(defvar linum-format)
+;; line numbers
+(use-package nlinum-hl
+  :ensure t
+  :config
+  (global-nlinum-mode t)
+  (setq nlinum-highlight-current-line t))
+
+;(global-linum-mode t)
+;(defvar linum-format)
 ;;(setq linum-format "%d \u2502") ; assignment to free variable without defvar
 ;;(setq linum-format "%d \t")
 ;;(setq linum-format "%d~")
@@ -64,9 +87,9 @@
 
 (use-package jedi
   :ensure jedi)
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t) ; optional
-(add-hook 'python-mode-hook 'jedi:ac-setup)
+;;(add-hook 'python-mode-hook 'jedi:setup)
+;;(setq jedi:complete-on-dot t) ; optional
+;;(add-hook 'python-mode-hook 'jedi:ac-setup)
 
 ;; (add-to-list 'load-path "~/.emacs.d/evil")
 (use-package evil
@@ -112,7 +135,7 @@
   ;;"bd" 'kill-buffer
   "bd" 'kill-this-buffer
   "dw" 'delete-window
-  "bw" 'kill-buffer-and-window ; useful for closing yasnippet
+  "bw" 'kill-buffer-and-window ; useful for closing yasnippet and tag selection window.
   "bn" 'next-buffer
   "bp" 'previous-buffer
   ;;"bl" 'list-buffers
@@ -192,6 +215,7 @@
 ;; ;->: mapping
 (define-key evil-normal-state-map (kbd ";") 'evil-ex)
 
+
 ;; evil-easymotion
 (use-package evil-easymotion
   :ensure evil-easymotion)
@@ -245,7 +269,7 @@
 (use-package yasnippet
   :ensure yasnippet)
 (require 'yasnippet)
-(yas-global-mode 1)
+;; (yas-global-mode 1) ; if on, snippet folder already exists error
 ;; trigger snippet inside trigger
 (setq yas-triggers-in-field t); Enable nested triggering of snippets
 ;; tab to nil then reassign
@@ -553,11 +577,32 @@
 ;; supports multiple tag files
 ;;(setq tags-table-list '("/path/of/tags1" "/path/of/tags2"))
 
+;;; TAGs
+;; WARNING! brew cask emacs overwrites ctags with its own /Applications/Emacs.app/Contents/MacOS/bin/ctags
+;; beware of a bug.
+;;
+;; https://www.emacswiki.org/emacs/BuildTags#toc2
+;;
+(if (eq system-type 'darwin)
+    (setq path-to-ctags "/usr/local/bin/ctags")
+    )
+
+;; create-tags function creates tag.
+(defun create-tags (dir-name)
+  "Create tags file."
+  (interactive "DDirectory: ")
+  (shell-command
+    (format "%s -f TAGS -e -R %s" path-to-ctags (directory-file-name dir-name)))
+  )
+
 ;;(use-package ctags-update
 ;; :ensure ctags-update)
 ;;(autoload 'turn-on-ctags-auto-update-mode "ctags-update" "turn on 'ctags-auto-update-mode'." t)
 ;;(add-hook 'c-mode-common-hook  'turn-on-ctags-auto-update-mode)
 ;;(add-hook 'emacs-lisp-mode-hook  'turn-on-ctags-auto-update-mode)
+;;
+;; WARNING! brew cask emacs overwrites ctags with its own /Applications/Emacs.app/Contents/MacOS/bin/ctags
+;; beware of a bug.
 
 ;; if you want to update (create) TAGS manually
 ;;(autoload 'ctags-update "ctags-update" "update TAGS using ctags" t)
@@ -672,14 +717,18 @@
 ;;(set-language-environment "Korean")
 (prefer-coding-system 'utf-8)
 
+(global-prettify-symbols-mode 1)
 
 ;; matlab
 ;; s.el, flycheck, company-mode are dependencies
-(use-package s
-  :ensure s)
-(use-package matlab-mode
-  :ensure matlab-mode)
-(require 'matlab-mode)
+;;;   (use-package s
+;;;     :ensure s)
+;;;   (use-package matlab-mode
+;;;     :ensure matlab-mode)
+;;;   (require 'matlab-mode)
+
+;;; emacs version of vim-slime (general repl)
+(load-file "~/.emacs.d/initfiles/eval-in-repl_configuration.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

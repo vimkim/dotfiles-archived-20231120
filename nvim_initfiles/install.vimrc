@@ -1,3 +1,4 @@
+set nocompatible
 if has('vim_starting')
     set nocompatible
 endif

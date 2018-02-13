@@ -1,0 +1,21 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+BASE_FLAGS	.ycm_extra_conf_general.py	/^BASE_FLAGS = [  $/;"	v	language:Python
+FindNearest	.ycm_extra_conf_general.py	/^def FindNearest(path, target, build_folder):  $/;"	f	language:Python
+FlagsForClangComplete	.ycm_extra_conf_general.py	/^def FlagsForClangComplete(root):  $/;"	f	language:Python
+FlagsForCompilationDatabase	.ycm_extra_conf_general.py	/^def FlagsForCompilationDatabase(root, filename):  $/;"	f	language:Python
+FlagsForFile	.ycm_extra_conf_general.py	/^def FlagsForFile(filename):  $/;"	f	language:Python
+FlagsForInclude	.ycm_extra_conf_general.py	/^def FlagsForInclude(root):  $/;"	f	language:Python
+fnmatch	.ycm_extra_conf_general.py	/^import fnmatch  $/;"	i	language:Python
+GetCompilationInfoForFile	.ycm_extra_conf_general.py	/^def GetCompilationInfoForFile(database, filename):  $/;"	f	language:Python
+HEADER_DIRECTORIES	.ycm_extra_conf_general.py	/^HEADER_DIRECTORIES = [  $/;"	v	language:Python
+HEADER_EXTENSIONS	.ycm_extra_conf_general.py	/^HEADER_EXTENSIONS = [  $/;"	v	language:Python
+IsHeaderFile	.ycm_extra_conf_general.py	/^def IsHeaderFile(filename):  $/;"	f	language:Python
+logging	.ycm_extra_conf_general.py	/^import logging  $/;"	i	language:Python
+MakeRelativePathsInFlagsAbsolute	.ycm_extra_conf_general.py	/^def MakeRelativePathsInFlagsAbsolute(flags, working_directory):  $/;"	f	language:Python
+os	.ycm_extra_conf_general.py	/^import os  $/;"	i	language:Python
+os	.ycm_extra_conf_general.py	/^import os.path  $/;"	i	language:Python
+path	.ycm_extra_conf_general.py	/^import os.path  $/;"	i	language:Python
+re	.ycm_extra_conf_general.py	/^import re$/;"	i	language:Python
+SOURCE_DIRECTORIES	.ycm_extra_conf_general.py	/^SOURCE_DIRECTORIES = [  $/;"	v	language:Python
+SOURCE_EXTENSIONS	.ycm_extra_conf_general.py	/^SOURCE_EXTENSIONS = [  $/;"	v	language:Python
+ycm_core	.ycm_extra_conf_general.py	/^import ycm_core  $/;"	i	language:Python

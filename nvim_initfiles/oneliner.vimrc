@@ -41,7 +41,8 @@ set encoding=utf-8
 set fileencoding=utf-8
 " GUI
 if has("mac")
-    set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
+    "set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
+    set guifont=Menlo:h22
     set guifontwide=NanumGothic:h22
 endif
 
@@ -143,9 +144,9 @@ set undolevels=255
 "set spell << Currently set for txt, md, anki
 
 
-" auto change directory, works same as autochdir with less errors
-set autochdir
-"autocmd BufEnter * silent! lcd %:p:h
+"set autochdir
+" auto change directory, works same as `set autochdir` with less errors
+autocmd BufEnter * silent! lcd %:p:h
 " set the file's directory as pwd; useful for fzf opened files // set working directory.
 " somehow fzf runs this command after opening new files..
 nnoremap ;swd :silent! lcd %:p:h<cr>
@@ -170,7 +171,7 @@ endif
 "set shell=zsh\ -i " behave strange; interactive mode which seems wrong. This produces tts error or something like that
 
 "latex conceal unwanted strange math mode
-let g:tex_conceal = "" "maybe for vim-markdown or general
+"let g:tex_conceal = "" "maybe for vim-markdown or general
 
 set lazyredraw " redraw only when we need to 
 
@@ -197,6 +198,7 @@ if has("autocmd")
     autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
+" source vimrc - useful after adding plugins, etc.
 noremap ;sov :so $MYVIMRC<cr>
 
 set path+=** " from the thoughtbot youtube How to do 90% of what plugins do. use :find plug*
@@ -208,8 +210,8 @@ map <mouseup> <C-y>
 map <ScrollWheelDown> <c-e>
 map <mousedown> <C-e>
 
-let g:vim_json_syntax_conceal = 0 "not working. It is said that it works for vim-json
-set conceallevel =0
+"let g:vim_json_syntax_conceal = 0 "not working. It is said that it works for vim-json
+"set conceallevel =0
 
 " syntax highlight too slow. Test
 set nocursorcolumn
@@ -237,3 +239,70 @@ if !isdirectory($HOME . "/.vim/swapdir")
     call mkdir($HOME . "/.vim/swapdir", "p")
 endif
 set backupdir=$HOME/.vim/swapdir
+" $ ln -s ~/.local/share/nvim/swap ~/.vim/swapdir # recommended for nvim compatibility
+
+" change statusline color based on mode
+" http://vim.wikia.com/wiki/Change_statusline_color_to_show_insert_or_normal_mode
+" first, enable status line always
+set laststatus=2
+" now set it up to change the status line based on mode
+hi StatusLine ctermbg=22
+hi TabLineSel ctermfg=144 ctermbg=22
+if version >= 700
+  au InsertEnter * hi StatusLine term=reverse ctermbg=52 gui=undercurl guisp=Magenta
+  au InsertEnter * hi TabLineSel term=reverse ctermfg=144 ctermbg=52 gui=undercurl guisp=Magenta
+  au InsertLeave * hi StatusLine term=reverse  ctermbg=22 gui=bold,reverse
+  au InsertLeave * hi TabLineSel term=reverse ctermfg=144 ctermbg=22 gui=bold,reverse
+endif
+
+" reference: ~/runtime_config/vimcolor.txt
+
+" print(a,b) (b, a) (a>b) (a > b) (a >b) (a> b)
+" exchange word under cursor with the next word without moving the cursor
+nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+
+" push word under cursor to the right
+" difference between gw: cursor follows the word
+nnoremap <silent> gr "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
+" push word under cursor to the left
+nnoremap <silent> gl "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+
+" vim recognizes _ as a word boundary:
+"set iskeyword-=_ " this is dangerous. vim cannot use tags jump with this as c-] does not work with abc_xyc function.
+"Instead, use vim-textobj-underscore plugin.
+
+" Completion menu
+set completeopt=menuone "popup menu will showup even if there's one possible completion.
+" TIP1: <c-y> to close the menu
+" TIP2: <c-e> to cancel the completion and leave it as it was.
+
+"Cscope
+""" if has('cscope')
+"""     set cscopetag cscopeverbose
+"""
+"""     if has ('quickfix')
+"""         set cscopequickfix=s-,c-,d-,i-,t-,e-
+"""     endif
+"""
+"""     cnoreabbrev csa cs add
+"""     cnoreabbrev csf cs find
+""" endif
+
+"Tags
+"cnoreabbrev upt UpdateTags -R
+" $ vim -t <tag> goes to tag directly. e.g. vim -t main
+
+"highlight Comment cterm=italic gui=italic
+
+" for Tmux italics
+" the first two lines force true color on
+"let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+"let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+"set termguicolors
+
+" this makes the concealed letters appear
+" autocmd vimenter * set concealcursor=c
+" autocmd vimenter * setlocal concealcursor=c
+" does not work with vim-schemer... finally disabling schemer
+autocmd bufnewfile,bufread  * set concealcursor=c conceallevel=1
+autocmd bufnewfile,bufread * setlocal concealcursor=c conceallevel=1

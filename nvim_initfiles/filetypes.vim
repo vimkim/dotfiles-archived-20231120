@@ -111,5 +111,7 @@ au filetype csv setlocal noexpandtab "don't expand tab if csv
 "au filetype markdown nnoremap ;ti i# <esc>:put =expand('%:t:r')<cr>kJ
 au filetype markdown nnoremap ;title <esc>:put =expand('%:t:r')<cr>kJyyp<c-v>$r=<cr>
 
+" python fold
+au filetype python set foldmethod=indent
 
 

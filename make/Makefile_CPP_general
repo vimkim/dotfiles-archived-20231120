@@ -1,4 +1,4 @@
-CC=g++
+CC=g++-7
 CCFLAGS=-g -Wall -Wextra -W -pedantic
 LDFLAGS=
 SOURCES=$(wildcard *.cpp)

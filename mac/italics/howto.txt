@@ -1,0 +1,8 @@
+$ tic xterm-256color-italic.terminfo
+$ tic screen-256color-italic.terminfo
+
+and add the line in tmux.conf
+set -g default-terminal "screen-256color-italic"
+
+
+

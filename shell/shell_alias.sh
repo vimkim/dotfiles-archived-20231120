@@ -9,7 +9,8 @@ echo "\$SHELL: $SHELL"
 echo "\$SHLVL: $SHLVL"
 echo "****************************************************"
 
-## # Detect OS
+## # Detect OS # this part is modularized. 
+## # Check out ~/runtime_config/zsh/detect_OS.zsh
 ## platform='unknown'
 ## distro='unknown'
 ## unamestr=$(uname)
@@ -24,8 +25,7 @@ echo "****************************************************"
 ##     else
 ##         echo "Pure Linux"
 ##     fi
-## elif [[ "$unamestr" == 'Darwin' ]]; then
-##     platform='macos'
+## elif [[ "$unamestr" == 'Darwin' ]]; then ##     platform='macos'
 ## fi
 ## echo "\$platform: $platform"
 ##
@@ -116,8 +116,8 @@ fi
 echo "\$myvi: $myvi"
 echo "\$myed: $myed"
 # for now myed is myvi
-myed=$myvi # this spits an error
-myed=($myvi)
+#myed=$myvi # this spits an error
+#myed=($myvi) # emacs returned
 
 # default editor (required for tmuxinator somehow)
 if [[ $platform == 'linux' ]]; then
@@ -190,6 +190,8 @@ type java
 if [[ $platform == "macos" ]]; then
     if [[ -a /usr/local/bin/gls ]]; then # using gnu ls
         alias ls='/usr/local/bin/gls --color=auto -F'
+    elif [[ -a /usr/local/bin/ls ]]; then # using brew ls (which is gnu ls)
+        alias ls='/usr/local/bin/ls --color=auto -F'
     elif [[ -a /bin/ls ]]; then # use mac default ls
         alias ls='ls -GF'
     else
@@ -209,6 +211,10 @@ elif [[ $platform == "linux" ]]; then
 fi
 alias la='ls -A' # -A is cleaner than -a imo. (-A does not include . and ..)
 alias ll='ls -la' # however, when observing permissions, -a is more useful.
+alias lld='ls -lad' # for directory. If without -d, it shows the contents of the directory instead of the directory itself.
+llsy(){
+    ls -la $@ | grep " \->"
+}
 alias l='ls -a'
 
 # vim config. If nvim exists, use it
@@ -279,6 +285,7 @@ alias ginitel='gemacs ~/runtime_config/emacs/init.el'
 alias enitel='emacsclient ~/runtime_config/emacs/init.el'
 alias initel='emacs ~/runtime_config/emacs/init.el'
 alias vinitel="$myvi ~/runtime_config/emacs/init.el"
+alias initeldebug='initel --debug-init'
 
 # accessibility aliases
 alias rm='rm -iv'
@@ -289,10 +296,12 @@ alias cp='cp -iv'
 alias md='mkdir'
 alias mkd='mkdir'
 alias grep='grep --color'
+# grep -n : line number / -r : recursive / -i ignore case
 alias fzg='grep -nir'
 alias fzgrep='grep -nir'
 #alias ask='grep -nir'
-alias ask='grep -nir -A 2'
+# -A NUM : print NUM lines after the searched pattern
+alias ask='grep -nir -A 1 --exclude-dir=.git'
 function askman {
     ask "$@" ~/mymanual/
 }
@@ -385,7 +394,7 @@ alias project='cd ~/notetaking/1_fine482/project/; ls -a'
 alias snip='cd ~/runtime_config/snippets; ls -a'
 
 # personal edit aliases
-alias tmuxconf='$myed ~/runtime_config/.tmux.conf'
+alias tmuxconf='$myed ~/runtime_config/tmux/.tmux.conf'
 alias keep='$myed ~/Google\ Drive/keep_offline.md'
 alias todo='$myed ~/Google\ Drive/keep_offline.md'
 alias todostack='$myed ~/.todostack.md'
@@ -552,6 +561,8 @@ m(){
     else
         echo "\$run_what value is not initialized. Use run_* option. Use check_run_what to check its value."
     fi
+
+    say "complete"
 }
 
 mcl(){
@@ -605,12 +616,72 @@ alias jn="jupyter notebook"
 
 alias lmk="latexmk -pdf -pvc" # -pdf: use pdf instead of dvi, ps, etc. / -pv: preview the resulting output. / -pvc: preview the output continuously.
 
+# vim tmp related
+alias undodir='cl ~/.vim/undodir'
 alias undoclear='rmt ~/.vim/undodir/*'
+alias rmt_undodir='undoclear'
+
+alias swapdir='cl ~/.vim/swapdir'
+alias swapdir_nvim='cl ~/.local/share/nvim/swap'
 alias swapclear='rmt ~/.vim/swapdir/*'
+alias rmt_swapdir='swapclear'
+
+alias rmt_vimtags='rmt ~/.vimtags'
 
 alias question='vim ~/Google\ Drive/question.txt'
 
 # aliases are not available when using sudo. The line below seems useless but it solves the issue.
 # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
 alias sudo='sudo '
+
+# highlight the pattern.
+# https://serverfault.com/questions/180749/linux-colorize-find
+highlight() { perl -pe "s/$1/\e[1;31;43m$&\e[0m/g"; }
+myfind(){
+    # gnu version of find used: /usr/local/bin/find for mac
+    # what find command does is that it simply finds all existing files within a directory.
+    # It takes only one argument, which is the directory it would search through.
+    # If a special option such as -name is given, it applies the condition onto the search results.
+    #find . -name "*$@*" | highlight $@
+    find . -name "*$@*" | grep $@ # grep with color
+    #find . | grep $@ # this also works.
+}
+alias myf='myfind'
+
+# iconv -c -f euc-kr -t utf-8 test.txt > text-utf8.txt
+# dost2utf from.txt > to.txt
+alias dos2utf='iconv -c -f euc-kr -t utf-8'
+# convert euc-kr filename into utf-8 filename
+# # /usr/local/bin/convmv from brew
+alias dos2utf_title='convmv -f euc-kr -t utf-8 --notest'
+alias dinner='python3 ~/praclang/py/dinner_reco/main.py'
+alias vim_basic='vim -u ~/runtime_config/vim/.vimrc_basic'
+alias vimrc_basic='vim ~/runtime_config/vim/.vimrc_basic'
+alias vimrc_basic_with_vim_basic='vim -u ~/runtime_config/vim/.vimrc_basic ~/runtime_config/vim/.vimrc_basic'
+
+# for italic tmux
+# TERM=xterm-256color-italic "bug
+
+# if nvr -s does not work sometimes
+alias rm_nvimsocket='rmt /tmp/nvimsocket'
+
+alias whicha='which -a'
+alias wha='whicha'
+whichls(){
+    /usr/bin/which -a $@ | xargs ls -la --color=auto
+}
+alias whl='whichls'
+
+# copy current working directory to clipboard
+if [[ $platform == 'macos' ]]; then
+    alias cpwd="pwd | tr -d '\n' | pbcopy" # do not use ''. '\n' breaks the quote.
+elif [[ $platform == 'linux' ]]; then
+    if hash xclip 2>/dev/null; then
+        alias cpwd='pwd | xclip -selection clipboard'
+    else
+        echo "install xclip"
+    fi
+else
+    echo "cpwd: not yet available"
+fi
 

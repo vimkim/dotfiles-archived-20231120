@@ -65,7 +65,8 @@ nnoremap <leader>q :bd<CR>
 inoremap <leader>q <ESC>:bd<CR>
 nnoremap <leader>q :bd<CR>
 nnoremap <leader>w :Gwrite<cr>:Gcommit --verbose<cr>
-"nnoremap <c-x><c-c> :q<cr> "does not work, why?
+"does not work, why?
+" nnoremap <c-x><c-c> :q<cr>
 ")
 
 nnoremap sq <esc>:wq<esc>
@@ -128,16 +129,22 @@ au filetype html nnoremap <buffer> <leader>ru :!open -a /Applications/Google\ Ch
 "matlab
 au filetype matlab nnoremap <buffer> <leader>ru :MatlabCliOpenInMatlabEditor<cr>
 
+"r
+aut filetype r nnoremap <buffer> <leader>ru :!Rscript %<cr>
+
 "- C,CPP
 "Create an executable file named a.out.
-"noremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
-"noremap <leader>gpp :w <CR>:!g++-6 % && ./a.out <CR>
-"noremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
-"IMPORTANT: if bugs occured, change gcc-6 to gcc
+"noremap <leader>gcc :w <CR>:!gcc % && ./a.out <CR>
+"noremap <leader>gpp :w <CR>:!g++ % && ./a.out <CR>
+"noremap <leader>g++ :w <CR>:!g++ % && ./a.out <CR>
+"IMPORTANT: if bugs occured, change gcc-6 to gcc -> edit: gcc-6 is now gcc-7
 " creates an executable file that has the same name with its .c file
-au filetype c nnoremap <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
-au filetype c nnoremap <leader>ru :w <CR> :!gcc % -o %< && ./%< <CR>
-au filetype c nnoremap <leader>cpp :w <CR> :!gcc % -o %< && ./%< <CR>
+au filetype c nnoremap <F8> :w <CR> :!gcc-7 % -o %< && ./%< <CR>
+
+au filetype c nnoremap <leader>ru :w <CR> :!gcc-7 % && ./a.out <CR>
+au filetype cpp nnoremap <leader>ru :w <CR> :!g++-7 % && ./a.out <CR>
+"au filetype c nnoremap <leader>ru :w <CR> :!gcc-7 % -o %< && ./%< <CR>
+"au filetype cpp nnoremap <leader>cpp :w <CR> :!g++-7 % -o %< && ./%< <CR>
 ")
 
 "- JAVA
@@ -248,7 +255,7 @@ nnoremap ;ffmt <esc>:set fileformat=dos
 
 nnoremap ;ft :set filetype<cr>
 
-nnoremap ;vm :verbose map 
+nnoremap ;vm :verbose map
 
 nnoremap ;nl :put =range(
 
@@ -288,8 +295,8 @@ inoremap ;<c-v> <esc>"*p
 xnoremap ;<c-y> "*y "<c-c> does not work
 
 " emacs style line
-nnoremap <c-a> ^
-nnoremap <c-e> $
+"nnoremap <c-a> ^
+"nnoremap <c-e> $
 
 " select last yanked text
 nnoremap <leader>V `[v`]
@@ -325,3 +332,13 @@ nnoremap dq d
 
 inoremap ,. <esc>:update<cr>
 nnoremap ,. :update<cr>
+
+" create non-existent file under the cursor
+nnoremap <leader>gf :e <cfile><cr>
+
+" remove whitespace-only line (but not delete \n)
+" no whitespace only line
+nnoremap nwol :%s/^ \+$//g<cr>
+" no whitespace only current line
+
+nnoremap nwoc :s/^ \+$//g<cr>
