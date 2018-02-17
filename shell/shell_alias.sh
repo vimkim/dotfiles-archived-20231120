@@ -261,15 +261,17 @@ alias ali="$myvi ~/runtime_config/shell/shell_alias.sh" # double quote works. Si
 alias vali='vim ~/runtime_config/shell/shell_aliases.sh'
 alias nali='nvim ~/runtime_config/shell/shell_aliases.sh'
 alias mali='mvim ~/runtime_config/shell/shell_aliases.sh'
+
 alias cua='$myvi ~/runtime_config/shell/temp_alias.sh'
 alias cuali='cua'
 alias custum_alias='cua'
+alias socua='source ~/runtime_config/shell/temp_alias.sh'
+alias socus='source ~/runtime_config/shell/temp_alias.sh'
+
 alias sozsh='source ~/.zshrc'
 alias sobash='source ~/.bashrc'
 alias soali='source ~/runtime_config/shell/shell_alias.sh'
 source ~/runtime_config/shell/temp_alias.sh
-alias socua='source ~/runtime_config/shell/temp_alias.sh'
-alias socus='source ~/runtime_config/shell/temp_alias.sh'
 
 # vimrc function
 alias vimrc="$myvi ~/runtime_config/vim/.vimrc"
@@ -478,8 +480,8 @@ else
     echo "oaf not set yet in this OS"
 fi
 
-# alias shs="ssh -p '1004' 's2016112648@linux.mme.dongguk.edu'" # not work
-alias shs='expect ~/exp.sh'
+alias shs="ssh -p '1004' 's2016112648@linux.mme.dongguk.edu'" # not work
+alias shs2='expect ~/exp.sh'
 
 alias skim-pdf-bg-color='osascript ~/runtime_config/skim-pdf-bgcolor.scpt'
 

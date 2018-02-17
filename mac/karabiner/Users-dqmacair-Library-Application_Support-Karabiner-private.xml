@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <root>
-    
+
     <!--RSTUDIO-->
     <appdef>
         <appname>RSTUDIO</appname>
@@ -64,6 +64,16 @@
         <name>VSCode: application to ctrl</name>
         <identifier>private.vscodedef</identifier>
         <only>VSCODE</only>
+        <autogen>__KeyToKey__ KeyCode::PC_APPLICATION, KeyCode::CONTROL_L</autogen>
+    </item>
+    <appdef>
+        <appname>ATOM</appname>
+        <equal>com.github.atom</equal>
+    </appdef>
+    <item>
+        <name>ATOM: application to ctrl</name>
+        <identifier>private.atomdef</identifier>
+        <only>ATOM</only>
         <autogen>__KeyToKey__ KeyCode::PC_APPLICATION, KeyCode::CONTROL_L</autogen>
     </item>
 

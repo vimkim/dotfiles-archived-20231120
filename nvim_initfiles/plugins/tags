@@ -4,7 +4,6 @@ $NVIM_TUI_ENABLE_TRUE_COLOR	/Users/dqmacair/runtime_config/nvim_initfiles/plugin
 $NVIM_TUI_ENABLE_TRUE_COLOR	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let $NVIM_TUI_ENABLE_TRUE_COLOR=1$/;"	v	language:Vim
 ,bl	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^nnoremap ,bl :CtrlPBuffer<cr>$/;"	m	language:Vim
 ,bl	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^nnoremap ,bl :CtrlPBuffer<cr>$/;"	m	language:Vim
-,bl	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,bl :CtrlPBuffer<cr>$/;"	m	language:Vim
 ,cd	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^nnoremap ,cd <esc>:CtrlPDir ~\/$/;"	m	language:Vim
 ,cd	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^nnoremap ,cd <esc>:CtrlPDir ~\/$/;"	m	language:Vim
 ,cd	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,cd <esc>:CtrlPDir ~\/$/;"	m	language:Vim
@@ -28,7 +27,6 @@ $NVIM_TUI_ENABLE_TRUE_COLOR	/Users/dqmacair/runtime_config/nvim_initfiles/plugin
 ;ask	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;ask :Ack!<space>$/;"	m	language:Vim
 ;bl	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^nnoremap ;bl :CtrlPBuffer<cr>$/;"	m	language:Vim
 ;bl	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^nnoremap ;bl :CtrlPBuffer<cr>$/;"	m	language:Vim
-;bl	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;bl :CtrlPBuffer<cr>$/;"	m	language:Vim
 ;cd	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^nnoremap ;cd <esc>:CtrlPDir ~\/$/;"	m	language:Vim
 ;cd	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^nnoremap ;cd <esc>:CtrlPDir ~\/$/;"	m	language:Vim
 ;cd	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;cd <esc>:CtrlPDir ~\/$/;"	m	language:Vim

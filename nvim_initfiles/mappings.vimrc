@@ -158,6 +158,8 @@ nnoremap ;enter :%s/\r/\r/g<CR>
 "Buffer shortcuts
 nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bp :bp<cr>
+nnoremap ,bl :bl<cr>
+nnoremap ;bl :bl<cr>
 nnoremap <leader>bd :bd<cr>
 nnoremap <leader>bq :bd<cr>
 nnoremap <leader>bf :buffers<CR>:buffer<Space>
@@ -186,7 +188,7 @@ nnoremap Y y$
 " highlight last inserted text // seems like not working? for me?: It does not work if file is saved. I escape the file using <c-s>. That was the reason this does not work.
 "nnoremap gV `[v`]
 "set timeoutlen=1000 " still the above command does not properly work << not required anymore
-"set ttimeoutlen=10 " 
+"set ttimeoutlen=10 "
 
 
 
@@ -326,6 +328,34 @@ inoremap ;calc <c-o>yiW<End>=<c-r>=<c-r>0<cr>
 "nnoremap e k
 "nnoremap i l
 
+"(( enhanced vim navigation
+" colemak neio -> hjkl
+"nnoremap n h
+"nnoremap e j
+"nnoremap i k
+"nnoremap o l
+"" colemak uhjkl -> ioune
+"nnoremap u i
+"nnoremap h o
+"nnoremap j u
+"nnoremap k n
+"nnoremap l e
+"))
+
+"(( arrow key like navigation
+" colemak neuio -> hjkli
+""" nnoremap n h
+""" nnoremap e j
+""" nnoremap u k
+""" nnoremap i l
+""" nnoremap o i
+""" " colemak jkhl -> uone
+""" nnoremap j u
+""" nnoremap k o
+""" nnoremap h n
+""" nnoremap l e
+"))
+
 nnoremap ,ls :ls<cr>
 
 nnoremap dq d
@@ -338,7 +368,15 @@ nnoremap <leader>gf :e <cfile><cr>
 
 " remove whitespace-only line (but not delete \n)
 " no whitespace only line
-nnoremap nwol :%s/^ \+$//g<cr>
+"nnoremap nwol :%s/^ \+$//g<cr>
 " no whitespace only current line
 
-nnoremap nwoc :s/^ \+$//g<cr>
+"nnoremap nwoc :s/^ \+$//g<cr>
+
+
+inoremap <F9> <c-o>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
+" how to save fold? view option and view plugin
+

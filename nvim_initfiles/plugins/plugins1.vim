@@ -50,6 +50,12 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
 " - auto enabled with lisp
 Plug 'chrisbra/Recover.vim' "temp file diff
+Plug 'vim-scripts/restore_view.vim' " save folds - seems not working
+"(restore_view
+set viewoptions=cursor,folds,slash,unix
+
+")
+
 "Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 "Plug 'majutsushi/tagbar'

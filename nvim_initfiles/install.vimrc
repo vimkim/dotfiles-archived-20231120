@@ -5,7 +5,7 @@ endif
 
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 let g:vim_bootstrap_langs = "c,go,html,javascript,lisp,perl,python"
-let g:vim_boosttrap_editor = "vim"
+let g:vim_bootstrap_editor = "vim"
 
 if !filereadable(vimplug_exists)
     if !executable("curl")

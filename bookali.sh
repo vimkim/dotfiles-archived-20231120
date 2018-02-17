@@ -22,6 +22,7 @@ alias econometrics_progress='https://www.youtube.com/watch?v=Hi5EJnBHFB4&list=PL
 alias progress='econometrics_progress'
 
 alias econometrics_videos_asymptotic='oac "https://www.youtube.com/playlist?list=PLwJRxp3blEvZBAn3bwAAtdJqotRPBWBlP"'
+alias econometrics_videos_asymptotic_progress='oac "https://www.youtube.com/watch?v=4QAeBJVn9WI&list=PLwJRxp3blEvZBAn3bwAAtdJqotRPBWBlP&index=8"'
 
 ### stock book
 stockdir=~/books/econ/econometrics/stock

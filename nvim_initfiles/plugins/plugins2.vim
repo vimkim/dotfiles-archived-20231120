@@ -4,6 +4,7 @@ Plug 'tpope/vim-abolish' "help writing
 "Plug 'vim-airline/vim-airline-themes'
 "Plug 'bling/vim-bufferline'
 "Plug 'ap/vim-buftabline'
+"Plug 'jooize/vim-colemak'
 "Plug 'altercation/vim-colors-solarized'
 Plug 'octol/vim-cpp-enhanced-highlight' "may conflict with easytags
 "Plug 'bfrg/vim-cpp-modern' "inspired by vim-cpp-enhanced-highlight

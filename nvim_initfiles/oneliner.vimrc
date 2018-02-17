@@ -152,9 +152,37 @@ autocmd BufEnter * silent! lcd %:p:h
 nnoremap ;swd :silent! lcd %:p:h<cr>
 
 
+
+" SWAPDIR
+" Attempt to create the directory. If it already exists, mkdir will signal an error, but it is ignored.
+" silent !mkdir ~/.vim/swapdir > /dev/null 2>&1
+" This is operating system independent
+if !isdirectory($HOME . "/.vim/swapdir")
+    call mkdir($HOME . "/.vim/swapdir", "p")
+endif
+set backupdir=$HOME/.vim/swapdir
+" $ ln -s ~/.local/share/nvim/swap ~/.vim/swapdir # recommended for nvim compatibility
+
+" UNDODIR
 " Saves undo's after file closes
+" do not forget to clean undo file with unix cron
+" if this option is not set, clean ~/.local/share/nvim/undo
+if !isdirectory($HOME . "/.vim/undodir")
+    call mkdir($HOME . "/.vim/undodir", "p")
+endif
 set undofile
 set undodir=~/.vim/undodir
+
+" VIEWDIR
+if !isdirectory($HOME . "/.vim/viewdir")
+    call mkdir($HOME . "/.vim/viewdir", "p")
+endif
+set viewdir=$HOME/.vim/viewdir
+" Save fold in viewdir
+"autocmd BufWinLeave ?*.* mkview
+"autocmd BufWinEnter ?*.* silent loadview
+set viewoptions-=options
+
 
 " Full path to the status line visible
 "set statusline+=%F
@@ -232,14 +260,6 @@ set noimd
     "autocmd InsertLeave * call libcall('/usr/local/lib/libInputSourceSwitcher.dylib', 'Xkb_Switch_setXkbLayout', 'com.apple.keylayout.US')
 "endif "strange behavior
 
-" Attempt to create the directory. If it already exists, mkdir will signal an error, but it is ignored.
-" silent !mkdir ~/.vim/swapdir > /dev/null 2>&1
-" This is operating system independent
-if !isdirectory($HOME . "/.vim/swapdir")
-    call mkdir($HOME . "/.vim/swapdir", "p")
-endif
-set backupdir=$HOME/.vim/swapdir
-" $ ln -s ~/.local/share/nvim/swap ~/.vim/swapdir # recommended for nvim compatibility
 
 " change statusline color based on mode
 " http://vim.wikia.com/wiki/Change_statusline_color_to_show_insert_or_normal_mode
@@ -306,3 +326,4 @@ set completeopt=menuone "popup menu will showup even if there's one possible com
 " does not work with vim-schemer... finally disabling schemer
 autocmd bufnewfile,bufread  * set concealcursor=c conceallevel=1
 autocmd bufnewfile,bufread * setlocal concealcursor=c conceallevel=1
+

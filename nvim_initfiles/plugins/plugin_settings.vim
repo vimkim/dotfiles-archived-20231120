@@ -47,8 +47,8 @@ let g:ctrlp_prompt_mappings = {
 " <c-x> is buggy
 nnoremap ,cd <esc>:CtrlPDir ~/
 nnoremap ;cd <esc>:CtrlPDir ~/
-nnoremap ,bl :CtrlPBuffer<cr>
-nnoremap ;bl :CtrlPBuffer<cr>
+"nnoremap ,bl :CtrlPBuffer<cr> " now bl is for buffer last
+"nnoremap ;bl :CtrlPBuffer<cr>
 nnoremap ,ls :CtrlPBuffer<cr>
 nnoremap ;ls :CtrlPBuffer<cr>
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']

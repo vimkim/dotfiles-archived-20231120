@@ -2,12 +2,14 @@
 ,#	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,# yyp<c-v>$r-<cr>$/;"	m	language:Vim
 ,.	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap ,. <esc>:update<cr>$/;"	m	language:Vim
 ,.	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,. :update<cr>$/;"	m	language:Vim
+,bl	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,bl :bl<cr>$/;"	m	language:Vim
 ,dp	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^vnoremap ,dp :diffput<cr>$/;"	m	language:Vim
 ,ls	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,ls :ls<cr>$/;"	m	language:Vim
 ,ㅇ	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap ,ㅇ <esc>:update<cr> " does not work cuz korean inputs $/;"	m	language:Vim
 ;	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ; :$/;"	m	language:Vim
 ;<c-v>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap ;<c-v> <esc>"*p$/;"	m	language:Vim
 ;<c-v>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ;<c-v> "*p$/;"	m	language:Vim
+;bl	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ;bl :bl<cr>$/;"	m	language:Vim
 ;calc	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap ;calc <c-o>yiW<End>=<c-r>=<c-r>0<cr>$/;"	m	language:Vim
 ;date	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ;date <esc>:put =strftime('%Y-%b-%d %a %Hh')<cr>kJ<esc>$/;"	m	language:Vim
 ;enter	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ;enter :%s\/\\r\/\\r\/g<CR>$/;"	m	language:Vim
@@ -36,6 +38,10 @@
 <c-q>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap <c-q> <ESC>:q<CR>$/;"	m	language:Vim
 <c-q>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap <c-q> :q<CR>$/;"	m	language:Vim
 <c-q>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap <c-q> :q<CR>$/;"	m	language:Vim
+<F9>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap <F9> <c-o>za$/;"	m	language:Vim
+<F9>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap <F9> za$/;"	m	language:Vim
+<F9>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^onoremap <F9> <C-C>za$/;"	m	language:Vim
+<F9>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^vnoremap <F9> zf$/;"	m	language:Vim
 <Leader><Enter>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap <Leader><Enter> O<ESC>$/;"	m	language:Vim
 <leader>ap	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap <leader>ap :Git add -p %<cr>$/;"	m	language:Vim
 <leader>bd	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap <leader>bd :bd<cr>$/;"	m	language:Vim
@@ -82,6 +88,9 @@ dq	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap dq d$
 g:BASH_Ctrl_j	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^let g:BASH_Ctrl_j = 'off' " does not work$/;"	v	language:Vim
 g:html_indent_inctags	/Users/dqmacair/runtime_config/nvim_initfiles/oneliner.vimrc	/^let g:html_indent_inctags = "html,body,head,tbody"$/;"	v	language:Vim
 g:loaded_checkbox	/Users/dqmacair/runtime_config/nvim_initfiles/filetypes.vim	/^let g:loaded_checkbox = 1$/;"	v	language:Vim
+g:not_finish_vimplug	/Users/dqmacair/runtime_config/nvim_initfiles/install.vimrc	/^    let g:not_finish_vimplug = "yes"$/;"	v	language:Vim
+g:vim_bootstrap_editor	/Users/dqmacair/runtime_config/nvim_initfiles/install.vimrc	/^let g:vim_bootstrap_editor = "vim"$/;"	v	language:Vim
+g:vim_bootstrap_langs	/Users/dqmacair/runtime_config/nvim_initfiles/install.vimrc	/^let g:vim_bootstrap_langs = "c,go,html,javascript,lisp,perl,python"$/;"	v	language:Vim
 g:ZSH_Ctrl_j	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^let g:ZSH_Ctrl_j = 'off'$/;"	v	language:Vim
 gA	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap gA g$a$/;"	m	language:Vim
 gb	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap gb ^$/;"	m	language:Vim
@@ -103,14 +112,13 @@ gw	/Users/dqmacair/runtime_config/nvim_initfiles/oneliner.vimrc	/^nnoremap <sile
 j	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap j gj$/;"	m	language:Vim
 k	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap k gk$/;"	m	language:Vim
 mapleader	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^let mapleader = ","$/;"	v	language:Vim
-nwoc	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap nwoc :s\/^ \\+$\/\/g<cr>$/;"	m	language:Vim
-nwol	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap nwol :%s\/^ \\+$\/\/g<cr>$/;"	m	language:Vim
 QQ	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap QQ <c-c>:q<cr>$/;"	m	language:Vim
 QQ	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap QQ <c-c>:q<cr>$/;"	m	language:Vim
 sq	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap sq <esc>:wq<esc>$/;"	m	language:Vim
 sq	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^vnoremap sq <esc>:wq<esc>$/;"	m	language:Vim
 ToggleCB	/Users/dqmacair/runtime_config/nvim_initfiles/filetypes.vim	/^fu! ToggleCB()$/;"	f	language:Vim
 U	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap U :echo "<< ===== CHECK CAPSLOCK =====>>"<cr>$/;"	m	language:Vim
+vimplug_exists	/Users/dqmacair/runtime_config/nvim_initfiles/install.vimrc	/^let vimplug_exists=expand('~\/.vim\/autoload\/plug.vim')$/;"	v	language:Vim
 Y	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap Y y\$$/;"	m	language:Vim
 zt	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap zt zA$/;"	m	language:Vim
 ZZ	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap ZZ <c-c>ZZ$/;"	m	language:Vim
