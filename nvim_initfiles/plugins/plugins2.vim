@@ -2,6 +2,9 @@
 Plug 'tpope/vim-abolish' "help writing
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
+
+Plug 'djoshea/vim-autoread'
+
 "Plug 'bling/vim-bufferline'
 "Plug 'ap/vim-buftabline'
 "Plug 'jooize/vim-colemak'
@@ -18,6 +21,11 @@ Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-fugitive'
 Plug 'tenfyzhong/vim-gencode-cpp'
 Plug 'airblade/vim-gitgutter'
+
+" required for colemak neio arrow key mappings. (for visual mode i)
+let g:gitgutter_map_keys = 0
+
+
 Plug 'rhysd/vim-grammarous'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']}
 "Plug 'maksimr/vim-jsbeautify'
@@ -35,19 +43,37 @@ Plug 'daeyun/vim-matlab', { 'do': function('DoRemote')}
 Plug 'tpope/vim-obsession'
 Plug 'mattn/vim-particle'
 Plug 'reedes/vim-pencil'
-Plug 'tpope/vim-repeat'
+"Plug 'tpope/vim-repeat' "disabled for colemap
 Plug 'jpalardy/vim-slime', { 'for': [ 'python', 'R', 'lisp' ] }
 "Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
+
+Plug 'janko-m/vim-test'
+" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+nmap <silent> t<C-n> :TestNearest<CR> " t Ctrl+n
+nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f
+nmap <silent> t<C-s> :TestSuite<CR>   " t Ctrl+s
+nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l
+nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
+
+
 Plug 'lervag/vimtex', { 'for': 'tex' }
-Plug 'kana/vim-textobj-user' "required for underscore plugin
-Plug 'lucapette/vim-textobj-underscore' "kana's user plugin required
+
+"(( disabled for colemak neio arrow layout
+"Plug 'kana/vim-textobj-user' "required for underscore plugin
+"Plug 'lucapette/vim-textobj-underscore' "kana's user plugin required
+"))
+"
 Plug 'tpope/vim-unimpaired'
 Plug 'zefei/vim-wintabs'
 
 
 Plug 'Valloric/YouCompleteMe'
+" - python: pip install jedi
+
 Plug 'rdnetto/YCM-Generator', { 'branch' : 'stable' }
+let g:zenburn_transparent = 1
 Plug 'jnurmine/Zenburn'
+Plug 'dhruvasagar/vim-zoom'
 " pluglist end

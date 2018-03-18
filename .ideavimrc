@@ -1,3 +1,19 @@
 set surround
+set visualbell
+set noerrorbells
+
 inoremap ,s <esc>
 nnoremap ,s <esc>
+
+"vim navigation enable
+noremap n gj
+noremap e gk
+noremap i l
+noremap k n|noremap K N
+noremap f e|noremap F E
+noremap u i|noremap U I
+noremap l u
+noremap t f
+noremap j t
+
+nnoremap ,ru :action Run<cr>

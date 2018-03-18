@@ -2,12 +2,20 @@
 "Plug 'kovisoft/slimv'
 if has('mac')
     " does not work
-let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sblc --load ~/.vim/bundle/slimv/slime/start-swank.lisp"'
+"let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sblc --load ~/.vim/bundle/slimv/slime/start-swank.lisp"'
 "let g:slimv_swank_cmd = '!osascript -e "tell application \"Terminal\" to do script \"sbcl --load ~/.vim/bundle/slimv/slime/start-swank.lisp\""'
 endif
 " - this made me install brew sbcl (steel bank common lisp).. ??
 
-Plug 'vim-scripts/paredit.vim'
+
+"(( PAREDIT
+"Plug 'vim-scripts/paredit.vim'
+" bug of this plugin: mess up with julia .jl extension.
 
 " scheme
 so ~/runtime_config/nvim_initfiles/plugins/lang/scheme.vim
+
+Plug 'JuliaEditorSupport/julia-vim'
+Plug 'AtsushiSakai/julia.vim'
+autocmd BufRead, BufNewFile *.jl set filetype=julia
+" julia-vim plugin is not enough. It does not load auto pairs plugin.

@@ -1,3 +1,5 @@
+# tmux auto rename disable
+#export DISABLE_AUTO_TITLE="true"
 # run tmux automatically
 if [[ $SHLVL == 1 ]]; then
     tmux attach || tmux new
@@ -31,6 +33,8 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt hist_ignore_dups
 setopt HIST_IGNORE_ALL_DUPS
 
+# include dot files in wildcard
+setopt GLOB_DOTS
 
 # for LaTex
 #export PATH=$PATH:/Library/TeX/texbin # already in /etc/paths

@@ -1,0 +1,35 @@
+# mode:
+# not working. why?
+# https://github.com/h2ero/XEasyMotion/wiki
+#enableMode: simpleMode
+enableMode: nineBlockMode
+enableModes: [simpleMode, nineBlockMode]
+
+keys:
+    start: cmdKey-l
+
+    cancel: esc
+
+    swithMode: space
+
+    goPrevious: p
+
+    goNext:n
+
+colors:
+    # line color
+    line: "#f00"
+    # text color
+    text: "#0f0"
+
+simpleMode:
+    keys:
+        zoom: [h,y,n,u]
+        move: [shiftKey-h,shiftKey-y,shiftKey-n,shiftKey-u]
+
+simpleMode:
+    keys:
+        zoom: [h,y,n,u]
+        split: d
+        move: [shiftKey-h,shiftKey-y,shiftKey-n,shiftKey-u]
+

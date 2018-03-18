@@ -1,4 +1,4 @@
-CC=gcc-7
+CC=gcc
 CCFLAGS=-g -Wall -Wextra -W -pedantic
 LDFLAGS=
 SOURCES=$(wildcard *.c)
@@ -18,4 +18,4 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(CCFLAGS) -c $<
 
 clean:
-	rm -f *.o $(TARGET)
+	rm -f *.o *.h.gch $(TARGET)

@@ -1,0 +1,3 @@
+ln -s /usr/local/bin/gcc-X /usr/local/bin/gcc
+ln -s /usr/local/bin/g++-X /usr/local/bin/g++
+ln -s /usr/local/bin/gmake /usr/local/bin/make

@@ -2,14 +2,17 @@
 ,#	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,# yyp<c-v>$r-<cr>$/;"	m	language:Vim
 ,.	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap ,. <esc>:update<cr>$/;"	m	language:Vim
 ,.	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,. :update<cr>$/;"	m	language:Vim
-,bl	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,bl :bl<cr>$/;"	m	language:Vim
+,bb	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,bb :b#<cr>$/;"	m	language:Vim
+,co	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,co 0f[va[:s\/\\%V \\%V\/, \/g<cr>$/;"	m	language:Vim
+,co	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^vnoremap ,co :s\/\\%V \\%V\/, \/g<cr>$/;"	m	language:Vim
 ,dp	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^vnoremap ,dp :diffput<cr>$/;"	m	language:Vim
+,dw	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,dw <c-w>q<cr>$/;"	m	language:Vim
 ,ls	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,ls :ls<cr>$/;"	m	language:Vim
-,ㅇ	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap ,ㅇ <esc>:update<cr> " does not work cuz korean inputs $/;"	m	language:Vim
+,ㅇ	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap ,ㅇ <esc>:update<cr> " does not work cuz korean inputs$/;"	m	language:Vim
 ;	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ; :$/;"	m	language:Vim
 ;<c-v>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap ;<c-v> <esc>"*p$/;"	m	language:Vim
 ;<c-v>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ;<c-v> "*p$/;"	m	language:Vim
-;bl	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ;bl :bl<cr>$/;"	m	language:Vim
+;bb	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ;bb :b#<cr>$/;"	m	language:Vim
 ;calc	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap ;calc <c-o>yiW<End>=<c-r>=<c-r>0<cr>$/;"	m	language:Vim
 ;date	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ;date <esc>:put =strftime('%Y-%b-%d %a %Hh')<cr>kJ<esc>$/;"	m	language:Vim
 ;enter	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ;enter :%s\/\\r\/\\r\/g<CR>$/;"	m	language:Vim
@@ -35,6 +38,8 @@
 <	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^vnoremap < <gv$/;"	m	language:Vim
 <C-BS>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap <C-BS> <C-W>$/;"	m	language:Vim
 <c-BS>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap <c-BS> <DEL>$/;"	m	language:Vim
+<c-g>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap <c-g> <esc>$/;"	m	language:Vim
+<c-g>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap <c-g> <esc>$/;"	m	language:Vim
 <c-q>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap <c-q> <ESC>:q<CR>$/;"	m	language:Vim
 <c-q>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap <c-q> :q<CR>$/;"	m	language:Vim
 <c-q>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap <c-q> :q<CR>$/;"	m	language:Vim
@@ -71,7 +76,8 @@
 <leader>s	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap <leader>s <ESC>:update<CR>$/;"	m	language:Vim
 <leader>s	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap <leader>s :update<CR>$/;"	m	language:Vim
 <leader>s	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap <leader>s :update<CR>$/;"	m	language:Vim
-<leader>s	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^vnoremap <leader>s <esc>:w<CR>gv$/;"	m	language:Vim
+<leader>s	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^onoremap <leader>s <esc>:update<cr>$/;"	m	language:Vim
+<leader>s	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^vnoremap <leader>s <esc>:update<CR>$/;"	m	language:Vim
 <Leader>tc	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap <silent> <Leader>tc :exe AddColumn()<CR>$/;"	m	language:Vim
 <leader>V	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap <leader>V `[v`]$/;"	m	language:Vim
 <leader>w	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap <leader>w :Gwrite<cr>:Gcommit --verbose<cr>$/;"	m	language:Vim
@@ -85,6 +91,8 @@ AddColumn	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^functio
 AnkiAutoPaste	/Users/dqmacair/runtime_config/nvim_initfiles/filetypes.vim	/^function! AnkiAutoPaste()$/;"	f	language:Vim
 DoRemote	/Users/dqmacair/runtime_config/nvim_initfiles/plugins.vimrc	/^function! DoRemote(arg)$/;"	f	language:Vim
 dq	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap dq d$/;"	m	language:Vim
+e	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap e gk|noremap E K$/;"	m	language:Vim
+f	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap f e|noremap F E$/;"	m	language:Vim
 g:BASH_Ctrl_j	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^let g:BASH_Ctrl_j = 'off' " does not work$/;"	v	language:Vim
 g:html_indent_inctags	/Users/dqmacair/runtime_config/nvim_initfiles/oneliner.vimrc	/^let g:html_indent_inctags = "html,body,head,tbody"$/;"	v	language:Vim
 g:loaded_checkbox	/Users/dqmacair/runtime_config/nvim_initfiles/filetypes.vim	/^let g:loaded_checkbox = 1$/;"	v	language:Vim
@@ -97,8 +105,6 @@ gb	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap gb ^$
 gC	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap gC dg$i$/;"	m	language:Vim
 gcc	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap gcc g^dg$i$/;"	m	language:Vim
 gI	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap gI g^i$/;"	m	language:Vim
-gj	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap gj j$/;"	m	language:Vim
-gk	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap gk k$/;"	m	language:Vim
 gl	/Users/dqmacair/runtime_config/nvim_initfiles/oneliner.vimrc	/^nnoremap <silent> gl "_yiw?\\w\\+\\_W\\+\\%#<CR>:s\/\\(\\%#\\w\\+\\)\\(\\_W\\+\\)\\(\\w\\+\\)\/\\3\\2\\1\/<CR><c-o><c-l>:nohlsearch<CR>$/;"	m	language:Vim
 go	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap go g$a$/;"	m	language:Vim
 gO	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap gO g^i$/;"	m	language:Vim
@@ -109,15 +115,21 @@ gr	/Users/dqmacair/runtime_config/nvim_initfiles/oneliner.vimrc	/^nnoremap <sile
 gw	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap gw \$$/;"	m	language:Vim
 gw	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^vnoremap gw $h$/;"	m	language:Vim
 gw	/Users/dqmacair/runtime_config/nvim_initfiles/oneliner.vimrc	/^nnoremap <silent> gw "_yiw:s\/\\(\\%#\\w\\+\\)\\(\\_W\\+\\)\\(\\w\\+\\)\/\\3\\2\\1\/<CR><c-o><c-l>:nohlsearch<CR>$/;"	m	language:Vim
-j	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap j gj$/;"	m	language:Vim
-k	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap k gk$/;"	m	language:Vim
+i	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap i l|noremap I L$/;"	m	language:Vim
+j	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap j t|noremap J T$/;"	m	language:Vim
+k	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap k n|noremap K N$/;"	m	language:Vim
+l	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap l u|noremap L U$/;"	m	language:Vim
 mapleader	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^let mapleader = ","$/;"	v	language:Vim
+n	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap n gj|noremap N J$/;"	m	language:Vim
+nows	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^cnoreabbrev nows :%s\/\\s\\+$\/\/g$/;"	m	language:Vim
 QQ	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap QQ <c-c>:q<cr>$/;"	m	language:Vim
 QQ	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap QQ <c-c>:q<cr>$/;"	m	language:Vim
 sq	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap sq <esc>:wq<esc>$/;"	m	language:Vim
 sq	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^vnoremap sq <esc>:wq<esc>$/;"	m	language:Vim
+t	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap t f|noremap T F$/;"	m	language:Vim
 ToggleCB	/Users/dqmacair/runtime_config/nvim_initfiles/filetypes.vim	/^fu! ToggleCB()$/;"	f	language:Vim
 U	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap U :echo "<< ===== CHECK CAPSLOCK =====>>"<cr>$/;"	m	language:Vim
+u	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^noremap u i|noremap U I$/;"	m	language:Vim
 vimplug_exists	/Users/dqmacair/runtime_config/nvim_initfiles/install.vimrc	/^let vimplug_exists=expand('~\/.vim\/autoload\/plug.vim')$/;"	v	language:Vim
 Y	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap Y y\$$/;"	m	language:Vim
 zt	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap zt zA$/;"	m	language:Vim

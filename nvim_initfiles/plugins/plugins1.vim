@@ -3,8 +3,9 @@ Plug 'vim-scripts/a.vim'
 Plug 'mileszs/ack.vim' "code search // needs extra install of ack
 Plug 'w0rp/ale' "saves my life
 Plug 'jiangmiao/auto-pairs' " This plugin is buggy with Korean inputs when 'set noimd'.
-au FileType lisp let b:autopairs_loaded=1 "auto-pairs inferior for lisp
-au FileType scheme let b:autopairs_loaded=1 "auto-pairs inferior for lisp
+" these settings disable julia autopairs.. disabled
+"au FileType lisp let b:autopairs_loaded=1 "auto-pairs inferior for lisp
+"au FileType scheme let b:autopairs_loaded=1 "auto-pairs inferior for lisp
 
 
 "Plug 'vim-scripts/Better-Javascript-Indentation' "not work"
@@ -61,3 +62,12 @@ Plug 'godlygeek/tabular'
 "Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
 Plug 'honza/vim-snippets' " Snippets, let me put next to ultisnips
+
+"something similar for GUI? keynav (linux), XEasyMotion (macOS)
+" disabled for colemak neio arrow key compatibility
+"Plug 'vim-scripts/BinarySearchMove'
+" instead of this, use J, K -> update: it turned out that this is more consistent than J, K as this
+" plugin searches through the whole lines.
+"noremap U :call BSMoveBufGoUp()<CR>
+"noremap D :call BSMoveBufGoDown()<CR>
+

@@ -1,4 +1,4 @@
-##### Shell Aliases #####
+##st### Shell Aliases #####
 # Common aliases which works for both zsh and bash (and probably others too).
 # Be careful. When assigning variable, no space between variable name and '=' sign. Spaces matter in scripting.
 
@@ -161,9 +161,15 @@ if [[ $platform == 'macos' ]]; then
     # I should use python2 or python3 to use brew python.
     #alias python='echo "!!!!! ##### warning: py2 or py3 to use brew python ##### !!!!!"; python'
     alias python='/usr/local/bin/python3'
+    alias python2='/usr/local/bin/python2'
+
     alias py='/usr/local/bin/python3'
     alias py2='/usr/local/bin/python2'
     alias py3='/usr/local/bin/python3'
+
+    alias pyp='/usr/local/bin/pypy3'
+    alias pyp2='/usr/local/bin/pypy'
+    alias pyp3='/usr/local/bin/pypy3'
     alias pip='/usr/local/bin/pip3'
 fi
 type python
@@ -396,11 +402,11 @@ alias project='cd ~/notetaking/1_fine482/project/; ls -a'
 alias snip='cd ~/runtime_config/snippets; ls -a'
 
 # personal edit aliases
-alias tmuxconf='$myed ~/runtime_config/tmux/.tmux.conf'
-alias keep='$myed ~/Google\ Drive/keep_offline.md'
-alias todo='$myed ~/Google\ Drive/keep_offline.md'
-alias todostack='$myed ~/.todostack.md'
-alias toask='$myed ~/Google\ Drive/ask_offline.md'
+alias tmuxconf='$myvi ~/runtime_config/tmux/.tmux.conf'
+alias keep='$myvi ~/Google\ Drive/keep_offline.md'
+alias todo='$myvi ~/Google\ Drive/keep_offline.md'
+alias todostack='$myvi ~/.todostack.md'
+alias toask='$myvi ~/Google\ Drive/ask_offline.md'
 
 # personal cat aliases
 
@@ -453,21 +459,12 @@ alias gall='$myed ~/Google\ Drive/diary/gall.md'
 
 alias whome='cd /mnt/l/'
 
-# make
-# alias m=make # another m function created
-alias makec='cp ~/runtime_config/Makefile_C_general ./Makefile'
-alias makecpp='cp ~/runtime_config/Makefile_CPP_general ./Makefile'
-alias makepl='cp ~/runtime_config/Makefile_Perl_general ./Makefile'
-alias makesdl2='cp ~/runtime_config/makefiles/sdl2.Makefile ./Makefile'
-
 # ctags
 alias tagen="ctags -R ."
 
 # cgdb
-alias gdb="cgdb"
+#alias gdb="cgdb" # causes problem with vscode
 
-# debug like a sir
-alias cpdebug='cp ~/mymanual/clang/debug/debug.h .'
 
 # open as finder
 if [[ $platform == 'linux' ]]; then
@@ -515,13 +512,17 @@ alias books='cl ~/Google\ Drive/books/comp'
 
 alias voca='$myvi ~/Google\ Drive/study/voca/teps1.csv'
 
+
 alias javarun='javac main.java; java main'
 alias pyrun='py main.py'
 alias pyrun2='python2 main.py'
 alias plrun='perl main.pl'
-#alias clisprun='clisp main.lisp'
+
+alias clisprun='clisp main.lisp'
 #alias clisprun='clisp -lp .'
-alias clisprun='clisp -i main.lisp'
+#alias clisprun='clisp -i main.lisp'
+
+alias juliarun='julia main.jl'
 
 run_what=""
 alias check_run_what='echo $run_what'
@@ -533,6 +534,10 @@ alias run_py2="run_what='python2'"
 alias run_java="run_what='java'"
 alias run_pl="run_what='perl'"
 alias run_cl="run_what='clisp'"
+alias run_jl="run_what='julia'"
+
+alias cpmake="cp ~/runtime_config/make/Makefile_C_general ./Makefile"
+alias cppmake="cp ~/runtime_config/make/Makefile_CPP_general ./Makefile"
 
 m(){
     echo "this is m function."
@@ -545,6 +550,7 @@ m(){
     elif [[ "$run_what" == 'asm' ]]; then
         echo "this is make for asm"
         nasm -f macho64 main.asm && ld -o main main.o && ./main && rm -f main.o main 1> /dev/null # reason to do this = to prevent msgs 'removed main.o, removed main, etc.'
+        # try gcc -S -masm=intel later to try intel syntax
     elif [[ "$run_what" == 'python3' ]]; then
         echo "this is python3."
         pyrun
@@ -560,11 +566,14 @@ m(){
     elif [[ "$run_what" == 'clisp' ]]; then
         echo "this is clisp."
         clisprun
+    elif [[ "$run_what" == 'julia' ]]; then
+        echo "this is julia."
+        juliarun
     else
         echo "\$run_what value is not initialized. Use run_* option. Use check_run_what to check its value."
     fi
 
-    say "complete"
+    #say "complete"
 }
 
 mcl(){
@@ -573,6 +582,8 @@ mcl(){
         make --makefile=~/runtime_config/make/Makefile_C_general clean
     elif [[ "$run_what" == 'cpp' ]]; then
         make --makefile=~/runtime_config/make/Makefile_CPP_general clean
+    elif [[ "$run_what" == 'java' ]]; then
+        /bin/rm *.class
     else
         echo "run_c or run_cpp?"
     fi
@@ -585,9 +596,12 @@ mkc(){
 alias mc='mkc'
 
 #alias em='e main.^(o|h)*'
-alias em='e main.*~main.o~main.h~main.class'
+alias em='e main.*~main.o~main.h~main.class~main.lib~main.fas'
 alias ei='e main.*~main.o~main.h~main.class'
 alias vm='$myvi main.*~main.o~main.h~main.class'
+alias vt='$myvi test*'
+alias vr='$myvi result*'
+alias atr='./a.out > result.txt'
 
 alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?
 
@@ -657,6 +671,7 @@ alias dos2utf='iconv -c -f euc-kr -t utf-8'
 # # /usr/local/bin/convmv from brew
 alias dos2utf_title='convmv -f euc-kr -t utf-8 --notest'
 alias dinner='python3 ~/praclang/py/dinner_reco/main.py'
+alias di='dinner'
 alias vim_basic='vim -u ~/runtime_config/vim/.vimrc_basic'
 alias vimrc_basic='vim ~/runtime_config/vim/.vimrc_basic'
 alias vimrc_basic_with_vim_basic='vim -u ~/runtime_config/vim/.vimrc_basic ~/runtime_config/vim/.vimrc_basic'
@@ -687,3 +702,23 @@ else
     echo "cpwd: not yet available"
 fi
 
+alias less_bare='/usr/local/bin/less' # default less.
+alias less='less -M +Gg' # -M shows line number. With G(go to last line)g(go to first line), the total page number and percentages are calculated. Good for not-so-long files.
+# the same effect can be achieved with <c-g> key pressed inside less_bare.
+alias more_bare='/usr/bin/more'
+alias more='less'
+# TIP: you can invoke system editor $EDITOR if press 'v' inside less. << awesome!
+
+# man uses $MANPAGER, $PAGER variables. By default /usr/bin/less -is, but is overrided by $PAGER.
+PAGER='/usr/local/bin/less -isM +Gg'
+MANPAGER='/usr/local/bin/less -isM +Gg'
+
+# my library
+source ~/runtime_config/shell/mylib_alias.sh
+
+alias idea='$myvi ~/Google\ Drive/idea/etc.txt'
+
+alias lldb='PATH="/usr/bin:$PATH" lldb'
+
+alias clm='clisp main.lisp'
+alias lp='clm'

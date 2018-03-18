@@ -24,11 +24,12 @@ nmap <c-j> <plug>(ale_next_wrap)
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<M-b>'
 au Filetype markdown let b:autopairs_loaded=1
-au filetype lisp let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"'}
+"au filetype lisp let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"'}
+"au Filetype lisp let b:autopairs_loaded=1
 ")
 
 "(CTRLP.VIM
-let g:ctrlp_map = '<leader>ctp' "default: '<c-p>'
+let g:ctrlp_map = '<leader><c-p>' "default: '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 cnoreabbrev cp CtrlP
 let g:ctrlp_show_hidden = 1
@@ -99,8 +100,8 @@ nnoremap <leader>gu :GundoToggle<cr>
 ")
 
 "(JEDI-VIM
-let g:jedi#force_py_version = 3 " this prevents the error message: the detected python version (2) is not functional
-let g:jedi#popup_on_dot = 0 " too slow
+"let g:jedi#force_py_version = 3 " this prevents the error message: the detected python version (2) is not functional
+"let g:jedi#popup_on_dot = 0 " too slow
 ")
 
 "(LIMELIGHT
@@ -395,7 +396,7 @@ let g:EasyMotion_do_mapping = 0
 " the first line allows you to trigger in visual mode as well (very helpful)
 "map <leader>f <plug>(easymotion-bd-f)
 map <leader>f <plug>(easymotion-bd-f)
-map ff <plug>(easymotion-bd-f)
+"map ff <plug>(easymotion-bd-f)
 " allows you to move regardless of buffer (for :vsplit, etc.)
 nnoremap <Leader>emf <Plug>(easymotion-overwin-f)
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
@@ -466,7 +467,7 @@ let g:easytags_async = 1
 "let g:easytags_file = '~/.vimtags' "default: ~/.vimtags
 let g:easytags_suppress_ctags_warning = 0
 set tags=./tags; " better be written before dynamic_files setting
-let g:easytags_dynamic_files = 1 " 1 uses local tags; 2 creates local tags
+let g:easytags_dynamic_files = 2 "1 uses local tags; 2 creates local tags
 ")
 
 "(VIM-EXCHANGE
@@ -586,11 +587,11 @@ endfunction
 
 "(Vim-repeat
 nnoremap <plug>NextMatch ;
-nnoremap <silent> f :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>f
-snoremap <silent> f :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>f
-nnoremap <silent> F :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>F
-nnoremap <silent> t :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>t
-nnoremap <silent> T :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>T
+"nnoremap <silent> f :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>f
+"snoremap <silent> f :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>f
+"nnoremap <silent> F :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>F
+"nnoremap <silent> t :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>t
+"nnoremap <silent> T :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>T
 ")
 
 "(VIM-SLIME
@@ -638,7 +639,7 @@ let g:ycm_auto_trigger = 1 "(default 1) "YCM has two triggers: identifier comple
 "let g:ycm_filetype_blacklist
 "let g:ycm_filetype_whitelist
 let g:ycm_error_symbol = '->' "default '>>'
-let g:ycm_warning_symbol = '>-' "default '>>'
+let g:ycm_warning_symbol = '<<' "default '>>'
 let g:ycm_collect_identifiers_from_tags_files = 1 "default 0
 ")
 

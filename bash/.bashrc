@@ -94,7 +94,8 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 # archey
 #screenfetch -v
 
-
+# wildcard hidden files
+shopt -s dotglob
 
 # for bash vi (.inputrc is for all sh)
 set -o vi

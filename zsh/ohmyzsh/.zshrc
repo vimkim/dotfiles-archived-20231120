@@ -62,6 +62,7 @@ ENABLE_CORRECTION="true"
 plugins=(
   git
   vi-mode
+  zsh-syntax-highlighting # must be the last one
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -105,3 +106,5 @@ source ~/runtime_config/zsh/zsh_custom.zsh
 
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="$PATH:/usr/local/opt/python@2/bin/"
+export PATH="$PATH:/Library/Frameworks/Mono.framework/Versions/Current/bin/"

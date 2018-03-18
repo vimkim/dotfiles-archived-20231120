@@ -327,3 +327,12 @@ set completeopt=menuone "popup menu will showup even if there's one possible com
 autocmd bufnewfile,bufread  * set concealcursor=c conceallevel=1
 autocmd bufnewfile,bufread * setlocal concealcursor=c conceallevel=1
 
+"detect realtime file changes
+set autoread
+au Cursorhold * checktime
+" seems like this does not work with terminal vim.
+" For temporary amendment, use :e! everytime if there is a change.
+" I'll install vim-autoread plugin and see how it goes.
+" Now it works. Awesome!
+
+
