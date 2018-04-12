@@ -710,8 +710,11 @@ alias more='less'
 # TIP: you can invoke system editor $EDITOR if press 'v' inside less. << awesome!
 
 # man uses $MANPAGER, $PAGER variables. By default /usr/bin/less -is, but is overrided by $PAGER.
-PAGER='/usr/local/bin/less -isM +Gg'
-MANPAGER='/usr/local/bin/less -isM +Gg'
+
+if [[ $platform == 'macos' ]]; then
+    PAGER='/usr/local/bin/less -isM +Gg'
+    MANPAGER='/usr/local/bin/less -isM +Gg'
+fi
 
 # my library
 source ~/runtime_config/shell/mylib_alias.sh

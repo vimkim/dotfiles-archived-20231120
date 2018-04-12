@@ -1,0 +1,14 @@
+! colemak_p by dqgthb, MIT license.
+keycode  10 = exclam 1 exclam 1 onesuperior exclamdown onesuperior
+keycode  11 = at 2 at 2 twosuperior masculine twosuperior
+keycode  12 = numbersign 3 numbersign 3 threesuperior ordfeminine threesuperior
+keycode  13 = dollar 4 dollar 4 sterling cent sterling
+keycode  14 = percent 5 percent 5 yen EuroSign yen
+keycode  15 = asciicircum 6 asciicircum 6 Hstroke hstroke Hstroke
+keycode  16 = ampersand 7 ampersand 7 ETH eth ETH
+keycode  17 = asterisk 8 asterisk 8 THORN thorn THORN
+keycode  18 = parenleft 9 parenleft 9 leftdoublequotemark leftsinglequotemark leftdoublequotemark
+keycode  19 = parenright 0 parenright 0 rightdoublequotemark rightsinglequotemark rightdoublequotemark
+keycode  34 = braceleft bracketleft braceleft bracketleft U2039 guillemotleft U2039
+keycode  35 = braceright bracketright braceright bracketright U203A guillemotright U203A
+keycode  49 = asciitilde grave asciitilde grave asciitilde dead_tilde asciitilde
