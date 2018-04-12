@@ -36,6 +36,9 @@ setopt HIST_IGNORE_ALL_DUPS
 # include dot files in wildcard
 setopt GLOB_DOTS
 
+# case insensitive
+unsetopt CASE_GLOB
+
 # for LaTex
 #export PATH=$PATH:/Library/TeX/texbin # already in /etc/paths
 

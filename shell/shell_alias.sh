@@ -9,7 +9,7 @@ echo "\$SHELL: $SHELL"
 echo "\$SHLVL: $SHLVL"
 echo "****************************************************"
 
-## # Detect OS # this part is modularized. 
+## # Detect OS # this part is modularized.
 ## # Check out ~/runtime_config/zsh/detect_OS.zsh
 ## platform='unknown'
 ## distro='unknown'
@@ -154,17 +154,16 @@ fi
 type gcc
 type g++
 
-# brew python2/python3
+# brew python2//javapython3
 if [[ $platform == 'macos' ]]; then
     # warning: python is /usr/bin/python, which is system builtin.
     # brew does not update/link automatically.
     # I should use python2 or python3 to use brew python.
     #alias python='echo "!!!!! ##### warning: py2 or py3 to use brew python ##### !!!!!"; python'
     alias python='/usr/local/bin/python3'
-    alias python2='/usr/local/bin/python2'
 
+    alias py2='python2'
     alias py='/usr/local/bin/python3'
-    alias py2='/usr/local/bin/python2'
     alias py3='/usr/local/bin/python3'
 
     alias pyp='/usr/local/bin/pypy3'
@@ -513,7 +512,7 @@ alias books='cl ~/Google\ Drive/books/comp'
 alias voca='$myvi ~/Google\ Drive/study/voca/teps1.csv'
 
 
-alias javarun='javac main.java; java main'
+alias javarun='javac Main.java; java Main'
 alias pyrun='py main.py'
 alias pyrun2='python2 main.py'
 alias plrun='perl main.pl'
@@ -535,6 +534,8 @@ alias run_java="run_what='java'"
 alias run_pl="run_what='perl'"
 alias run_cl="run_what='clisp'"
 alias run_jl="run_what='julia'"
+alias run_js="run_what='js'"
+alias run_r="run_what='r'"
 
 alias cpmake="cp ~/runtime_config/make/Makefile_C_general ./Makefile"
 alias cppmake="cp ~/runtime_config/make/Makefile_CPP_general ./Makefile"
@@ -543,7 +544,8 @@ m(){
     echo "this is m function."
     if [[ "$run_what" == 'c' ]]; then
         echo "this is make for c"
-        make --makefile=~/runtime_config/make/Makefile_C_general
+        #make --makefile=~/runtime_config/make/Makefile_C_general
+        gcc -c *.c; gcc *.o; ./a.out
     elif [[ "$run_what" == 'cpp' ]]; then
         echo "this is make for cpp"
         make --makefile=~/runtime_config/make/Makefile_CPP_general
@@ -569,6 +571,12 @@ m(){
     elif [[ "$run_what" == 'julia' ]]; then
         echo "this is julia."
         juliarun
+    elif [[ "$run_what" == 'js' ]]; then
+        echo "this is js."
+        open index.html
+    elif [[ "$run_what" == 'r' ]]; then
+        echo "this is R."
+        rsc main.R
     else
         echo "\$run_what value is not initialized. Use run_* option. Use check_run_what to check its value."
     fi
@@ -584,6 +592,10 @@ mcl(){
         make --makefile=~/runtime_config/make/Makefile_CPP_general clean
     elif [[ "$run_what" == 'java' ]]; then
         /bin/rm *.class
+    elif [[ "$run_what" == 'python3' ]]; then
+        /bin/rm *.pyc
+        /bin/rm -r __pycache__/*
+        /bin/rmdir __pycache__/
     else
         echo "run_c or run_cpp?"
     fi
@@ -598,7 +610,14 @@ alias mc='mkc'
 #alias em='e main.^(o|h)*'
 alias em='e main.*~main.o~main.h~main.class~main.lib~main.fas'
 alias ei='e main.*~main.o~main.h~main.class'
-alias vm='$myvi main.*~main.o~main.h~main.class'
+# with case insensitive glob,
+# (zsh: unsetopt CASE_GLOB)
+# (bash: shopt -s nocaseglob)
+# main also recognizes Main
+alias vm='$myvi main.*~main.o~main.h~main.class~main.pyc'
+# In zsh, you can make a specific command case insensitive.
+#alias vm='$myvi (#i)main.*~main.o~main.h~main.class'
+
 alias vt='$myvi test*'
 alias vr='$myvi result*'
 alias atr='./a.out > result.txt'
@@ -715,6 +734,7 @@ MANPAGER='/usr/local/bin/less -isM +Gg'
 
 # my library
 source ~/runtime_config/shell/mylib_alias.sh
+alias vmylib='$myvi ~/runtime_config/shell/mylib_alias.sh'
 
 alias idea='$myvi ~/Google\ Drive/idea/etc.txt'
 
@@ -722,3 +742,12 @@ alias lldb='PATH="/usr/bin:$PATH" lldb'
 
 alias clm='clisp main.lisp'
 alias lp='clm'
+
+alias listallcommand='bash -c "compgen -c"'
+
+alias rmmypy='/bin/rm -rf `find ~/praclang/ -type d -name "*mypy*"`'
+
+alias u='python3 -m unittest test_main.py'
+
+alias csapp_h='ln -s ~/books/comp/bibles/csapp/csapp.h .;
+ln -s ~/books/comp/bibles/csapp/csapp.c .'

@@ -146,8 +146,10 @@ aut filetype r nnoremap <buffer> <leader>ru :!Rscript %<cr>
 " creates an executable file that has the same name with its .c file
 au filetype c nnoremap <F8> :w <CR> :!gcc-7 % -o %< && ./%< <CR>
 
-au filetype c nnoremap <leader>ru :w <CR> :!gcc-7 % && ./a.out <CR>
-au filetype cpp nnoremap <leader>ru :w <CR> :!g++-7 % && ./a.out <CR>
+au filetype c nnoremap ,rn :w <CR> :!gcc-7 % && ./a.out <CR>
+au filetype c nnoremap ,ru :w <CR> :!gcc-7 % && ./a.out <CR>
+au filetype cpp nnoremap ,rn :w <CR> :!g++-7 % && ./a.out <CR>
+au filetype cpp nnoremap ,ru :w <CR> :!g++-7 % && ./a.out <CR>
 "au filetype c nnoremap <leader>ru :w <CR> :!gcc-7 % -o %< && ./%< <CR>
 "au filetype cpp nnoremap <leader>cpp :w <CR> :!g++-7 % -o %< && ./%< <CR>
 ")

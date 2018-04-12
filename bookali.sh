@@ -46,6 +46,7 @@ alias stockall='stock; stockcopy; stockNoUpdate; stockSolution; stockNoUpdateCop
 
 # comp
 compdir=~/books/comp
+alias compdir='cl $compdir'
 ## langauges
 alias tcpl="open ~/books/comp/c-cpp/TCPL/TCPL-c89.pdf"
 
@@ -73,3 +74,10 @@ alias cmacro="open ~/books/comp/gcc_c_preprocessor.pdf"
 
 ## reverse engineer
 alias reveng="open ~/books/comp/RE/reverse-beginner-free.pdf"
+
+alias coding_club="cl ~/books/comp/python/coding_club"
+alias lev3="open $compdir/python/coding_club/"
+
+## lit
+litdir=~/books/lit
+alias aos='open $litdir/aos.pdf' # art of seduction

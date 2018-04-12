@@ -1,5 +1,6 @@
 !_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
 $NVIM_TUI_ENABLE_TRUE_COLOR	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let $NVIM_TUI_ENABLE_TRUE_COLOR=1$/;"	v	language:Vim
+,bl	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,bl :CtrlPBuffer<cr>$/;"	m	language:Vim
 ,cd	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,cd <esc>:CtrlPDir ~\/$/;"	m	language:Vim
 ,fzt	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,fzt :Tags<cr>$/;"	m	language:Vim
 ,ls	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,ls :CtrlPBuffer<cr>$/;"	m	language:Vim
@@ -7,6 +8,7 @@ $NVIM_TUI_ENABLE_TRUE_COLOR	/Users/dqmacair/runtime_config/nvim_initfiles/plugin
 ,prev	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,prev :MarkdownPreview<cr>$/;"	m	language:Vim
 ;alivar	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^vnoremap ;alivar :Tabularize \/\\S\\+;$/;"	m	language:Vim
 ;ask	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;ask :Ack!<space>$/;"	m	language:Vim
+;bl	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;bl :CtrlPBuffer<cr>$/;"	m	language:Vim
 ;cd	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;cd <esc>:CtrlPDir ~\/$/;"	m	language:Vim
 ;cp	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;cp :CtrlP<Space>$/;"	m	language:Vim
 ;fzt	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;fzt :Tags<cr>$/;"	m	language:Vim
@@ -64,7 +66,6 @@ g:ctrlp_map	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_setting
 g:ctrlp_match_window	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ctrlp_match_window  = 'results:100' "overcome limit imposed by max height. This is a 'necessary' line.$/;"	v	language:Vim
 g:ctrlp_prompt_mappings	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ctrlp_prompt_mappings = {$/;"	v	language:Vim
 g:ctrlp_show_hidden	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ctrlp_show_hidden = 1$/;"	v	language:Vim
-g:ctrlp_user_command	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ctrlp_user_command = ['.git\/', 'git --git-dir=%s\/.git ls-files -oc --exclude-standard']$/;"	v	language:Vim
 g:EasyMotion_do_mapping	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:EasyMotion_do_mapping = 0$/;"	v	language:Vim
 g:EasyMotion_smartcase	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:EasyMotion_smartcase = 1$/;"	v	language:Vim
 g:easytags_async	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:easytags_async = 1$/;"	v	language:Vim
