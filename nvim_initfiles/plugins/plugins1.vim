@@ -35,7 +35,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'sjl/gundo.vim'
 "Plug 'yggdroot/indentline' "this plugin has conflicts with conceal update. eg) lambdify
-Plug 'vim-scripts/JavaScript-Indent', { 'for': 'javascript' }
+"Plug 'vim-scripts/JavaScript-Indent', { 'for': 'javascript' }
 "Plug 'davidhalter/jedi-vim', { 'for': 'python' } " too slow
 "Plug 'itchyny/lightline.vim'
 

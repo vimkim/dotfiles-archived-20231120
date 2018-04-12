@@ -1,6 +1,19 @@
 <?xml version="1.0"?>
 <root>
 
+    <!-- VirtualBox -->
+    <appdef>
+        <appname>VIRTUALBOXVM</appname>
+        <equal>org.virtualbox.app.VirtualBoxVM</equal>
+    </appdef>
+
+    <item>
+        <name>VirualBoxVM: application to ctrl</name>
+        <identifier>private.virtualboxvmdef</identifier>
+        <only>VIRTUALBOXVM</only>
+        <autogen>__KeyToKey__ KeyCode::PC_APPLICATION, KeyCode::CONTROL_L</autogen>
+    </item>
+
     <!--RSTUDIO-->
     <appdef>
         <appname>RSTUDIO</appname>
