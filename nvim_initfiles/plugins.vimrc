@@ -90,7 +90,7 @@ Plug 'easymotion/vim-easymotion'
 "Plug 'xolox/vim-easytags'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 Plug 'rhysd/vim-grammarous'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']}
 "Plug 'maksimr/vim-jsbeautify'
@@ -110,7 +110,7 @@ Plug 'tpope/vim-surround'
 "Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-unimpaired'
 Plug 'zefei/vim-wintabs'
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'for': ['c','cpp'], 'branch' : 'stable' }
 call plug#end()
 
