@@ -24,4 +24,6 @@
 "let g:rehash256 = 1
 ")
 
-
+" Prevent vim from overriding default terminal background"
+"https://stackoverflow.com/a/21572296/6154359
+"hi Normal ctermbg=none

@@ -1,6 +1,19 @@
 <?xml version="1.0"?>
 <root>
-    
+
+    <!-- VirtualBox -->
+    <appdef>
+        <appname>VIRTUALBOXVM</appname>
+        <equal>org.virtualbox.app.VirtualBoxVM</equal>
+    </appdef>
+
+    <item>
+        <name>VirualBoxVM: application to ctrl</name>
+        <identifier>private.virtualboxvmdef</identifier>
+        <only>VIRTUALBOXVM</only>
+        <autogen>__KeyToKey__ KeyCode::PC_APPLICATION, KeyCode::CONTROL_L</autogen>
+    </item>
+
     <!--RSTUDIO-->
     <appdef>
         <appname>RSTUDIO</appname>
@@ -15,7 +28,7 @@
 
     <item>
         <name>RStudio: Simulaneous ,s for Esc</name>
-        <identifier>private.rsutioesc</identifier>
+        <identifier>private.rstudioesc</identifier>
         <only>RSTUDIO</only>
         <autogen>
             __SimultaneousKeyPresses__
@@ -64,6 +77,16 @@
         <name>VSCode: application to ctrl</name>
         <identifier>private.vscodedef</identifier>
         <only>VSCODE</only>
+        <autogen>__KeyToKey__ KeyCode::PC_APPLICATION, KeyCode::CONTROL_L</autogen>
+    </item>
+    <appdef>
+        <appname>ATOM</appname>
+        <equal>com.github.atom</equal>
+    </appdef>
+    <item>
+        <name>ATOM: application to ctrl</name>
+        <identifier>private.atomdef</identifier>
+        <only>ATOM</only>
         <autogen>__KeyToKey__ KeyCode::PC_APPLICATION, KeyCode::CONTROL_L</autogen>
     </item>
 

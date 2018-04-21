@@ -1,0 +1,40 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+abort-company-or-yas	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun abort-company-or-yas ()$/;"	f	language:Lisp
+allman-to-kandr	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun allman-to-kandr()$/;"	f	language:Lisp
+check-expansion	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun check-expansion ()$/;"	f	language:Lisp
+company-ac-setup	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun company-ac-setup () ;; Almost redundant but does the job.$/;"	f	language:Lisp
+company-mode/backend-with-yas	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun company-mode\/backend-with-yas (backend)$/;"	f	language:Lisp
+company-mode/enable-yas	/Users/dqmacair/runtime_config/emacs/init.el	/^(defvar company-mode\/enable-yas t$/;"	f	language:Lisp
+create-tags	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun create-tags (dir-name)$/;"	f	language:Lisp
+do-yas-expand	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun do-yas-expand ()$/;"	f	language:Lisp
+er-refresh-etags	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun er-refresh-etags (&optional extension)$/;"	f	language:Lisp
+evil-insert-state-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key evil-insert-state-map "\\C-q" 'my-esc-quit)$/;"	f	language:Lisp
+evil-normal-state-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key evil-normal-state-map "\\C-n" 'evil-next-line)$/;"	f	language:Lisp
+evil-normal-state-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key evil-normal-state-map "\\C-p" 'evil-previous-line)$/;"	f	language:Lisp
+evil-normal-state-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key evil-normal-state-map "\\C-q" 'kill-this-buffer)$/;"	f	language:Lisp
+evil-normal-state-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key evil-normal-state-map (kbd ";") 'evil-ex)$/;"	f	language:Lisp
+evil-normal-state-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)$/;"	f	language:Lisp
+evil-normal-state-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)$/;"	f	language:Lisp
+expand-snippet-or-complete-selection	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun expand-snippet-or-complete-selection ()$/;"	f	language:Lisp
+find-tag	/Users/dqmacair/runtime_config/emacs/init.el	/^(defadvice find-tag (around refresh-etags activate)$/;"	f	language:Lisp
+gdb-many-windows	/Users/dqmacair/runtime_config/emacs/init.el	/^(defvar gdb-many-windows)$/;"	f	language:Lisp
+global-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key global-map (kbd "C-c m") 'vr\/mc-mark)$/;"	f	language:Lisp
+global-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key global-map (kbd "C-c q") 'vr\/query-replace)$/;"	f	language:Lisp
+global-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key global-map (kbd "C-c r") 'vr\/replace)$/;"	f	language:Lisp
+global-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key global-map (kbd "RET") 'newline-and-indent)$/;"	f	language:Lisp
+hello	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun hello (someone)$/;"	f	language:Lisp
+my-company-visible-and-explicit-action-p	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun my-company-visible-and-explicit-action-p () ;; what does this do?$/;"	f	language:Lisp
+my-esc-quit	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun my-esc-quit()$/;"	f	language:Lisp
+my-esc-save	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun my-esc-save()$/;"	f	language:Lisp
+pbcopy-macos	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun pbcopy-macos ()$/;"	f	language:Lisp
+remove-scratch-buffer	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun remove-scratch-buffer ()$/;"	f	language:Lisp
+switch-to-minibuffer	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun switch-to-minibuffer ()$/;"	f	language:Lisp
+switch-to-minibuffer-window	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun switch-to-minibuffer-window ()$/;"	f	language:Lisp
+tab-complete-or-next-field	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun tab-complete-or-next-field ()$/;"	f	language:Lisp
+tab-indent-or-complete	/Users/dqmacair/runtime_config/emacs/init.el	/^(defun tab-indent-or-complete ()$/;"	f	language:Lisp
+yas-keymap	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key yas-keymap (kbd "<tab>") nil)$/;"	f	language:Lisp
+yas-keymap	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key yas-keymap (kbd "C-k") 'yas-prev-field) ; works$/;"	f	language:Lisp
+yas-keymap	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key yas-keymap (kbd "C-l") 'yas-next-field)$/;"	f	language:Lisp
+yas-keymap	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key yas-keymap (kbd "TAB") nil) ;; this is required for company complete tab$/;"	f	language:Lisp
+yas-minor-mode-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key yas-minor-mode-map (kbd "<tab>") 'yas-expand)$/;"	f	language:Lisp
+yas-minor-mode-map	/Users/dqmacair/runtime_config/emacs/init.el	/^(define-key yas-minor-mode-map (kbd "TAB") 'yas-expand)$/;"	f	language:Lisp

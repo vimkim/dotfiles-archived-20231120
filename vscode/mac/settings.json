@@ -1,0 +1,131 @@
+    // Place your settings in this file to overwrite the default settings
+{
+    "editor.quickSuggestions": true,
+    "editor.tabCompletion":true,
+    "editor.wordWrap": "on",
+    "vim.easymotion":true, 
+    // <leader><leader>s<char>
+    "vim.showcmd": true,
+    "vim.incsearch":true,
+    "vim.useSystemClipboard":true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch":true,
+    "editor.renderWhitespace": "all",
+    "vim.insertModeKeyBindings":[
+        {
+            "before":["ctrl+e"],
+            "after": ["<esc>"]
+        },
+        {
+            "before":["<leader>","s"],
+            "after": ["<esc>"],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args":[]
+                }
+            ]
+        },
+    ],
+    "vim.otherModesKeyBindings": [
+        
+    ],
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": ["n"],
+            "after": ["<down>"]
+        },
+        {
+            "before": ["e"],
+            "after": ["<up>"]
+        },
+        {
+            "before": ["i"],
+            "after": ["<right>"]
+        },
+        {
+            "before": ["k"],
+            "after": ["n"]
+        },
+        {
+            "before": ["f"],
+            "after": ["e"],
+        },
+        {
+            "before": ["u"],
+            "after": ["i"]
+        },
+        {
+            "before": ["l"],
+            "after": ["u"]
+        },
+        {
+            "before": ["t"],
+            "after": ["f"]
+        },
+        {
+            "before": ["j"],
+            "after": ["t"]
+        },
+        {
+            "before": ["<leader>","d"],
+            "after": ["d","d"]
+        },
+        { // save 
+            "before":["<leader>","s"],
+            "after": ["<esc>"],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args":[]
+                }
+            ]
+        },
+        {
+            "before": ["Z", "Z"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args": []
+                },
+                {
+                    "command": "workbench.action.closeActiveEditor",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["<leader>","q"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeActiveEditor",
+                    "args": []
+                }
+            ]
+        }
+    ],
+    // LEADER MAPPING
+    "vim.leader":",",
+    "editor.fontSize": 18,
+    "editor.minimap.enabled": true,
+
+    "[cpp]": {
+        "editor.quickSuggestions": true
+    },
+    "[c]": {
+        "editor.quickSuggestions": true
+    },
+    "sync.gist": "d8e4997ec8c0169c597bf98a39c797f0",
+    "sync.lastUpload": "2017-04-09T23:33:11.114Z",
+    "sync.autoDownload": false,
+    "sync.autoUpload": false,
+    "sync.lastDownload": "2017-04-09T23:17:02.589Z",
+    "sync.version": 262,
+    "sync.showSummary": true,
+    "sync.forceDownload": false,
+    "sync.anonymousGist": false,
+    "sync.host": "",
+    "sync.pathPrefix": ""
+}

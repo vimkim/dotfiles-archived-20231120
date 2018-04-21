@@ -1,0 +1,69 @@
+# Your keymap
+#
+# Atom keymaps work similarly to style sheets. Just as style sheets use
+# selectors to apply styles to elements, Atom keymaps use selectors to associate
+# keystrokes with events in specific contexts. Unlike style sheets however,
+# each selector can only be declared once.
+#
+# You can create a new keybinding in this file by typing "key" and then hitting
+# tab.
+#
+# Here's an example taken from Atom's built-in keymap:
+#
+# 'atom-text-editor':
+#   'enter': 'editor:newline'
+#
+# 'atom-workspace':
+#   'ctrl-shift-p': 'core:move-up'
+#   'ctrl-p': 'core:move-down'
+#
+# You can find more information about keymaps in these guides:
+# * http://flight-manual.atom.io/using-atom/sections/basic-customization/#customizing-keybindings
+# * http://flight-manual.atom.io/behind-atom/sections/keymaps-in-depth/
+#
+# If you're having trouble with your keybindings not working, try the
+# Keybinding Resolver: `Cmd+.` on macOS and `Ctrl+.` on other platforms. See the
+# Debugging Guide for more information:
+# * http://flight-manual.atom.io/hacking-atom/sections/debugging/#check-the-keybindings
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# http://flight-manual.atom.io/using-atom/sections/basic-customization/#configuring-with-cson
+
+'atom-text-editor.vim-mode-plus.insert-mode':
+  ', s': 'vim-mode-plus:activate-normal-mode' # ,s to escape
+
+'atom-text-editor.vim-mode-plus.normal-mode':
+  ', s': 'core:save'
+  'u': 'vim-mode-plus:activate-insert-mode'
+  'U': 'vim-mode-plus:insert-at-first-character-of-line'
+
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  'n': 'vim-mode-plus:move-down'
+  'e': 'vim-mode-plus:move-up'
+  'i': 'vim-mode-plus:move-right'
+  'k': 'vim-mode-plus:repeat-search'
+  'K': 'vim-mode-plus:repeat-search-reverse'
+  'f': 'vim-mode-plus:move-to-end-of-word'
+  'l': 'vim-mode-plus:undo'
+  't': 'vim-mode-plus:find'
+  'T': 'vim-mode-plus:find-backwards'
+  'j': 'vim-mode-plus:till'
+  'J': 'vim-mode-plus:till-backwards'
+
+  #'n': 'keystroke j'
+  #'e': 'keystroke k'
+  #'i': 'keystroke l'
+  #'u': 'keystroke i'
+  #'U': 'keystroke I'
+  #'k': 'keystroke n'
+  #'f': 'keystroke e'
+  #'l': 'keystroke u'
+  #'t': 'keystroke f'
+  #'j': 'keystroke t'
+
+
+
+'atom-text-editor.vim-mode-plus.insert-mode.autocomplete-active':
+  'ctrl-g': 'autocomplete-plus:cancel'

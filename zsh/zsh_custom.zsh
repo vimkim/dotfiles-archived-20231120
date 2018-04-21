@@ -1,3 +1,5 @@
+# tmux auto rename disable
+#export DISABLE_AUTO_TITLE="true"
 # run tmux automatically
 if [[ $SHLVL == 1 ]]; then
     tmux attach || tmux new
@@ -9,7 +11,7 @@ source ~/runtime_config/shell/shell_alias.sh
 source ~/runtime_config/zsh/zsh_alias.zsh
 source ~/runtime_config/shell/temp_alias.sh
 # Run at initialization
-#source ~/runtime_config/zshrun.zsh
+#source ~/runtime_config/zsh/zsh_run.zsh
 
 
 # for oh-my-zsh plugin vi-mode mapping
@@ -31,9 +33,14 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt hist_ignore_dups
 setopt HIST_IGNORE_ALL_DUPS
 
+# include dot files in wildcard
+setopt GLOB_DOTS
+
+# case insensitive
+unsetopt CASE_GLOB
 
 # for LaTex
-export PATH=$PATH:/Library/TeX/texbin
+#export PATH=$PATH:/Library/TeX/texbin # already in /etc/paths
 
 # for tmux-powerline # currently not using it
 PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
@@ -63,7 +70,14 @@ export PATH="/Applications/MATLAB_R2017a.app/bin:$PATH"
 
 # print path
 echo "****************************************************"
-echo "\$PATH: $PATH"
+echo "\$PATH: \n"
+# print path line by line
+echo $PATH | tr -s ':' '\n'
+# another methods just for fun
+#tr : '\n' <<< $PATH
+#sed 's/:/\n/g' <<< $PATH
+#awk '{gsub(/:/, "\n");print}'
+
 # if having trouble with path (something weird appears in path), check out /etc/paths and /etc/paths.d
 # also check .zprofile, .zshenv, .zlogin, etc.
 # Once it took me some time to detect an undesired python path being added to $PATH in .zprofile.

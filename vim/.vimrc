@@ -8,4 +8,9 @@ so ~/runtime_config/nvim_initfiles/oneliner.vimrc
 so ~/runtime_config/nvim_initfiles/colorschemes.vimrc
 so ~/runtime_config/nvim_initfiles/misc.vimrc
 so ~/runtime_config/nvim_initfiles/gistfile.vim
-"~/runtime_config/nvim_initfiles/vimtips.txt
+
+"so ~/runtime_config/nvim_initfiles/conceal.vim "vim-lisp-conceal plugin does the work
+
+" TIP: ~/runtime_config/nvim_initfiles/vimtips.txt
+" TIP2: color reference: ~/runtime_config/vimcolor.txt
+

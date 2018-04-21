@@ -87,3 +87,6 @@
 "- You can change the plugin variable within vim command mode by just typing :let g:something_blah=foo
 "- :set myvar? would determine the status of the variable <myvar>
 
+" CTRL-] jumps to the definition inside help file
+" gd jumps to local declaration
+" gD jumps to global declaration

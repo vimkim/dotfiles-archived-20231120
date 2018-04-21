@@ -20,8 +20,8 @@ autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 " Turn on auto listing
 autocmd FileType markdown setlocal formatoptions +=r formatoptions +=o comments+=b:00. comments-=b:- comments+=b:-\ [\ ] comments+=b:-
 
-" {{{ CHECKBOX-VIM 
-" Thanks to Jonas Kramer (jkramer) for his 'checkbox.vim' plugin 
+" {{{ CHECKBOX-VIM
+" Thanks to Jonas Kramer (jkramer) for his 'checkbox.vim' plugin
 " And modom for his pull request
 if exists('g:loaded_checkbox') " what is the usage of this?
 	" finish
@@ -35,7 +35,7 @@ fu! ToggleCB()
 		let line = substitute(line, "\\[ \\]", "[x]", "")
 	elseif(match(line, "\\[x\\]") != -1)
 		let line = substitute(line, '\[x\]\s*', "", "")
-    else 
+    else
         let line = substitute(line, '\(^\s*[\*-]\s\)', '\1[ ] ', "")
         "let line = substitute(line, '^\s*[\*-]\s', '\0[ ] ', "") "both works
 	endif
@@ -46,7 +46,7 @@ endf
 "command! ToggleCB call checkbox#ToggleCB()
 autocmd filetype markdown command! ToggleCB call ToggleCB()
 "nmap <silent> <leader>tt :ToggleCB<cr>
-"autocmd filetype markdown nmap <silent> <leader>tt :ToggleCB<cr> 
+"autocmd filetype markdown nmap <silent> <leader>tt :ToggleCB<cr>
 " {{{ repeat.vim implementation
 " changed from nmap to nnoremap. Will see what happen
 autocmd filetype markdown nnoremap <plug>ToggleCheckBox :ToggleCB<cr>:call repeat#set("\<plug>ToggleCheckBox")<cr>
@@ -111,5 +111,9 @@ au filetype csv setlocal noexpandtab "don't expand tab if csv
 "au filetype markdown nnoremap ;ti i# <esc>:put =expand('%:t:r')<cr>kJ
 au filetype markdown nnoremap ;title <esc>:put =expand('%:t:r')<cr>kJyyp<c-v>$r=<cr>
 
+" python fold
+"au filetype python set foldmethod=indent
+"manual is better than indent
+"au filetype python set foldmethod=
 
 

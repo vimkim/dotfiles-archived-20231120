@@ -1,7 +1,22 @@
-;;; package ---- Summary
+;;; package ---- Summary
 ;;; Commentary:
 ;;hello Emacs!
 ;;; Code:
+
+;; TIP: system-type is a variable used to detect OS:
+;; - gnu
+;; - gnu/linux
+;; - darwin
+;; - ms-dos
+;; - windows-nt
+;; - cygwin
+
+
+;; security
+;; for macos tls security connection
+(require 'gnutls)
+(add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
+
 ;;; Basic Configurations
 ;;(setq debug-on-error t)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -20,8 +35,15 @@
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
 			 ("marmalade" . "https://marmalade-repo.org/packages/")
 			 ("melpa" . "https://melpa.org/packages/")))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
+;;(package-refresh-contents) ;; if things are not being installed, refresh contents
+
+(use-package magit
+  :ensure t)
+
+(use-package evil-magit
+  :ensure t)
 
 (require 'use-package)
 
@@ -50,9 +72,17 @@
 
 ;;(x-focus-frame nil)
 
+(load-file "~/.emacs.d/initfiles/global.el")
 
-(global-linum-mode t)
-(defvar linum-format)
+;; line numbers
+(use-package nlinum-hl
+  :ensure t
+  :config
+  (global-nlinum-mode t)
+  (setq nlinum-highlight-current-line t))
+
+;(global-linum-mode t)
+;(defvar linum-format)
 ;;(setq linum-format "%d \u2502") ; assignment to free variable without defvar
 ;;(setq linum-format "%d \t")
 ;;(setq linum-format "%d~")
@@ -64,9 +94,9 @@
 
 (use-package jedi
   :ensure jedi)
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t) ; optional
-(add-hook 'python-mode-hook 'jedi:ac-setup)
+;;(add-hook 'python-mode-hook 'jedi:setup)
+;;(setq jedi:complete-on-dot t) ; optional
+;;(add-hook 'python-mode-hook 'jedi:ac-setup)
 
 ;; (add-to-list 'load-path "~/.emacs.d/evil")
 (use-package evil
@@ -112,9 +142,11 @@
   ;;"bd" 'kill-buffer
   "bd" 'kill-this-buffer
   "dw" 'delete-window
-  "bw" 'kill-buffer-and-window ; useful for closing yasnippet
+  "dow" 'delete-other-windows
+  "bw" 'kill-buffer-and-window ; useful for closing yasnippet and tag selection window.
   "bn" 'next-buffer
   "bp" 'previous-buffer
+  "bb" 'switch-to-prev-buffer
   ;;"bl" 'list-buffers
   "bl" 'ibuffer
   "bs" 'ido-switch-buffer
@@ -192,6 +224,11 @@
 ;; ;->: mapping
 (define-key evil-normal-state-map (kbd ";") 'evil-ex)
 
+;; colemak hnei
+(use-package evil-colemak-basics
+  :ensure evil-colemak-basics)
+(global-evil-colemak-basics-mode)
+
 ;; evil-easymotion
 (use-package evil-easymotion
   :ensure evil-easymotion)
@@ -241,11 +278,14 @@
 (set-face-attribute 'default nil :height 200)
 ;;; c-x c-- & c-x c-=
 
+
 ;;; yasnippet
 (use-package yasnippet
   :ensure yasnippet)
+(add-to-list 'load-path
+             "~/.emacs.d/plugins/yasnippet")
 (require 'yasnippet)
-(yas-global-mode 1)
+(yas-global-mode 1) ; if on, snippet folder already exists error
 ;; trigger snippet inside trigger
 (setq yas-triggers-in-field t); Enable nested triggering of snippets
 ;; tab to nil then reassign
@@ -271,6 +311,10 @@
 ;; TODO
 ;; I guess this one is crucial. Though it breaks the (yas-visit-snippet-file) function
 ;;(setq yas-prompt-functions '(yas-x-prompt yas-dropdown-prompt))
+
+;;; yasnippet-snippets
+(use-package yasnippet-snippets
+  :ensure yasnippet-snippets)
 
 ;;(scroll-bar-mode -1);; hide scroll bar
 ;;(set-specifier vertical-scrollbar-visible-p nil)
@@ -553,11 +597,32 @@
 ;; supports multiple tag files
 ;;(setq tags-table-list '("/path/of/tags1" "/path/of/tags2"))
 
+;;; TAGs
+;; WARNING! brew cask emacs overwrites ctags with its own /Applications/Emacs.app/Contents/MacOS/bin/ctags
+;; beware of a bug.
+;;
+;; https://www.emacswiki.org/emacs/BuildTags#toc2
+;;
+(if (eq system-type 'darwin)
+    (setq path-to-ctags "/usr/local/bin/ctags")
+    )
+
+;; create-tags function creates tag.
+(defun create-tags (dir-name)
+  "Create tags file."
+  (interactive "DDirectory: ")
+  (shell-command
+    (format "%s -f TAGS -e -R %s" path-to-ctags (directory-file-name dir-name)))
+  )
+
 ;;(use-package ctags-update
 ;; :ensure ctags-update)
 ;;(autoload 'turn-on-ctags-auto-update-mode "ctags-update" "turn on 'ctags-auto-update-mode'." t)
 ;;(add-hook 'c-mode-common-hook  'turn-on-ctags-auto-update-mode)
 ;;(add-hook 'emacs-lisp-mode-hook  'turn-on-ctags-auto-update-mode)
+;;
+;; WARNING! brew cask emacs overwrites ctags with its own /Applications/Emacs.app/Contents/MacOS/bin/ctags
+;; beware of a bug.
 
 ;; if you want to update (create) TAGS manually
 ;;(autoload 'ctags-update "ctags-update" "update TAGS using ctags" t)
@@ -658,6 +723,7 @@
   :ensure powerline-evil)
 (require 'powerline-evil)
 
+
 ;; Byte-compile is necessary for speed
 ;; M-x byte-compile-file <location of rainbow-delimiters.el>
 (use-package rainbow-delimiters
@@ -672,15 +738,54 @@
 ;;(set-language-environment "Korean")
 (prefer-coding-system 'utf-8)
 
+(global-prettify-symbols-mode 1)
 
 ;; matlab
 ;; s.el, flycheck, company-mode are dependencies
-(use-package s
-  :ensure s)
-(use-package matlab-mode
-  :ensure matlab-mode)
-(require 'matlab-mode)
+;;;   (use-package s
+;;;     :ensure s)
+;;;   (use-package matlab-mode
+;;;     :ensure matlab-mode)
+;;;   (require 'matlab-mode)
 
+;;; auto read changed files
+(global-auto-revert-mode 1)
+
+;;; maximize and restore, zoom in and out windows
+(when (fboundp 'winner-mode)
+  (winner-mode 1))
+
+;;; emacs version of vim-slime (general repl)
+;(load-file "~/.emacs.d/initfiles/eval-in-repl_configuration.el")
+
+;;; slime
+(use-package slime
+  :ensure slime)
+(setq inferior-lisp-program "/usr/local/bin/clisp")
+(setq slime-contribs '(slime-fancy))
+
+
+;;; How to disable background
+
+;;(defun on-after-init()
+;;  (unless (display-graphic-p (selected-frame))
+;;    (set-face-background 'default "unspecified-bg" (selected-frame))))
+;;
+;;(add-hook 'window-setup-hook 'on-after-init)
+
+(use-package slime-company
+  :ensure slime-company)
+
+;;; slime company
+(slime-setup '(slime-fancy slime-company))
+(define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
+(define-key company-active-map (kbd "M-.") 'company-show-location)
+
+
+;;;
+;;
+;;
+;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -688,8 +793,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (s tabbar popwin fiplr helm ack yasnippet zenburn-theme autopair flycheck exec-path-from-shell key-seq key-chord evil-leader evil-exchange evil-nerd-commenter evil-surround evil jedi use-package)))
- '(undo-tree-auto-save-history t))
+    (yasnippet-snippets zenburn-theme yasnippet visual-regexp-steroids use-package tabbar slime s rainbow-delimiters powerline-evil popwin nlinum-hl matlab-mode key-seq jedi ido-vertical-mode helm-etags-plus flycheck fiplr exec-path-from-shell evil-surround evil-nerd-commenter evil-magit evil-leader evil-exchange evil-easymotion evil-colemak-basics eval-in-repl diminish csv-mode company-irony company-c-headers autopair ack))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -700,3 +804,5 @@
 ;; following functions evil-normal-state might not be evaluated at runtime - completely normal
 (provide 'init)
 ;;; init.el ends here
+;;;package
+;;;

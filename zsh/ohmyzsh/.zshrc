@@ -62,6 +62,9 @@ ENABLE_CORRECTION="true"
 plugins=(
   git
   vi-mode
+  zsh-syntax-highlighting # must be the last one
+  last-working-directory
+  colored-man-pages
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -103,3 +106,9 @@ source ~/runtime_config/zsh/zsh_custom.zsh
 # I don't add anything down here. If added, then they must be something automatically appended by third party programs.
 # If revised and confirmed, move them to zsh_custom.zsh.
 
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="$PATH:/usr/local/opt/python@2/bin/"
+export PATH="$PATH:/Library/Frameworks/Mono.framework/Versions/Current/bin/"
+
+#cat ~/anon.txt

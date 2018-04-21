@@ -1,0 +1,29 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+,ru	/Users/dqmacair/runtime_config/.ideavimrc	/^nnoremap ,ru :action Run<cr>$/;"	m	language:Vim
+,s	/Users/dqmacair/runtime_config/.ideavimrc	/^inoremap ,s <esc>$/;"	m	language:Vim
+,s	/Users/dqmacair/runtime_config/.ideavimrc	/^nnoremap ,s <esc>$/;"	m	language:Vim
+c	/Users/dqmacair/runtime_config/bash/.bashrc	/^c(){$/;"	f	language:Sh
+CC	/Users/dqmacair/runtime_config/make/Makefile_CPP_general	/^CC=g++$/;"	m	language:Make
+CC	/Users/dqmacair/runtime_config/make/Makefile_C_general	/^CC=gcc$/;"	m	language:Make
+CCFLAGS	/Users/dqmacair/runtime_config/make/Makefile_CPP_general	/^CCFLAGS=-g -Wall -Wextra -W -pedantic$/;"	m	language:Make
+CCFLAGS	/Users/dqmacair/runtime_config/make/Makefile_C_general	/^CCFLAGS=-g -Wall -Wextra -W -pedantic$/;"	m	language:Make
+cl	/Users/dqmacair/runtime_config/bash/.bashrc	/^cl(){$/;"	f	language:Sh
+e	/Users/dqmacair/runtime_config/.ideavimrc	/^noremap e gk$/;"	m	language:Vim
+f	/Users/dqmacair/runtime_config/.ideavimrc	/^noremap f e|noremap F E$/;"	m	language:Vim
+i	/Users/dqmacair/runtime_config/.ideavimrc	/^noremap i l$/;"	m	language:Vim
+j	/Users/dqmacair/runtime_config/.ideavimrc	/^noremap j t$/;"	m	language:Vim
+k	/Users/dqmacair/runtime_config/.ideavimrc	/^noremap k n|noremap K N$/;"	m	language:Vim
+l	/Users/dqmacair/runtime_config/.ideavimrc	/^noremap l u$/;"	m	language:Vim
+LDFLAGS	/Users/dqmacair/runtime_config/make/Makefile_CPP_general	/^LDFLAGS=$/;"	m	language:Make
+LDFLAGS	/Users/dqmacair/runtime_config/make/Makefile_C_general	/^LDFLAGS=$/;"	m	language:Make
+n	/Users/dqmacair/runtime_config/.ideavimrc	/^noremap n gj$/;"	m	language:Vim
+OBJECTS	/Users/dqmacair/runtime_config/make/Makefile_CPP_general	/^OBJECTS=$(SOURCES:.cpp=.o)$/;"	m	language:Make
+OBJECTS	/Users/dqmacair/runtime_config/make/Makefile_C_general	/^OBJECTS=$(SOURCES:.c=.o)$/;"	m	language:Make
+SOURCES	/Users/dqmacair/runtime_config/make/Makefile_CPP_general	/^SOURCES=$(wildcard *.cpp)$/;"	m	language:Make
+SOURCES	/Users/dqmacair/runtime_config/make/Makefile_C_general	/^SOURCES=$(wildcard *.c)$/;"	m	language:Make
+t	/Users/dqmacair/runtime_config/.ideavimrc	/^noremap t f$/;"	m	language:Vim
+TARGET	/Users/dqmacair/runtime_config/make/Makefile_CPP_general	/^TARGET=a.out$/;"	m	language:Make
+TARGET	/Users/dqmacair/runtime_config/make/Makefile_C_general	/^TARGET=a.out$/;"	m	language:Make
+u	/Users/dqmacair/runtime_config/.ideavimrc	/^noremap u i|noremap U I$/;"	m	language:Vim
+v	/Users/dqmacair/runtime_config/bash/.bashrc	/^v(){$/;"	f	language:Sh
+viavailable	/Users/dqmacair/runtime_config/bash/.bashrc	/^viavailable(){$/;"	f	language:Sh

@@ -19,10 +19,11 @@ let mapleader = ","
 
 "CURSOR
 "cursor moves visual instead of actual line
-noremap j gj
-noremap k gk
-noremap gj j
-noremap gk k
+" disabled for colemak
+""" noremap j gj
+""" noremap k gk
+""" noremap gj j
+""" noremap gk k
 nnoremap gI g^i
 au filetype text,markdown nnoremap I g^i
 au filetype text,markdown nnoremap gI I
@@ -50,8 +51,9 @@ au filetype text,markdown nnoremap gC C
 "SAVE << this is killing my fingers. I'll change ctrl to leader
 nnoremap <leader>s :update<CR>
 inoremap <leader>s <ESC>:update<CR>
-vnoremap <leader>s <esc>:w<CR>gv
+vnoremap <leader>s <esc>:update<CR>
 nnoremap <leader>s :update<CR>
+onoremap <leader>s <esc>:update<cr>
 
 "QUIT
 " ctrl+q quits all which is not working // now works
@@ -65,7 +67,10 @@ nnoremap <leader>q :bd<CR>
 inoremap <leader>q <ESC>:bd<CR>
 nnoremap <leader>q :bd<CR>
 nnoremap <leader>w :Gwrite<cr>:Gcommit --verbose<cr>
-"nnoremap <c-x><c-c> :q<cr> "does not work, why?
+" delete window (cancel split window)
+nnoremap ,dw <c-w>q<cr>
+"does not work, why?
+" nnoremap <c-x><c-c> :q<cr>
 ")
 
 nnoremap sq <esc>:wq<esc>
@@ -114,10 +119,11 @@ nnoremap gR gD:%s/<c-r>///gc<left><left><left>
 
 "(COMPILE & RUN MAPPING
 "- PYTHON
-
 au filetype python nnoremap <buffer> <leader>py :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
 au filetype python nnoremap <buffer> <F8> :w<CR>:exec '!python3' shellescape(@%, 1)<cr>
-au filetype python nnoremap <buffer> <leader>ru :!python3 % <CR>
+au filetype python nnoremap <buffer> <leader>rn :!python3 % <CR>
+" run unit test
+au filetype python nnoremap <buffer> <leader>ru :!python3 test_main.py <CR>
 
 "CLisp
 au filetype lisp nnoremap <buffer> <F8> :w<CR>:exec '!clisp' shellescape(@%, 1)<cr>
@@ -128,21 +134,32 @@ au filetype html nnoremap <buffer> <leader>ru :!open -a /Applications/Google\ Ch
 "matlab
 au filetype matlab nnoremap <buffer> <leader>ru :MatlabCliOpenInMatlabEditor<cr>
 
+"r
+aut filetype r nnoremap <buffer> <leader>ru :!Rscript %<cr>
+
 "- C,CPP
 "Create an executable file named a.out.
-"noremap <leader>gcc :w <CR>:!gcc-6 % && ./a.out <CR>
-"noremap <leader>gpp :w <CR>:!g++-6 % && ./a.out <CR>
-"noremap <leader>g++ :w <CR>:!g++-6 % && ./a.out <CR>
-"IMPORTANT: if bugs occured, change gcc-6 to gcc
+"noremap <leader>gcc :w <CR>:!gcc % && ./a.out <CR>
+"noremap <leader>gpp :w <CR>:!g++ % && ./a.out <CR>
+"noremap <leader>g++ :w <CR>:!g++ % && ./a.out <CR>
+"IMPORTANT: if bugs occured, change gcc-6 to gcc -> edit: gcc-6 is now gcc-7
 " creates an executable file that has the same name with its .c file
-au filetype c nnoremap <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
-au filetype c nnoremap <leader>ru :w <CR> :!gcc % -o %< && ./%< <CR>
-au filetype c nnoremap <leader>cpp :w <CR> :!gcc % -o %< && ./%< <CR>
+au filetype c nnoremap <F8> :w <CR> :!gcc-7 % -o %< && ./%< <CR>
+
+au filetype c nnoremap ,rn :w <CR> :!gcc-7 % && ./a.out <CR>
+au filetype c nnoremap ,ru :w <CR> :!gcc-7 % && ./a.out <CR>
+au filetype cpp nnoremap ,rn :w <CR> :!g++-7 % && ./a.out <CR>
+au filetype cpp nnoremap ,ru :w <CR> :!g++-7 % && ./a.out <CR>
+"au filetype c nnoremap <leader>ru :w <CR> :!gcc-7 % -o %< && ./%< <CR>
+"au filetype cpp nnoremap <leader>cpp :w <CR> :!g++-7 % -o %< && ./%< <CR>
 ")
 
 "- JAVA
 au filetype java nnoremap <F8> :w<cr>:!javac % && java %< <cr>
 au filetype java nnoremap <leader>ru <esc>:w<cr>:!javac % && java %< <cr>
+
+"- Julia
+au filetype julia nnoremap <leader>ru <esc>:w<cr>:!julia % <CR>
 
 "Replace Windows ^m enter return into Unix
 nnoremap <leader>enter :%s/\r/\r/g<CR>
@@ -151,6 +168,9 @@ nnoremap ;enter :%s/\r/\r/g<CR>
 "Buffer shortcuts
 nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bp :bp<cr>
+"last edited buffer (swiching, tmux <c-a>l (window), <c-a>o (pane) equivalent)
+nnoremap ,bb :b#<cr>
+nnoremap ;bb :b#<cr>
 nnoremap <leader>bd :bd<cr>
 nnoremap <leader>bq :bd<cr>
 nnoremap <leader>bf :buffers<CR>:buffer<Space>
@@ -179,7 +199,7 @@ nnoremap Y y$
 " highlight last inserted text // seems like not working? for me?: It does not work if file is saved. I escape the file using <c-s>. That was the reason this does not work.
 "nnoremap gV `[v`]
 "set timeoutlen=1000 " still the above command does not properly work << not required anymore
-"set ttimeoutlen=10 " 
+"set ttimeoutlen=10 "
 
 
 
@@ -248,7 +268,7 @@ nnoremap ;ffmt <esc>:set fileformat=dos
 
 nnoremap ;ft :set filetype<cr>
 
-nnoremap ;vm :verbose map 
+nnoremap ;vm :verbose map
 
 nnoremap ;nl :put =range(
 
@@ -281,6 +301,7 @@ nnoremap zt zA
 
 " remove trailing whitespace
 nnoremap ;rmt :%s/\s\+$//gc<cr>
+cnoreabbrev nows :%s/\s\+$//g
 
 " easier paste
 nnoremap ;<c-v> "*p
@@ -288,15 +309,15 @@ inoremap ;<c-v> <esc>"*p
 xnoremap ;<c-y> "*y "<c-c> does not work
 
 " emacs style line
-nnoremap <c-a> ^
-nnoremap <c-e> $
+"nnoremap <c-a> ^
+"nnoremap <c-e> $
 
 " select last yanked text
 nnoremap <leader>V `[v`]
 
 " Ko-lang support " buggy; does not work as expected"
 "nnoremap ,ㅇ <esc>:update<cr>
-inoremap ,ㅇ <esc>:update<cr> " does not work cuz korean inputs 
+inoremap ,ㅇ <esc>:update<cr> " does not work cuz korean inputs
 "nnoremap ㅣ i
 "nnoremap ㅁ a
 "nnoremap ㅎㅎ dd
@@ -312,12 +333,67 @@ nnoremap ,# yyp<c-v>$r-<cr>
 inoremap ;calc <c-o>yiW<End>=<c-r>=<c-r>0<cr>
 
 "vim navigation enable
-"nnoremap j n
-"nnoremap k i
-"nnoremap l e
-"nnoremap n j
-"nnoremap e k
-"nnoremap i l
+noremap n gj|noremap N J
+noremap e gk|noremap E K
+noremap i l|noremap I L
+noremap k n|noremap K N
+noremap f e|noremap F E
+noremap u i|noremap U I
+noremap l u|noremap L U
+noremap t f|noremap T F
+noremap j t|noremap J T
+
+
+"nnoremap k i|vnoremap k i
+"nnoremap l e|vnoremap l e
+
+"(( enhanced vim navigation
+" colemak neio -> hjkl
+""" noremap n h
+""" noremap e j
+""" noremap i k
+""" noremap o l
+""" "" colemak uhjkl -> ioune
+""" nnoremap u i
+""" nnoremap h n
+""" nnoremap j u
+""" nnoremap k o
+""" nnoremap l e
+"))
+
+"(( arrow key like navigation
+" Insert - o version (new line - k)
+" colemak neuio -> hjkli
+""" noremap n h
+""" noremap e j
+""" noremap u k
+""" noremap i l
+""" nnoremap o i
+""" """ " colemak jkhl -> uone
+""" nnoremap j u
+""" nnoremap k o
+""" nnoremap K O
+""" nnoremap h n
+""" nnoremap l e
+"))
+
+"(( arrow key like navigation
+" insert - k version
+" colemak neuio -> hjkli
+""" nnoremap n h|vnoremap n h|
+""" nnoremap e j|vnoremap e j|
+""" nnoremap u k|vnoremap u k|
+""" nnoremap i l|vnoremap i l|
+""" """ " colemak jkhl -> uone
+""" nnoremap j u|vnoremap j u|
+""" nnoremap k i|vnoremap k i|
+""" nnoremap h n|vnoremap h n|
+""" nnoremap l e|vnoremap l e|
+"""
+""" nnoremap K I|vnoremap K I
+""" nnoremap H N|vnoremap H N
+""" nnoremap L E|vnoremap L E
+""" "))
 
 nnoremap ,ls :ls<cr>
 
@@ -325,3 +401,29 @@ nnoremap dq d
 
 inoremap ,. <esc>:update<cr>
 nnoremap ,. :update<cr>
+
+" create non-existent file under the cursor
+nnoremap <leader>gf :e <cfile><cr>
+
+" remove whitespace-only line (but not delete \n)
+" no whitespace only line
+"nnoremap nwol :%s/^ \+$//g<cr>
+" no whitespace only current line
+
+"nnoremap nwoc :s/^ \+$//g<cr>
+
+
+inoremap <F9> <c-o>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
+" how to save fold? view option and view plugin
+
+noremap <c-g> <esc>
+inoremap <c-g> <esc>
+
+" replace all whitespace to , (useful for making python list from matlab-like
+" array)
+vnoremap ,co :s/\%V \%V/, /g<cr>
+nnoremap ,co 0f[va[:s/\%V \%V/, /g<cr>
+
