@@ -63,6 +63,8 @@ Plug 'godlygeek/tabular'
 Plug 'SirVer/ultisnips' "Snippets Engine
 Plug 'honza/vim-snippets' " Snippets, let me put next to ultisnips
 
+Plug 'vim-scripts/upAndDown'
+
 "something similar for GUI? keynav (linux), XEasyMotion (macOS)
 " disabled for colemak neio arrow key compatibility
 "Plug 'vim-scripts/BinarySearchMove'

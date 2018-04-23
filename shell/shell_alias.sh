@@ -160,7 +160,8 @@ if [[ $platform == 'macos' ]]; then
     # brew does not update/link automatically.
     # I should use python2 or python3 to use brew python.
     #alias python='echo "!!!!! ##### warning: py2 or py3 to use brew python ##### !!!!!"; python'
-    alias python='/usr/local/bin/python3'
+    #alias python='/usr/local/bin/python3' # ruins virtualenv
+    # instead, use ln -s /usr/local/bin/python3 /usr/local/bin/python
 
     alias py2='python2'
     alias py='/usr/local/bin/python3'
@@ -169,7 +170,7 @@ if [[ $platform == 'macos' ]]; then
     alias pyp='/usr/local/bin/pypy3'
     alias pyp2='/usr/local/bin/pypy'
     alias pyp3='/usr/local/bin/pypy3'
-    alias pip='/usr/local/bin/pip3'
+    #alias pip='/usr/local/bin/pip3' # ruins virtualenv
 fi
 type python
 type python2
@@ -545,7 +546,7 @@ m(){
     if [[ "$run_what" == 'c' ]]; then
         echo "this is make for c"
         #make --makefile=~/runtime_config/make/Makefile_C_general
-        gcc -c *.c; gcc *.o; ./a.out
+        gcc -g *.c; ./a.out
     elif [[ "$run_what" == 'cpp' ]]; then
         echo "this is make for cpp"
         make --makefile=~/runtime_config/make/Makefile_CPP_general
@@ -678,8 +679,9 @@ myfind(){
     # It takes only one argument, which is the directory it would search through.
     # If a special option such as -name is given, it applies the condition onto the search results.
     #find . -name "*$@*" | highlight $@
-    find . -name "*$@*" | grep $@ # grep with color
     #find . | grep $@ # this also works.
+    # find . -name "*$@*" | grep $@ # grep with color # case sensitive
+    find . -iname "*$@*" | grep -i $@ # case insensitive
 }
 alias myf='myfind'
 
@@ -751,3 +753,6 @@ alias u='python3 -m unittest test_main.py'
 
 alias csapp_h='ln -s ~/books/comp/bibles/csapp/csapp.h .;
 ln -s ~/books/comp/bibles/csapp/csapp.c .'
+
+alias psall='ps -ef'
+alias ps_all='ps -ef'

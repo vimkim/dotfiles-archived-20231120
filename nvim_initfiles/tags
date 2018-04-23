@@ -9,7 +9,7 @@
 ,dw	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,dw <c-w>q<cr>$/;"	m	language:Vim
 ,ls	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ,ls :ls<cr>$/;"	m	language:Vim
 ,ㅇ	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap ,ㅇ <esc>:update<cr> " does not work cuz korean inputs$/;"	m	language:Vim
-;	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ; :$/;"	m	language:Vim
+;;	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ;; ;$/;"	m	language:Vim
 ;<c-v>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^inoremap ;<c-v> <esc>"*p$/;"	m	language:Vim
 ;<c-v>	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ;<c-v> "*p$/;"	m	language:Vim
 ;bb	/Users/dqmacair/runtime_config/nvim_initfiles/mappings.vimrc	/^nnoremap ;bb :b#<cr>$/;"	m	language:Vim

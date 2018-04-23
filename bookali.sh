@@ -81,3 +81,12 @@ alias lev3="open $compdir/python/coding_club/"
 ## lit
 litdir=~/books/lit
 alias aos='open $litdir/aos.pdf' # art of seduction
+
+## operating systems
+osdir=~/books/comp/OS/
+alias operating_systems_three='open $osdir/os_three.pdf'
+
+## debug
+debugdir=~/books/comp/debug
+alias aod='open $debugdir/art_of_debugging.pdf'
+

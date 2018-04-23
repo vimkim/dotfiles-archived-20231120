@@ -111,4 +111,8 @@ source ~/runtime_config/zsh/zsh_custom.zsh
 export PATH="$PATH:/usr/local/opt/python@2/bin/"
 export PATH="$PATH:/Library/Frameworks/Mono.framework/Versions/Current/bin/"
 
+# brew install llvm 6
+LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
 #cat ~/anon.txt
