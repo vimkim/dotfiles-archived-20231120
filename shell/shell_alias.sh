@@ -470,6 +470,8 @@ if [[ $platform == 'linux' ]]; then
     if [[ $distro == 'pi' ]]; then
         alias oaf='pcmanfm .'
     fi
+    if [[ $distro == 'arch' ]]; then
+        alias oaf='xdg-open .'
 elif [[ $platform == 'macos' ]]; then
     alias oaf='open -a finder .'
 else

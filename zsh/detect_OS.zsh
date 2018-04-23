@@ -19,8 +19,9 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 echo "\$platform: $platform"
 
+
 # find Linux distro
-    distro='pi'
+distro='pi'
 if [[ $(uname -n) == 'raspberrypi' ]]; then
     echo "\$distro: $distro"
 fi
