@@ -262,7 +262,8 @@ inoremap <c-BS> <DEL>
 
 nnoremap U :echo "<< ===== CHECK CAPSLOCK =====>>"<cr>
 
-nnoremap ; :
+" for f,t search
+nnoremap ;; ;
 
 nnoremap ;ffmt <esc>:set fileformat=dos
 

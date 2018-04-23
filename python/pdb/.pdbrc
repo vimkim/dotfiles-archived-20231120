@@ -14,6 +14,6 @@ termios_result = termios.tcsetattr(termios_fd, termios.TCSADRAIN, termios_echo)
 
 # my custom alias
 alias n next ;; list ;; display
-alias s next ;; list ;; display
+alias s step ;; list ;; display
 alias disp display
 alias undisp undisplay

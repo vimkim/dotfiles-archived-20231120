@@ -1,17 +1,17 @@
 !_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
-askhere	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^function askhere {$/;"	f	language:Sh
-askman	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^function askman {$/;"	f	language:Sh
-bills	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^bills(){$/;"	f	language:Sh
-cl	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^cl(){$/;"	f	language:Sh
-edit_with_date	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^edit_with_date(){$/;"	f	language:Sh
-highlight	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^highlight() { perl -pe "s\/$1\/\\e[1;31;43m$&\\e[0m\/g"; }$/;"	f	language:Sh
-llsy	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^llsy(){$/;"	f	language:Sh
-m	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^m(){$/;"	f	language:Sh
-mcl	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^mcl(){$/;"	f	language:Sh
-mkc	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^mkc(){$/;"	f	language:Sh
-mkdir_with_date	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^mkdir_with_date(){$/;"	f	language:Sh
-myfind	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^myfind(){$/;"	f	language:Sh
-myupdate	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^myupdate(){$/;"	f	language:Sh
-studylog	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^studylog(){$/;"	f	language:Sh
-vim_with_date	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^vim_with_date(){$/;"	f	language:Sh
-whichls	/home/dqmanjarog/runtime_config/shell/shell_alias.sh	/^whichls(){$/;"	f	language:Sh
+askhere	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^function askhere {$/;"	f	language:Sh
+askman	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^function askman {$/;"	f	language:Sh
+bills	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^bills(){$/;"	f	language:Sh
+cl	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^cl(){$/;"	f	language:Sh
+edit_with_date	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^edit_with_date(){$/;"	f	language:Sh
+highlight	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^highlight() { perl -pe "s\/$1\/\\e[1;31;43m$&\\e[0m\/g"; }$/;"	f	language:Sh
+llsy	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^llsy(){$/;"	f	language:Sh
+m	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^m(){$/;"	f	language:Sh
+mcl	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^mcl(){$/;"	f	language:Sh
+mkc	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^mkc(){$/;"	f	language:Sh
+mkdir_with_date	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^mkdir_with_date(){$/;"	f	language:Sh
+myfind	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^myfind(){$/;"	f	language:Sh
+myupdate	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^myupdate(){$/;"	f	language:Sh
+studylog	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^studylog(){$/;"	f	language:Sh
+vim_with_date	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^vim_with_date(){$/;"	f	language:Sh
+whichls	/Users/dqmacair/runtime_config/shell/shell_alias.sh	/^whichls(){$/;"	f	language:Sh
