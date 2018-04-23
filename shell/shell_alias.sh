@@ -628,6 +628,7 @@ alias pd='popd'
 
 alias rm="echo Use 'rmt(remove to trash)', or the full path i.e. '/bin/rm'"
 if [[ $platform == 'linux' ]]; then
+    # sudo pacman -S trash-cli
     alias rmt="trash"
 elif [[ $platform == 'macos' ]]; then
     alias rmt="rmtrash"
@@ -752,5 +753,9 @@ alias rmmypy='/bin/rm -rf `find ~/praclang/ -type d -name "*mypy*"`'
 
 alias u='python3 -m unittest test_main.py'
 
-alias csapp_h='ln -s ~/books/comp/bibles/csapp/csapp.h .;
-ln -s ~/books/comp/bibles/csapp/csapp.c .'
+alias csapp_h='ln -s ~/books/comp/bibles/csapp/csapp.h .;'
+
+alias spac='sudo pacman'
+alias spac_install='sudo pacman -S'
+alias spac_search='pacman -Ss'
+alias spac_update='sudo pacman -Syu'
