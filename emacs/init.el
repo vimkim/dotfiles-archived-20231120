@@ -1,4 +1,4 @@
-;;; package ---- Summary
+;;; package ---- Summary
 ;;; Commentary:
 ;;hello Emacs!
 ;;; Code:
@@ -72,7 +72,7 @@
 
 ;;(x-focus-frame nil)
 
-(load-file "~/.emacs.d/initfiles/global.el")
+;;(load-file "~/.emacs.d/initfiles/global.el")
 
 ;; line numbers
 (use-package nlinum-hl

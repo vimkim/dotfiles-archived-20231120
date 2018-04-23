@@ -336,7 +336,9 @@ alias gdi='git diff'
 alias gsh='git show'
 alias gbl='git blame'
 alias gds='git dissect'
+alias git_show_merge_conflict='git diff --diff-filter=U'
 alias gumd='git diff --diff-filter=U' # unmerged commits
+alias gumd
 alias gerase='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
 alias gitcre='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
 alias gcre='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
@@ -629,6 +631,7 @@ alias pd='popd'
 
 alias rm="echo Use 'rmt(remove to trash)', or the full path i.e. '/bin/rm'"
 if [[ $platform == 'linux' ]]; then
+    # sudo pacman -S trash-cli
     alias rmt="trash"
 elif [[ $platform == 'macos' ]]; then
     alias rmt="rmtrash"
@@ -731,8 +734,11 @@ alias more='less'
 # TIP: you can invoke system editor $EDITOR if press 'v' inside less. << awesome!
 
 # man uses $MANPAGER, $PAGER variables. By default /usr/bin/less -is, but is overrided by $PAGER.
-PAGER='/usr/local/bin/less -isM +Gg'
-MANPAGER='/usr/local/bin/less -isM +Gg'
+
+if [[ $platform == 'macos' ]]; then
+    PAGER='/usr/local/bin/less -isM +Gg'
+    MANPAGER='/usr/local/bin/less -isM +Gg'
+fi
 
 # my library
 source ~/runtime_config/shell/mylib_alias.sh
@@ -756,3 +762,8 @@ ln -s ~/books/comp/bibles/csapp/csapp.c .'
 
 alias psall='ps -ef'
 alias ps_all='ps -ef'
+
+alias spac='sudo pacman'
+alias spac_install='sudo pacman -S'
+alias spac_search='pacman -Ss'
+alias spac_update='sudo pacman -Syu'

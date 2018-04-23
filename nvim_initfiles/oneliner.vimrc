@@ -336,3 +336,4 @@ au Cursorhold * checktime
 " Now it works. Awesome!
 
 
+set t_Co=256
