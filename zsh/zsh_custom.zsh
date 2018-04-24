@@ -68,6 +68,9 @@ export PATH="/usr/local/sbin:$PATH"
 # matlab
 export PATH="/Applications/MATLAB_R2017a.app/bin:$PATH"
 
+# pip --user
+export PATH="$HOME/.local/bin:$PATH"
+
 # print path
 echo "****************************************************"
 echo "\$PATH: \n"
