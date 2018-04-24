@@ -337,9 +337,8 @@ alias gdi='git diff'
 alias gsh='git show'
 alias gbl='git blame'
 alias gds='git dissect'
-alias git_show_merge_conflict='git diff --diff-filter=U'
+alias git_show_merge_conflict='git diff --name-only --diff-filter=U'
 alias gumd='git diff --diff-filter=U' # unmerged commits
-alias gumd
 alias gerase='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
 alias gitcre='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
 alias gcre='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
@@ -379,6 +378,7 @@ alias rsc='Rscript'
 # sage alias
 if [[ $platform == 'macos' ]]; then
     # installed by brew cask. Now no alias required.
+    ;
 fi
 
 # LaTeX
@@ -758,10 +758,9 @@ alias listallcommand='bash -c "compgen -c"'
 
 alias rmmypy='/bin/rm -rf `find ~/praclang/ -type d -name "*mypy*"`'
 
-alias u='python3 -m unittest test_main.py'
+alias unittest='python3 -m unittest test_main.py'
 
-alias csapp_h='ln -s ~/books/comp/bibles/csapp/csapp.h .;
-ln -s ~/books/comp/bibles/csapp/csapp.c .'
+alias csapp_h='ln -s ~/books/comp/bibles/csapp/csapp.h .; ln -s ~/books/comp/bibles/csapp/csapp.c .'
 
 alias psall='ps -ef'
 alias ps_all='ps -ef'
@@ -770,3 +769,9 @@ alias spac='sudo pacman'
 alias spac_install='sudo pacman -S'
 alias spac_search='pacman -Ss'
 alias spac_update='sudo pacman -Syu'
+alias pacman_info='pacman -Si'
+alias pacman_search='pacman -Ss'
+
+alias mount_shared_folder='mount -t vboxsf comp /media/shared'
+
+alias exit_status='echo $?'
