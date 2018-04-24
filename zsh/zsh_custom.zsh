@@ -50,23 +50,23 @@ PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" 
 # for tmuxinator
 source ~/runtime_config/tmuxinatorfiles/tmuxinator.zsh
 
-# for brew gnu tools and manuals
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+if [[ $platform == "macos" ]]; then
+    # for brew gnu tools and manuals
+    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
-# for ncurses for mac
-export PATH="/usr/local/opt/ncurses/bin:$PATH"
+    # for ncurses for mac
+    export PATH="/usr/local/opt/ncurses/bin:$PATH"
+
+    # sshd, installed by homebrew, is in /usr/local/sbin.
+    export PATH="/usr/local/sbin:$PATH"
+
+    # matlab
+    export PATH="/Applications/MATLAB_R2017a.app/bin:$PATH"
+fi
 
 # for fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # automatically append by fzf when ./install
-
-export PATH=/Users/dqmacair/.local/bin/luna-studio:$PATH
-
-# sshd, installed by homebrew, is in /usr/local/sbin.
-export PATH="/usr/local/sbin:$PATH"
-
-# matlab
-export PATH="/Applications/MATLAB_R2017a.app/bin:$PATH"
 
 # pip --user
 export PATH="$HOME/.local/bin:$PATH"
