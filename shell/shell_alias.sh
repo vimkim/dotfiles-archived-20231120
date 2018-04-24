@@ -472,12 +472,16 @@ alias tagen="ctags -R ."
 # open as finder
 if [[ $platform == 'linux' ]]; then
     if [[ $distro == 'pi' ]]; then
-        alias oaf='pcmanfm .'
+        alias oaf='pcmanfm'
+    elif [[ $distro == 'arch' ]]; then
+        alias oaf='xdg-open'
+    elif [[ $distro == 'manjaro' ]]; then
+        alias oaf='xdg-open'
+    else
+        echo "oaf not set yet in this linux OS"
     fi
-    if [[ $distro == 'arch' ]]; then
-        alias oaf='xdg-open .'
 elif [[ $platform == 'macos' ]]; then
-    alias oaf='open -a finder .'
+    alias oaf='open -a finder'
 else
     echo "oaf not set yet in this OS"
 fi
