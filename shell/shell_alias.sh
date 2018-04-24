@@ -123,6 +123,7 @@ echo "\$myed: $myed"
 if [[ $platform == 'linux' ]]; then
     export EDITOR=/usr/bin/$myed
     export VISUAL=/usr/bin/$myed
+    export GIT_EDITOR='$(which vim)'
 elif [[ $platform == 'macos' ]]; then
     export EDITOR=/usr/local/bin/$myed
     export VISUAL=/usr/local/bin/$myed
