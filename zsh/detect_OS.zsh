@@ -21,8 +21,11 @@ echo "\$platform: $platform"
 
 
 # find Linux distro
-distro='pi'
-if [[ $(uname -n) == 'raspberrypi' ]]; then
-    echo "\$distro: $distro"
+distro='non_linux'
+if uname -a | grep -qi 'manjaro'; then # if manjaro exists in uname --all
+    distro='manjaro'
+elif [[ $(uname -n) == 'raspberrypi' ]]; then
+    distro='pi'
 fi
+echo "\$distro: $distro"
 echo "****************************************************"
