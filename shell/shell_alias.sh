@@ -344,9 +344,19 @@ alias gitcre='git credential-osxkeychain erase < ~/runtime_config/gitcredential.
 alias gcre='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
 # https://stackoverflow.com/questions/6919121/why-are-there-2-ways-to-unstage-a-file-in-git
 alias git_stage_removal='git rm --cached' # leaving you with an untracked file
-alias git_unstage_from_index='git reset'
-alias git_revert_back_to_commit='git reset --hard'
-alias git_revert_commit='git revert'
+alias git_undo_last_commit='git reset --soft HEAD~'
+alias git_unstage_from_index='git reset --mixed HEAD~' # move current branch to the previous commit (--soft), and then update the index with the contents of the previous branch. This has the effect of clearing the index.
+# https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified
+alias git_revert_back_to_commit='git reset --hard HEAD~'
+alias git_revert_commit='git revert' # creates new commit that undoes the changes from a previous commit
+alias git_changes_in_last_commit='git difftool HEAD~1 HEAD'
+
+alias git_move_branch_without_checkout='git branch -f'
+alias git_modify_last_commit_message='git commit --amend'
+alias git_modify_last_commit_trivial_without_message='git commit --amend --no-edit'
+alias git_diff_wd_vs_index='git diff'
+alias git_diff_index_vs_last_commit='git diff --cached'
+alias git_diff_all_vs_last_commit='git diff HEAD'
 
 # tmux
 alias tmu='tmux'
