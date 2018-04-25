@@ -367,6 +367,9 @@ alias git_branch_cancel_track_remote='git branch --unset-upstream'
 
 alias git_merge_dryrun='git merge --no-commit --no-ff' # then use 'git diff --cached' and 'git merge --abort'
 
+alias git_push_all='git push --all'
+
+
 # tmux
 alias tmu='tmux'
 alias tmua='tmux a'
