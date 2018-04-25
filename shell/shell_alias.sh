@@ -337,6 +337,7 @@ alias gdi='git diff'
 alias gsh='git show'
 alias gbl='git blame'
 alias gds='git dissect'
+
 alias git_show_merge_conflict='git diff --name-only --diff-filter=U'
 alias gumd='git diff --diff-filter=U' # unmerged commits
 alias gerase='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
@@ -357,6 +358,10 @@ alias git_modify_last_commit_trivial_without_message='git commit --amend --no-ed
 alias git_diff_wd_vs_index='git diff'
 alias git_diff_index_vs_last_commit='git diff --cached'
 alias git_diff_all_vs_last_commit='git diff HEAD'
+
+alias git_remove_untracked_files_dryrun='git clean -n'
+alias git_remove_untracked_files_interactive='git clean -i'
+
 
 # tmux
 alias tmu='tmux'
