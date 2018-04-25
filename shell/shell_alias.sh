@@ -362,6 +362,8 @@ alias git_diff_all_vs_last_commit='git diff HEAD'
 alias git_remove_untracked_files_dryrun='git clean -n'
 alias git_remove_untracked_files_interactive='git clean -i'
 
+alias git_branch_track_remote='git branch --set-upstream'
+alias git_branch_cancel_track_remote='git branch --unset-upstream'
 
 # tmux
 alias tmu='tmux'
