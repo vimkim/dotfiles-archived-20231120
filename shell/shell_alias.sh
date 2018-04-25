@@ -342,6 +342,11 @@ alias gumd='git diff --diff-filter=U' # unmerged commits
 alias gerase='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
 alias gitcre='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
 alias gcre='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
+# https://stackoverflow.com/questions/6919121/why-are-there-2-ways-to-unstage-a-file-in-git
+alias git_stage_removal='git rm --cached' # leaving you with an untracked file
+alias git_unstage_from_index='git reset'
+alias git_revert_back_to_commit='git reset --hard'
+alias git_revert_commit='git revert'
 
 # tmux
 alias tmu='tmux'
