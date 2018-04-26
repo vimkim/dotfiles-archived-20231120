@@ -384,6 +384,16 @@ alias git_push_all='git push --all'
 alias git_log_all='git log --oneline --graph --decorate --all'
 alias git_gui_graph='gitk --all'
 
+# https://gist.github.com/tlberglund/3714970
+git_loglive (){
+    while :
+    do
+        clear
+        git --no-pager log --graph --oneline --abbrev-commit --decorate --all $@
+        sleep 2
+    done
+}
+
 
 # tmux
 alias tmu='tmux'
