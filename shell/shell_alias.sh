@@ -338,6 +338,18 @@ alias gsh='git show'
 alias gbl='git blame'
 alias gds='git dissect'
 
+gam(){
+    git diff
+    local msg=''
+    printf "type your commit msg: "
+    read msg
+    if [[ $msg == '' ]]; then
+        echo "msg must not be empty."
+        return 1
+    fi
+    git add .; git commit -m $msg
+}
+
 alias git_show_merge_conflict='git diff --name-only --diff-filter=U'
 alias gumd='git diff --diff-filter=U' # unmerged commits
 alias gerase='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
