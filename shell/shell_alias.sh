@@ -809,3 +809,5 @@ alias exit_status='echo $?'
 
 # https://www.youtube.com/watch?v=0SJCYPsef54
 alias tree_sync='while; do; clear; tree .; sleep 1; done'
+
+alias sizeof_directory='du -hs'
