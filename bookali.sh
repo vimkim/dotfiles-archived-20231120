@@ -5,7 +5,7 @@ alias skimpage="osascript ~/runtime_config/mac/skim/pdfpage.scpt"
 alias skimp="osascript ~/runtime_config/mac/skim/pdfpage.scpt"
 
 if [[ $platform == "macos" ]]; then
-    alias open_pdf="open"
+    # alias open_pdf="open"
     open_pdf() { open "$@" }
 elif [[ $platform == "linux" ]]; then
     open_pdf() {
