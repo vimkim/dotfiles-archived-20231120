@@ -382,6 +382,7 @@ alias git_merge_dryrun='git merge --no-commit --no-ff' # then use 'git diff --ca
 alias git_push_all='git push --all'
 
 alias git_log_all='git log --oneline --graph --decorate --all'
+alias git_gui_graph='gitk --all'
 
 
 # tmux
