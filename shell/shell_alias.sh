@@ -384,6 +384,14 @@ alias git_push_all='git push --all'
 alias git_log_all='git log --oneline --graph --decorate --all'
 alias git_gui_graph='gitk --all'
 
+# https://stackoverflow.com/questions/4783599/rebasing-a-git-merge-commit
+# https://stackoverflow.com/questions/15915430/what-exactly-does-gits-rebase-preserve-merges-do-and-why
+alias git_rebase_merge_commit='git rebase --preserve-merges'
+
+# https://git-scm.com/book/en/v2/Git-Tools-Rerere
+alias git_back_to_merge_conflict_state='git checkout --conflict=merge'
+alias git_enable_rerere_global='git config --global rerere.enabled true'
+
 # https://gist.github.com/tlberglund/3714970
 git_loglive (){
     while :
