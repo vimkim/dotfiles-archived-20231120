@@ -369,6 +369,8 @@ alias git_merge_dryrun='git merge --no-commit --no-ff' # then use 'git diff --ca
 
 alias git_push_all='git push --all'
 
+alias git_log_all='git log --oneline --graph --decorate --all'
+
 
 # tmux
 alias tmu='tmux'
@@ -811,3 +813,4 @@ alias exit_status='echo $?'
 alias tree_sync='while; do; clear; tree .; sleep 1; done'
 
 alias sizeof_directory='du -hs'
+
