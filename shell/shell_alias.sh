@@ -347,7 +347,12 @@ gam(){
         echo "msg must not be empty."
         return 1
     fi
-    git add .; git commit -m $msg
+    if [[ $# == 1 ]]; then
+        git add .
+    elif [[ $# > 2 ]]; then
+        git add $@
+    fi
+    git commit -m $msg
 }
 
 alias git_show_merge_conflict='git diff --name-only --diff-filter=U'
