@@ -395,6 +395,7 @@ alias git_pull_dryrun='git fetch; git_merge_dryrun'
 alias git_push_all='git push --all'
 
 alias git_log_all='git log --oneline --graph --decorate --all'
+alias gla='git_log_all'
 alias git_gui_graph='gitk --all'
 
 # https://stackoverflow.com/questions/4783599/rebasing-a-git-merge-commit
