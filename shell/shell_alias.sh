@@ -339,19 +339,25 @@ alias gbl='git blame'
 alias gds='git dissect'
 
 gam(){
-    git diff
+
+    if [[ "$#" -eq 0 ]]; then
+        git add .
+    elif [[ "$#" -ge 1 ]]; then
+        git add "$@"
+    else
+        echo "something wrong with 'gam'"
+        return 1;
+    fi
+    git diff --cached
+
     local msg=''
     printf "type your commit msg: "
     read msg
     if [[ $msg == '' ]]; then
         echo "msg must not be empty."
-        return 1
+        return 2
     fi
-    if [[ $# == 1 ]]; then
-        git add .
-    elif [[ $# > 2 ]]; then
-        git add $@
-    fi
+
     git commit -m $msg
 }
 
@@ -374,6 +380,7 @@ alias git_modify_last_commit_message='git commit --amend'
 alias git_modify_last_commit_trivial_without_message='git commit --amend --no-edit'
 alias git_diff_wd_vs_index='git diff'
 alias git_diff_index_vs_last_commit='git diff --cached'
+alias git_diff_staged='git diff --staged' # synonym for git --cached
 alias git_diff_all_vs_last_commit='git diff HEAD'
 
 alias git_remove_untracked_files_dryrun='git clean -n'
