@@ -6,7 +6,7 @@ alias skimp="osascript ~/runtime_config/mac/skim/pdfpage.scpt"
 
 if [[ $platform == "macos" ]]; then
     # alias open_pdf="open"
-    open_pdf() { open "$@" }
+    open_pdf() { open -a Adobe\ Acrobat\ Reader\ DC "$@" }
 elif [[ $platform == "linux" ]]; then
     open_pdf() {
         okular "$@" &
@@ -103,4 +103,5 @@ alias operating_systems_three='open_pdf $osdir/os_three.pdf'
 ## debug
 debugdir=~/books/comp/debug
 alias aod='open_pdf $debugdir/art_of_debugging.pdf'
+alias cdebugdir='/Users/dqmacair/books/comp/debug/aod/Debugging\ Source\ Code'
 
