@@ -1,0 +1,42 @@
+{
+    "title" : "(dq) option tab to command tab",
+    "rules" : [
+        {
+            "description" : "option tab to command tab in special cases (dq)",
+            "manipulators":[
+                {
+                    "type" : "basic",
+                    "from" : {
+                        "key_code" : "tab",
+                        "modifiers" : {
+                            "mandatory": [
+                                "left_option"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to" : [
+                        {
+                            "key_code" : "tab",
+                            "modifiers" : [
+                                "left_command"
+                            ]
+                        }
+                    ],
+                    "conditions" : [
+                        {
+                            "type" : "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^org\\.vim\\.MacVim$",
+                                "^com.googlecode.iterm2$",
+                                "^org.virtualbox.app.VirtualBoxVM$"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

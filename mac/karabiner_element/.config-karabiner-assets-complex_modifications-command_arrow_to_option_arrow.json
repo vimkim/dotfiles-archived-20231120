@@ -1,0 +1,76 @@
+
+{
+    "title" : "(dq) command arrow to option arrow",
+    "rules" : [
+        {
+            "description" : "command arrow to option arrow (dq)",
+            "manipulators":[
+                {
+                    "type" : "basic",
+                    "from" : {
+                        "key_code" : "left_arrow",
+                        "modifiers" : {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to" : [
+                        {
+                            "key_code" : "left_arrow",
+                            "modifiers" : [
+                                "left_option"
+                            ]
+                        }
+                    ],
+                    "conditions" : [
+                        {
+                            "type" : "frontmost_application_unless",
+                            "bundle_identifiers": [
+                                "^org\\.vim\\.MacVim$",
+                                "^com.googlecode.iterm2$",
+                                "^org.virtualbox.app.VirtualBoxVM$"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type" : "basic",
+                    "from" : {
+                        "key_code" : "right_arrow",
+                        "modifiers" : {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to" : [
+                        {
+                            "key_code" : "right_arrow",
+                            "modifiers" : [
+                                "left_option"
+                            ]
+                        }
+                    ],
+                    "conditions" : [
+                        {
+                            "type" : "frontmost_application_unless",
+                            "bundle_identifiers": [
+                                "^org\\.vim\\.MacVim$",
+                                "^com.googlecode.iterm2$",
+                                "^org.virtualbox.app.VirtualBoxVM$"
+                            ]
+                        }
+                    ]
+                }
+
+            ]
+        }
+    ]
+}
