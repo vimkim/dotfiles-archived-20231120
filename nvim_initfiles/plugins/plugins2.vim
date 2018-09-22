@@ -19,6 +19,7 @@ Plug 'xolox/vim-misc' " must be before easytags
 Plug 'xolox/vim-easytags'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-fugitive'
+Plug 'szw/vim-g'
 Plug 'tenfyzhong/vim-gencode-cpp'
 Plug 'airblade/vim-gitgutter'
 
@@ -27,7 +28,6 @@ let g:gitgutter_map_keys = 0
 
 
 Plug 'rhysd/vim-grammarous'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']}
 "Plug 'maksimr/vim-jsbeautify'
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx']}
 Plug 'xuhdev/vim-latex-live-preview'
@@ -44,6 +44,7 @@ Plug 'tpope/vim-obsession'
 Plug 'mattn/vim-particle'
 Plug 'reedes/vim-pencil'
 "Plug 'tpope/vim-repeat' "disabled for colemap
+Plug 'google/vim-searchindex'
 Plug 'jpalardy/vim-slime', { 'for': [ 'python', 'R', 'lisp' ] }
 "Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-surround'

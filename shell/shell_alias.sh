@@ -3,7 +3,6 @@
 # Be careful. When assigning variable, no space between variable name and '=' sign. Spaces matter in scripting.
 
 # Detect Shell
-echo "****************************************************"
 echo "\$0: $0"
 echo "\$SHELL: $SHELL"
 echo "\$SHLVL: $SHLVL"
@@ -95,6 +94,7 @@ if hash nvr 2> /dev/null; then
 fi
 echo "\$nvrexist: $nvrexist"
 export myvi
+vim=($myvi)
 
 emacsexist='false'
 myemacs='unknown'
@@ -147,13 +147,36 @@ type git
     # therefore, use gcc-N instead of gcc
 if [[ $platform == 'macos' ]]; then
     # do not forget to change these aliases after upgrading brew gcc.
-    alias gcc='gcc-7'
-    alias g++='g++-7'
-    alias cc='gcc-7'
-    alias c+='g++-7'
+    alias gcc='gcc-8'
+    alias g++='g++-8'
+    alias cc='gcc-8'
+    alias c+='g++-8'
 fi
 type gcc
 type g++
+
+gcc_debug_opt="-g3 -O0" # https://stackoverflow.com/questions/10475040/gcc-g-vs-g3-gdb-flag-what-is-the-difference
+gcc_warn_opt='-Wall -Wextra -pedantic'
+gcc_assembly_opt='-S -masm=intel'
+gcc_buffer_overflow_opt='-fno-stack-protector'
+gcc_opt_address_space_randomization='-Wl,-no_pie'
+alias gccm="gcc \\
+$gcc_debug_opt \\
+$gcc_warn_opt \\
+$gcc_buffer_overflow_opt \\
+$gcc_opt_address_space_randomization" # gcc improved
+alias gcc_debug='gccm'
+alias gcc_assembly="gccm $gcc_assembly_opt"
+# gcc -g3 option includes macro information
+
+alias g++m="g++ $gcc_debug_opt $gcc_warn_opt"
+alias gppm="g++m"
+
+# gcc set
+alias gcc_after_preprocessor_before_compiler='gccm -E'
+alias gcc_after_compiler_before_assembler='gcc_assembly'
+alias gcc_after_assembler_before_linker='gccm -c' # does not link == object file
+
 
 # brew python2//javapython3
 if [[ $platform == 'macos' ]]; then
@@ -623,20 +646,43 @@ alias run_r="run_what='r'"
 
 alias cpmake="cp ~/runtime_config/make/Makefile_C_general ./Makefile"
 alias cppmake="cp ~/runtime_config/make/Makefile_CPP_general ./Makefile"
+mcl(){
+    echo "running mcl..."
+    if [[ "$run_what" == 'c' ]]; then
+        make --makefile=~/runtime_config/make/Makefile_C_general clean
+        /bin/rm -rf *.dSYM
+        /bin/rm tags
+    elif [[ "$run_what" == 'cpp' ]]; then
+        make --makefile=~/runtime_config/make/Makefile_CPP_general clean
+        /bin/rm -rf *.dSYM
+        /bin/rm tags
+    elif [[ "$run_what" == 'java' ]]; then
+        /bin/rm *.class
+    elif [[ "$run_what" == 'python3' ]]; then
+        /bin/rm *.pyc
+        /bin/rm -r __pycache__/*
+        /bin/rmdir __pycache__/
+    else
+        echo "run_c or run_cpp?"
+    fi
+}
 
 m(){
     echo "this is m function."
     if [[ "$run_what" == 'c' ]]; then
         echo "this is make for c"
         #make --makefile=~/runtime_config/make/Makefile_C_general
-        gcc -g *.c; ./a.out
+        mcl
+        gccm  *.c && ./a.out
     elif [[ "$run_what" == 'cpp' ]]; then
         echo "this is make for cpp"
-        make --makefile=~/runtime_config/make/Makefile_CPP_general
+        #make --makefile=~/runtime_config/make/Makefile_CPP_general
+        g++m *.cpp && ./a.out
     elif [[ "$run_what" == 'asm' ]]; then
         echo "this is make for asm"
         nasm -f macho64 main.asm && ld -o main main.o && ./main && rm -f main.o main 1> /dev/null # reason to do this = to prevent msgs 'removed main.o, removed main, etc.'
         # try gcc -S -masm=intel later to try intel syntax
+        # this does not work for macos
     elif [[ "$run_what" == 'python3' ]]; then
         echo "this is python3."
         pyrun
@@ -668,22 +714,8 @@ m(){
     #say "complete"
 }
 
-mcl(){
-    echo "running mcl..."
-    if [[ "$run_what" == 'c' ]]; then
-        make --makefile=~/runtime_config/make/Makefile_C_general clean
-    elif [[ "$run_what" == 'cpp' ]]; then
-        make --makefile=~/runtime_config/make/Makefile_CPP_general clean
-    elif [[ "$run_what" == 'java' ]]; then
-        /bin/rm *.class
-    elif [[ "$run_what" == 'python3' ]]; then
-        /bin/rm *.pyc
-        /bin/rm -r __pycache__/*
-        /bin/rmdir __pycache__/
-    else
-        echo "run_c or run_cpp?"
-    fi
-}
+alias clang_assembly='clang -g3 -O0 -S -mllvm --x86-asm-syntax=intel'
+#alias clang_assembly='clang -O0 -S -mllvm -masm=intel' # this also seems working
 
 mkc(){
     mkdir $@;
@@ -789,6 +821,8 @@ alias rm_nvimsocket='rmt /tmp/nvimsocket'
 
 alias whicha='which -a'
 alias wha='whicha'
+alias mana='whatis'
+alias man_all='whatis'
 whichls(){
     /usr/bin/which -a $@ | xargs ls -la --color=auto
 }
@@ -827,8 +861,6 @@ alias vmylib='$myvi ~/runtime_config/shell/mylib_alias.sh'
 
 alias idea='$myvi ~/Google\ Drive/idea/etc.txt'
 
-alias lldb='PATH="/usr/bin:$PATH" lldb'
-
 alias clm='clisp main.lisp'
 alias lp='clm'
 
@@ -859,3 +891,81 @@ alias tree_sync='while; do; clear; tree .; sleep 1; done'
 
 alias sizeof_directory='du -hs'
 
+
+
+alias terminal_fix='reset'
+alias terminal_fix_bash='shopt -s checkwinsize' # or resize
+
+alias brew_check_installed='brew ls --versions'
+
+# z is useful! It allows me to jump to previous directories
+alias vz='/usr/local/bin/v' # z for vim
+
+alias py_search_doc='open /usr/local/Cellar/python3/3.6.5/share/doc/python/index.html'
+
+alias oaa='open /Applications'
+
+alias man_list='apropos .' # whatis . also works
+alias man_paths='man -wK'
+alias man_pages='man -wK .'
+
+alias lldb='/usr/bin/lldb'
+
+is_symlink(){
+    if [[ -L $@ ]]; then
+        echo "$@ is a symlink."
+        if [[ -f $@ ]]; then
+            echo "(normal) $@ points to an existing file."
+        else
+            echo "(??) $@ does not point to an existing file."
+        fi
+    else
+        echo "$@ is not a symlink."
+    fi
+}
+
+alias unpack_tar='tar xopf'
+alias unpack_tar_andList='tar xopft'
+alias unzip_tar='unpack_tar'
+
+
+if [[ $platform == "macos" ]]; then
+    :;
+fi
+
+alias pgrep_with_space='pgrep -f'
+alias kill_webpdb='pkill -f "Python main.py"'
+
+# https://stackoverflow.com/questions/23098273/mac-os-x-why-is-wifi-called-en0-like-ethernet
+alias mac_network_interfaces='networksetup -listallhardwareports'
+
+port_usage(){
+    lsof -i:$@
+}
+port_ps(){
+    lsof -ti:$@
+}
+
+alias reset_octomouse="find . -name '*octomouse*' | xargs -d '\n' rmtrash"
+
+alias vim_vertical_split='vim -O'
+alias vf='$myvi $(fzf)'
+
+# howdoi: fast search
+# tldr: short man page
+
+if [[ $platform == "macos" ]]; then
+    pip(){
+        echo "#############################################################"
+        echo "MY WARNING: this might be for python2.7. Use pip3 for python3"
+        echo "#############################################################"
+    }
+fi
+
+if [[ $platform == "macos" ]]; then
+    alias vl='/usr/local/bin/v -l' # v, z plugin
+    alias vv='/usr/local/bin/v'
+    alias zl='z -l'
+fi
+
+alias fzfrc="$myvi ~/runtime_config/shell/fzf.sh"

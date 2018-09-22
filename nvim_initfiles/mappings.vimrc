@@ -96,8 +96,9 @@ nnoremap <Leader><Enter> O<ESC>
 "SUDO SAVE
 nnoremap ;sudow :w !sudo tee > /dev/null %
 
-"SAVE & QUIT IN INSERT MODE
-inoremap ZZ <c-c>ZZ
+"SAVE & QUIT IN INSERT MODE -- not that useful
+"inoremap ZZ <c-c>ZZ
+
 
 "Suspend
 nnoremap <leader>z <esc><c-z>
@@ -185,6 +186,20 @@ nnoremap gb ^
 vnoremap gw $h
 " visual select whole line except for the carriage return (enter) <c-r> if followed by h
 "nnoremap V 0v$ "not work with easy-motion
+
+
+" print(a,b) (b, a) (a>b) (a > b) (a >b) (a> b)
+" exchange word under cursor with the next word without moving the cursor
+nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+
+" push word under cursor to the right
+" difference between gw: cursor follows the word
+nnoremap <silent> gr "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
+" push word under cursor to the left
+nnoremap <silent> gl "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+" from http://vim.wikia.com/wiki/Swapping_characters,_words_and_lines
+
+"
 
 "Add space in normal mode "some conflict with ultisnips
 "nnoremap <space> i<space><esc>
@@ -303,6 +318,16 @@ nnoremap zt zA
 " remove trailing whitespace
 nnoremap ;rmt :%s/\s\+$//gc<cr>
 cnoreabbrev nows :%s/\s\+$//g
+command! NoWhiteSpace :%s/\s\+$//g
+
+
+" vertical split buffer
+" https://stackoverflow.com/questions/4571494/open-a-buffer-as-a-vertical-split-in-vim
+function! VerticalSplitBuffer(buffer)
+    execute "vert belowright sb" a:buffer
+endfunction
+" Vertical Split Buffer Mapping
+command! -nargs=1 Vbuffer call VerticalSplitBuffer(<f-args>)
 
 " easier paste
 nnoremap ;<c-v> "*p
@@ -428,3 +453,14 @@ inoremap <c-g> <esc>
 vnoremap ,co :s/\%V \%V/, /g<cr>
 nnoremap ,co 0f[va[:s/\%V \%V/, /g<cr>
 
+" search google for selected
+" http://vim.wikia.com/wiki/Search_the_web_for_text_selected_in_Vim
+vmap ?? <Esc>:silent exec
+ \ ":!c:/opera/6*/opera.exe \\\"http://www.google.com/search?q=".substitute(@*,"\\W\\+\\\\|\\<\\w\\>"," ","g")
+ \ . "\\\" "<CR><CR>
+
+" http://vimdoc.sourceforge.net/htmldoc/motion.html#object-select
+map [[ ?{<CR>w99[{
+map ][ /}<CR>b99]}
+map! ]] j0[[%/{<CR>
+map [] k$][%?}<CR>

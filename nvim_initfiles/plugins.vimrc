@@ -38,6 +38,7 @@ if has('nvim')
         call plug#begin('$HOME/.vim/plugged')
     endif
         if !empty(glob("$HOME/runtime_config/nvim_initfiles/plugins")) "glob expands $HOME. Necessary? IDK..
+
             " plugin lists modularized
             so ~/runtime_config/nvim_initfiles/plugins/plugins1.vim " name does not start with vim
             so ~/runtime_config/nvim_initfiles/plugins/plugins2.vim " name starts with vim

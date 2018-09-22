@@ -62,16 +62,17 @@ ENABLE_CORRECTION="true"
 plugins=(
   git
   vi-mode
-  zsh-syntax-highlighting # must be the last one
   last-working-directory
   colored-man-pages
+  wd
+  zsh-syntax-highlighting # must be the last one
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -106,8 +107,7 @@ source ~/runtime_config/zsh/zsh_custom.zsh
 # I don't add anything down here. If added, then they must be something automatically appended by third party programs.
 # If revised and confirmed, move them to zsh_custom.zsh.
 
-
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # macos specific custom
 #
@@ -122,6 +122,14 @@ if [[ $platform == "macos" ]]; then
     # brew install llvm 6
     LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
     export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+    # Z
+    source /usr/local/etc/profile.d/z.sh
+
+    # mysql: this is not installed by brew but from dmg.
+    # reason not using brew: no icon in system preference
+    export PATH="$PATH:/usr/local/mysql/bin"
+    alias mysqlr='mysql -u root -p'
 
 fi
 

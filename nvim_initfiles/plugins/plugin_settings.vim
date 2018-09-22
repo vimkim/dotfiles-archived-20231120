@@ -85,12 +85,22 @@ nnoremap ,fzt :Tags<cr>
 nnoremap ;fzt :Tags<cr>
 ")
 " FZF vs. CTRLP
-" FZF does not have directory search.
-" Below function is the first-aid.
+" FZF does not have a directory search.
+" Below function is the first-aid. https://github.com/junegunn/fzf.vim/issues/251
 " `:Cd .` function works but does not exclude .git
 command! -nargs=* -complete=dir Cd call fzf#run(fzf#wrap(
   \ {'source': 'find '.(empty(<f-args>) ? '.' : <f-args>).' -type d',
   \  'sink': 'cd'}))
+
+" to insert directory on Vim's command line:
+function! s:append_dir_with_fzf(line)
+  call fzf#run(fzf#wrap({
+    \ 'options': ['--prompt', a:line.'> '],
+    \ 'source': 'find . -type d',
+    \ 'sink': {line -> feedkeys("\<esc>:".a:line.line, 'n')}}))
+  return ''
+endfunction
+cnoremap <expr> <c-x><c-d> <sid>append_dir_with_fzf(getcmdline())
 
 "(GOYO
 "autocmd VimEnter * Goyo
@@ -411,6 +421,8 @@ let g:EasyMotion_smartcase = 1
 "map <Leader>j <Plug>(easymotion-j)
 "map <Leader>k <Plug>(easymotion-k)
 map <leader>L <plug>(easymotion-bd-jk)
+map L <plug>(easymotion-bd-jk)
+map <space> <plug>(easymotion-bd-jk)
 nmap <leader>L <plug>(easymotion-overwin-line)
 " Move to word
 "map <leader>fw <plug>(easymotion-bd-w)

@@ -19,6 +19,7 @@ $NVIM_TUI_ENABLE_TRUE_COLOR	/Users/dqmacair/runtime_config/nvim_initfiles/plugin
 ;untab	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^vnoremap ;untab :s\/\\v(\\s)\\s+\/\\1\/gc$/;"	m	language:Vim
 <c-j>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nmap <c-j> <plug>(ale_next_wrap)$/;"	m	language:Vim
 <c-k>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nmap <c-k> <plug>(ale_previous_wrap)$/;"	m	language:Vim
+<c-x><c-d>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^cnoremap <expr> <c-x><c-d> <sid>append_dir_with_fzf(getcmdline())$/;"	m	language:Vim
 <f11>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap <f11> <esc>:NERDTreeToggle<cr>$/;"	m	language:Vim
 <leader><<	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap <leader><< V:HeaderDecrease<CR>$/;"	m	language:Vim
 <leader>>>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap <leader>>> V:HeaderIncrease<CR>$/;"	m	language:Vim
@@ -34,8 +35,9 @@ $NVIM_TUI_ENABLE_TRUE_COLOR	/Users/dqmacair/runtime_config/nvim_initfiles/plugin
 <leader>nt	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap <leader>nt <esc>:NERDTreeToggle ~\/$/;"	m	language:Vim
 <leader>tb	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nmap <leader>tb :TagbarToggle<CR>$/;"	m	language:Vim
 <plug>NextMatch	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap <plug>NextMatch ;$/;"	m	language:Vim
+<space>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^map <space> <plug>(easymotion-bd-jk)$/;"	m	language:Vim
 Ack	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^cnoreabbrev Ack Ack!$/;"	m	language:Vim
-b:autopairs_loaded	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^let b:autopairs_loaded=1$/;"	v	language:Vim
+append_dir_with_fzf	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^function! s:append_dir_with_fzf(line)$/;"	f	language:Vim
 Cd	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^command! -nargs=* -complete=dir Cd call fzf#run(fzf#wrap($/;"	c	language:Vim
 cp	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^cnoreabbrev cp CtrlP$/;"	m	language:Vim
 FollowSymlink	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^command! FollowSymlink call MyFollowSymlink()$/;"	c	language:Vim
@@ -127,11 +129,13 @@ g:ycm_warning_symbol	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugi
 g:zenburn_transparent	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:zenburn_transparent = 1$/;"	v	language:Vim
 gendec	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^cnoreabbrev gendec GenDeclaration$/;"	m	language:Vim
 gendef	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^cnoreabbrev gendef GenDefinition$/;"	m	language:Vim
+L	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^map L <plug>(easymotion-bd-jk)$/;"	m	language:Vim
 Multiple_cursors_after	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^function! Multiple_cursors_after()$/;"	f	language:Vim
 Multiple_cursors_before	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^function! Multiple_cursors_before()$/;"	f	language:Vim
 MyFollowSymlink	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^function! MyFollowSymlink(...)$/;"	f	language:Vim
 NERDRemoveExtraSpaces	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let NERDRemoveExtraSpaces=1$/;"	v	language:Vim
 NERDTreeShowHidden	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let NERDTreeShowHidden=1$/;"	v	language:Vim
+qs_colors	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^augroup qs_colors$/;"	a	language:Vim
 t<C-f>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f$/;"	m	language:Vim
 t<C-g>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g$/;"	m	language:Vim
 t<C-l>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l$/;"	m	language:Vim

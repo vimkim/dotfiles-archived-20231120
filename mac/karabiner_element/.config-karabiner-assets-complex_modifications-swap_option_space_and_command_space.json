@@ -11,7 +11,7 @@
                         "key_code" : "spacebar",
                         "modifiers" : {
                             "mandatory": [
-                                "left_option"
+                                "left_alt"
                             ],
                             "optional": [
                                 "any"
@@ -22,7 +22,7 @@
                         {
                             "key_code" : "spacebar",
                             "modifiers" : [
-                                "left_command"
+                                "left_gui"
                             ]
                         }
                     ],
@@ -43,7 +43,7 @@
                         "key_code" : "spacebar",
                         "modifiers" : {
                             "mandatory" : [
-                                "left_command"
+                                "left_gui"
                             ],
                             "optional" : [
                                 "any"
@@ -54,7 +54,7 @@
                         {
                             "key_code" : "spacebar",
                             "modifiers" : [
-                                "left_option"
+                                "left_alt"
                             ]
                         }
                     ],
