@@ -35,6 +35,11 @@ echo "****************************************************"
 ## fi
 ## echo "****************************************************"
 
+if [[ $iswsl == 'true' ]]; then
+    alias wslali='$myvi ~/runtime_config/shell/wsl_alias.sh'
+    source ~/runtime_config/shell/wsl_alias.sh
+fi
+
 
 # emacs aliases
 if [[ $platform == 'macos' ]]; then
@@ -574,7 +579,9 @@ alias tagen="ctags -R ."
 
 # open as finder
 if [[ $platform == 'linux' ]]; then
-    if [[ $distro == 'pi' ]]; then
+    if [[ $iswsl == 'true' ]]; then
+        alias oaf='explorer.exe'
+    elif [[ $distro == 'pi' ]]; then
         alias oaf='pcmanfm'
     elif [[ $distro == 'arch' ]]; then
         alias oaf='xdg-open'
@@ -900,8 +907,6 @@ alias exit_status='echo $?'
 alias tree_sync='while; do; clear; tree .; sleep 1; done'
 
 alias sizeof_directory='du -hs'
-
-
 
 alias terminal_fix='reset'
 alias terminal_fix_bash='shopt -s checkwinsize' # or resize
