@@ -1,0 +1,3 @@
+unfortunately these settings do not work anymore in sierra.
+can't change page background color?
+can't help but migrate to adobe acrobat reader...

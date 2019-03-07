@@ -106,6 +106,7 @@ alias os_three_code_first_chapter='cl ~/book_practice/os_three/first/code.intro'
 debugdir=~/books/comp/debug
 alias aod='open_pdf $debugdir/art_of_debugging.pdf'
 alias debugcode='cl ~/books/comp/debug/aod/Debugging\ Source\ Code/'
+alias cdebugdir='/Users/dqmacair/books/comp/debug/aod/Debugging\ Source\ Code'
 
 source ~/books/comp/bookali_comp.sh
 
