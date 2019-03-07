@@ -1,0 +1,62 @@
+{
+    "title" : "(dq) Swap option and command",
+    "rules" : [
+        {
+            "description" : "Swap option and command keys (dq)",
+            "manipulators":[
+                {
+                    "type" : "basic",
+                    "from" : {
+                        "key_code" : "left_option",
+                        "modifiers" : {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to" : [
+                        {
+                            "key_code" : "left_command"
+                        }
+                    ],
+                    "conditions" : [
+                        {
+                            "type" : "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^org\\.vim\\.MacVim$",
+                                "^com.googlecode.iterm2$",
+                                "^org.virtualbox.app.VirtualBoxVM$"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type" : "basic",
+                    "from" : {
+                        "key_code" : "left_command",
+                        "modifiers" : {
+                            "optional" : [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to" : [
+                        {
+                            "key_code" : "left_option"
+                        }
+                    ],
+                    "conditions":[
+                        {
+                            "type" : "frontmost_application_if",
+                            "bundle_identifiers" : [
+                                "^org\\.vim\\.MacVim$",
+                                "^com.googlecode.iterm2$",
+                                "^org.virtualbox.app.VirtualBoxVM$"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

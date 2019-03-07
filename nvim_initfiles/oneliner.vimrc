@@ -277,15 +277,6 @@ endif
 
 " reference: ~/runtime_config/vimcolor.txt
 
-" print(a,b) (b, a) (a>b) (a > b) (a >b) (a> b)
-" exchange word under cursor with the next word without moving the cursor
-nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
-
-" push word under cursor to the right
-" difference between gw: cursor follows the word
-nnoremap <silent> gr "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
-" push word under cursor to the left
-nnoremap <silent> gl "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
 
 " vim recognizes _ as a word boundary:
 "set iskeyword-=_ " this is dangerous. vim cannot use tags jump with this as c-] does not work with abc_xyc function.
@@ -335,5 +326,21 @@ au Cursorhold * checktime
 " I'll install vim-autoread plugin and see how it goes.
 " Now it works. Awesome!
 
-
 set t_Co=256
+
+" learn vim the hard way practice
+let g:quickfix_is_open = 0
+
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+
+nnoremap <leader>x :call QuickfixToggle()<cr>

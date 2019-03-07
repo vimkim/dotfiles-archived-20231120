@@ -1,0 +1,75 @@
+
+{
+    "title" : "(dq) Swap option space and command space",
+    "rules" : [
+        {
+            "description" : "Swap option space and command space (dq)",
+            "manipulators":[
+                {
+                    "type" : "basic",
+                    "from" : {
+                        "key_code" : "spacebar",
+                        "modifiers" : {
+                            "mandatory": [
+                                "left_alt"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to" : [
+                        {
+                            "key_code" : "spacebar",
+                            "modifiers" : [
+                                "left_gui"
+                            ]
+                        }
+                    ],
+                    "conditions" : [
+                        {
+                            "type" : "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^org\\.vim\\.MacVim$",
+                                "^com.googlecode.iterm2$",
+                                "^org.virtualbox.app.VirtualBoxVM$"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type" : "basic",
+                    "from" : {
+                        "key_code" : "spacebar",
+                        "modifiers" : {
+                            "mandatory" : [
+                                "left_gui"
+                            ],
+                            "optional" : [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to" : [
+                        {
+                            "key_code" : "spacebar",
+                            "modifiers" : [
+                                "left_alt"
+                            ]
+                        }
+                    ],
+                    "conditions":[
+                        {
+                            "type" : "frontmost_application_if",
+                            "bundle_identifiers" : [
+                                "^org\\.vim\\.MacVim$",
+                                "^com.googlecode.iterm2$",
+                                "^org.virtualbox.app.VirtualBoxVM$"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

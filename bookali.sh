@@ -5,8 +5,9 @@ alias skimpage="osascript ~/runtime_config/mac/skim/pdfpage.scpt"
 alias skimp="osascript ~/runtime_config/mac/skim/pdfpage.scpt"
 
 if [[ $platform == "macos" ]]; then
-    alias open_pdf="open"
-    open_pdf() { open "$@" }
+    # alias open_pdf="open"
+    open_pdf() { open -a "adobe Acrobat Reader DC" "$@" }
+    open_url() { open -a "/Applications/Google Chrome.app" "$@" }
 elif [[ $platform == "linux" ]]; then
     open_pdf() {
         okular "$@" &
@@ -98,9 +99,17 @@ alias aos='open_pdf $litdir/aos.pdf' # art of seduction
 
 ## operating systems
 osdir=~/books/comp/OS/
-alias operating_systems_three='open_pdf $osdir/os_three.pdf'
+alias os_three='open_pdf $osdir/os_three.pdf'
+alias os_three_code_first_chapter='cl ~/book_practice/os_three/first/code.intro'
 
 ## debug
 debugdir=~/books/comp/debug
 alias aod='open_pdf $debugdir/art_of_debugging.pdf'
+alias debugcode='cl ~/books/comp/debug/aod/Debugging\ Source\ Code/'
 
+source ~/books/comp/bookali_comp.sh
+
+alias write_your_own_os='open_url "https://www.youtube.com/watch?v=1rnA6wpF0o4&list=PLHh55M_Kq4OApWScZyPl5HhgsTJS9MZ6M"'
+alias os_berkeley='open_url "https://www.youtube.com/watch?v=qcyXohw1H00&list=PL--jIyXjDXf6Q4XA6q8RYnyChYzJ0K0F2"'
+
+alias free_compsci_videos='open_url "http://www.infocobuild.com/education/audio-video-courses/computer-science/CS162-Spring2015-Berkeley/lecture-03.html"'
