@@ -1,18 +1,20 @@
 !_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
 $NVIM_TUI_ENABLE_TRUE_COLOR	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let $NVIM_TUI_ENABLE_TRUE_COLOR=1$/;"	v	language:Vim
-,bl	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,bl :CtrlPBuffer<cr>$/;"	m	language:Vim
+,/	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^nnoremap ,\/ :Lines<cr>$/;"	m	language:Vim
+,bf	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^nnoremap ,bf :Buffers<cr>$/;"	m	language:Vim
+,bl	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^nnoremap ,bl :Buffers<cr>$/;"	m	language:Vim
+,bu	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^nnoremap ,bu :Buffers<cr>$/;"	m	language:Vim
 ,cd	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,cd <esc>:CtrlPDir ~\/$/;"	m	language:Vim
 ,fzt	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,fzt :Tags<cr>$/;"	m	language:Vim
-,ls	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,ls :CtrlPBuffer<cr>$/;"	m	language:Vim
+,ls	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^nnoremap ,ls :Buffers<cr>$/;"	m	language:Vim
 ,nprev	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,nprev :MarkdownPreviewStop<cr>$/;"	m	language:Vim
 ,prev	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ,prev :MarkdownPreview<cr>$/;"	m	language:Vim
+,zf	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^nnoremap ,zf :Files<cr>$/;"	m	language:Vim
 ;alivar	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^vnoremap ;alivar :Tabularize \/\\S\\+;$/;"	m	language:Vim
 ;ask	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;ask :Ack!<space>$/;"	m	language:Vim
-;bl	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;bl :CtrlPBuffer<cr>$/;"	m	language:Vim
 ;cd	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;cd <esc>:CtrlPDir ~\/$/;"	m	language:Vim
 ;cp	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;cp :CtrlP<Space>$/;"	m	language:Vim
 ;fzt	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;fzt :Tags<cr>$/;"	m	language:Vim
-;ls	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;ls :CtrlPBuffer<cr>$/;"	m	language:Vim
 ;nprev	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;nprev :MarkdownPreviewStop<cr>$/;"	m	language:Vim
 ;prev	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap ;prev :MarkdownPreview<cr>$/;"	m	language:Vim
 ;uncsv	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^vnoremap ;uncsv :s\/\\v\\s+,\\s+\/,\/gc$/;"	m	language:Vim
@@ -20,6 +22,7 @@ $NVIM_TUI_ENABLE_TRUE_COLOR	/Users/dqmacair/runtime_config/nvim_initfiles/plugin
 <c-j>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nmap <c-j> <plug>(ale_next_wrap)$/;"	m	language:Vim
 <c-k>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nmap <c-k> <plug>(ale_previous_wrap)$/;"	m	language:Vim
 <c-x><c-d>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^cnoremap <expr> <c-x><c-d> <sid>append_dir_with_fzf(getcmdline())$/;"	m	language:Vim
+<c-x><c-f>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins1.vim	/^inoremap <expr> <c-x><c-f> fzf#vim#complete#path($/;"	m	language:Vim
 <f11>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap <f11> <esc>:NERDTreeToggle<cr>$/;"	m	language:Vim
 <leader><<	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap <leader><< V:HeaderDecrease<CR>$/;"	m	language:Vim
 <leader>>>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^nnoremap <leader>>> V:HeaderIncrease<CR>$/;"	m	language:Vim
@@ -38,6 +41,7 @@ $NVIM_TUI_ENABLE_TRUE_COLOR	/Users/dqmacair/runtime_config/nvim_initfiles/plugin
 <space>	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^map <space> <plug>(easymotion-bd-jk)$/;"	m	language:Vim
 Ack	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^cnoreabbrev Ack Ack!$/;"	m	language:Vim
 append_dir_with_fzf	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^function! s:append_dir_with_fzf(line)$/;"	f	language:Vim
+BuildYCM	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^function! BuildYCM(info)$/;"	f	language:Vim
 Cd	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^command! -nargs=* -complete=dir Cd call fzf#run(fzf#wrap($/;"	c	language:Vim
 cp	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^cnoreabbrev cp CtrlP$/;"	m	language:Vim
 FollowSymlink	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^command! FollowSymlink call MyFollowSymlink()$/;"	c	language:Vim
@@ -113,19 +117,19 @@ g:UltiSnipsJumpBackwardTrigger	/Users/dqmacair/runtime_config/nvim_initfiles/plu
 g:UltiSnipsJumpForwardTrigger	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:UltiSnipsJumpForwardTrigger = "<c-l>"$/;"	v	language:Vim
 g:UltiSnipsListSnippets	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:UltiSnipsListSnippets = "<c-j>"$/;"	v	language:Vim
 g:UltiSnipsSnippetsDir	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:UltiSnipsSnippetsDir = "~\/.vim\/mySnips\/UltiSnips"$/;"	v	language:Vim
-g:ycm_add_preview_to_completeopt	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_add_preview_to_completeopt = 0 "default 0$/;"	v	language:Vim
-g:ycm_auto_trigger	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_auto_trigger = 1 "(default 1) "YCM has two triggers: identifier completer (as-you-type) and semantic trigger (i.e. . or -> in c++). If this option is set to 0, both triggers are disabled.$/;"	v	language:Vim
-g:ycm_collect_identifiers_from_tags_files	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_collect_identifiers_from_tags_files = 1 "default 0$/;"	v	language:Vim
-g:ycm_confirm_extra_conf	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_confirm_extra_conf = 0 "Default: 1$/;"	v	language:Vim
-g:ycm_error_symbol	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_error_symbol = '->' "default '>>'$/;"	v	language:Vim
-g:ycm_global_ycm_extra_conf	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_global_ycm_extra_conf = '~\/runtime_config\/vim\/.ycm_extra_conf_general.py'$/;"	v	language:Vim
-g:ycm_key_invoke_completion	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_key_invoke_completion ='<C-Space>' " for `semantic` completion, not identifier. In c-family, ., ->, :: works. Useful for searching for top-level functions & classes.$/;"	v	language:Vim
-g:ycm_key_list_select_completion	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_key_list_select_completion = ['<Down>'] "Default: ['<TAB>', '<Down>'] <- key to cycle through list$/;"	v	language:Vim
-g:ycm_key_list_select_previous_completion	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_key_list_select_previous_completion = ['<Up>'] "Default: ['<S-TAB>', '<Up>'] *<S-TAB> only works in GUI$/;"	v	language:Vim
-g:ycm_key_list_stop_completion	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_key_list_stop_completion = ['<C-y>'] "Default: ['<C-y'] *written as useful for ultisnips$/;"	v	language:Vim
-g:ycm_min_num_of_chars_for_completion	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_min_num_of_chars_for_completion = 2 "(default 2)$/;"	v	language:Vim
-g:ycm_python_binary_path	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_python_binary_path = '\/usr\/local\/bin\/python3'$/;"	v	language:Vim
-g:ycm_warning_symbol	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^let g:ycm_warning_symbol = '<<' "default '>>'$/;"	v	language:Vim
+g:ycm_add_preview_to_completeopt	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:ycm_add_preview_to_completeopt = 0 "default 0$/;"	v	language:Vim
+g:ycm_auto_trigger	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:ycm_auto_trigger = 1 "(default 1) "YCM has two triggers: identifier completer (as-you-type) and semantic trigger (i.e. . or -> in c++). If this option is set to 0, both triggers are disabled.$/;"	v	language:Vim
+g:ycm_collect_identifiers_from_tags_files	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:ycm_collect_identifiers_from_tags_files = 1 "default 0$/;"	v	language:Vim
+g:ycm_confirm_extra_conf	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:ycm_confirm_extra_conf = 0 "Default: 1$/;"	v	language:Vim
+g:ycm_error_symbol	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:ycm_error_symbol = '->' "default '>>'$/;"	v	language:Vim
+g:ycm_global_ycm_extra_conf	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:ycm_global_ycm_extra_conf = '~\/runtime_config\/vim\/.ycm_extra_conf_general.py'$/;"	v	language:Vim
+g:ycm_key_invoke_completion	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:ycm_key_invoke_completion = '<C-Space>' " for `semantic` completion, not identifier. In c-family, ., ->, :: works. Useful for searching for top-level functions & classes.$/;"	v	language:Vim
+g:ycm_key_list_select_completion	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:ycm_key_list_select_completion = ['<Down>'] "Default: ['<TAB>', '<Down>'] <- key to cycle through list$/;"	v	language:Vim
+g:ycm_key_list_select_previous_completion	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:ycm_key_list_select_previous_completion = ['<Up>'] "Default: ['<S-TAB>', '<Up>'] *<S-TAB> only works in GUI$/;"	v	language:Vim
+g:ycm_key_list_stop_completion	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:ycm_key_list_stop_completion = ['<C-y>'] "Default: ['<C-y'] *written as useful for ultisnips$/;"	v	language:Vim
+g:ycm_min_num_of_chars_for_completion	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:ycm_min_num_of_chars_for_completion = 2 "(default 2)$/;"	v	language:Vim
+g:ycm_python_binary_path	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^     let g:ycm_python_binary_path = '\/usr\/local\/bin\/python3'$/;"	v	language:Vim
+g:ycm_warning_symbol	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:ycm_warning_symbol = '<<' "default '>>'$/;"	v	language:Vim
 g:zenburn_transparent	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugins2.vim	/^let g:zenburn_transparent = 1$/;"	v	language:Vim
 gendec	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^cnoreabbrev gendec GenDeclaration$/;"	m	language:Vim
 gendef	/Users/dqmacair/runtime_config/nvim_initfiles/plugins/plugin_settings.vim	/^cnoreabbrev gendef GenDefinition$/;"	m	language:Vim

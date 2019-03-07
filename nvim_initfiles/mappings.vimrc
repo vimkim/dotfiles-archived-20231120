@@ -172,13 +172,14 @@ nnoremap <leader>bp :bp<cr>
 "last edited buffer (swiching, tmux <c-a>l (window), <c-a>o (pane) equivalent)
 nnoremap ,bb :b#<cr>
 nnoremap ;bb :b#<cr>
+nnoremap ,bv :b#<cr>
 nnoremap <leader>bd :bd<cr>
 nnoremap <leader>bq :bd<cr>
 nnoremap <leader>bf :buffers<CR>:buffer<Space>
 "nnoremap gn :bn<cr>
 "nnoremap gp :bp<cr>
 "nnoremap gd :bd<cr>
-"nnoremap gq :bd<cr>
+"nnorema gq :bd<cr>
 
 "Line-opeation shortcut
 nnoremap gw $
@@ -460,7 +461,7 @@ vmap ?? <Esc>:silent exec
  \ . "\\\" "<CR><CR>
 
 " http://vimdoc.sourceforge.net/htmldoc/motion.html#object-select
-map [[ ?{<CR>w99[{
-map ][ /}<CR>b99]}
-map! ]] j0[[%/{<CR>
-map [] k$][%?}<CR>
+nnoremap [[ ?{<CR>w99[{
+nnoremap ][ /}<CR>b99]}
+nnoremap ]] j0[[%/{<CR>
+nnoremap [] k$][%?}<CR>

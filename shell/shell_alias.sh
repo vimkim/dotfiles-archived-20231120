@@ -151,6 +151,10 @@ if [[ $platform == 'macos' ]]; then
     alias g++='g++-8'
     alias cc='gcc-8'
     alias c+='g++-8'
+
+    # majave gcc does not work. Use /usr/bin/gcc until it gets fixed.
+    alias gcc='/usr/bin/gcc'
+    alias g++='/usr/bin/g++'
 fi
 type gcc
 type g++
@@ -203,6 +207,8 @@ type python3
 type tmux
 type java
 
+### for Fasd
+eval "$(fasd --init auto)"
 
 ##### ALIASES #####
 # 1. ls
@@ -642,6 +648,7 @@ alias run_pl="run_what='perl'"
 alias run_cl="run_what='clisp'"
 alias run_jl="run_what='julia'"
 alias run_js="run_what='js'"
+alias run_node="run_what='node'"
 alias run_r="run_what='r'"
 
 alias cpmake="cp ~/runtime_config/make/Makefile_C_general ./Makefile"
@@ -704,6 +711,9 @@ m(){
     elif [[ "$run_what" == 'js' ]]; then
         echo "this is js."
         open index.html
+    elif [[ "$run_what" == "node" ]]; then
+        echo "this is node."
+        node main.js
     elif [[ "$run_what" == 'r' ]]; then
         echo "this is R."
         rsc main.R
@@ -866,7 +876,7 @@ alias lp='clm'
 
 alias listallcommand='bash -c "compgen -c"'
 
-alias rmmypy='/bin/rm -rf `find ~/praclang/ -type d -name "*mypy*"`'
+alias mypy_rm='/bin/rm -rf `find ~/praclang/ -type d -name "*mypy*"`'
 
 alias unittest='python3 -m unittest test_main.py'
 
@@ -897,9 +907,6 @@ alias terminal_fix='reset'
 alias terminal_fix_bash='shopt -s checkwinsize' # or resize
 
 alias brew_check_installed='brew ls --versions'
-
-# z is useful! It allows me to jump to previous directories
-alias vz='/usr/local/bin/v' # z for vim
 
 alias py_search_doc='open /usr/local/Cellar/python3/3.6.5/share/doc/python/index.html'
 
@@ -947,9 +954,7 @@ port_ps(){
 }
 
 alias reset_octomouse="find . -name '*octomouse*' | xargs -d '\n' rmtrash"
-
 alias vim_vertical_split='vim -O'
-alias vf='$myvi $(fzf)'
 
 # howdoi: fast search
 # tldr: short man page
@@ -963,9 +968,68 @@ if [[ $platform == "macos" ]]; then
 fi
 
 if [[ $platform == "macos" ]]; then
-    alias vl='/usr/local/bin/v -l' # v, z plugin
-    alias vv='/usr/local/bin/v'
     alias zl='z -l'
 fi
 
 alias fzfrc="$myvi ~/runtime_config/shell/fzf.sh"
+alias zshcus="$myvi ~/runtime_config/zsh/zsh_custom.zsh"
+
+alias ca='cda' # cd advanced
+
+# export FZF_DEFAULT_COMMAND='fd --type f'
+cf() {
+  local dir
+  dir=$( fd --type d | fzf +m) &&
+  cl "$dir"
+}
+alias fc='cf'
+alias cx='cf'
+alias xc='cf'
+
+alias cz='cl $(fasd -dl | fzf)'
+alias zc='cz'
+
+vf(){
+    local file
+    file=$( fd --type f | fzf +m ) &&
+    $myvi $file
+}
+#alias vf='$myvi $(fzf)' # vim + fzf
+alias fv='vf'
+alias vx='vf'
+alias xv='vf'
+# use fasd instead of rupa/z and meain/v
+##### vl='~/.zplug/repos/meain/v/v'
+##### vz(){
+#####     file=$(eval ${vl} | fzf)
+#####     [[ ! -z "$file" ]] && $myvi "$file" # vim + z + fzf
+##### }
+
+vz(){ # vim + fasd + fzf
+    local file
+    file=$(fasd -fl | fzf)
+    echo "$file"
+    [[ ! -z "$file" ]] && $myvi "$file"
+}
+alias zv='vz'
+
+zcv(){ # cd + vim + fasd + fzf
+    local file
+    local dir
+    file=$( fasd -fl | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+    if [[ -z "$file" ]]; then
+        echo "Nothing selected..."
+        return 1;
+    fi
+    $myvi $(basename "$file")
+}
+
+alias vc='cv'
+
+
+alias nvr_socket_remove='rmt /tmp/nvimsocket*'
+
+alias ruby_shell='irb'
+
+alias detour_dns='sudo ifconfig en0 mtu 400'
+alias detour_dns_recover='sudo ifconfig en0 mtu 1500'

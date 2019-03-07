@@ -3,29 +3,29 @@ fd_deep() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
+  cl "$dir"
 }
 
 # Another fd - cd into the selected directory
 # This one differs from the above, by only showing the sub directories and not
 #  showing the directories within those.
-fd2_shallow() {
+fd_shallow() {
   DIR=`find * -maxdepth 0 -type d -print 2> /dev/null | fzf-tmux` \
-    && cd "$DIR"
+    && cl "$DIR"
 }
 
 # cd into the directory of the selected file
 cdf(){
     local file
     local dir
-    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cl "$dir"
 }
 
 # cd into the directory of the selected file and then vi opens it
 cv(){
     local file
     local dir
-    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cl "$dir"
     if [[ -z "$file" ]]; then
         echo "Nothing selected..."
         return 1;
@@ -67,6 +67,11 @@ fkill() {
     then
         echo $pid | xargs kill -${1:-9}
     fi  
+}
+
+fzfasd() {
+  local dir
+  dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cl "${dir}" || return 1
 }
 
 source ~/runtime_config/shell/fzf/tmux.sh

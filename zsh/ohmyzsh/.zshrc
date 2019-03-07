@@ -123,8 +123,8 @@ if [[ $platform == "macos" ]]; then
     LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
     export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-    # Z
-    source /usr/local/etc/profile.d/z.sh
+    # Z - use fasd instead
+    #source /usr/local/etc/profile.d/z.sh
 
     # mysql: this is not installed by brew but from dmg.
     # reason not using brew: no icon in system preference

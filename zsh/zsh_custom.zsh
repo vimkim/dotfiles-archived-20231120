@@ -1,3 +1,9 @@
+# tmux auto rename disable
+#export DISABLE_AUTO_TITLE="true"
+# run tmux automatically
+if [[ $SHLVL == 1 ]]; then
+    tmux attach || tmux new
+fi
 
 source ~/runtime_config/zsh/detect_OS.zsh
 ##### # Antigen
@@ -19,6 +25,11 @@ source ~/.zplug/init.zsh
 zplug "rupa/z", use:z.sh
 zplug "changyuheng/fz", defer:1
 zplug "changyuheng/zsh-interactive-cd"
+
+zplug "meain/v"
+PATH=$PATH:$HOME/.zplug/repos/meain/v/
+[ "$vim" ] || vim=vim
+
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -30,13 +41,6 @@ fi
 zplug load --verbose
 echo "****************************************************"
 
-
-# tmux auto rename disable
-#export DISABLE_AUTO_TITLE="true"
-# run tmux automatically
-if [[ $SHLVL == 1 ]]; then
-    tmux attach || tmux new
-fi
 
 # Aliases
 source ~/runtime_config/shell/shell_alias.sh
@@ -54,10 +58,6 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 # for vim to recognize <c-s>
 stty -ixon
-
-# for fzf ctrl+r, remove duplicates
-setopt hist_ignore_dups
-setopt HIST_IGNORE_ALL_DUPS
 
 # include dot files in wildcard
 setopt GLOB_DOTS
@@ -92,11 +92,19 @@ if [[ $platform == "macos" ]]; then
     export PATH="/Applications/MATLAB_R2017a.app/bin:$PATH"
 fi
 
-# for fzf
+# for FZF
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # automatically append by fzf when ./install
 # even if I move this here, fzf will automaticall add another one so ...
 ### fzf examples
 source ~/runtime_config/shell/fzf.sh
+
+# for fzf ctrl+r, remove duplicates
+setopt hist_ignore_dups
+setopt HIST_IGNORE_ALL_DUPS
+
+export FZF_DEFAULT_COMMAND='fd --type f'
+
+
 
 # pip --user
 export PATH="$HOME/.local/bin:$PATH"

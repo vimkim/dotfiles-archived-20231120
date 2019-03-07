@@ -32,6 +32,19 @@ endif
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+nnoremap ,bl :Buffers<cr>
+nnoremap ,ls :Buffers<cr>
+nnoremap ,bu :Buffers<cr>
+nnoremap ,bf :Buffers<cr>
+
+nnoremap ,zf :Files<cr>
+
+nnoremap ,/ :Lines<cr>
+" file path completion
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
+    \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
+    \ fzf#wrap({'dir': expand('%:p:h')}))
+
 "Plug 'junegunn/goyo.vim')
 
 Plug 'sjl/gundo.vim'
