@@ -13,4 +13,3 @@ so ~/runtime_config/nvim_initfiles/gistfile.vim
 
 " TIP: ~/runtime_config/nvim_initfiles/vimtips.txt
 " TIP2: color reference: ~/runtime_config/vimcolor.txt
-

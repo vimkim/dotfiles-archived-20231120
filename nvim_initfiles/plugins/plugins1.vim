@@ -45,8 +45,25 @@ inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
     \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
     \ fzf#wrap({'dir': expand('%:p:h')}))
 
-"Plug 'junegunn/goyo.vim')
+" paste fzf result to buffer
+" https://github.com/junegunn/fzf.vim/issues/580
+function! s:copy_results(lines)
+  let joined_lines = join(a:lines, "\n")
+  if len(a:lines) > 1
+    let joined_lines .= "\n"
+  endif
+  let @+ = joined_lines
+endfunction
 
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-o': function('s:copy_results'),
+  \ }
+
+"Plug 'junegunn/goyo.vim')
+Plug 'morhetz/gruvbox'
 Plug 'sjl/gundo.vim'
 "Plug 'yggdroot/indentline' "this plugin has conflicts with conceal update. eg) lambdify
 "Plug 'davidhalter/jedi-vim', { 'for': 'python' } " too slow
@@ -79,6 +96,7 @@ set viewoptions=cursor,folds,slash,unix
 ")
 
 "Plug 'scrooloose/syntastic'
+Plug 'junegunn/seoul256.vim'
 Plug 'godlygeek/tabular'
 "Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine

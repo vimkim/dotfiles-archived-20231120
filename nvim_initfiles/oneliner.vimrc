@@ -55,8 +55,8 @@ set noerrorbells
 set autoread
 
 " show invisibles
-set list
-set listchars=tab:▸\ ,eol:¬
+"set list
+"set listchars=tab:▸\ ,eol:¬
 
 " tells vim to look for a tags file in the directory of the current file, in
 " the current directory and up and up until your $HOME (that's the meaning of
@@ -344,3 +344,4 @@ function! QuickfixToggle()
 endfunction
 
 nnoremap <leader>x :call QuickfixToggle()<cr>
+

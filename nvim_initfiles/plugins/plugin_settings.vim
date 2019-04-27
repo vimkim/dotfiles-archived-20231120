@@ -341,7 +341,7 @@ if !has('nvim') && $iswsl=='true'
     set t_Co=256
 endif
 "colorscheme PaperColor
-colorscheme zenburn
+"colorscheme zenburn
 
 "(RAINBOW-PARENTHESES.VIM
 "au VimEnter * RainbowParenthesesToggle

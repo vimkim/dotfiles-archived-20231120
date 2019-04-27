@@ -158,8 +158,9 @@ if [[ $platform == 'macos' ]]; then
     alias c+='g++-8'
 
     # majave gcc does not work. Use /usr/bin/gcc until it gets fixed.
-    alias gcc='/usr/bin/gcc'
-    alias g++='/usr/bin/g++'
+    #alias gcc='/usr/bin/gcc'
+    #alias g++='/usr/bin/g++'
+    # it started to work again on 2019/03/22
 fi
 type gcc
 type g++
@@ -393,6 +394,7 @@ gam(){
     fi
 
     git commit -m $msg
+    git push
 }
 
 alias git_show_merge_conflict='git diff --name-only --diff-filter=U'
@@ -405,7 +407,7 @@ alias git_stage_removal='git rm --cached' # leaving you with an untracked file
 alias git_undo_last_commit='git reset --soft HEAD~'
 alias git_unstage_from_index='git reset --mixed HEAD~' # move current branch to the previous commit (--soft), and then update the index with the contents of the previous branch. This has the effect of clearing the index.
 # https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified
-alias git_revert_back_to_commit='git reset --hard HEAD~'
+alias git_revert_back_to_commit_dangerous='git reset --hard HEAD~'
 alias git_revert_commit='git revert' # creates new commit that undoes the changes from a previous commit
 alias git_changes_in_last_commit='git difftool HEAD~1 HEAD'
 
@@ -982,23 +984,27 @@ alias zshcus="$myvi ~/runtime_config/zsh/zsh_custom.zsh"
 alias ca='cda' # cd advanced
 
 # export FZF_DEFAULT_COMMAND='fd --type f'
-cf() {
+cf() { # find based
   local dir
   dir=$( fd --type d | fzf +m) &&
   cl "$dir"
 }
+
 alias fc='cf'
 alias cx='cf'
 alias xc='cf'
 
+# frecency based (frequency + recency)
 alias cz='cl $(fasd -dl | fzf)'
 alias zc='cz'
 
+# find based
 vf(){
     local file
     file=$( fd --type f | fzf +m ) &&
     $myvi $file
 }
+
 #alias vf='$myvi $(fzf)' # vim + fzf
 alias fv='vf'
 alias vx='vf'
@@ -1010,6 +1016,7 @@ alias xv='vf'
 #####     [[ ! -z "$file" ]] && $myvi "$file" # vim + z + fzf
 ##### }
 
+# frecency based
 vz(){ # vim + fasd + fzf
     local file
     file=$(fasd -fl | fzf)
@@ -1018,6 +1025,7 @@ vz(){ # vim + fasd + fzf
 }
 alias zv='vz'
 
+# cv with frecency.
 zcv(){ # cd + vim + fasd + fzf
     local file
     local dir

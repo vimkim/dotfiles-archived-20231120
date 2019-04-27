@@ -15,8 +15,8 @@ Plug 'easymotion/vim-easymotion'
 
 """ warning: if easytags does not work after emacs install, brew link --overwrite ctags
 " emacs overwrites ctags with its own version of ctags on install. annoying...
-Plug 'xolox/vim-misc' " must be before easytags
-Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-misc' " must be before easytags
+"Plug 'xolox/vim-easytags'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-fugitive'
 Plug 'szw/vim-g'
@@ -111,6 +111,6 @@ let g:ycm_collect_identifiers_from_tags_files = 1 "default 0
 
 Plug 'rdnetto/YCM-Generator', { 'branch' : 'stable' }
 let g:zenburn_transparent = 1
-Plug 'jnurmine/Zenburn'
+"Plug 'jnurmine/Zenburn'
 Plug 'dhruvasagar/vim-zoom'
 " pluglist end

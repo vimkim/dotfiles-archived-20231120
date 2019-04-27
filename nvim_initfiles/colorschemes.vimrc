@@ -14,7 +14,8 @@
 
 "((gruvbox)
 "colorscheme gruvbox
-"set bg=dark
+"set bg=light
+"let g:gruvbox_contrast_light = 'soft'
 ")
 
 "((MOLOKAI)
@@ -26,4 +27,6 @@
 
 " Prevent vim from overriding default terminal background"
 "https://stackoverflow.com/a/21572296/6154359
-"hi Normal ctermbg=none
+colo seoul256-light
+hi Normal ctermbg=none
+
