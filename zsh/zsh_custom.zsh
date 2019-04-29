@@ -4,7 +4,43 @@
 if [[ $SHLVL == 1 ]]; then
     tmux attach || tmux new
 fi
+
 source ~/runtime_config/zsh/detect_OS.zsh
+##### # Antigen
+##### if [[ $platform == "macos" ]]; then
+#####     source $(brew --prefix)/share/antigen/antigen.zsh
+#####     echo "****************************************************"
+#####     echo "Antigen running..."
+#####     echo "****************************************************"
+##### else
+#####     echo "MY WARNING: antigen not installed. (.zshrc)"
+##### fi
+##### antigen bundle andrewferrier/fzf-z
+
+### Zplug
+echo "zplug starting..."
+source ~/.zplug/init.zsh
+# Can manage local plugins
+# zplug "~/.zsh", from:local
+zplug "rupa/z", use:z.sh
+zplug "changyuheng/fz", defer:1
+zplug "changyuheng/zsh-interactive-cd"
+
+zplug "meain/v"
+PATH=$PATH:$HOME/.zplug/repos/meain/v/
+[ "$vim" ] || vim=vim
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+echo "****************************************************"
+
 
 # Aliases
 source ~/runtime_config/shell/shell_alias.sh
@@ -22,16 +58,6 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 # for vim to recognize <c-s>
 stty -ixon
-# for fzf ctrl+r, remove duplicates
-setopt hist_ignore_dups
-setopt HIST_IGNORE_ALL_DUPS
-
-# for fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# for fzf ctrl+r, remove duplicates
-setopt hist_ignore_dups
-setopt HIST_IGNORE_ALL_DUPS
 
 # include dot files in wildcard
 setopt GLOB_DOTS
@@ -43,7 +69,7 @@ unsetopt CASE_GLOB
 #export PATH=$PATH:/Library/TeX/texbin # already in /etc/paths
 
 # for tmux-powerline # currently not using it
-PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+#PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
 
 ##### EXTRA SOURCING #####
@@ -52,7 +78,8 @@ source ~/runtime_config/tmuxinatorfiles/tmuxinator.zsh
 
 if [[ $platform == "macos" ]]; then
     # for brew gnu tools and manuals
-    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    #export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # not using these cuz it does not work with selecta + tmux combination
+    # https://github.com/garybernhardt/selecta/issues/103
     export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
     # for ncurses for mac
@@ -65,8 +92,19 @@ if [[ $platform == "macos" ]]; then
     export PATH="/Applications/MATLAB_R2017a.app/bin:$PATH"
 fi
 
-# for fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # automatically append by fzf when ./install
+# for FZF
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # automatically append by fzf when ./install
+# even if I move this here, fzf will automaticall add another one so ...
+### fzf examples
+source ~/runtime_config/shell/fzf.sh
+
+# for fzf ctrl+r, remove duplicates
+setopt hist_ignore_dups
+setopt HIST_IGNORE_ALL_DUPS
+
+export FZF_DEFAULT_COMMAND='fd --type f'
+
+
 
 # pip --user
 export PATH="$HOME/.local/bin:$PATH"

@@ -16,7 +16,8 @@ if !has('nvim')
     " not able to compile in El Capitan
 end
 
-Plug 'kien/ctrlp.vim'
+Plug 'mikezackles/Bisect'
+"Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' } "it works for ;sv and tsv as well
 "Plug 'Raimondi/delimitMate' " This plugin is also buggy with Korean inputs when 'set noimd'. // Actually, It turned out that this is because of macvim itself. Go to Advanced setting and turn off 'inline marked' and 'core renderer' settings. Also, 'set guifontwide=NanumGothic:h22' helped.
 
@@ -31,15 +32,45 @@ endif
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plug 'junegunn/goyo.vim')
+nnoremap ,bl :Buffers<cr>
+nnoremap ,ls :Buffers<cr>
+nnoremap ,bu :Buffers<cr>
+nnoremap ,bf :Buffers<cr>
 
+nnoremap ,zf :Files<cr>
+
+nnoremap ,/ :Lines<cr>
+" file path completion
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
+    \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
+    \ fzf#wrap({'dir': expand('%:p:h')}))
+
+" paste fzf result to buffer
+" https://github.com/junegunn/fzf.vim/issues/580
+function! s:copy_results(lines)
+  let joined_lines = join(a:lines, "\n")
+  if len(a:lines) > 1
+    let joined_lines .= "\n"
+  endif
+  let @+ = joined_lines
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-o': function('s:copy_results'),
+  \ }
+
+"Plug 'junegunn/goyo.vim')
+Plug 'morhetz/gruvbox'
 Plug 'sjl/gundo.vim'
 "Plug 'yggdroot/indentline' "this plugin has conflicts with conceal update. eg) lambdify
-"Plug 'vim-scripts/JavaScript-Indent', { 'for': 'javascript' }
 "Plug 'davidhalter/jedi-vim', { 'for': 'python' } " too slow
 "Plug 'itchyny/lightline.vim'
 
 "Plug 'junegunn/limelight.vim'
+Plug 'yegappan/mru' " most recently used
 "Plug 'Shougo/neoinclude.vim' "too slow
 Plug 'scrooloose/nerdcommenter' "too slow
 
@@ -50,6 +81,13 @@ Plug 'kien/rainbow_parentheses.vim' "seems like only works with gui. True color?
 " - does not work automatically with lisp
 "Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses " bug in wsl
 "- auto enabled with lisp
+Plug 'unblevable/quick-scope'
+augroup qs_colors
+  autocmd!
+  autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+augroup END
+
 Plug 'chrisbra/Recover.vim' "temp file diff
 Plug 'vim-scripts/restore_view.vim' " save folds - seems not working
 "(restore_view
@@ -58,6 +96,7 @@ set viewoptions=cursor,folds,slash,unix
 ")
 
 "Plug 'scrooloose/syntastic'
+Plug 'junegunn/seoul256.vim'
 Plug 'godlygeek/tabular'
 "Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
@@ -67,7 +106,7 @@ Plug 'vim-scripts/upAndDown'
 
 "something similar for GUI? keynav (linux), XEasyMotion (macOS)
 " disabled for colemak neio arrow key compatibility
-"Plug 'vim-scripts/BinarySearchMove'
+Plug 'vim-scripts/BinarySearchMove'
 " instead of this, use J, K -> update: it turned out that this is more consistent than J, K as this
 " plugin searches through the whole lines.
 "noremap U :call BSMoveBufGoUp()<CR>

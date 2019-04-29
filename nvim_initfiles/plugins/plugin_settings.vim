@@ -48,10 +48,10 @@ let g:ctrlp_prompt_mappings = {
 " <c-x> is buggy
 nnoremap ,cd <esc>:CtrlPDir ~/
 nnoremap ;cd <esc>:CtrlPDir ~/
-nnoremap ,bl :CtrlPBuffer<cr>
-nnoremap ;bl :CtrlPBuffer<cr>
-nnoremap ,ls :CtrlPBuffer<cr>
-nnoremap ;ls :CtrlPBuffer<cr>
+"nnoremap ,bl :CtrlPBuffer<cr>
+"nnoremap ;bl :CtrlPBuffer<cr>
+"nnoremap ,ls :CtrlPBuffer<cr>
+"nnoremap ;ls :CtrlPBuffer<cr>
 "let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
@@ -85,12 +85,22 @@ nnoremap ,fzt :Tags<cr>
 nnoremap ;fzt :Tags<cr>
 ")
 " FZF vs. CTRLP
-" FZF does not have directory search.
-" Below function is the first-aid.
+" FZF does not have a directory search.
+" Below function is the first-aid. https://github.com/junegunn/fzf.vim/issues/251
 " `:Cd .` function works but does not exclude .git
 command! -nargs=* -complete=dir Cd call fzf#run(fzf#wrap(
   \ {'source': 'find '.(empty(<f-args>) ? '.' : <f-args>).' -type d',
   \  'sink': 'cd'}))
+
+" to insert directory on Vim's command line:
+function! s:append_dir_with_fzf(line)
+  call fzf#run(fzf#wrap({
+    \ 'options': ['--prompt', a:line.'> '],
+    \ 'source': 'find . -type d',
+    \ 'sink': {line -> feedkeys("\<esc>:".a:line.line, 'n')}}))
+  return ''
+endfunction
+cnoremap <expr> <c-x><c-d> <sid>append_dir_with_fzf(getcmdline())
 
 "(GOYO
 "autocmd VimEnter * Goyo
@@ -331,7 +341,7 @@ if !has('nvim') && $iswsl=='true'
     set t_Co=256
 endif
 "colorscheme PaperColor
-colorscheme zenburn
+"colorscheme zenburn
 
 "(RAINBOW-PARENTHESES.VIM
 "au VimEnter * RainbowParenthesesToggle
@@ -411,6 +421,8 @@ let g:EasyMotion_smartcase = 1
 "map <Leader>j <Plug>(easymotion-j)
 "map <Leader>k <Plug>(easymotion-k)
 map <leader>L <plug>(easymotion-bd-jk)
+map L <plug>(easymotion-bd-jk)
+map <space> <plug>(easymotion-bd-jk)
 nmap <leader>L <plug>(easymotion-overwin-line)
 " Move to word
 "map <leader>fw <plug>(easymotion-bd-w)

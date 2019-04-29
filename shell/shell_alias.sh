@@ -3,7 +3,6 @@
 # Be careful. When assigning variable, no space between variable name and '=' sign. Spaces matter in scripting.
 
 # Detect Shell
-echo "****************************************************"
 echo "\$0: $0"
 echo "\$SHELL: $SHELL"
 echo "\$SHLVL: $SHLVL"
@@ -101,6 +100,7 @@ if type nvr 2> /dev/null; then
 fi
 echo "\$nvrexist: $nvrexist"
 export myvi
+vim=($myvi)
 
 emacsexist='false'
 myemacs='unknown'
@@ -153,13 +153,41 @@ type git
     # therefore, use gcc-N instead of gcc
 if [[ $platform == 'macos' ]]; then
     # do not forget to change these aliases after upgrading brew gcc.
-    alias gcc='gcc-7'
-    alias g++='g++-7'
-    alias cc='gcc-7'
-    alias c+='g++-7'
+    alias gcc='gcc-8'
+    alias g++='g++-8'
+    alias cc='gcc-8'
+    alias c+='g++-8'
+
+    # majave gcc does not work. Use /usr/bin/gcc until it gets fixed.
+    #alias gcc='/usr/bin/gcc'
+    #alias g++='/usr/bin/g++'
+    # it started to work again on 2019/03/22
 fi
 type gcc
 type g++
+
+gcc_debug_opt="-g3 -O0" # https://stackoverflow.com/questions/10475040/gcc-g-vs-g3-gdb-flag-what-is-the-difference
+gcc_warn_opt='-Wall -Wextra -pedantic'
+gcc_assembly_opt='-S -masm=intel'
+gcc_buffer_overflow_opt='-fno-stack-protector'
+gcc_opt_address_space_randomization='-Wl,-no_pie'
+alias gccm="gcc \\
+$gcc_debug_opt \\
+$gcc_warn_opt \\
+$gcc_buffer_overflow_opt \\
+$gcc_opt_address_space_randomization" # gcc improved
+alias gcc_debug='gccm'
+alias gcc_assembly="gccm $gcc_assembly_opt"
+# gcc -g3 option includes macro information
+
+alias g++m="g++ $gcc_debug_opt $gcc_warn_opt"
+alias gppm="g++m"
+
+# gcc set
+alias gcc_after_preprocessor_before_compiler='gccm -E'
+alias gcc_after_compiler_before_assembler='gcc_assembly'
+alias gcc_after_assembler_before_linker='gccm -c' # does not link == object file
+
 
 # brew python2//javapython3
 if [[ $platform == 'macos' ]]; then
@@ -188,6 +216,8 @@ type python3
 type tmux
 type java
 
+### for Fasd
+eval "$(fasd --init auto)"
 
 ##### ALIASES #####
 # 1. ls
@@ -346,6 +376,30 @@ alias gsh='git show'
 alias gbl='git blame'
 alias gds='git dissect'
 
+gam(){
+
+    if [[ "$#" -eq 0 ]]; then
+        git add .
+    elif [[ "$#" -ge 1 ]]; then
+        git add "$@"
+    else
+        echo "something wrong with 'gam'"
+        return 1;
+    fi
+    git diff --cached
+
+    local msg=''
+    printf "type your commit msg: "
+    read msg
+    if [[ $msg == '' ]]; then
+        echo "msg must not be empty."
+        return 2
+    fi
+
+    git commit -m $msg
+    git push
+}
+
 alias git_show_merge_conflict='git diff --name-only --diff-filter=U'
 alias gumd='git diff --diff-filter=U' # unmerged commits
 alias gerase='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
@@ -356,7 +410,7 @@ alias git_stage_removal='git rm --cached' # leaving you with an untracked file
 alias git_undo_last_commit='git reset --soft HEAD~'
 alias git_unstage_from_index='git reset --mixed HEAD~' # move current branch to the previous commit (--soft), and then update the index with the contents of the previous branch. This has the effect of clearing the index.
 # https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified
-alias git_revert_back_to_commit='git reset --hard HEAD~'
+alias git_revert_back_to_commit_dangerous='git reset --hard HEAD~'
 alias git_revert_commit='git revert' # creates new commit that undoes the changes from a previous commit
 alias git_changes_in_last_commit='git difftool HEAD~1 HEAD'
 
@@ -365,6 +419,7 @@ alias git_modify_last_commit_message='git commit --amend'
 alias git_modify_last_commit_trivial_without_message='git commit --amend --no-edit'
 alias git_diff_wd_vs_index='git diff'
 alias git_diff_index_vs_last_commit='git diff --cached'
+alias git_diff_staged='git diff --staged' # synonym for git --cached
 alias git_diff_all_vs_last_commit='git diff HEAD'
 
 alias git_remove_untracked_files_dryrun='git clean -n'
@@ -374,6 +429,32 @@ alias git_branch_track_remote='git branch --set-upstream'
 alias git_branch_cancel_track_remote='git branch --unset-upstream'
 
 alias git_merge_dryrun='git merge --no-commit --no-ff' # then use 'git diff --cached' and 'git merge --abort'
+alias git_pull_dryrun='git fetch; git_merge_dryrun'
+
+alias git_push_all='git push --all'
+
+alias git_log_all='git log --oneline --graph --decorate --all'
+alias gla='git_log_all'
+alias git_gui_graph='gitk --all'
+
+# https://stackoverflow.com/questions/4783599/rebasing-a-git-merge-commit
+# https://stackoverflow.com/questions/15915430/what-exactly-does-gits-rebase-preserve-merges-do-and-why
+alias git_rebase_merge_commit='git rebase --preserve-merges'
+
+# https://git-scm.com/book/en/v2/Git-Tools-Rerere
+alias git_back_to_merge_conflict_state='git checkout --conflict=merge'
+alias git_enable_rerere_global='git config --global rerere.enabled true'
+
+# https://gist.github.com/tlberglund/3714970
+git_loglive (){
+    while :
+    do
+        clear
+        git --no-pager log --graph --oneline --abbrev-commit --decorate --all $@
+        sleep 2
+    done
+}
+
 
 # tmux
 alias tmu='tmux'
@@ -579,24 +660,48 @@ alias run_pl="run_what='perl'"
 alias run_cl="run_what='clisp'"
 alias run_jl="run_what='julia'"
 alias run_js="run_what='js'"
+alias run_node="run_what='node'"
 alias run_r="run_what='r'"
 
 alias cpmake="cp ~/runtime_config/make/Makefile_C_general ./Makefile"
 alias cppmake="cp ~/runtime_config/make/Makefile_CPP_general ./Makefile"
+mcl(){
+    echo "running mcl..."
+    if [[ "$run_what" == 'c' ]]; then
+        make --makefile=~/runtime_config/make/Makefile_C_general clean
+        /bin/rm -rf *.dSYM
+        /bin/rm tags
+    elif [[ "$run_what" == 'cpp' ]]; then
+        make --makefile=~/runtime_config/make/Makefile_CPP_general clean
+        /bin/rm -rf *.dSYM
+        /bin/rm tags
+    elif [[ "$run_what" == 'java' ]]; then
+        /bin/rm *.class
+    elif [[ "$run_what" == 'python3' ]]; then
+        /bin/rm *.pyc
+        /bin/rm -r __pycache__/*
+        /bin/rmdir __pycache__/
+    else
+        echo "run_c or run_cpp?"
+    fi
+}
 
 m(){
     echo "this is m function."
     if [[ "$run_what" == 'c' ]]; then
         echo "this is make for c"
         #make --makefile=~/runtime_config/make/Makefile_C_general
-        gcc -g *.c; ./a.out
+        mcl
+        gccm  *.c && ./a.out
     elif [[ "$run_what" == 'cpp' ]]; then
         echo "this is make for cpp"
-        make --makefile=~/runtime_config/make/Makefile_CPP_general
+        #make --makefile=~/runtime_config/make/Makefile_CPP_general
+        g++m *.cpp && ./a.out
     elif [[ "$run_what" == 'asm' ]]; then
         echo "this is make for asm"
         nasm -f macho64 main.asm && ld -o main main.o && ./main && rm -f main.o main 1> /dev/null # reason to do this = to prevent msgs 'removed main.o, removed main, etc.'
         # try gcc -S -masm=intel later to try intel syntax
+        # this does not work for macos
     elif [[ "$run_what" == 'python3' ]]; then
         echo "this is python3."
         pyrun
@@ -618,6 +723,9 @@ m(){
     elif [[ "$run_what" == 'js' ]]; then
         echo "this is js."
         open index.html
+    elif [[ "$run_what" == "node" ]]; then
+        echo "this is node."
+        node main.js
     elif [[ "$run_what" == 'r' ]]; then
         echo "this is R."
         rsc main.R
@@ -628,22 +736,8 @@ m(){
     #say "complete"
 }
 
-mcl(){
-    echo "running mcl..."
-    if [[ "$run_what" == 'c' ]]; then
-        make --makefile=~/runtime_config/make/Makefile_C_general clean
-    elif [[ "$run_what" == 'cpp' ]]; then
-        make --makefile=~/runtime_config/make/Makefile_CPP_general clean
-    elif [[ "$run_what" == 'java' ]]; then
-        /bin/rm *.class
-    elif [[ "$run_what" == 'python3' ]]; then
-        /bin/rm *.pyc
-        /bin/rm -r __pycache__/*
-        /bin/rmdir __pycache__/
-    else
-        echo "run_c or run_cpp?"
-    fi
-}
+alias clang_assembly='clang -g3 -O0 -S -mllvm --x86-asm-syntax=intel'
+#alias clang_assembly='clang -O0 -S -mllvm -masm=intel' # this also seems working
 
 mkc(){
     mkdir $@;
@@ -755,6 +849,8 @@ alias rm_nvimsocket='rmt /tmp/nvimsocket'
 
 alias whicha='which -a'
 alias wha='whicha'
+alias mana='whatis'
+alias man_all='whatis'
 whichls(){
     /usr/bin/which -a $@ | xargs ls -la --color=auto
 }
@@ -793,14 +889,12 @@ alias vmylib='$myvi ~/runtime_config/shell/mylib_alias.sh'
 
 alias idea='$myvi ~/Google\ Drive/idea/etc.txt'
 
-alias lldb='PATH="/usr/bin:$PATH" lldb'
-
 alias clm='clisp main.lisp'
 alias lp='clm'
 
 alias listallcommand='bash -c "compgen -c"'
 
-alias rmmypy='/bin/rm -rf `find ~/praclang/ -type d -name "*mypy*"`'
+alias mypy_rm='/bin/rm -rf `find ~/praclang/ -type d -name "*mypy*"`'
 
 alias unittest='python3 -m unittest test_main.py'
 
@@ -823,3 +917,141 @@ alias exit_status='echo $?'
 # https://www.youtube.com/watch?v=0SJCYPsef54
 alias tree_sync='while; do; clear; tree .; sleep 1; done'
 
+alias sizeof_directory='du -hs'
+
+alias terminal_fix='reset'
+alias terminal_fix_bash='shopt -s checkwinsize' # or resize
+
+alias brew_check_installed='brew ls --versions'
+
+alias py_search_doc='open /usr/local/Cellar/python3/3.6.5/share/doc/python/index.html'
+
+alias oaa='open /Applications'
+
+alias man_list='apropos .' # whatis . also works
+alias man_paths='man -wK'
+alias man_pages='man -wK .'
+
+alias lldb='/usr/bin/lldb'
+
+is_symlink(){
+    if [[ -L $@ ]]; then
+        echo "$@ is a symlink."
+        if [[ -f $@ ]]; then
+            echo "(normal) $@ points to an existing file."
+        else
+            echo "(??) $@ does not point to an existing file."
+        fi
+    else
+        echo "$@ is not a symlink."
+    fi
+}
+
+alias unpack_tar='tar xopf'
+alias unpack_tar_andList='tar xopft'
+alias unzip_tar='unpack_tar'
+
+
+if [[ $platform == "macos" ]]; then
+    :;
+fi
+
+alias pgrep_with_space='pgrep -f'
+alias kill_webpdb='pkill -f "Python main.py"'
+
+# https://stackoverflow.com/questions/23098273/mac-os-x-why-is-wifi-called-en0-like-ethernet
+alias mac_network_interfaces='networksetup -listallhardwareports'
+
+port_usage(){
+    lsof -i:$@
+}
+port_ps(){
+    lsof -ti:$@
+}
+
+alias reset_octomouse="find . -name '*octomouse*' | xargs -d '\n' rmtrash"
+alias vim_vertical_split='vim -O'
+
+# howdoi: fast search
+# tldr: short man page
+
+if [[ $platform == "macos" ]]; then
+    pip(){
+        echo "#############################################################"
+        echo "MY WARNING: this might be for python2.7. Use pip3 for python3"
+        echo "#############################################################"
+    }
+fi
+
+if [[ $platform == "macos" ]]; then
+    alias zl='z -l'
+fi
+
+alias fzfrc="$myvi ~/runtime_config/shell/fzf.sh"
+alias zshcus="$myvi ~/runtime_config/zsh/zsh_custom.zsh"
+
+alias ca='cda' # cd advanced
+
+# export FZF_DEFAULT_COMMAND='fd --type f'
+cf() { # find based
+  local dir
+  dir=$( fd --type d | fzf +m) &&
+  cl "$dir"
+}
+
+alias fc='cf'
+alias cx='cf'
+alias xc='cf'
+
+# frecency based (frequency + recency)
+alias cz='cl $(fasd -dl | fzf)'
+alias zc='cz'
+
+# find based
+vf(){
+    local file
+    file=$( fd --type f | fzf +m ) &&
+    $myvi $file
+}
+
+#alias vf='$myvi $(fzf)' # vim + fzf
+alias fv='vf'
+alias vx='vf'
+alias xv='vf'
+# use fasd instead of rupa/z and meain/v
+##### vl='~/.zplug/repos/meain/v/v'
+##### vz(){
+#####     file=$(eval ${vl} | fzf)
+#####     [[ ! -z "$file" ]] && $myvi "$file" # vim + z + fzf
+##### }
+
+# frecency based
+vz(){ # vim + fasd + fzf
+    local file
+    file=$(fasd -fl | fzf)
+    echo "$file"
+    [[ ! -z "$file" ]] && $myvi "$file"
+}
+alias zv='vz'
+
+# cv with frecency.
+zcv(){ # cd + vim + fasd + fzf
+    local file
+    local dir
+    file=$( fasd -fl | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+    if [[ -z "$file" ]]; then
+        echo "Nothing selected..."
+        return 1;
+    fi
+    $myvi $(basename "$file")
+}
+
+alias vc='cv'
+
+
+alias nvr_socket_remove='rmt /tmp/nvimsocket*'
+
+alias ruby_shell='irb'
+
+alias detour_dns='sudo ifconfig en0 mtu 400'
+alias detour_dns_recover='sudo ifconfig en0 mtu 1500'

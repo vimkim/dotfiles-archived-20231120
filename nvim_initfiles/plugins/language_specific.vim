@@ -19,3 +19,6 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'AtsushiSakai/julia.vim'
 autocmd BufRead, BufNewFile *.jl set filetype=julia
 " julia-vim plugin is not enough. It does not load auto pairs plugin.
+
+"javascript
+so ~/runtime_config/nvim_initfiles/plugins/lang/js.vim
