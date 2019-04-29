@@ -357,9 +357,9 @@ endif
 
 " if wsl, set file line ending to dos
 if iswsl == 'true'
-    set ffs=dos
+    "set ffs=dos
 else
-    set ffs=unix
+    "set ffs=unix
 endif
 " learn vim the hard way practice
 let g:quickfix_is_open = 0

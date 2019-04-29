@@ -27,6 +27,6 @@
 
 " Prevent vim from overriding default terminal background"
 "https://stackoverflow.com/a/21572296/6154359
-colo seoul256-light
+colo seoul256
 hi Normal ctermbg=none
 
