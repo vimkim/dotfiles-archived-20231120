@@ -12,3 +12,4 @@ alias home='cl $userprofile'
 alias h='home'
 alias cdrive='cl /mnt/c'
 
+alias start='cmd.exe /c start'

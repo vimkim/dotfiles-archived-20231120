@@ -66,7 +66,8 @@ alias ge='emacsclient'
 myvi='vi'
 # Detect vim
 vimexist='false'
-if hash vim 2>/dev/null; then
+#if hash vim 2>/dev/null; then # hash not working. replace with type
+if type vim 2>/dev/null; then
     vimexist='true'
     myvi='vim'
 fi
@@ -74,7 +75,7 @@ echo "\$vimexist: $vimexist"
 
 # Detect nvim
 nvimexist='false'
-if hash nvim 2>/dev/null; then
+if type nvim 2>/dev/null; then
     nvimexist='true'
     myvi='nvim'
 fi
@@ -82,7 +83,7 @@ echo "\$nvimexist: $nvimexist"
 
 # Detect mvim
 mvimexist='false'
-if hash mvim 2> /dev/null; then
+if type mvim 2> /dev/null; then
     mvimexist='true'
     #myvi='mvim --remote-silent'
     myvi=(mvim --remote-silent) #http://zsh.sourceforge.net/FAQ/zshfaq03.html
@@ -94,7 +95,7 @@ alias mvr="mvim --remote-silent"
 
 # Detect nvr
 nvrexist='false'
-if hash nvr 2> /dev/null; then
+if type nvr 2> /dev/null; then
     nvrexist='true'
     myvi=(nvr -s)
 fi
@@ -104,7 +105,7 @@ export myvi
 emacsexist='false'
 myemacs='unknown'
 # Detect emacs
-if hash emacs 2>/dev/null; then
+if type emacs 2>/dev/null; then
     emacsexist='true'
     #myemacs='emacs'
     myemacs='emacsclient'
@@ -177,6 +178,8 @@ if [[ $platform == 'macos' ]]; then
     alias pyp2='/usr/local/bin/pypy'
     alias pyp3='/usr/local/bin/pypy3'
     #alias pip='/usr/local/bin/pip3' # ruins virtualenv
+elif [[ $platform = 'linux' ]]; then
+    alias py='/usr/bin/python3'
 fi
 type python
 type python2
@@ -231,7 +234,7 @@ alias l='ls -a'
 
 # vim config. If nvim exists, use it
 #viavailable(){
-    #if hash nvim 2>/dev/null; then
+    #if type nvim 2>/dev/null; then
 
         #nvim "$@"
     #else
@@ -669,8 +672,14 @@ alias pd='popd'
 
 alias rm="echo Use 'rmt(remove to trash)', or the full path i.e. '/bin/rm'"
 if [[ $platform == 'linux' ]]; then
-    # sudo pacman -S trash-cli
-    alias rmt="trash"
+    if [[ $iswsl == 'true' ]]; then
+        rmt(){
+            mv "$@" ~/Trash
+        }
+    else
+        # sudo pacman -S trash-cli
+        alias rmt="trash"
+    fi
 elif [[ $platform == 'macos' ]]; then
     alias rmt="rmtrash"
 else
@@ -755,7 +764,7 @@ alias whl='whichls'
 if [[ $platform == 'macos' ]]; then
     alias cpwd="pwd | tr -d '\n' | pbcopy" # do not use ''. '\n' breaks the quote.
 elif [[ $platform == 'linux' ]]; then
-    if hash xclip 2>/dev/null; then
+    if type xclip 2>/dev/null; then
         alias cpwd='pwd | xclip -selection clipboard'
     else
         echo "install xclip"

@@ -2,7 +2,7 @@
 Plug 'vim-scripts/a.vim'
 Plug 'mileszs/ack.vim' "code search // needs extra install of ack
 Plug 'w0rp/ale' "saves my life
-Plug 'jiangmiao/auto-pairs' " This plugin is buggy with Korean inputs when 'set noimd'.
+"Plug 'jiangmiao/auto-pairs' " This plugin is buggy with Korean inputs when 'set noimd'. also bug with wsl
 " these settings disable julia autopairs.. disabled
 "au FileType lisp let b:autopairs_loaded=1 "auto-pairs inferior for lisp
 "au FileType scheme let b:autopairs_loaded=1 "auto-pairs inferior for lisp
@@ -46,10 +46,10 @@ Plug 'scrooloose/nerdcommenter' "too slow
 Plug 'scrooloose/nerdtree'
 Plug 'jalvesaq/Nvim-R'
 Plug 'NLKNguyen/papercolor-theme'
-"Plug 'kien/rainbow_parentheses.vim' "seems like only works with gui. True color?
+Plug 'kien/rainbow_parentheses.vim' "seems like only works with gui. True color?
 " - does not work automatically with lisp
-Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses
-" - auto enabled with lisp
+"Plug 'vim-scripts/vim-niji' " has similar functionality with rainbow_parentheses " bug in wsl
+"- auto enabled with lisp
 Plug 'chrisbra/Recover.vim' "temp file diff
 Plug 'vim-scripts/restore_view.vim' " save folds - seems not working
 "(restore_view
