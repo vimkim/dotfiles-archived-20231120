@@ -642,6 +642,7 @@ let g:ycm_key_list_select_previous_completion = ['<Up>'] "Default: ['<S-TAB>', '
 let g:ycm_key_list_stop_completion = ['<C-y>'] "Default: ['<C-y'] *written as useful for ultisnips
 let g:ycm_key_invoke_completion ='<C-Space>' " for `semantic` completion, not identifier. In c-family, ., ->, :: works. Useful for searching for top-level functions & classes.
 let g:ycm_global_ycm_extra_conf = '~/runtime_config/vim/.ycm_extra_conf_general.py'
+
 let plat=$platform
 if plat == 'linux'
     "let g:ycm_python_binary_path = '/usr/bin/python3' "not working?

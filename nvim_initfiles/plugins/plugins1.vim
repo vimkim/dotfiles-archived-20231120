@@ -88,7 +88,7 @@ augroup qs_colors
   autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 augroup END
 
-Plug 'chrisbra/Recover.vim' "temp file diff
+"Plug 'chrisbra/Recover.vim' "temp file diff
 Plug 'vim-scripts/restore_view.vim' " save folds - seems not working
 "(restore_view
 set viewoptions=cursor,folds,slash,unix

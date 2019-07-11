@@ -19,7 +19,7 @@ Plug 'easymotion/vim-easymotion'
 "Plug 'xolox/vim-easytags'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-fugitive'
-Plug 'szw/vim-g'
+"Plug 'szw/vim-g'
 Plug 'tenfyzhong/vim-gencode-cpp'
 Plug 'airblade/vim-gitgutter'
 
