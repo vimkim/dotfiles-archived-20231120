@@ -290,7 +290,7 @@ alias vwd='vim_with_date'
 alias mwd='mkdir_with_date'
 
 # rc function
-alias zshrc='$myvi ~/runtime_config/zsh/ohmyzsh/.zshrc'
+alias zshrc='$myvi ~/runtime_config/zsh/.zshrc'
 alias bashrc='$myvi ~/runtime_config/bash/.bashrc'
 alias vzshrc='vim ~/runtime_config/zsh/ohmyzsh/.zshrc'
 alias vbashrc='vim ~/runtime_config/bash/.bashrc'
