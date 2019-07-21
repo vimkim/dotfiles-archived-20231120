@@ -35,9 +35,13 @@ Plug 'junegunn/fzf.vim'
 nnoremap ,bl :Buffers<cr>
 nnoremap ,ls :Buffers<cr>
 nnoremap ,bu :Buffers<cr>
+
 nnoremap ,bf :Buffers<cr>
+nnoremap ;bf :Buffers<cr>
 
 nnoremap ,zf :Files<cr>
+nnoremap ,vx :Files<cr>
+nnoremap ;vx :Files<cr>
 
 nnoremap ,/ :Lines<cr>
 " file path completion

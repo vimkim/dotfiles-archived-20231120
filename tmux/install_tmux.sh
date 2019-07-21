@@ -1,1 +1,2 @@
-cp ~/runtime_config/tmux/.tmux.conf ~/.tmux.conf
+mv ~/.tmux.conf ~/runtime_config/.tmux.conf.backup
+ln -s ~/runtime_config/tmux/.tmux.conf ~/.tmux.conf

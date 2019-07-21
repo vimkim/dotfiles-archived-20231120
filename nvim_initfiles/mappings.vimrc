@@ -370,7 +370,6 @@ noremap l u|noremap L U
 noremap t f|noremap T F
 noremap j t|noremap J T
 
-
 "nnoremap k i|vnoremap k i
 "nnoremap l e|vnoremap l e
 

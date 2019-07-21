@@ -765,11 +765,12 @@ alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?
 alias pd='popd'
 
 alias rm="echo Use 'rmt(remove to trash)', or the full path i.e. '/bin/rm'"
+_rmt(){
+    mv "$@" ~/Trash
+}
 if [[ $platform == 'linux' ]]; then
     if [[ $iswsl == 'true' ]]; then
-        rmt(){
-            mv "$@" ~/Trash
-        }
+        alias rmt=_rmt
     else
         # sudo pacman -S trash-cli
         alias rmt="trash"
@@ -1055,3 +1056,10 @@ alias ruby_shell='irb'
 
 alias detour_dns='sudo ifconfig en0 mtu 400'
 alias detour_dns_recover='sudo ifconfig en0 mtu 1500'
+alias i3conf='vim ~/.config/i3/config'
+
+alias soi3='i3-msg reload'
+alias restarti3='i3-msg restart'
+
+alias sox='xrdb ~/.Xresources'
+alias xre='vim ~/.Xresources'

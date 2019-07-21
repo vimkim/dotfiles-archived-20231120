@@ -18,28 +18,28 @@ source ~/runtime_config/zsh/detect_OS.zsh
 ##### antigen bundle andrewferrier/fzf-z
 
 ### Zplug
-echo "zplug starting..."
-source ~/.zplug/init.zsh
-# Can manage local plugins
-# zplug "~/.zsh", from:local
-zplug "rupa/z", use:z.sh
-zplug "changyuheng/fz", defer:1
-zplug "changyuheng/zsh-interactive-cd"
-
-zplug "meain/v"
-PATH=$PATH:$HOME/.zplug/repos/meain/v/
-[ "$vim" ] || vim=vim
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-# Then, source plugins and add commands to $PATH
-zplug load --verbose
-echo "****************************************************"
+### echo "zplug starting..."
+### source ~/.zplug/init.zsh
+### # Can manage local plugins
+### # zplug "~/.zsh", from:local
+### zplug "rupa/z", use:z.sh
+### zplug "changyuheng/fz", defer:1
+### zplug "changyuheng/zsh-interactive-cd"
+###
+### zplug "meain/v"
+### PATH=$PATH:$HOME/.zplug/repos/meain/v/
+### [ "$vim" ] || vim=vim
+###
+### # Install plugins if there are plugins that have not been installed
+### if ! zplug check --verbose; then
+###     printf "Install? [y/N]: "
+###     if read -q; then
+###         echo; zplug install
+###     fi
+### fi
+### # Then, source plugins and add commands to $PATH
+### zplug load --verbose
+### echo "****************************************************"
 
 
 # Aliases
