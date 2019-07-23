@@ -329,6 +329,39 @@ au Cursorhold * checktime
 
 set t_Co=256
 
+" system clipboard access for wsl vim
+" https://vi.stackexchange.com/questions/12376/vim-on-wsl-synchronize-system-clipboard-set-clipboard-unnamed
+let iswsl=$iswsl
+if iswsl == 'true'
+    " echo "this is wsl!"
+
+    " ##### for copying #####
+    let s:clip = '/mnt/c/Windows/System32/clip.exe'  " default location
+    if executable(s:clip)
+        augroup WSLYank
+            autocmd!
+            autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
+        augroup END
+    end
+
+    " ##### for pasting #####
+    map <silent> "=p :r !powershell.exe -Command Get-Clipboard<CR>
+
+    " not working version
+    " map! <silent> <c-r>= :r !powershell.exe -Command Get-Clipboard<CR>
+
+    " buggy version
+    " noremap "+p :exe 'norm a'.system('/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command Get-Clipboard')<CR>
+
+
+endif
+
+" if wsl, set file line ending to dos
+if iswsl == 'true'
+    "set ffs=dos
+else
+    "set ffs=unix
+endif
 " learn vim the hard way practice
 let g:quickfix_is_open = 0
 
@@ -345,4 +378,3 @@ function! QuickfixToggle()
 endfunction
 
 nnoremap <leader>x :call QuickfixToggle()<cr>
-

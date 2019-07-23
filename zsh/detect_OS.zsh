@@ -18,6 +18,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     platform='macos'
 fi
 echo "\$platform: $platform"
+export platform
 
 
 # find Linux distro

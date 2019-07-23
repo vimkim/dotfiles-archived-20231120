@@ -65,7 +65,8 @@ alias ge='emacsclient'
 myvi='vi'
 # Detect vim
 vimexist='false'
-if hash vim 2>/dev/null; then
+#if hash vim 2>/dev/null; then # hash not working. replace with type
+if type vim 2>/dev/null; then
     vimexist='true'
     myvi='vim'
 fi
@@ -73,7 +74,7 @@ echo "\$vimexist: $vimexist"
 
 # Detect nvim
 nvimexist='false'
-if hash nvim 2>/dev/null; then
+if type nvim 2>/dev/null; then
     nvimexist='true'
     myvi='nvim'
 fi
@@ -81,7 +82,7 @@ echo "\$nvimexist: $nvimexist"
 
 # Detect mvim
 mvimexist='false'
-if hash mvim 2> /dev/null; then
+if type mvim 2> /dev/null; then
     mvimexist='true'
     #myvi='mvim --remote-silent'
     myvi=(mvim --remote-silent) #http://zsh.sourceforge.net/FAQ/zshfaq03.html
@@ -93,7 +94,7 @@ alias mvr="mvim --remote-silent"
 
 # Detect nvr
 nvrexist='false'
-if hash nvr 2> /dev/null; then
+if type nvr 2> /dev/null; then
     nvrexist='true'
     myvi=(nvr -s)
 fi
@@ -104,7 +105,7 @@ vim=($myvi)
 emacsexist='false'
 myemacs='unknown'
 # Detect emacs
-if hash emacs 2>/dev/null; then
+if type emacs 2>/dev/null; then
     emacsexist='true'
     #myemacs='emacs'
     myemacs='emacsclient'
@@ -206,6 +207,8 @@ if [[ $platform == 'macos' ]]; then
     alias pyp2='/usr/local/bin/pypy'
     alias pyp3='/usr/local/bin/pypy3'
     #alias pip='/usr/local/bin/pip3' # ruins virtualenv
+elif [[ $platform = 'linux' ]]; then
+    alias py='/usr/bin/python3'
 fi
 type python
 type python2
@@ -262,7 +265,7 @@ alias l='ls -a'
 
 # vim config. If nvim exists, use it
 #viavailable(){
-    #if hash nvim 2>/dev/null; then
+    #if type nvim 2>/dev/null; then
 
         #nvim "$@"
     #else
@@ -288,14 +291,14 @@ alias vwd='vim_with_date'
 alias mwd='mkdir_with_date'
 
 # rc function
-alias zshrc='$myvi ~/runtime_config/zsh/ohmyzsh/.zshrc'
-alias bashrc='$myvi ~/runtime_config/bash/.bashrc'
-alias vzshrc='vim ~/runtime_config/zsh/ohmyzsh/.zshrc'
-alias vbashrc='vim ~/runtime_config/bash/.bashrc'
-alias nvzshrc='nvim ~/runtime_config/ohmyzsh/.zshrc'
-alias nvbashrc='nvim ~/runtime_config/bash/.bashrc'
-alias mvzshrc='mvim ~/runtime_config/ohmyzsh/.zshrc'
-alias mvbashrc='mvim ~/runtime_config/bash/.bashrc'
+alias zshrc='$myvi ~/.zshrc'
+alias bashrc='$myvi ~/.bashrc'
+alias vzshrc='vim ~/.zshrc'
+alias vbashrc='vim ~/.bashrc'
+alias nvzshrc='nvim ~/.zshrc'
+alias nvbashrc='nvim ~/.bashrc'
+alias mvzshrc='mvim ~/.zshrc'
+alias mvbashrc='mvim ~/.bashrc'
 # shell alias management shortcut
 alias ali='$=myvi ~/runtime_config/shell/shell_alias.sh' # this works for zsh, but not in bash. Tips from: https://stackoverflow.com/questions/8299610/zsh-command-not-found-for-editor
 alias ali='eval $myvi ~/runtime_config/shell/shell_alias.sh' # This works for zsh and bash.
@@ -763,9 +766,16 @@ alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?
 alias pd='popd'
 
 alias rm="echo Use 'rmt(remove to trash)', or the full path i.e. '/bin/rm'"
+_rmt(){
+    mv "$@" ~/Trash
+}
 if [[ $platform == 'linux' ]]; then
-    # sudo pacman -S trash-cli
-    alias rmt="trash"
+    if [[ $iswsl == 'true' ]]; then
+        alias rmt=_rmt
+    else
+        # sudo pacman -S trash-cli
+        alias rmt="trash"
+    fi
 elif [[ $platform == 'macos' ]]; then
     alias rmt="rmtrash"
 else
@@ -852,7 +862,7 @@ alias whl='whichls'
 if [[ $platform == 'macos' ]]; then
     alias cpwd="pwd | tr -d '\n' | pbcopy" # do not use ''. '\n' breaks the quote.
 elif [[ $platform == 'linux' ]]; then
-    if hash xclip 2>/dev/null; then
+    if type xclip 2>/dev/null; then
         alias cpwd='pwd | xclip -selection clipboard'
     else
         echo "install xclip"
@@ -1047,3 +1057,10 @@ alias ruby_shell='irb'
 
 alias detour_dns='sudo ifconfig en0 mtu 400'
 alias detour_dns_recover='sudo ifconfig en0 mtu 1500'
+alias i3conf='vim ~/.config/i3/config'
+
+alias soi3='i3-msg reload'
+alias restarti3='i3-msg restart'
+
+alias sox='xrdb ~/.Xresources'
+alias xre='vim ~/.Xresources'

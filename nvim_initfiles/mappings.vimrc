@@ -273,7 +273,6 @@ let g:ZSH_Ctrl_j = 'off'
 "au filetype text,markdown vnoremap <leader>co "*y
 "au filetype text,markdown vnoremap <c-c> "*y
 
-
 inoremap <c-BS> <DEL>
 
 nnoremap U :echo "<< ===== CHECK CAPSLOCK =====>>"<cr>
@@ -370,7 +369,6 @@ noremap u i|noremap U I
 noremap l u|noremap L U
 noremap t f|noremap T F
 noremap j t|noremap J T
-
 
 "nnoremap k i|vnoremap k i
 "nnoremap l e|vnoremap l e
