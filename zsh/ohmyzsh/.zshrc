@@ -104,7 +104,7 @@ export MANPATH="/usr/local/man:$MANPATH"
 # CUSTOMIZED
 #==========================================================================================
 
-source ~/runtime_config/zsh/zsh_custom.zsh
+
 # I don't add anything down here. If added, then they must be something automatically appended by third party programs.
 # If revised and confirmed, move them to zsh_custom.zsh.
 
@@ -135,3 +135,4 @@ if [[ $platform == "macos" ]]; then
 fi
 
 #cat ~/anon.txt
+source ~/runtime_config/zsh/zsh_custom.zsh
