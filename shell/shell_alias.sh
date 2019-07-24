@@ -255,13 +255,17 @@ elif [[ $platform == "linux" ]]; then
         alias egrep='egrep --color=auto'
     fi
 fi
+
 alias la='ls -A' # -A is cleaner than -a imo. (-A does not include . and ..)
 alias ll='ls -la' # however, when observing permissions, -a is more useful.
 alias lld='ls -lad' # for directory. If without -d, it shows the contents of the directory instead of the directory itself.
+alias l='ls -a'
+
+# find symbolic links
 llsy(){
     ls -la $@ | grep " \->"
 }
-alias l='ls -a'
+
 
 # vim config. If nvim exists, use it
 #viavailable(){
@@ -995,31 +999,23 @@ alias zshcus="$myvi ~/runtime_config/zsh/zsh_custom.zsh"
 alias ca='cda' # cd advanced
 
 # export FZF_DEFAULT_COMMAND='fd --type f'
-cf() { # find based
+cx() { # find based
   local dir
   dir=$( fd --type d | fzf +m) &&
   cl "$dir"
 }
-
-alias fc='cf'
-alias cx='cf'
-alias xc='cf'
 
 # frecency based (frequency + recency)
 alias cz='cl $(fasd -dl | fzf)'
 alias zc='cz'
 
 # find based
-vf(){
+vx(){
     local file
     file=$( fd --type f | fzf +m ) &&
     $myvi $file
 }
-
 #alias vf='$myvi $(fzf)' # vim + fzf
-alias fv='vf'
-alias vx='vf'
-alias xv='vf'
 # use fasd instead of rupa/z and meain/v
 ##### vl='~/.zplug/repos/meain/v/v'
 ##### vz(){
@@ -1065,4 +1061,11 @@ alias restarti3='i3-msg restart'
 alias sox='xrdb ~/.Xresources'
 alias xre='vim ~/.Xresources'
 
+hey(){
+    echo "why"
+    return "hello"
+}
 
+xa(){
+    ~/runtime_config/shell/grep_fzf_vim.py $(grep -nir $@ | fzf)
+}

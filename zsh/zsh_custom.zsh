@@ -1,3 +1,5 @@
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # tmux auto rename disable
 #export DISABLE_AUTO_TITLE="true"
 # run tmux automatically
@@ -40,7 +42,6 @@ source ~/runtime_config/zsh/detect_OS.zsh
 ### # Then, source plugins and add commands to $PATH
 ### zplug load --verbose
 ### echo "****************************************************"
-
 
 # Aliases
 source ~/runtime_config/shell/shell_alias.sh
@@ -101,8 +102,7 @@ source ~/runtime_config/shell/fzf.sh
 # for fzf ctrl+r, remove duplicates
 setopt hist_ignore_dups
 setopt HIST_IGNORE_ALL_DUPS
-
-export FZF_DEFAULT_COMMAND='fd --type f'
+#export FZF_DEFAULT_COMMAND='fd --type f'
 
 
 
@@ -126,4 +126,3 @@ echo "\$PWD: $PWD"
 echo "****************************************************"
 
 # fzf keybinding
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
