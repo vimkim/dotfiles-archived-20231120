@@ -113,17 +113,18 @@ fi
 echo "\$emacsexist: $emacsexist"
 
 # Select myed
-myed='unknown'
-if [[ $emacsexist == 'true' ]]; then
-    myed=$myemacs
-else
-    myed=$myvi
-fi
+#myed='unknown'
+#if [[ $emacsexist == 'true' ]]; then
+#    myed=$myemacs
+#else
+#    myed=$myvi
+#fi
 echo "\$myvi: $myvi"
 echo "\$myed: $myed"
 # for now myed is myvi
+
 #myed=$myvi # this spits an error
-#myed=($myvi) # emacs returned
+myed=($myvi) # emacs returned
 
 # default editor (required for tmuxinator somehow)
 if [[ $platform == 'linux' ]]; then

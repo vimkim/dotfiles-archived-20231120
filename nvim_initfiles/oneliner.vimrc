@@ -67,6 +67,7 @@ set autoread
 " autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 "Better command-line completion
+
 set wildmenu
 set wildmode=list:longest,full
 
