@@ -124,3 +124,6 @@ echo $PATH | tr -s ':' '\n'
 # Once it took me some time to detect an undesired python path being added to $PATH in .zprofile.
 echo "\$PWD: $PWD"
 echo "****************************************************"
+
+# fzf keybinding
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

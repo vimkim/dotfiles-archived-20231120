@@ -1063,3 +1063,5 @@ alias restarti3='i3-msg restart'
 
 alias sox='xrdb ~/.Xresources'
 alias xre='vim ~/.Xresources'
+
+
