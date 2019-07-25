@@ -1,7 +1,6 @@
 "section============================================================================
 " NECESSARY
 "===================================================================================
-
 "indenting
 "set cindent
 set autoindent "tells vim to apply the indentation of the current line to the next(enter, o, O)
@@ -221,10 +220,10 @@ endfunction
 nnoremap <leader>ju :call GotoJump()<cr>
 
 
-"auto source vimrc
-if has("autocmd")
-    autocmd bufwritepost .vimrc source $MYVIMRC
-endif
+" "auto source vimrc
+" if has("autocmd")
+"     autocmd bufwritepost .vimrc source $MYVIMRC
+" endif
 
 " source vimrc - useful after adding plugins, etc.
 noremap ;sov :so $MYVIMRC<cr>

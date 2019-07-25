@@ -1031,7 +1031,6 @@ vz(){ # vim + fasd + fzf
     echo "$file"
     [[ ! -z "$file" ]] && $myvi "$file"
 }
-alias zv='vz'
 
 # cv with frecency.
 zcv(){ # cd + vim + fasd + fzf
