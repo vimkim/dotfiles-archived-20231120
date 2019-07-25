@@ -127,7 +127,8 @@ endfunction
 " You can install it when you add a file named ycm_install.txt in .vim
 " directory.
 if filereadable($HOME."/dkenv/.vim/ycm_install.txt")
-    Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+    Plug 'Valloric/YouCompleteMe'
+    ", { 'do': function('BuildYCM') }
     " - python: pip install jedi
     " - javascript: npm install -g typescript
     "   and add jsconfig.json in the project root

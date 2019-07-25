@@ -296,8 +296,8 @@ alias vwd='vim_with_date'
 alias mwd='mkdir_with_date'
 
 # rc function
-alias zshrc="eval $myvi ~/.zshrc"
-alias bashrc="eval $myvi ~/.bashrc"
+alias zshrc="$myvi ~/.zshrc"
+alias bashrc="$myvi ~/.bashrc"
 alias vzshrc="vim ~/.zshrc"
 alias vbashrc="vim ~/.bashrc"
 alias nvzshrc="nvim ~/.zshrc"
