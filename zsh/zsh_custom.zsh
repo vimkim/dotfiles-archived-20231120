@@ -7,7 +7,7 @@ if [[ $SHLVL == 1 ]]; then
     tmux attach || tmux new
 fi
 
-source ~/runtime_config/zsh/detect_OS.zsh
+source ~/dkenv/runtime_config/zsh/detect_OS.zsh
 ##### # Antigen
 ##### if [[ $platform == "macos" ]]; then
 #####     source $(brew --prefix)/share/antigen/antigen.zsh
@@ -44,11 +44,11 @@ source ~/runtime_config/zsh/detect_OS.zsh
 ### echo "****************************************************"
 
 # Aliases
-source ~/runtime_config/shell/shell_alias.sh
-source ~/runtime_config/zsh/zsh_alias.zsh
-source ~/runtime_config/shell/temp_alias.sh
+source ~/dkenv/runtime_config/shell/shell_alias.sh
+source ~/dkenv/runtime_config/zsh/zsh_alias.zsh
+source ~/dkenv/runtime_config/shell/temp_alias.sh
 # Run at initialization
-#source ~/runtime_config/zsh/zsh_run.zsh
+#source ~/dkenv/runtime_config/zsh/zsh_run.zsh
 
 
 # for oh-my-zsh plugin vi-mode mapping
@@ -75,7 +75,7 @@ unsetopt CASE_GLOB
 
 ##### EXTRA SOURCING #####
 # for tmuxinator
-source ~/runtime_config/tmuxinatorfiles/tmuxinator.zsh
+source ~/dkenv/runtime_config/tmuxinatorfiles/tmuxinator.zsh
 
 if [[ $platform == "macos" ]]; then
     # for brew gnu tools and manuals
@@ -97,7 +97,7 @@ fi
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # automatically append by fzf when ./install
 # even if I move this here, fzf will automaticall add another one so ...
 ### fzf examples
-source ~/runtime_config/shell/fzf.sh
+source ~/dkenv/runtime_config/shell/fzf.sh
 
 # for fzf ctrl+r, remove duplicates
 setopt hist_ignore_dups

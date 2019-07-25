@@ -296,14 +296,14 @@ alias vwd='vim_with_date'
 alias mwd='mkdir_with_date'
 
 # rc function
-alias zshrc='$myvi ~/.zshrc'
-alias bashrc='$myvi ~/.bashrc'
-alias vzshrc='vim ~/.zshrc'
-alias vbashrc='vim ~/.bashrc'
-alias nvzshrc='nvim ~/.zshrc'
-alias nvbashrc='nvim ~/.bashrc'
-alias mvzshrc='mvim ~/.zshrc'
-alias mvbashrc='mvim ~/.bashrc'
+alias zshrc="eval $myvi ~/.zshrc"
+alias bashrc="eval $myvi ~/.bashrc"
+alias vzshrc="vim ~/.zshrc"
+alias vbashrc="vim ~/.bashrc"
+alias nvzshrc="nvim ~/.zshrc"
+alias nvbashrc="nvim ~/.bashrc"
+alias mvzshrc="mvim ~/.zshrc"
+alias mvbashrc="mvim ~/.bashrc"
 # shell alias management shortcut
 alias ali='$=myvi ~/dkenv/runtime_config/shell/shell_alias.sh' # this works for zsh, but not in bash. Tips from: https://stackoverflow.com/questions/8299610/zsh-command-not-found-for-editor
 alias ali='eval $myvi ~/dkenv/runtime_config/shell/shell_alias.sh' # This works for zsh and bash.
