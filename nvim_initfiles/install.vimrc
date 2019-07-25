@@ -1,8 +1,10 @@
-set runtimepath+=~/dkenv/.vim
 set nocompatible
 if has('vim_starting')
     set nocompatible
 endif
+
+set runtimepath+=~/dkenv/.vim
+set viminfo+=n~/dkenv/.vim/viminfo
 
 let vimplug_exists=expand('~/dkenv/.vim/autoload/plug.vim')
 let g:vim_bootstrap_langs = "c,go,html,javascript,lisp,perl,python"

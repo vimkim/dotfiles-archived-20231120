@@ -190,7 +190,9 @@ set viewoptions-=options
 if has("mac")
     set shell=/usr/local/bin/zsh "brew zsh location for macos
 elseif has("unix")
-    set shell=/usr/bin/zsh
+    if executable("zsh")
+        set shell=/usr/bin/zsh
+    endif
 endif
 " with l option, this somehow sources the .zshrc
 "set shell=zsh\ -l " Works fine but disabled due to conflicts with Fugitive Gdiff

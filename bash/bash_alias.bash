@@ -1,3 +1,5 @@
+source ~/dkenv/runtime_config/shell/shell_alias.sh
+
 if [[ $iswsl == 'true' ]]; then
     if grep -q Microsoft /proc/version; then
         echo "Ubuntu on Windows"

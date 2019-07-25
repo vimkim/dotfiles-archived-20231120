@@ -68,7 +68,8 @@ vimexist='false'
 #if hash vim 2>/dev/null; then # hash not working. replace with type
 if type vim 2>/dev/null; then
     vimexist='true'
-    myvi='vim -u ~/dkenv/runtime_config/vim/.vimrc'
+    alias vim='vim -u ~/dkenv/runtime_config/vim/.vimrc -i ~/dkenv/.vim/viminfo'
+    myvi='vim -u ~/dkenv/runtime_config/vim/.vimrc -i ~/dkenv/.vim/viminfo'
 fi
 echo "\$vimexist: $vimexist"
 
