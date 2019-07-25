@@ -287,8 +287,8 @@ let g:UltiSnipsListSnippets = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-l>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 " Defines the directory private snippet definition files are stored in.
-set runtimepath+=~/.vim/mySnips/"
-let g:UltiSnipsSnippetsDir = "~/.vim/mySnips/UltiSnips"
+set runtimepath+=~/dkenv/runtime_config/vim/mySnips
+let g:UltiSnipsSnippetsDir = "~/dkenv/runtime_config/mySnips/UltiSnips"
 " maybe python bug fix? https://github.com/SirVer/ultisnips/issues/510 " no it does not solve
 " au CmdwinEnter * call UltiSnips#LeavingBuffer() " for what?
 " au CmdwinLeave * call UltiSnips#LeavingBuffer()
