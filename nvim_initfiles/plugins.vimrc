@@ -35,24 +35,24 @@ endfunction
 if has('nvim')
         call plug#begin('$HOME/.config/nvim/plugged')
     else
-        call plug#begin('$HOME/.vim/plugged')
+        call plug#begin('$HOME/dkenv/.vim/plugged')
     endif
-        if !empty(glob("$HOME/runtime_config/nvim_initfiles/plugins")) "glob expands $HOME. Necessary? IDK..
+        if !empty(glob("$HOME/dkenv/runtime_config/nvim_initfiles/plugins")) "glob expands $HOME. Necessary? IDK..
 
             " plugin lists modularized
-            so ~/runtime_config/nvim_initfiles/plugins/plugins1.vim " name does not start with vim
-            so ~/runtime_config/nvim_initfiles/plugins/plugins2.vim " name starts with vim
-            so ~/runtime_config/nvim_initfiles/plugins/language_specific.vim
-            so ~/runtime_config/nvim_initfiles/plugins/markdown.vim
-            so ~/runtime_config/nvim_initfiles/plugins/latex.vim
-            so ~/runtime_config/nvim_initfiles/plugins/conceal.vim
+            so ~/dkenv/runtime_config/nvim_initfiles/plugins/plugins1.vim " name does not start with vim
+            so ~/dkenv/runtime_config/nvim_initfiles/plugins/plugins2.vim " name starts with vim
+            so ~/dkenv/runtime_config/nvim_initfiles/plugins/language_specific.vim
+            so ~/dkenv/runtime_config/nvim_initfiles/plugins/markdown.vim
+            so ~/dkenv/runtime_config/nvim_initfiles/plugins/latex.vim
+            so ~/dkenv/runtime_config/nvim_initfiles/plugins/conceal.vim
 
 
     endif
 call plug#end()
 ")
 
-so ~/runtime_config/nvim_initfiles/plugins/plugin_settings.vim
+so ~/dkenv/runtime_config/nvim_initfiles/plugins/plugin_settings.vim
 
 """ filetype on
 """ filetype plugin indent on

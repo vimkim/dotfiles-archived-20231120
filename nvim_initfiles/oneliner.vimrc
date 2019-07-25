@@ -144,7 +144,6 @@ set undolevels=255
 " spell check, but not grammar. Useful for writing README
 "set spell << Currently set for txt, md, anki
 
-
 "set autochdir
 " auto change directory, works same as `set autochdir` with less errors
 autocmd BufEnter * silent! lcd %:p:h
@@ -158,25 +157,25 @@ nnoremap ;swd :silent! lcd %:p:h<cr>
 " Attempt to create the directory. If it already exists, mkdir will signal an error, but it is ignored.
 " silent !mkdir ~/.vim/swapdir > /dev/null 2>&1
 " This is operating system independent
-if !isdirectory($HOME . "/.vim/swapdir")
-    call mkdir($HOME . "/.vim/swapdir", "p")
+if !isdirectory($HOME . "/dkenv/.vim/swapdir")
+    call mkdir($HOME . "/dkenv/.vim/swapdir", "p")
 endif
-set backupdir=$HOME/.vim/swapdir
+set backupdir=$HOME/dkenv/.vim/swapdir
 " $ ln -s ~/.local/share/nvim/swap ~/.vim/swapdir # recommended for nvim compatibility
 
 " UNDODIR
 " Saves undo's after file closes
 " do not forget to clean undo file with unix cron
 " if this option is not set, clean ~/.local/share/nvim/undo
-if !isdirectory($HOME . "/.vim/undodir")
-    call mkdir($HOME . "/.vim/undodir", "p")
+if !isdirectory($HOME . "/dkenv/.vim/undodir")
+    call mkdir($HOME . "/dkenv/.vim/undodir", "p")
 endif
 set undofile
 set undodir=~/.vim/undodir
 
 " VIEWDIR
-if !isdirectory($HOME . "/.vim/viewdir")
-    call mkdir($HOME . "/.vim/viewdir", "p")
+if !isdirectory($HOME . "/dkenv/.vim/viewdir")
+    call mkdir($HOME . "/dkenv/.vim/viewdir", "p")
 endif
 set viewdir=$HOME/.vim/viewdir
 " Save fold in viewdir
