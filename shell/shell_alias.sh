@@ -256,10 +256,11 @@ elif [[ $platform == "linux" ]]; then
     fi
 fi
 
+alias ls='ls --color -AF'
 alias la='ls -A' # -A is cleaner than -a imo. (-A does not include . and ..)
-alias ll='ls -la' # however, when observing permissions, -a is more useful.
-alias lld='ls -lad' # for directory. If without -d, it shows the contents of the directory instead of the directory itself.
-alias l='ls -a'
+alias ll='ls -lA' # however, when observing permissions, -a is more useful.
+alias lld='ls -lAd' # for directory. If without -d, it shows the contents of the directory instead of the directory itself.
+alias l='ls -A'
 
 # find symbolic links
 llsy(){
@@ -910,11 +911,11 @@ alias psall='ps -ef'
 alias ps_all='ps -ef'
 
 alias spac='sudo pacman'
-alias spac_install='sudo pacman -S'
+alias spac-install='sudo pacman -S'
+alias spac-search='pacman -Ss'
+alias spac-update='sudo pacman -Syu'
+alias spac_info='pacman -Si'
 alias spac_search='pacman -Ss'
-alias spac_update='sudo pacman -Syu'
-alias pacman_info='pacman -Si'
-alias pacman_search='pacman -Ss'
 
 alias mount_shared_folder='mount -t vboxsf comp /media/shared'
 
@@ -1053,6 +1054,8 @@ alias ruby_shell='irb'
 
 alias detour_dns='sudo ifconfig en0 mtu 400'
 alias detour_dns_recover='sudo ifconfig en0 mtu 1500'
+alias detour_dns_linux='sudo ip set dev wlo1 mtu 400'
+alias detour_dns_linux='sudo ip set dev wlo1 mtu 1500'
 alias i3conf='vim ~/.config/i3/config'
 
 alias soi3='i3-msg reload'
