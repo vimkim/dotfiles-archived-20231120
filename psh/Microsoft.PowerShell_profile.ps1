@@ -1,4 +1,4 @@
-## <Continue to add your own>
+# <Continue to add your own>
 function profile {_vim $profile}
 Set-Alias ali profile
 
@@ -108,9 +108,18 @@ function make-link ($target, $link){
     New-Item -Path $link -ItemType SymbolicLink -Value $target
 }
 
+function gst(){
+    git status
+}
+
 function gitall(){
     cd ~/dkenv/runtime_config
     git add .
     git commit -m "push all"
     git push
+    cd ~/dkenv
+    git add .
+    git commit -m "push all"
+    git push
 }
+
