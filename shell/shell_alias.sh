@@ -36,7 +36,7 @@ echo "****************************************************"
 ## echo "****************************************************"
 
 if [[ $iswsl == 'true' ]]; then
-    alias wslali='$myvi ~/dkenv/runtime_config/shell/wsl_alias.sh'
+    alias wslali='eval $myvi ~/dkenv/runtime_config/shell/wsl_alias.sh'
     source ~/dkenv/runtime_config/shell/wsl_alias.sh
 fi
 
@@ -443,6 +443,8 @@ alias git_push_all='git push --all'
 alias git_log_all='git log --oneline --graph --decorate --all'
 alias gla='git_log_all'
 alias git_gui_graph='gitk --all'
+
+alias git_recover_lost_commit='git reflog' # detached head problem
 
 # https://stackoverflow.com/questions/4783599/rebasing-a-git-merge-commit
 # https://stackoverflow.com/questions/15915430/what-exactly-does-gits-rebase-preserve-merges-do-and-why
@@ -1072,3 +1074,11 @@ hey(){
 xa(){
     ~/dkenv/runtime_config/shell/grep_fzf_vim.py $(grep -nir $@ | fzf)
 }
+
+alias gdbinit='vim ~/dkenv/runtime_config/gdb/.gdbinit'
+
+alias gdb='gdb -x ~/dkenv/runtime_config/gdb/.gdbinit'
+
+alias gps_runtime_config='git -C ~/dkenv/runtime_config add .;
+git -C ~/dkenv/runtime_config commit -v;
+git -C ~/dkenv/runtime_config push origin master'
