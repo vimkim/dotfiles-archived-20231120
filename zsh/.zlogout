@@ -4,4 +4,3 @@ git add .
 git commit -m "logout"
 git push origin master
 echo "bye!"
-sleep 1
