@@ -1078,7 +1078,7 @@ xa(){
 
 alias gdbinit='vim ~/dkenv/runtime_config/gdb/.gdbinit'
 
-alias gdb='gdb -x ~/dkenv/runtime_config/gdb/.gdbinit'
+alias gdb='gdb -n -q -x ~/dkenv/runtime_config/gdb/.gdbinit'
 
 alias gps_runtime_config='git -C ~/dkenv/runtime_config add .;
 git -C ~/dkenv/runtime_config commit -v;
