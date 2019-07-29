@@ -1085,9 +1085,8 @@ alias gps_runtime_config='git -C ~/dkenv/runtime_config add .;
 git -C ~/dkenv/runtime_config commit -v;
 git -C ~/dkenv/runtime_config push origin master'
 
-<<<<<<< HEAD
 alias kui='ssh user@kuics.us.to -p 2206'
-=======
+
 gitall(){
     cd ~/dkenv/runtime_config
     git pull
@@ -1101,4 +1100,3 @@ gitall(){
     git commit -m "gitall"
     git push
 }
->>>>>>> 6a97569810127de0dda02d788d364c25680c1cdf
