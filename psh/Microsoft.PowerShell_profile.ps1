@@ -14,7 +14,7 @@ function Reload-Profile{
             Write-Verbose "Running $_"
                 . $_
         }
-    }    
+    }
 }
 Set-Alias soali Reload-Profile
 
@@ -22,7 +22,7 @@ function _cd{
 # for pipelines to work
     [CmdletBinding()]
         param(
-                [Parameter(ValueFromPipeline)] 
+                [Parameter(ValueFromPipeline)]
                 $_cd_paths
              )
             if($_cd_paths -eq $null){
@@ -43,14 +43,14 @@ Import-Module PSReadLine
 Set-PSReadLineOption -EditMode Emacs
 function ch{c $home}
 function cmdh{c $env:cmder_root}
-function cl{ 
+function cl{
     [CmdletBinding()]
         param(
-                [Parameter(ValueFromPipeline)] 
+                [Parameter(ValueFromPipeline)]
                 $_cd_paths
              )
             _cd $_cd_paths
-            _ls 
+            _ls
 }
 function c{ cl @args; }
 Set-Alias v vim
@@ -59,8 +59,8 @@ Set-Alias l _ls
 Set-Alias -Name ls -Value _ls -Option AllScope
 function ll{Get-ChildItem}
 function _vim{vim @args}
-function vimrc {_vim $home\.vimrc}
-function vimdir{cd $home\.vim}
+function vimrc {_vim $home\_vimrc}
+function vimdir{cd $home\dkenv\.vim}
 
 # function which($name){where.exe $name}
 function which($name){
@@ -78,7 +78,7 @@ function which($name){
 $env:term='' # for fzf to work in Fluent Terminal
 function cz{ z | python -c "z=list(__import__('sys').stdin); z=[s.strip().split() for s in z]; z=[l[1] for l in z[3:-2]]; print('\n'.join(z))" | fzf | cl }
 
-Import-Module posh-git
+#Import-Module posh-git
 
 function mc{ mkdir @args; cd @args }
 
@@ -90,7 +90,7 @@ function sudo{
 function hello{
     [CmdletBinding()]
         param(
-                [Parameter(ValueFromPipeline)] 
+                [Parameter(ValueFromPipeline)]
                 [string[]]$my_arg,
                 [Parameter][string[]]$another
              )
