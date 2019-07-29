@@ -444,6 +444,8 @@ alias git_log_all='git log --oneline --graph --decorate --all'
 alias gla='git_log_all'
 alias git_gui_graph='gitk --all'
 
+alias git_recover_lost_commit='git reflog' # detached head problem
+
 # https://stackoverflow.com/questions/4783599/rebasing-a-git-merge-commit
 # https://stackoverflow.com/questions/15915430/what-exactly-does-gits-rebase-preserve-merges-do-and-why
 alias git_rebase_merge_commit='git rebase --preserve-merges'
