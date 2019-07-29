@@ -1,4 +1,5 @@
-##st### Shell Aliases #####
+alias gh='cl ~/how2heap/glibc_2.25'
+####### Shell Aliases #####
 # Common aliases which works for both zsh and bash (and probably others too).
 # Be careful. When assigning variable, no space between variable name and '=' sign. Spaces matter in scripting.
 
@@ -501,7 +502,7 @@ alias rsc='Rscript'
 # sage alias
 if [[ $platform == 'macos' ]]; then
     # installed by brew cask. Now no alias required.
-    ;
+    :
 fi
 
 # LaTeX
