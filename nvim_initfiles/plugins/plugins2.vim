@@ -70,6 +70,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'zefei/vim-wintabs'
 
 let g:zenburn_transparent = 1
-"Plug 'jnurmine/Zenburn'
-Plug 'dhruvasagar/vim-zoom'
+Plug 'jnurmine/Zenburn'
+"Plug 'dhruvasagar/vim-zoom'
 " pluglist end
