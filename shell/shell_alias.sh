@@ -298,6 +298,7 @@ alias mwd='mkdir_with_date'
 
 # rc function
 alias zshrc="$myvi ~/.zshrc"
+alias zlogout="$myvi ~/dkenv/runtime_config/zsh/.zlogout"
 alias bashrc="$myvi ~/.bashrc"
 alias vzshrc="vim ~/.zshrc"
 alias vbashrc="vim ~/.bashrc"
