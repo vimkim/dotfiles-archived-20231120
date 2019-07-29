@@ -59,7 +59,7 @@ Set-Alias l _ls
 Set-Alias -Name ls -Value _ls -Option AllScope
 function ll{Get-ChildItem}
 function _vim{vim @args}
-function vimrc {_vim $home\.vimrc}
+function vimrc {_vim $home\dkenv\runtime_config\vim\.vimrc}
 function vimdir{cd $home\.vim}
 
 # function which($name){where.exe $name}
@@ -78,28 +78,32 @@ function which($name){
 $env:term='' # for fzf to work in Fluent Terminal
 function cz{ z | python -c "z=list(__import__('sys').stdin); z=[s.strip().split() for s in z]; z=[l[1] for l in z[3:-2]]; print('\n'.join(z))" | fzf | cl }
 
-Import-Module posh-git
+#Import-Module posh-git
 
 function mc{ mkdir @args; cd @args }
 
 function sudo{
-    echo "IMPORTANT MYMSG: if you want to preserve the window, just sudo . powershell"
-        Sudo.exe @args
+    echo "imprtnt MYMSG: if you want to preserve the window, just sudo . powershell";
+        Sudo.exe @args;
 }
 
 function hello{
     [CmdletBinding()]
         param(
-                [Parameter(ValueFromPipeline)] 
+                [Parameter(ValueFromPipeline)]
                 [string[]]$my_arg,
                 [Parameter][string[]]$another
              )
-            echo "1"
-            echo $my_arg
-            echo "2"
-            echo $another
+            echo "1";
+            echo $my_arg;
+            echo "2";
+            echo $another;
 }
 
 function oaf{
     ii @args
+}
+
+function make-link ($target, $link){
+    New-Item -Path $link -ItemType SymbolicLink -Value $target
 }
