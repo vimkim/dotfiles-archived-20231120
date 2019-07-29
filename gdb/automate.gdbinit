@@ -1,2 +1,1 @@
 file a.out
-start
