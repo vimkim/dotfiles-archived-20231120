@@ -25,6 +25,17 @@ set disassembly-flavor intel
 # https://stackoverflow.com/questions/49001329/gdb-doesnt-work-on-macos-high-sierra-10-13-3
 #set startup-with-shell off
 
-#source ~/dkenv/runtime_config/gdb/automate.gdbinit
 source ~/dkenv/runtime_config/gdb/gdb-dashboard.gdbinit
+#source ~/dkenv/runtime_config/gdb/automate.gdbinit
+dashboard -output /dev/pts/1
+dashboard stack -style locals True
+dashboard stack -style arguments True
+
+define hookpost-up
+dashboard
+end
+
+define hookpost-down
+dashboard
+end
 
