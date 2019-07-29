@@ -1083,3 +1083,5 @@ alias gdb='gdb -n -q -x ~/dkenv/runtime_config/gdb/.gdbinit'
 alias gps_runtime_config='git -C ~/dkenv/runtime_config add .;
 git -C ~/dkenv/runtime_config commit -v;
 git -C ~/dkenv/runtime_config push origin master'
+
+alias kui='ssh user@kuics.us.to -p 2206'
