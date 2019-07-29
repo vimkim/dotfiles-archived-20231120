@@ -1084,3 +1084,17 @@ alias gdb='gdb -n -q -x ~/dkenv/runtime_config/gdb/.gdbinit'
 alias gps_runtime_config='git -C ~/dkenv/runtime_config add .;
 git -C ~/dkenv/runtime_config commit -v;
 git -C ~/dkenv/runtime_config push origin master'
+
+gitall(){
+    cd ~/dkenv/runtime_config
+    git pull
+    git add .
+    git commit -m "gitall"
+    git push
+
+    cd ~/dkenv
+    git pull
+    git add .
+    git commit -m "gitall"
+    git push
+}
