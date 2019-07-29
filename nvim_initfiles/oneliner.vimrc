@@ -327,7 +327,7 @@ au Cursorhold * checktime
 " I'll install vim-autoread plugin and see how it goes.
 " Now it works. Awesome!
 
-set t_Co=256
+"set t_Co=256
 
 " system clipboard access for wsl vim
 " https://vi.stackexchange.com/questions/12376/vim-on-wsl-synchronize-system-clipboard-set-clipboard-unnamed
