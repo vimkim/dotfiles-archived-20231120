@@ -107,3 +107,10 @@ function oaf{
 function make-link ($target, $link){
     New-Item -Path $link -ItemType SymbolicLink -Value $target
 }
+
+function gitall(){
+    cd ~/dkenv/runtime_config
+    git add .
+    git commit -m "push all"
+    git push
+}
