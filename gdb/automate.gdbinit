@@ -1,0 +1,2 @@
+file a.out
+start

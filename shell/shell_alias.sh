@@ -36,7 +36,7 @@ echo "****************************************************"
 ## echo "****************************************************"
 
 if [[ $iswsl == 'true' ]]; then
-    alias wslali='$myvi ~/dkenv/runtime_config/shell/wsl_alias.sh'
+    alias wslali='eval $myvi ~/dkenv/runtime_config/shell/wsl_alias.sh'
     source ~/dkenv/runtime_config/shell/wsl_alias.sh
 fi
 
@@ -1072,3 +1072,11 @@ hey(){
 xa(){
     ~/dkenv/runtime_config/shell/grep_fzf_vim.py $(grep -nir $@ | fzf)
 }
+
+alias gdbinit='vim ~/dkenv/runtime_config/gdb/.gdbinit'
+
+alias gdb='gdb -x ~/dkenv/runtime_config/gdb/.gdbinit'
+
+alias gps_runtime_config='git -C ~/dkenv/runtime_config add .;
+git -C ~/dkenv/runtime_config commit -v;
+git -C ~/dkenv/runtime_config push origin master'
