@@ -5,6 +5,7 @@ git add .
 git commit -m "logout"
 git push origin master
 
+echo "push dkenv"
 cd ~/dkenv
 git pull
 git add .
