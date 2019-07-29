@@ -13,7 +13,7 @@ endif
 " bug of this plugin: mess up with julia .jl extension.
 
 " scheme
-so ~/runtime_config/nvim_initfiles/plugins/lang/scheme.vim
+so ~/dkenv/runtime_config/nvim_initfiles/plugins/lang/scheme.vim
 
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'AtsushiSakai/julia.vim'
@@ -21,4 +21,4 @@ autocmd BufRead, BufNewFile *.jl set filetype=julia
 " julia-vim plugin is not enough. It does not load auto pairs plugin.
 
 "javascript
-so ~/runtime_config/nvim_initfiles/plugins/lang/js.vim
+so ~/dkenv/runtime_config/nvim_initfiles/plugins/lang/js.vim

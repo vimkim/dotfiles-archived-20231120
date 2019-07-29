@@ -10,6 +10,9 @@ $endif
 
 set show-all-if-ambiguous on
 set completion-ignore-case on
+
+# for bash tab cycle
 TAB: menu-complete
 
 set bell-style none
+

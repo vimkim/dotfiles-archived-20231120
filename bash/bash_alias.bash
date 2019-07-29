@@ -1,3 +1,6 @@
+source ~/dkenv/runtime_config/shell/shell_alias.sh
+bind -f ~/dkenv/runtime_config/shell/.inputrc # for tab cycle completion
+
 if [[ $iswsl == 'true' ]]; then
     if grep -q Microsoft /proc/version; then
         echo "Ubuntu on Windows"

@@ -1,4 +1,66 @@
 " ##### mapping #####
+"vim navigation enable
+noremap n gj|noremap N J
+noremap e gk|noremap E K
+noremap i l|noremap I L
+noremap k n|noremap K N
+noremap f e|noremap F E
+noremap u i|noremap U I
+noremap l u|noremap L U
+noremap t f|noremap T F
+noremap j t|noremap J T
+
+"nnoremap k i|vnoremap k i
+"nnoremap l e|vnoremap l e
+
+"(( enhanced vim navigation
+" colemak neio -> hjkl
+""" noremap n h
+""" noremap e j
+""" noremap i k
+""" noremap o l
+""" "" colemak uhjkl -> ioune
+""" nnoremap u i
+""" nnoremap h n
+""" nnoremap j u
+""" nnoremap k o
+""" nnoremap l e
+"))
+
+"(( arrow key like navigation
+" Insert - o version (new line - k)
+" colemak neuio -> hjkli
+""" noremap n h
+""" noremap e j
+""" noremap u k
+""" noremap i l
+""" nnoremap o i
+""" """ " colemak jkhl -> uone
+""" nnoremap j u
+""" nnoremap k o
+""" nnoremap K O
+""" nnoremap h n
+""" nnoremap l e
+"))
+
+"(( arrow key like navigation
+" insert - k version
+" colemak neuio -> hjkli
+""" nnoremap n h|vnoremap n h|
+""" nnoremap e j|vnoremap e j|
+""" nnoremap u k|vnoremap u k|
+""" nnoremap i l|vnoremap i l|
+""" """ " colemak jkhl -> uone
+""" nnoremap j u|vnoremap j u|
+""" nnoremap k i|vnoremap k i|
+""" nnoremap h n|vnoremap h n|
+""" nnoremap l e|vnoremap l e|
+"""
+""" nnoremap K I|vnoremap K I
+""" nnoremap H N|vnoremap H N
+""" nnoremap L E|vnoremap L E
+""" "))
+
 
 "Useful Tip:
 "- :verbose map <KEY> will tell you if the mapping is already taken by other function.
@@ -358,68 +420,6 @@ nnoremap ,# yyp<c-v>$r-<cr>
 
 " vim as a calculator
 inoremap ;calc <c-o>yiW<End>=<c-r>=<c-r>0<cr>
-
-"vim navigation enable
-noremap n gj|noremap N J
-noremap e gk|noremap E K
-noremap i l|noremap I L
-noremap k n|noremap K N
-noremap f e|noremap F E
-noremap u i|noremap U I
-noremap l u|noremap L U
-noremap t f|noremap T F
-noremap j t|noremap J T
-
-"nnoremap k i|vnoremap k i
-"nnoremap l e|vnoremap l e
-
-"(( enhanced vim navigation
-" colemak neio -> hjkl
-""" noremap n h
-""" noremap e j
-""" noremap i k
-""" noremap o l
-""" "" colemak uhjkl -> ioune
-""" nnoremap u i
-""" nnoremap h n
-""" nnoremap j u
-""" nnoremap k o
-""" nnoremap l e
-"))
-
-"(( arrow key like navigation
-" Insert - o version (new line - k)
-" colemak neuio -> hjkli
-""" noremap n h
-""" noremap e j
-""" noremap u k
-""" noremap i l
-""" nnoremap o i
-""" """ " colemak jkhl -> uone
-""" nnoremap j u
-""" nnoremap k o
-""" nnoremap K O
-""" nnoremap h n
-""" nnoremap l e
-"))
-
-"(( arrow key like navigation
-" insert - k version
-" colemak neuio -> hjkli
-""" nnoremap n h|vnoremap n h|
-""" nnoremap e j|vnoremap e j|
-""" nnoremap u k|vnoremap u k|
-""" nnoremap i l|vnoremap i l|
-""" """ " colemak jkhl -> uone
-""" nnoremap j u|vnoremap j u|
-""" nnoremap k i|vnoremap k i|
-""" nnoremap h n|vnoremap h n|
-""" nnoremap l e|vnoremap l e|
-"""
-""" nnoremap K I|vnoremap K I
-""" nnoremap H N|vnoremap H N
-""" nnoremap L E|vnoremap L E
-""" "))
 
 nnoremap ,ls :ls<cr>
 

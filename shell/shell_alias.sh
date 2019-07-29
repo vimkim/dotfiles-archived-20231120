@@ -9,7 +9,7 @@ echo "\$SHLVL: $SHLVL"
 echo "****************************************************"
 
 ## # Detect OS # this part is modularized.
-## # Check out ~/runtime_config/zsh/detect_OS.zsh
+## # Check out ~/dkenv/runtime_config/zsh/detect_OS.zsh
 ## platform='unknown'
 ## distro='unknown'
 ## unamestr=$(uname)
@@ -36,8 +36,8 @@ echo "****************************************************"
 ## echo "****************************************************"
 
 if [[ $iswsl == 'true' ]]; then
-    alias wslali='$myvi ~/runtime_config/shell/wsl_alias.sh'
-    source ~/runtime_config/shell/wsl_alias.sh
+    alias wslali='eval $myvi ~/dkenv/runtime_config/shell/wsl_alias.sh'
+    source ~/dkenv/runtime_config/shell/wsl_alias.sh
 fi
 
 
@@ -68,7 +68,8 @@ vimexist='false'
 #if hash vim 2>/dev/null; then # hash not working. replace with type
 if type vim 2>/dev/null; then
     vimexist='true'
-    myvi='vim'
+    alias vim='vim -u ~/dkenv/runtime_config/vim/.vimrc -i ~/dkenv/.vim/viminfo'
+    myvi='vim -u ~/dkenv/runtime_config/vim/.vimrc -i ~/dkenv/.vim/viminfo'
 fi
 echo "\$vimexist: $vimexist"
 
@@ -255,13 +256,18 @@ elif [[ $platform == "linux" ]]; then
         alias egrep='egrep --color=auto'
     fi
 fi
+
+alias ls='ls --color -AF'
 alias la='ls -A' # -A is cleaner than -a imo. (-A does not include . and ..)
-alias ll='ls -la' # however, when observing permissions, -a is more useful.
-alias lld='ls -lad' # for directory. If without -d, it shows the contents of the directory instead of the directory itself.
+alias ll='ls -lA' # however, when observing permissions, -a is more useful.
+alias lld='ls -lAd' # for directory. If without -d, it shows the contents of the directory instead of the directory itself.
+alias l='ls -A'
+
+# find symbolic links
 llsy(){
     ls -la $@ | grep " \->"
 }
-alias l='ls -a'
+
 
 # vim config. If nvim exists, use it
 #viavailable(){
@@ -291,48 +297,49 @@ alias vwd='vim_with_date'
 alias mwd='mkdir_with_date'
 
 # rc function
-alias zshrc='$myvi ~/.zshrc'
-alias bashrc='$myvi ~/.bashrc'
-alias vzshrc='vim ~/.zshrc'
-alias vbashrc='vim ~/.bashrc'
-alias nvzshrc='nvim ~/.zshrc'
-alias nvbashrc='nvim ~/.bashrc'
-alias mvzshrc='mvim ~/.zshrc'
-alias mvbashrc='mvim ~/.bashrc'
+alias zshrc="eval $myvi ~/.zshrc"
+alias zlogout="eval $myvi ~/dkenv/runtime_config/zsh/.zlogout"
+alias bashrc="eval $myvi ~/.bashrc"
+alias vzshrc="vim ~/.zshrc"
+alias vbashrc="vim ~/.bashrc"
+alias nvzshrc="nvim ~/.zshrc"
+alias nvbashrc="nvim ~/.bashrc"
+alias mvzshrc="mvim ~/.zshrc"
+alias mvbashrc="mvim ~/.bashrc"
 # shell alias management shortcut
-alias ali='$=myvi ~/runtime_config/shell/shell_alias.sh' # this works for zsh, but not in bash. Tips from: https://stackoverflow.com/questions/8299610/zsh-command-not-found-for-editor
-alias ali='eval $myvi ~/runtime_config/shell/shell_alias.sh' # This works for zsh and bash.
-alias ali="$myvi ~/runtime_config/shell/shell_alias.sh" # double quote works. Single quote doesn't. This works for both zsh and bash.
+alias ali='$=myvi ~/dkenv/runtime_config/shell/shell_alias.sh' # this works for zsh, but not in bash. Tips from: https://stackoverflow.com/questions/8299610/zsh-command-not-found-for-editor
+alias ali='eval $myvi ~/dkenv/runtime_config/shell/shell_alias.sh' # This works for zsh and bash.
+alias ali="eval $myvi ~/dkenv/runtime_config/shell/shell_alias.sh" # double quote works. Single quote doesn't. This works for both zsh and bash.
 
-alias vali='vim ~/runtime_config/shell/shell_aliases.sh'
-alias nali='nvim ~/runtime_config/shell/shell_aliases.sh'
-alias mali='mvim ~/runtime_config/shell/shell_aliases.sh'
+alias vali='vim ~/dkenv/runtime_config/shell/shell_aliases.sh'
+alias nali='nvim ~/dkenv/runtime_config/shell/shell_aliases.sh'
+alias mali='mvim ~/dkenv/runtime_config/shell/shell_aliases.sh'
 
-alias cua='$myvi ~/runtime_config/shell/temp_alias.sh'
+alias cua='eval $myvi ~/dkenv/runtime_config/shell/temp_alias.sh'
 alias cuali='cua'
 alias custum_alias='cua'
-alias socua='source ~/runtime_config/shell/temp_alias.sh'
-alias socus='source ~/runtime_config/shell/temp_alias.sh'
+alias socua='source ~/dkenv/runtime_config/shell/temp_alias.sh'
+alias socus='source ~/dkenv/runtime_config/shell/temp_alias.sh'
 
 alias sozsh='source ~/.zshrc'
 alias sobash='source ~/.bashrc'
-alias soali='source ~/runtime_config/shell/shell_alias.sh'
-source ~/runtime_config/shell/temp_alias.sh
+alias soali='source ~/dkenv/runtime_config/shell/shell_alias.sh'
+source ~/dkenv/runtime_config/shell/temp_alias.sh
 
 # vimrc function
-alias vimrc="$myvi ~/runtime_config/vim/.vimrc"
-alias vvimrc='vim ~/runtime_config/vim/.vimrc'
-alias nvvimrc="nvim ~/runtime_config/vim/.vimrc"
-alias mvimrc='mvim ~/runtime_config/vim/.vimrc'
-alias nvimrc="$myvi ~/runtime_config/nvim/init.vim"
-alias vnvimrc='vim ~/runtime_config/nvim/init.vim'
-alias mvnvimrc='mvim ~/runtime_config/nvim/init.vim'
-alias nvnvimrc="nvim ~/runtime_config/nvim/init.vim"
-alias initel='emacs ~/runtime_config/emacs/init.el'
-alias ginitel='gemacs ~/runtime_config/emacs/init.el'
-alias enitel='emacsclient ~/runtime_config/emacs/init.el'
-alias initel='emacs ~/runtime_config/emacs/init.el'
-alias vinitel="$myvi ~/runtime_config/emacs/init.el"
+alias vimrc="eval $myvi ~/dkenv/runtime_config/vim/.vimrc"
+alias vvimrc='vim ~/dkenv/runtime_config/vim/.vimrc'
+alias nvvimrc="nvim ~/dkenv/runtime_config/vim/.vimrc"
+alias mvimrc='mvim ~/dkenv/runtime_config/vim/.vimrc'
+alias nvimrc="eval $myvi ~/dkenv/runtime_config/nvim/init.vim"
+alias vnvimrc='vim ~/dkenv/runtime_config/nvim/init.vim'
+alias mvnvimrc='mvim ~/dkenv/runtime_config/nvim/init.vim'
+alias nvnvimrc="nvim ~/dkenv/runtime_config/nvim/init.vim"
+alias initel='emacs ~/dkenv/runtime_config/emacs/init.el'
+alias ginitel='gemacs ~/dkenv/runtime_config/emacs/init.el'
+alias enitel='emacsclient ~/dkenv/runtime_config/emacs/init.el'
+alias initel='emacs ~/dkenv/runtime_config/emacs/init.el'
+alias vinitel="eval $myvi ~/dkenv/runtime_config/emacs/init.el"
 alias initeldebug='initel --debug-init'
 
 # accessibility aliases
@@ -403,9 +410,9 @@ gam(){
 
 alias git_show_merge_conflict='git diff --name-only --diff-filter=U'
 alias gumd='git diff --diff-filter=U' # unmerged commits
-alias gerase='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
-alias gitcre='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
-alias gcre='git credential-osxkeychain erase < ~/runtime_config/gitcredential.txt'
+alias gerase='git credential-osxkeychain erase < ~/dkenv/runtime_config/gitcredential.txt'
+alias gitcre='git credential-osxkeychain erase < ~/dkenv/runtime_config/gitcredential.txt'
+alias gcre='git credential-osxkeychain erase < ~/dkenv/runtime_config/gitcredential.txt'
 # https://stackoverflow.com/questions/6919121/why-are-there-2-ways-to-unstage-a-file-in-git
 alias git_stage_removal='git rm --cached' # leaving you with an untracked file
 alias git_undo_last_commit='git reset --soft HEAD~'
@@ -437,6 +444,8 @@ alias git_push_all='git push --all'
 alias git_log_all='git log --oneline --graph --decorate --all'
 alias gla='git_log_all'
 alias git_gui_graph='gitk --all'
+
+alias git_recover_lost_commit='git reflog' # detached head problem
 
 # https://stackoverflow.com/questions/4783599/rebasing-a-git-merge-commit
 # https://stackoverflow.com/questions/15915430/what-exactly-does-gits-rebase-preserve-merges-do-and-why
@@ -509,21 +518,21 @@ alias llx="ssh dkim87@linux.cs.mcgill.ca"
 alias luu="ssh dkim87@ubuntu.cs.mcgill.ca"
 
 # personal cd aliases
-alias runtime_config='cd ~/runtime_config; ls -a'
+alias runtime_config='cd ~/dkenv/runtime_config; ls -a'
 alias myman='cd ~/mymanual; ls -a'
 alias mym='cd ~/mymanual; ls -a'
 alias anki='cd ~/anki/; ls -a'
 alias notetaking='cd ~/notetaking/; ls -a'
 alias project='cd ~/notetaking/1_fine482/project/; ls -a'
-#alias mysnips='cd ~/runtime_config/mysnips/UltiSnips; ls -a'
-alias snip='cd ~/runtime_config/snippets; ls -a'
+#alias mysnips='cd ~/dkenv/runtime_config/mysnips/UltiSnips; ls -a'
+alias snip='cd ~/dkenv/runtime_config/snippets; ls -a'
 
 # personal edit aliases
-alias tmuxconf='$myvi ~/runtime_config/tmux/.tmux.conf'
-alias keep='$myvi ~/Google\ Drive/keep_offline.md'
-alias todo='$myvi ~/Google\ Drive/keep_offline.md'
-alias todostack='$myvi ~/.todostack.md'
-alias toask='$myvi ~/Google\ Drive/ask_offline.md'
+alias tmuxconf='eval $myvi ~/dkenv/runtime_config/tmux/.tmux.conf'
+alias keep='eval $myvi ~/Google\ Drive/keep_offline.md'
+alias todo='eval $myvi ~/Google\ Drive/keep_offline.md'
+alias todostack='eval $myvi ~/.todostack.md'
+alias toask='eval $myvi ~/Google\ Drive/ask_offline.md'
 
 # personal cat aliases
 
@@ -605,9 +614,9 @@ fi
 alias shs="ssh -p '1004' 's2016112648@linux.mme.dongguk.edu'" # not work
 alias shs2='expect ~/exp.sh'
 
-alias skim-pdf-bg-color='osascript ~/runtime_config/skim-pdf-bgcolor.scpt'
+alias skim-pdf-bg-color='osascript ~/dkenv/runtime_config/skim-pdf-bgcolor.scpt'
 
-alias unco='uncommitted ~/hs-quest ~/mymanual ~/mygitbooks ~/runtime_config ~/praclang'
+alias unco='uncommitted ~/hs-quest ~/mymanual ~/mygitbooks ~/dkenv/runtime_config ~/praclang'
 
 alias music='$myed ~/Google\ Drive/song-list.md'
 alias song='$myed ~/Google\ Drive/song-list.md'
@@ -635,7 +644,7 @@ alias mousewriteo='defaults write .GlobalPreferences com.apple.mouse.scaling 1'
 
 alias books='cl ~/Google\ Drive/books/comp'
 
-alias voca='$myvi ~/Google\ Drive/study/voca/teps1.csv'
+alias voca='eval $myvi ~/Google\ Drive/study/voca/teps1.csv'
 
 
 alias javarun='javac Main.java; java Main'
@@ -664,16 +673,16 @@ alias run_js="run_what='js'"
 alias run_node="run_what='node'"
 alias run_r="run_what='r'"
 
-alias cpmake="cp ~/runtime_config/make/Makefile_C_general ./Makefile"
-alias cppmake="cp ~/runtime_config/make/Makefile_CPP_general ./Makefile"
+alias cpmake="cp ~/dkenv/runtime_config/make/Makefile_C_general ./Makefile"
+alias cppmake="cp ~/dkenv/runtime_config/make/Makefile_CPP_general ./Makefile"
 mcl(){
     echo "running mcl..."
     if [[ "$run_what" == 'c' ]]; then
-        make --makefile=~/runtime_config/make/Makefile_C_general clean
+        make --makefile=~/dkenv/runtime_config/make/Makefile_C_general clean
         /bin/rm -rf *.dSYM
         /bin/rm tags
     elif [[ "$run_what" == 'cpp' ]]; then
-        make --makefile=~/runtime_config/make/Makefile_CPP_general clean
+        make --makefile=~/dkenv/runtime_config/make/Makefile_CPP_general clean
         /bin/rm -rf *.dSYM
         /bin/rm tags
     elif [[ "$run_what" == 'java' ]]; then
@@ -691,12 +700,12 @@ m(){
     echo "this is m function."
     if [[ "$run_what" == 'c' ]]; then
         echo "this is make for c"
-        #make --makefile=~/runtime_config/make/Makefile_C_general
+        #make --makefile=~/dkenv/runtime_config/make/Makefile_C_general
         mcl
         gccm  *.c && ./a.out
     elif [[ "$run_what" == 'cpp' ]]; then
         echo "this is make for cpp"
-        #make --makefile=~/runtime_config/make/Makefile_CPP_general
+        #make --makefile=~/dkenv/runtime_config/make/Makefile_CPP_general
         g++m *.cpp && ./a.out
     elif [[ "$run_what" == 'asm' ]]; then
         echo "this is make for asm"
@@ -753,12 +762,12 @@ alias ei='e main.*~main.o~main.h~main.class'
 # (zsh: unsetopt CASE_GLOB)
 # (bash: shopt -s nocaseglob)
 # main also recognizes Main
-alias vm='$myvi main.*~main.o~main.h~main.class~main.pyc'
+alias vm='eval $myvi main.*~main.o~main.h~main.class~main.pyc'
 # In zsh, you can make a specific command case insensitive.
-#alias vm='$myvi (#i)main.*~main.o~main.h~main.class'
+#alias vm='eval $myvi (#i)main.*~main.o~main.h~main.class'
 
-alias vt='$myvi test*'
-alias vr='$myvi result*'
+alias vt='eval $myvi test*'
+alias vr='eval $myvi result*'
 alias atr='./a.out > result.txt'
 
 alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?
@@ -839,9 +848,9 @@ alias dos2utf='iconv -c -f euc-kr -t utf-8'
 alias dos2utf_title='convmv -f euc-kr -t utf-8 --notest'
 alias dinner='python3 ~/praclang/py/dinner_reco/main.py'
 alias di='dinner'
-alias vim_basic='vim -u ~/runtime_config/vim/.vimrc_basic'
-alias vimrc_basic='vim ~/runtime_config/vim/.vimrc_basic'
-alias vimrc_basic_with_vim_basic='vim -u ~/runtime_config/vim/.vimrc_basic ~/runtime_config/vim/.vimrc_basic'
+alias vim_basic='vim -u ~/dkenv/runtime_config/vim/.vimrc_basic'
+alias vimrc_basic='vim ~/dkenv/runtime_config/vim/.vimrc_basic'
+alias vimrc_basic_with_vim_basic='vim -u ~/dkenv/runtime_config/vim/.vimrc_basic ~/dkenv/runtime_config/vim/.vimrc_basic'
 
 # for italic tmux
 # TERM=xterm-256color-italic "bug
@@ -886,10 +895,10 @@ if [[ $platform == 'macos' ]]; then
 fi
 
 # my library
-source ~/runtime_config/shell/mylib_alias.sh
-alias vmylib='$myvi ~/runtime_config/shell/mylib_alias.sh'
+source ~/dkenv/runtime_config/shell/mylib_alias.sh
+alias vmylib='eval $myvi ~/dkenv/runtime_config/shell/mylib_alias.sh'
 
-alias idea='$myvi ~/Google\ Drive/idea/etc.txt'
+alias idea='eval $myvi ~/Google\ Drive/idea/etc.txt'
 
 alias clm='clisp main.lisp'
 alias lp='clm'
@@ -906,11 +915,11 @@ alias psall='ps -ef'
 alias ps_all='ps -ef'
 
 alias spac='sudo pacman'
-alias spac_install='sudo pacman -S'
+alias spac-install='sudo pacman -S'
+alias spac-search='pacman -Ss'
+alias spac-update='sudo pacman -Syu'
+alias spac_info='pacman -Si'
 alias spac_search='pacman -Ss'
-alias spac_update='sudo pacman -Syu'
-alias pacman_info='pacman -Si'
-alias pacman_search='pacman -Ss'
 
 alias mount_shared_folder='mount -t vboxsf comp /media/shared'
 
@@ -989,37 +998,29 @@ if [[ $platform == "macos" ]]; then
     alias zl='z -l'
 fi
 
-alias fzfrc="$myvi ~/runtime_config/shell/fzf.sh"
-alias zshcus="$myvi ~/runtime_config/zsh/zsh_custom.zsh"
+alias fzfrc="eval $myvi ~/dkenv/runtime_config/shell/fzf.sh"
+alias zshcus="eval $myvi ~/dkenv/runtime_config/zsh/zsh_custom.zsh"
 
 alias ca='cda' # cd advanced
 
 # export FZF_DEFAULT_COMMAND='fd --type f'
-cf() { # find based
+cx() { # find based
   local dir
-  dir=$( fd --type d | fzf +m) &&
+  dir=$( fd --type d -H | fzf +m) &&
   cl "$dir"
 }
-
-alias fc='cf'
-alias cx='cf'
-alias xc='cf'
 
 # frecency based (frequency + recency)
 alias cz='cl $(fasd -dl | fzf)'
 alias zc='cz'
 
 # find based
-vf(){
+vx(){
     local file
-    file=$( fd --type f | fzf +m ) &&
+    file=$( fd --type f -H | fzf +m ) &&
     $myvi $file
 }
-
-#alias vf='$myvi $(fzf)' # vim + fzf
-alias fv='vf'
-alias vx='vf'
-alias xv='vf'
+#alias vf='eval $myvi $(fzf)' # vim + fzf
 # use fasd instead of rupa/z and meain/v
 ##### vl='~/.zplug/repos/meain/v/v'
 ##### vz(){
@@ -1034,7 +1035,6 @@ vz(){ # vim + fasd + fzf
     echo "$file"
     [[ ! -z "$file" ]] && $myvi "$file"
 }
-alias zv='vz'
 
 # cv with frecency.
 zcv(){ # cd + vim + fasd + fzf
@@ -1057,6 +1057,8 @@ alias ruby_shell='irb'
 
 alias detour_dns='sudo ifconfig en0 mtu 400'
 alias detour_dns_recover='sudo ifconfig en0 mtu 1500'
+alias detour_dns_linux='sudo ip link set dev wlo1 mtu 400'
+alias detour_dns_linux='sudo ip link set dev wlo1 mtu 1500'
 alias i3conf='vim ~/.config/i3/config'
 
 alias soi3='i3-msg reload'
@@ -1064,3 +1066,20 @@ alias restarti3='i3-msg restart'
 
 alias sox='xrdb ~/.Xresources'
 alias xre='vim ~/.Xresources'
+
+hey(){
+    echo "why"
+    return "hello"
+}
+
+xa(){
+    ~/dkenv/runtime_config/shell/grep_fzf_vim.py $(grep -nir $@ | fzf)
+}
+
+alias gdbinit='vim ~/dkenv/runtime_config/gdb/.gdbinit'
+
+alias gdb='gdb -n -q -x ~/dkenv/runtime_config/gdb/.gdbinit'
+
+alias gps_runtime_config='git -C ~/dkenv/runtime_config add .;
+git -C ~/dkenv/runtime_config commit -v;
+git -C ~/dkenv/runtime_config push origin master'
