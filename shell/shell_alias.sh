@@ -297,9 +297,9 @@ alias vwd='vim_with_date'
 alias mwd='mkdir_with_date'
 
 # rc function
-alias zshrc="$myvi ~/.zshrc"
-alias zlogout="$myvi ~/dkenv/runtime_config/zsh/.zlogout"
-alias bashrc="$myvi ~/.bashrc"
+alias zshrc="eval $myvi ~/.zshrc"
+alias zlogout="eval $myvi ~/dkenv/runtime_config/zsh/.zlogout"
+alias bashrc="eval $myvi ~/.bashrc"
 alias vzshrc="vim ~/.zshrc"
 alias vbashrc="vim ~/.bashrc"
 alias nvzshrc="nvim ~/.zshrc"
@@ -309,13 +309,13 @@ alias mvbashrc="mvim ~/.bashrc"
 # shell alias management shortcut
 alias ali='$=myvi ~/dkenv/runtime_config/shell/shell_alias.sh' # this works for zsh, but not in bash. Tips from: https://stackoverflow.com/questions/8299610/zsh-command-not-found-for-editor
 alias ali='eval $myvi ~/dkenv/runtime_config/shell/shell_alias.sh' # This works for zsh and bash.
-alias ali="$myvi ~/dkenv/runtime_config/shell/shell_alias.sh" # double quote works. Single quote doesn't. This works for both zsh and bash.
+alias ali="eval $myvi ~/dkenv/runtime_config/shell/shell_alias.sh" # double quote works. Single quote doesn't. This works for both zsh and bash.
 
 alias vali='vim ~/dkenv/runtime_config/shell/shell_aliases.sh'
 alias nali='nvim ~/dkenv/runtime_config/shell/shell_aliases.sh'
 alias mali='mvim ~/dkenv/runtime_config/shell/shell_aliases.sh'
 
-alias cua='$myvi ~/dkenv/runtime_config/shell/temp_alias.sh'
+alias cua='eval $myvi ~/dkenv/runtime_config/shell/temp_alias.sh'
 alias cuali='cua'
 alias custum_alias='cua'
 alias socua='source ~/dkenv/runtime_config/shell/temp_alias.sh'
@@ -327,11 +327,11 @@ alias soali='source ~/dkenv/runtime_config/shell/shell_alias.sh'
 source ~/dkenv/runtime_config/shell/temp_alias.sh
 
 # vimrc function
-alias vimrc="$myvi ~/dkenv/runtime_config/vim/.vimrc"
+alias vimrc="eval $myvi ~/dkenv/runtime_config/vim/.vimrc"
 alias vvimrc='vim ~/dkenv/runtime_config/vim/.vimrc'
 alias nvvimrc="nvim ~/dkenv/runtime_config/vim/.vimrc"
 alias mvimrc='mvim ~/dkenv/runtime_config/vim/.vimrc'
-alias nvimrc="$myvi ~/dkenv/runtime_config/nvim/init.vim"
+alias nvimrc="eval $myvi ~/dkenv/runtime_config/nvim/init.vim"
 alias vnvimrc='vim ~/dkenv/runtime_config/nvim/init.vim'
 alias mvnvimrc='mvim ~/dkenv/runtime_config/nvim/init.vim'
 alias nvnvimrc="nvim ~/dkenv/runtime_config/nvim/init.vim"
@@ -339,7 +339,7 @@ alias initel='emacs ~/dkenv/runtime_config/emacs/init.el'
 alias ginitel='gemacs ~/dkenv/runtime_config/emacs/init.el'
 alias enitel='emacsclient ~/dkenv/runtime_config/emacs/init.el'
 alias initel='emacs ~/dkenv/runtime_config/emacs/init.el'
-alias vinitel="$myvi ~/dkenv/runtime_config/emacs/init.el"
+alias vinitel="eval $myvi ~/dkenv/runtime_config/emacs/init.el"
 alias initeldebug='initel --debug-init'
 
 # accessibility aliases
@@ -528,11 +528,11 @@ alias project='cd ~/notetaking/1_fine482/project/; ls -a'
 alias snip='cd ~/dkenv/runtime_config/snippets; ls -a'
 
 # personal edit aliases
-alias tmuxconf='$myvi ~/dkenv/runtime_config/tmux/.tmux.conf'
-alias keep='$myvi ~/Google\ Drive/keep_offline.md'
-alias todo='$myvi ~/Google\ Drive/keep_offline.md'
-alias todostack='$myvi ~/.todostack.md'
-alias toask='$myvi ~/Google\ Drive/ask_offline.md'
+alias tmuxconf='eval $myvi ~/dkenv/runtime_config/tmux/.tmux.conf'
+alias keep='eval $myvi ~/Google\ Drive/keep_offline.md'
+alias todo='eval $myvi ~/Google\ Drive/keep_offline.md'
+alias todostack='eval $myvi ~/.todostack.md'
+alias toask='eval $myvi ~/Google\ Drive/ask_offline.md'
 
 # personal cat aliases
 
@@ -644,7 +644,7 @@ alias mousewriteo='defaults write .GlobalPreferences com.apple.mouse.scaling 1'
 
 alias books='cl ~/Google\ Drive/books/comp'
 
-alias voca='$myvi ~/Google\ Drive/study/voca/teps1.csv'
+alias voca='eval $myvi ~/Google\ Drive/study/voca/teps1.csv'
 
 
 alias javarun='javac Main.java; java Main'
@@ -762,12 +762,12 @@ alias ei='e main.*~main.o~main.h~main.class'
 # (zsh: unsetopt CASE_GLOB)
 # (bash: shopt -s nocaseglob)
 # main also recognizes Main
-alias vm='$myvi main.*~main.o~main.h~main.class~main.pyc'
+alias vm='eval $myvi main.*~main.o~main.h~main.class~main.pyc'
 # In zsh, you can make a specific command case insensitive.
-#alias vm='$myvi (#i)main.*~main.o~main.h~main.class'
+#alias vm='eval $myvi (#i)main.*~main.o~main.h~main.class'
 
-alias vt='$myvi test*'
-alias vr='$myvi result*'
+alias vt='eval $myvi test*'
+alias vr='eval $myvi result*'
 alias atr='./a.out > result.txt'
 
 alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?
@@ -896,9 +896,9 @@ fi
 
 # my library
 source ~/dkenv/runtime_config/shell/mylib_alias.sh
-alias vmylib='$myvi ~/dkenv/runtime_config/shell/mylib_alias.sh'
+alias vmylib='eval $myvi ~/dkenv/runtime_config/shell/mylib_alias.sh'
 
-alias idea='$myvi ~/Google\ Drive/idea/etc.txt'
+alias idea='eval $myvi ~/Google\ Drive/idea/etc.txt'
 
 alias clm='clisp main.lisp'
 alias lp='clm'
@@ -998,8 +998,8 @@ if [[ $platform == "macos" ]]; then
     alias zl='z -l'
 fi
 
-alias fzfrc="$myvi ~/dkenv/runtime_config/shell/fzf.sh"
-alias zshcus="$myvi ~/dkenv/runtime_config/zsh/zsh_custom.zsh"
+alias fzfrc="eval $myvi ~/dkenv/runtime_config/shell/fzf.sh"
+alias zshcus="eval $myvi ~/dkenv/runtime_config/zsh/zsh_custom.zsh"
 
 alias ca='cda' # cd advanced
 
@@ -1020,7 +1020,7 @@ vx(){
     file=$( fd --type f -H | fzf +m ) &&
     $myvi $file
 }
-#alias vf='$myvi $(fzf)' # vim + fzf
+#alias vf='eval $myvi $(fzf)' # vim + fzf
 # use fasd instead of rupa/z and meain/v
 ##### vl='~/.zplug/repos/meain/v/v'
 ##### vz(){
