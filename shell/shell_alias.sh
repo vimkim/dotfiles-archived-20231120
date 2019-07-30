@@ -1086,6 +1086,7 @@ git -C ~/dkenv/runtime_config commit -v;
 git -C ~/dkenv/runtime_config push origin master'
 
 alias kui='ssh user@kuics.us.to -p 2206'
+alias kui2='ssh user@kuics.us.to -p 2207'
 
 gitall(){
     cd ~/dkenv/runtime_config
