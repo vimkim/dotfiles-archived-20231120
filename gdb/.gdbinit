@@ -26,9 +26,7 @@ set disassembly-flavor intel
 #set startup-with-shell off
 
 source ~/dkenv/runtime_config/gdb/gdb-dashboard.gdbinit
-source ~/dkenv/runtime_config/gdb/automate.gdbinit
-#dashboard -output /dev/pts/1
-#dashboard -output /dev/pts/1
+#source ~/dkenv/runtime_config/gdb/automate.gdbinit
 #dashboard -output /dev/pts/1
 dashboard stack -style locals True
 dashboard stack -style arguments True
