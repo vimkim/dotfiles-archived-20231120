@@ -1088,7 +1088,7 @@ git -C ~/dkenv/runtime_config push origin master'
 alias kui='ssh user@kuics.us.to -p 2206'
 alias kui2='ssh user@kuics.us.to -p 2207'
 
-gitall(){
+_gitall(){
     cd ~/dkenv/runtime_config
     git pull
     git add .
@@ -1101,3 +1101,5 @@ gitall(){
     git commit -m "gitall"
     git push
 }
+
+alias gitall="_gitall &!"
