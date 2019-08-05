@@ -1,4 +1,5 @@
-##st### Shell Aliases #####
+alias gh='cl ~/how2heap/glibc_2.25'
+####### Shell Aliases #####
 # Common aliases which works for both zsh and bash (and probably others too).
 # Be careful. When assigning variable, no space between variable name and '=' sign. Spaces matter in scripting.
 
@@ -501,7 +502,7 @@ alias rsc='Rscript'
 # sage alias
 if [[ $platform == 'macos' ]]; then
     # installed by brew cask. Now no alias required.
-    ;
+    :
 fi
 
 # LaTeX
@@ -1083,3 +1084,22 @@ alias gdb='gdb -n -q -x ~/dkenv/runtime_config/gdb/.gdbinit'
 alias gps_runtime_config='git -C ~/dkenv/runtime_config add .;
 git -C ~/dkenv/runtime_config commit -v;
 git -C ~/dkenv/runtime_config push origin master'
+
+alias kui='ssh user@kuics.us.to -p 2206'
+alias kui2='ssh user@kuics.us.to -p 2207'
+
+_gitall(){
+    cd ~/dkenv/runtime_config
+    git pull
+    git add .
+    git commit -m "gitall"
+    git push
+
+    cd ~/dkenv
+    git pull
+    git add .
+    git commit -m "gitall"
+    git push
+}
+
+alias gitall="_gitall &!"
