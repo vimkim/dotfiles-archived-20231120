@@ -38,12 +38,10 @@ set backspace=indent,eol,start
 
 set encoding=utf-8
 set fileencoding=utf-8
-" GUI
-if has("mac")
-    "set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
-    set guifont=Menlo:h22
-    set guifontwide=NanumGothic:h22
-endif
+
+" gvim gui font
+set guifont=Fira_Code_Retina:h16:cANSI:qDRAFT
+set guifontwide=NanumGothic:h22
 
 
 " visual bell
@@ -170,7 +168,7 @@ if !isdirectory($HOME . "/dkenv/.vim/undodir")
     call mkdir($HOME . "/dkenv/.vim/undodir", "p")
 endif
 set undofile
-set undodir=~/.vim/undodir
+set undodir=~/dkenv/.vim/undodir
 
 " VIEWDIR
 if !isdirectory($HOME . "/dkenv/.vim/viewdir")
