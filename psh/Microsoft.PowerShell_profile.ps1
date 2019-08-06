@@ -114,10 +114,13 @@ function gst(){
 
 function gitall(){
     cd ~/dkenv/runtime_config
+    git pull
     git add .
     git commit -m "push all"
     git push
+
     cd ~/dkenv
+    git pull
     git add .
     git commit -m "push all"
     git push
