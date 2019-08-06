@@ -41,7 +41,9 @@ set fileencoding=utf-8
 
 " gvim gui font
 set guifont=Fira_Code_Retina:h16:cANSI:qDRAFT
-set guifontwide=NanumGothic:h22
+if has('mac')
+    set guifontwide=NanumGothic:h22
+endif
 
 
 " visual bell
