@@ -6,13 +6,16 @@
 #userprofile="${userprofile_mount}${win_userprofile_dir//\\//}"
 
 #win_userprofile="$(cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null)"
-win_userprofile_dir="${win_userprofile#*:}"
-userprofile="/mnt/c/${win_userprofile_dir//\\//}"
-echo $win_userprofile
-echo $win_userprofile_dir
-echo $userprofile
+#win_userprofile_dir="${win_userprofile#*:}"
+#userprofile="/mnt/c/${win_userprofile_dir//\\//}"
+#echo $win_userprofile
+#echo $win_userprofile_dir
+#echo $userprofile
 
-alias home='cl $userprofile'
+# update
+export WINHOME=$(wslpath $(cmd.exe /C "echo %USERPROFILE%") | tr -d '\r')
+
+alias home='cl $WINHOME'
 alias h='home'
 alias cdrive='cl /mnt/c'
 

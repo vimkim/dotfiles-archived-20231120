@@ -130,9 +130,13 @@ myed=($myvi) # emacs returned
 
 # default editor (required for tmuxinator somehow)
 if [[ $platform == 'linux' ]]; then
-    export EDITOR=/usr/bin/$myed
-    export VISUAL=/usr/bin/$myed
-    export GIT_EDITOR='$(which vim)'
+    #export EDITOR=/usr/bin/$myed
+    #export VISUAL=/usr/bin/$myed
+    #export GIT_EDITOR='$(which vim)'
+    export EDITOR=/usr/bin/vim
+    export VISUAL=/usr/bin/vim
+    export GIT_EDITOR=/usr/bin/vim
+    echo "hello!"
 elif [[ $platform == 'macos' ]]; then
     export EDITOR=/usr/local/bin/$myed
     export VISUAL=/usr/local/bin/$myed
@@ -1079,7 +1083,7 @@ xa(){
 
 alias gdbinit='vim ~/dkenv/runtime_config/gdb/.gdbinit'
 
-alias gdb='gdb -n -q -x ~/dkenv/runtime_config/gdb/.gdbinit'
+alias gdb='gdb -nh -q -x ~/dkenv/runtime_config/gdb/.gdbinit -iex "add-auto-load-safe-path ."'
 
 alias gps_runtime_config='git -C ~/dkenv/runtime_config add .;
 git -C ~/dkenv/runtime_config commit -v;

@@ -1,3 +1,4 @@
+set auto-load safe-path /
 set disassembly-flavor intel
 
 # for sierra
@@ -27,7 +28,7 @@ set disassembly-flavor intel
 
 source ~/dkenv/runtime_config/gdb/gdb-dashboard.gdbinit
 #source ~/dkenv/runtime_config/gdb/automate.gdbinit
-dashboard -output /dev/pts/6
+#dashboard -output /dev/pts/6
 dashboard stack -style locals True
 dashboard stack -style arguments True
 
