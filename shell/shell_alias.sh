@@ -1,3 +1,12 @@
+gitpullall(){
+    cd ~/dkenv/runtime_config
+    git pull
+    cd ~/dkenv
+    git pull
+}
+
+gitpullall &
+
 alias gh='cl ~/how2heap/glibc_2.25'
 ####### Shell Aliases #####
 # Common aliases which works for both zsh and bash (and probably others too).
@@ -1023,7 +1032,7 @@ alias zc='cz'
 vx(){
     local file
     file=$( fd --type f -H | fzf +m ) &&
-    $myvi $file
+    eval $myvi $file
 }
 #alias vf='eval $myvi $(fzf)' # vim + fzf
 # use fasd instead of rupa/z and meain/v
@@ -1107,3 +1116,5 @@ _gitall(){
 }
 
 alias gitall="_gitall &!"
+
+alias sotmux="tmux source-file ~/.tmux.conf"
