@@ -14,7 +14,7 @@ function Reload-Profile{
             Write-Verbose "Running $_"
                 . $_
         }
-    }    
+    }
 }
 Set-Alias soali Reload-Profile
 
@@ -22,7 +22,7 @@ function _cd{
 # for pipelines to work
     [CmdletBinding()]
         param(
-                [Parameter(ValueFromPipeline)] 
+                [Parameter(ValueFromPipeline)]
                 $_cd_paths
              )
             if($_cd_paths -eq $null){
@@ -43,14 +43,14 @@ Import-Module PSReadLine
 Set-PSReadLineOption -EditMode Emacs
 function ch{c $home}
 function cmdh{c $env:cmder_root}
-function cl{ 
+function cl{
     [CmdletBinding()]
         param(
-                [Parameter(ValueFromPipeline)] 
+                [Parameter(ValueFromPipeline)]
                 $_cd_paths
              )
             _cd $_cd_paths
-            _ls 
+            _ls
 }
 function c{ cl @args; }
 Set-Alias v vim
@@ -125,4 +125,12 @@ function gitall(){
     git commit -m "push all"
     git push
 }
+
+
+set-alias ex exit
+
+function _gdb(){
+    gdb.exe -x ~/.gdbinit @args
+}
+set-alias gdb _gdb
 
