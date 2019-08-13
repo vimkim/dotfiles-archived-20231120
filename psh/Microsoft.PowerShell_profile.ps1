@@ -130,7 +130,18 @@ function gitall(){
 set-alias ex exit
 
 function _gdb(){
-    gdb.exe -x ~/.gdbinit @args
+    gdb.exe -x $home\.gdbinit @args
 }
 set-alias gdb _gdb
 
+function gdbinit(){
+    vim ~/.gdbinit
+}
+
+function vsdir(){
+    cl ~/source/repos
+}
+
+function kuics_site(){
+    vim ~/projects/temp/kuics.txt
+}

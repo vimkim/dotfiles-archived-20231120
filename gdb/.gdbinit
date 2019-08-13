@@ -1,3 +1,7 @@
+define pst
+    x/30gx $rbp
+end
+
 set auto-load safe-path /
 set disassembly-flavor intel
 
