@@ -38,10 +38,10 @@ set backspace=indent,eol,start
 
 set encoding=utf-8
 set fileencoding=utf-8
-" GUI
-if has("mac")
-    "set guifont=Meslo\ LG\ M\ DZ\ For\ Powerline:h22
-    set guifont=Menlo:h22
+
+" gvim gui font
+set guifont=Fira_Code_Retina:h16:cANSI:qDRAFT
+if has('mac')
     set guifontwide=NanumGothic:h22
 endif
 
@@ -170,7 +170,7 @@ if !isdirectory($HOME . "/dkenv/.vim/undodir")
     call mkdir($HOME . "/dkenv/.vim/undodir", "p")
 endif
 set undofile
-set undodir=~/.vim/undodir
+set undodir=~/dkenv/.vim/undodir
 
 " VIEWDIR
 if !isdirectory($HOME . "/dkenv/.vim/viewdir")
@@ -327,7 +327,7 @@ au Cursorhold * checktime
 " I'll install vim-autoread plugin and see how it goes.
 " Now it works. Awesome!
 
-set t_Co=256
+"set t_Co=256
 
 " system clipboard access for wsl vim
 " https://vi.stackexchange.com/questions/12376/vim-on-wsl-synchronize-system-clipboard-set-clipboard-unnamed

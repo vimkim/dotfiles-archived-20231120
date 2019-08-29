@@ -16,7 +16,9 @@ if !has('nvim')
     " not able to compile in El Capitan
 end
 
-Plug 'mikezackles/Bisect'
+" Corrupt Backspace with Windows powershell vim
+"Plug 'mikezackles/Bisect'
+
 "Plug 'kien/ctrlp.vim'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' } "it works for ;sv and tsv as well
 "Plug 'Raimondi/delimitMate' " This plugin is also buggy with Korean inputs when 'set noimd'. // Actually, It turned out that this is because of macvim itself. Go to Advanced setting and turn off 'inline marked' and 'core renderer' settings. Also, 'set guifontwide=NanumGothic:h22' helped.

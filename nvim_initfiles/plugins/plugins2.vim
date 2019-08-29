@@ -69,7 +69,7 @@ Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'tpope/vim-unimpaired'
 Plug 'zefei/vim-wintabs'
 
+Plug 'jnurmine/Zenburn'
 let g:zenburn_transparent = 1
-"Plug 'jnurmine/Zenburn'
-Plug 'dhruvasagar/vim-zoom'
+"Plug 'dhruvasagar/vim-zoom'
 " pluglist end

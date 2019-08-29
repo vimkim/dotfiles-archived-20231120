@@ -3,7 +3,7 @@ c(){
     if [[ -d $@ ]]; then
         cl "$@"
     elif [[ -f $@ ]]; then
-        $myed "$@"
+        eval $myed "$@"
     elif [[ $# == 0 ]]; then
         cl;
     else
@@ -16,7 +16,7 @@ e(){
         cl "$@"
         #elif [ -f $@ ]; then
     else
-        $myed "$@"
+        eval $myed "$@"
         #else
         #read -q "REPLY?Would you like to create a new file?"
         #if [[ $REPLY =~ '^[Yy]$' ]]; then # $REPLY = y also works
