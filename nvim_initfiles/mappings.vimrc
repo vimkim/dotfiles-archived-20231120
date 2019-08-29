@@ -337,7 +337,6 @@ let g:ZSH_Ctrl_j = 'off'
 
 inoremap <c-BS> <DEL>
 
-nnoremap U :echo "<< ===== CHECK CAPSLOCK =====>>"<cr>
 
 " for f,t search
 nnoremap ;; ;
