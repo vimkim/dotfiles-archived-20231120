@@ -1035,7 +1035,7 @@ alias zc='cz'
 vx(){
     local file
     file=$( fd --type f -H | fzf +m ) &&
-    eval $myvi $file
+    eval "$myvi $file"
 }
 #alias vf='eval $myvi $(fzf)' # vim + fzf
 # use fasd instead of rupa/z and meain/v
@@ -1089,6 +1089,7 @@ hey(){
     return "hello"
 }
 
+# fuzzy ask
 xa(){
     ~/dkenv/runtime_config/shell/grep_fzf_vim.py $(grep -nir $@ | fzf)
 }

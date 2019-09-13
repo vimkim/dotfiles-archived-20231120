@@ -143,5 +143,5 @@ function vsdir(){
 }
 
 function kuics_site(){
-    vim ~/projects/temp/kuics.txt
+    vim ~/projects/kuics/kuics_site.txt
 }

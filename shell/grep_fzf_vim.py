@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import os
 import sys
 def main():
@@ -7,6 +8,7 @@ def main():
     print( "python args ->", args )
     if len( args ) == 1 :
         print( "myerror: use this command with arguments");
+        return
 
     tokens = args[1].split(":")
     process = "+" + tokens[1] + " " + tokens[0]
