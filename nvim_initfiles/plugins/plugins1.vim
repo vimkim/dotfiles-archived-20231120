@@ -2,6 +2,8 @@
 Plug 'vim-scripts/a.vim'
 Plug 'mileszs/ack.vim' "code search // needs extra install of ack
 Plug 'w0rp/ale' "saves my life
+
+
 "Plug 'jiangmiao/auto-pairs' " This plugin is buggy with Korean inputs when 'set noimd'. also bug with wsl
 " these settings disable julia autopairs.. disabled
 "au FileType lisp let b:autopairs_loaded=1 "auto-pairs inferior for lisp
@@ -107,8 +109,9 @@ set viewoptions=cursor,folds,slash,unix
 
 ")
 
-"Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-sensible'
 Plug 'junegunn/seoul256.vim'
+"Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 "Plug 'majutsushi/tagbar'
 Plug 'SirVer/ultisnips' "Snippets Engine
@@ -185,7 +188,8 @@ if filereadable($HOME."/dkenv/.vim/ycm_install.txt")
     let g:ycm_warning_symbol = '<<' "default '>>'
     let g:ycm_collect_identifiers_from_tags_files = 1 "default 0
     ")
-
+else
+    Plug 'maralla/completor.vim'
 endif
 
 Plug 'rdnetto/YCM-Generator', { 'branch' : 'stable' }

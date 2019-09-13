@@ -25,7 +25,7 @@ syntax off
 "(VIMPLUG
 "To install, type :
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "use :sort /.... '.*\// to sort the lines.
 function! DoRemote(arg)
     UpdateRemotePlugins
@@ -33,22 +33,22 @@ endfunction
 
 " CALL VIMPLUG
 if has('nvim')
-        call plug#begin('$HOME/.config/nvim/plugged')
-    else
-        call plug#begin('$HOME/dkenv/.vim/plugged')
-    endif
-        if !empty(glob("$HOME/dkenv/runtime_config/nvim_initfiles/plugins")) "glob expands $HOME. Necessary? IDK..
+    call plug#begin('$HOME/.config/nvim/plugged')
+else
+    call plug#begin('$HOME/dkenv/.vim/plugged')
+endif
+if !empty(glob("$HOME/dkenv/runtime_config/nvim_initfiles/plugins")) "glob expands $HOME. Necessary? IDK..
 
-            " plugin lists modularized
-            so ~/dkenv/runtime_config/nvim_initfiles/plugins/plugins1.vim " name does not start with vim
-            so ~/dkenv/runtime_config/nvim_initfiles/plugins/plugins2.vim " name starts with vim
-            so ~/dkenv/runtime_config/nvim_initfiles/plugins/language_specific.vim
-            so ~/dkenv/runtime_config/nvim_initfiles/plugins/markdown.vim
-            so ~/dkenv/runtime_config/nvim_initfiles/plugins/latex.vim
-            so ~/dkenv/runtime_config/nvim_initfiles/plugins/conceal.vim
+    " plugin lists modularized
+    so ~/dkenv/runtime_config/nvim_initfiles/plugins/plugins1.vim " name does not start with vim
+    so ~/dkenv/runtime_config/nvim_initfiles/plugins/plugins2.vim " name starts with vim
+    so ~/dkenv/runtime_config/nvim_initfiles/plugins/language_specific.vim
+    so ~/dkenv/runtime_config/nvim_initfiles/plugins/markdown.vim
+    so ~/dkenv/runtime_config/nvim_initfiles/plugins/latex.vim
+    so ~/dkenv/runtime_config/nvim_initfiles/plugins/conceal.vim
 
 
-    endif
+endif
 call plug#end()
 ")
 

@@ -2,8 +2,6 @@
 Plug 'vim-scripts/a.vim'
 Plug 'tenfyzhong/vim-gencode-cpp'
 
-
-
 " lisp-family + scheme
 "Plug 'kovisoft/slimv'
 if has('mac')
@@ -28,3 +26,6 @@ autocmd BufRead, BufNewFile *.jl set filetype=julia
 
 "javascript
 so ~/dkenv/runtime_config/nvim_initfiles/plugins/lang/js.vim
+
+"ocaml
+so ~/dkenv/runtime_config/nvim_initfiles/plugins/lang/ocaml.vim

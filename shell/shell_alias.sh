@@ -796,6 +796,7 @@ alias rm="echo Use 'rmt(remove to trash)', or the full path i.e. '/bin/rm'"
 _rmt(){
     mv "$@" ~/Trash
 }
+alias trash_empty='/bin/rm -rfv ~/Trash/*'
 if [[ $platform == 'linux' ]]; then
     if [[ $iswsl == 'true' ]]; then
         alias rmt=_rmt
