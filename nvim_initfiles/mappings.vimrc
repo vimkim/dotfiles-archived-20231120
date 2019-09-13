@@ -139,8 +139,6 @@ nnoremap sq <esc>:wq<esc>
 "inoremap sq <esc>:wq<esc>
 vnoremap sq <esc>:wq<esc>
 
-
-
 "DISABLE EX-MODE
 :map Q <nop>
 

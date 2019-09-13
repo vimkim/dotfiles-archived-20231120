@@ -1,3 +1,9 @@
+" C
+Plug 'vim-scripts/a.vim'
+Plug 'tenfyzhong/vim-gencode-cpp'
+
+
+
 " lisp-family + scheme
 "Plug 'kovisoft/slimv'
 if has('mac')

@@ -25,10 +25,14 @@
 "let g:rehash256 = 1
 ")
 
+colo zenburn
+
+"let g:seoul256_srgb=1
+"let g:seoul256_background=252
+"colo seoul256
+
 " Prevent vim from overriding default terminal background"
 "https://stackoverflow.com/a/21572296/6154359
-"colo seoul256
 "hi Normal ctermbg=none
 
-colo zenburn
 

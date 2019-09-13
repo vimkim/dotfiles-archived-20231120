@@ -686,6 +686,7 @@ alias run_jl="run_what='julia'"
 alias run_js="run_what='js'"
 alias run_node="run_what='node'"
 alias run_r="run_what='r'"
+alias run_ocaml="run_what='ocaml'"
 
 alias cpmake="cp ~/dkenv/runtime_config/make/Makefile_C_general ./Makefile"
 alias cppmake="cp ~/dkenv/runtime_config/make/Makefile_CPP_general ./Makefile"
@@ -753,6 +754,9 @@ m(){
     elif [[ "$run_what" == 'r' ]]; then
         echo "this is R."
         rsc main.R
+    elif [[ "$run_what" == 'ocaml' ]]; then
+        echo "this is Ocaml."
+        ocaml main.ml
     else
         echo "\$run_what value is not initialized. Use run_* option. Use check_run_what to check its value."
     fi
@@ -932,8 +936,7 @@ alias spac='sudo pacman'
 alias spac-install='sudo pacman -S'
 alias spac-search='pacman -Ss'
 alias spac-update='sudo pacman -Syu'
-alias spac_info='pacman -Si'
-alias spac_search='pacman -Ss'
+alias spac-info='pacman -Si'
 
 alias mount_shared_folder='mount -t vboxsf comp /media/shared'
 
@@ -1114,7 +1117,8 @@ _gitall(){
     git commit -m "gitall"
     git push
 }
-
 alias gitall="_gitall &!"
 
 alias sotmux="tmux source-file ~/.tmux.conf"
+
+alias ocaml_tutorial='cmd.exe /C start "https://www.youtube.com/watch?v=Gi58t_pgfJY&list=PLea0WJq13cnCef-3KSU3qWFge9OGUlKx1"'
