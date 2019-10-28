@@ -378,3 +378,6 @@ function! QuickfixToggle()
 endfunction
 
 nnoremap <leader>x :call QuickfixToggle()<cr>
+
+" auto maximize on entry
+autocmd GUIEnter * simalt ~x

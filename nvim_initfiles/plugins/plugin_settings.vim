@@ -377,7 +377,7 @@ let g:minimap_highlight='Visual'
 ")
 
 "(INDENTLINE PLUGIN
-let g:indentLine_char = '▶'
+"let g:indentLine_char = '▶' "error in windows
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_color_term = 100
