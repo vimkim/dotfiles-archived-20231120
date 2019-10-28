@@ -1076,7 +1076,7 @@ alias ruby_shell='irb'
 alias detour_dns='sudo ifconfig en0 mtu 400'
 alias detour_dns_recover='sudo ifconfig en0 mtu 1500'
 alias detour_dns_linux='sudo ip link set dev wlo1 mtu 400'
-alias detour_dns_linux='sudo ip link set dev wlo1 mtu 1500'
+alias detour_dns_linux_recover='sudo ip link set dev wlo1 mtu 1500'
 alias i3conf='vim ~/.config/i3/config'
 
 alias soi3='i3-msg reload'
