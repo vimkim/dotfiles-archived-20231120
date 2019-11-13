@@ -6,7 +6,20 @@ Plug 'tpope/vim-abolish' "help writing
 Plug 'djoshea/vim-autoread'
 
 "Plug 'bling/vim-bufferline'
-"Plug 'ap/vim-buftabline'
+
+Plug 'ap/vim-buftabline'
+let g:buftabline_numbers = 2
+nmap <space>! <Plug>BufTabLine.Go(1)
+nmap <space>@ <Plug>BufTabLine.Go(2)
+nmap <space># <Plug>BufTabLine.Go(3)
+nmap <space>$ <Plug>BufTabLine.Go(4)
+nmap <space>% <Plug>BufTabLine.Go(5)
+nmap <space>^ <Plug>BufTabLine.Go(6)
+nmap <space>& <Plug>BufTabLine.Go(7)
+nmap <space>* <Plug>BufTabLine.Go(8)
+nmap <space>( <Plug>BufTabLine.Go(9)
+nmap <space>) <Plug>BufTabLine.Go(10)
+
 "Plug 'jooize/vim-colemak'
 "Plug 'altercation/vim-colors-solarized'
 Plug 'octol/vim-cpp-enhanced-highlight' "may conflict with easytags
@@ -30,7 +43,8 @@ let g:gitgutter_map_keys = 0
 Plug 'rhysd/vim-grammarous'
 "Plug 'maksimr/vim-jsbeautify'
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx']}
-Plug 'skywind3000/vim-keysound'
+"
+"Plug 'skywind3000/vim-keysound'
 let g:keysound_enable = 1
 Plug 'xuhdev/vim-latex-live-preview'
 " lambdify location
@@ -47,7 +61,25 @@ Plug 'mattn/vim-particle'
 Plug 'reedes/vim-pencil'
 "Plug 'tpope/vim-repeat' "disabled for colemap
 Plug 'google/vim-searchindex'
-Plug 'jpalardy/vim-slime', { 'for': [ 'python', 'R', 'lisp' ] }
+
+"(VIM-SLIME
+"Plug 'jpalardy/vim-slime', { 'for': [ 'python', 'R', 'lisp', 'ocaml' ] }
+Plug 'jpalardy/vim-slime'
+let g:slime_target = "tmux"
+"let isitwsl=$iswsl
+"if isitwsl == 'true'
+""if $iswsl == 'true' " also works  << was not the actual reason it was because of the absence of $TMUX variable
+if $TMUX != '' "test wether I'm currently in tmux or not
+    "let g:slime_default_config = {"socket_name": split($TMUX, ",")[0], "target_pane": ":.1"}
+    let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
+endif
+" Tip: for socket, default, for pane, $session:0.0 
+" You can identify it with the command $tmux list-panes -a
+"let g:slime_python_ipython = 1 "This not working
+")
+
+
+
 "Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-surround'
 Plug 'dhruvasagar/vim-table-mode'
@@ -69,7 +101,7 @@ Plug 'lervag/vimtex', { 'for': 'tex' }
 "))
 "
 Plug 'tpope/vim-unimpaired'
-Plug 'zefei/vim-wintabs'
+"Plug 'zefei/vim-wintabs' " this can't display the buffer number
 
 Plug 'jnurmine/Zenburn'
 let g:zenburn_transparent = 1

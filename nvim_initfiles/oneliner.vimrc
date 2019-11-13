@@ -379,5 +379,9 @@ endfunction
 
 nnoremap <leader>x :call QuickfixToggle()<cr>
 
+if serverlist() =~? "\n."
+    echo "MyWarning: Another copy of gvim or Vim is probably loaded!"
+endif
+
 " auto maximize on entry
 autocmd GUIEnter * simalt ~x

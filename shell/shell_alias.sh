@@ -46,7 +46,7 @@ echo "****************************************************"
 ## echo "****************************************************"
 
 if [[ $iswsl == 'true' ]]; then
-    alias wslali='eval $myvi ~/dkenv/runtime_config/shell/wsl_alias.sh'
+    alias wslali='myvim ~/dkenv/runtime_config/shell/wsl_alias.sh'
     source ~/dkenv/runtime_config/shell/wsl_alias.sh
 fi
 
@@ -83,6 +83,19 @@ if type vim 2>/dev/null; then
 fi
 echo "\$vimexist: $vimexist"
 
+# Vim server
+alias vs='vim --servername DKVIM &'
+
+vr(){
+    vim --servername DKVIM --remote $@
+}
+
+vf(){
+    vr $@
+    fg
+}
+alias myvim='vf'
+
 # Detect nvim
 nvimexist='false'
 if type nvim 2>/dev/null; then
@@ -98,6 +111,7 @@ if type mvim 2> /dev/null; then
     #myvi='mvim --remote-silent'
     myvi=(mvim --remote-silent) #http://zsh.sourceforge.net/FAQ/zshfaq03.html
 fi
+
 if [[ $platform == 'macos' ]]; then
     echo "\$mvimexist: $mvimexist"
 fi
@@ -111,7 +125,7 @@ if type nvr 2> /dev/null; then
 fi
 echo "\$nvrexist: $nvrexist"
 export myvi
-vim=($myvi)
+vim=(myvim)
 
 emacsexist='false'
 myemacs='unknown'
@@ -128,7 +142,7 @@ echo "\$emacsexist: $emacsexist"
 #if [[ $emacsexist == 'true' ]]; then
 #    myed=$myemacs
 #else
-#    myed=$myvi
+#    myed=myvim
 #fi
 echo "\$myvi: $myvi"
 echo "\$myed: $myed"
@@ -301,7 +315,7 @@ edit_with_date(){
 }
 
 vim_with_date(){
-    $myvi "$(date +%y%m%d)_$1"
+    myvim "$(date +%y%m%d)_$1"
 }
 mkdir_with_date(){
     mkdir "$(date +%y%m%d)_$1"
@@ -311,9 +325,9 @@ alias vwd='vim_with_date'
 alias mwd='mkdir_with_date'
 
 # rc function
-alias zshrc="eval $myvi ~/.zshrc"
-alias zlogout="eval $myvi ~/dkenv/runtime_config/zsh/.zlogout"
-alias bashrc="eval $myvi ~/.bashrc"
+alias zshrc="myvim ~/.zshrc"
+alias zlogout="myvim ~/dkenv/runtime_config/zsh/.zlogout"
+alias bashrc="myvim ~/.bashrc"
 alias vzshrc="vim ~/.zshrc"
 alias vbashrc="vim ~/.bashrc"
 alias nvzshrc="nvim ~/.zshrc"
@@ -321,15 +335,16 @@ alias nvbashrc="nvim ~/.bashrc"
 alias mvzshrc="mvim ~/.zshrc"
 alias mvbashrc="mvim ~/.bashrc"
 # shell alias management shortcut
-alias ali='$=myvi ~/dkenv/runtime_config/shell/shell_alias.sh' # this works for zsh, but not in bash. Tips from: https://stackoverflow.com/questions/8299610/zsh-command-not-found-for-editor
-alias ali='eval $myvi ~/dkenv/runtime_config/shell/shell_alias.sh' # This works for zsh and bash.
-alias ali="eval $myvi ~/dkenv/runtime_config/shell/shell_alias.sh" # double quote works. Single quote doesn't. This works for both zsh and bash.
+#alias ali='$=myvi ~/dkenv/runtime_config/shell/shell_alias.sh' # this works for zsh, but not in bash. Tips from: https://stackoverflow.com/questions/8299610/zsh-command-not-found-for-editor
+#alias ali='myvim ~/dkenv/runtime_config/shell/shell_alias.sh' # This works for zsh and bash.
+#alias ali="myvim ~/dkenv/runtime_config/shell/shell_alias.sh" # double quote works. Single quote doesn't. This works for both zsh and bash.
+alias ali='myvim ~/dkenv/runtime_config/shell/shell_alias.sh'
 
 alias vali='vim ~/dkenv/runtime_config/shell/shell_aliases.sh'
 alias nali='nvim ~/dkenv/runtime_config/shell/shell_aliases.sh'
 alias mali='mvim ~/dkenv/runtime_config/shell/shell_aliases.sh'
 
-alias cua='eval $myvi ~/dkenv/runtime_config/shell/temp_alias.sh'
+alias cua='myvim ~/dkenv/runtime_config/shell/temp_alias.sh'
 alias cuali='cua'
 alias custum_alias='cua'
 alias socua='source ~/dkenv/runtime_config/shell/temp_alias.sh'
@@ -341,11 +356,12 @@ alias soali='source ~/dkenv/runtime_config/shell/shell_alias.sh'
 source ~/dkenv/runtime_config/shell/temp_alias.sh
 
 # vimrc function
-alias vimrc="eval $myvi ~/dkenv/runtime_config/vim/.vimrc"
+#alias vimrc="myvim ~/dkenv/runtime_config/vim/.vimrc"
+alias vimrc="myvim ~/dkenv/runtime_config/vim/.vimrc"
 alias vvimrc='vim ~/dkenv/runtime_config/vim/.vimrc'
 alias nvvimrc="nvim ~/dkenv/runtime_config/vim/.vimrc"
 alias mvimrc='mvim ~/dkenv/runtime_config/vim/.vimrc'
-alias nvimrc="eval $myvi ~/dkenv/runtime_config/nvim/init.vim"
+alias nvimrc="myvim ~/dkenv/runtime_config/nvim/init.vim"
 alias vnvimrc='vim ~/dkenv/runtime_config/nvim/init.vim'
 alias mvnvimrc='mvim ~/dkenv/runtime_config/nvim/init.vim'
 alias nvnvimrc="nvim ~/dkenv/runtime_config/nvim/init.vim"
@@ -353,7 +369,7 @@ alias initel='emacs ~/dkenv/runtime_config/emacs/init.el'
 alias ginitel='gemacs ~/dkenv/runtime_config/emacs/init.el'
 alias enitel='emacsclient ~/dkenv/runtime_config/emacs/init.el'
 alias initel='emacs ~/dkenv/runtime_config/emacs/init.el'
-alias vinitel="eval $myvi ~/dkenv/runtime_config/emacs/init.el"
+alias vinitel="myvim ~/dkenv/runtime_config/emacs/init.el"
 alias initeldebug='initel --debug-init'
 
 # accessibility aliases
@@ -542,11 +558,11 @@ alias project='cd ~/notetaking/1_fine482/project/; ls -a'
 alias snip='cd ~/dkenv/runtime_config/snippets; ls -a'
 
 # personal edit aliases
-alias tmuxconf='eval $myvi ~/dkenv/runtime_config/tmux/.tmux.conf'
-alias keep='eval $myvi ~/Google\ Drive/keep_offline.md'
-alias todo='eval $myvi ~/Google\ Drive/keep_offline.md'
-alias todostack='eval $myvi ~/.todostack.md'
-alias toask='eval $myvi ~/Google\ Drive/ask_offline.md'
+alias tmuxconf='myvim ~/dkenv/runtime_config/tmux/.tmux.conf'
+alias keep='myvim ~/Google\ Drive/keep_offline.md'
+alias todo='myvim ~/Google\ Drive/keep_offline.md'
+alias todostack='myvim ~/.todostack.md'
+alias toask='myvim ~/Google\ Drive/ask_offline.md'
 
 # personal cat aliases
 
@@ -658,7 +674,7 @@ alias mousewriteo='defaults write .GlobalPreferences com.apple.mouse.scaling 1'
 
 alias books='cl ~/Google\ Drive/books/comp'
 
-alias voca='eval $myvi ~/Google\ Drive/study/voca/teps1.csv'
+alias voca='myvim ~/Google\ Drive/study/voca/teps1.csv'
 
 
 alias javarun='javac Main.java; java Main'
@@ -686,7 +702,9 @@ alias run_jl="run_what='julia'"
 alias run_js="run_what='js'"
 alias run_node="run_what='node'"
 alias run_r="run_what='r'"
-alias run_ocaml="run_what='ocaml'"
+alias run_ocm="run_what='ocaml'"
+alias run_vrlg="run_what='verilog'"
+alias run_rs="run_what='rust'"
 
 alias cpmake="cp ~/dkenv/runtime_config/make/Makefile_C_general ./Makefile"
 alias cppmake="cp ~/dkenv/runtime_config/make/Makefile_CPP_general ./Makefile"
@@ -706,6 +724,12 @@ mcl(){
         /bin/rm *.pyc
         /bin/rm -r __pycache__/*
         /bin/rmdir __pycache__/
+    elif [[ "$run_what" == 'verilog' ]]; then
+        /bin/rm *.vvp
+        /bin/rm *.vcd
+        ubin/rm a.out
+    elif [[ "$run_what" == 'rust' ]]; then
+        /bin/rm main
     else
         echo "run_c or run_cpp?"
     fi
@@ -756,7 +780,15 @@ m(){
         rsc main.R
     elif [[ "$run_what" == 'ocaml' ]]; then
         echo "this is Ocaml."
+        #ocaml -init main.ml
         ocaml main.ml
+        #ocaml < main.ml
+    elif [[ "$run_what" == 'verilog' ]]; then
+        echo "This is icarus verilog."
+        iverilog main.v
+    elif [[ "$run_what" == 'rust' ]]; then
+        echo "This is Rust."
+        rustc main.rs && ./main
     else
         echo "\$run_what value is not initialized. Use run_* option. Use check_run_what to check its value."
     fi
@@ -780,13 +812,9 @@ alias ei='e main.*~main.o~main.h~main.class'
 # (zsh: unsetopt CASE_GLOB)
 # (bash: shopt -s nocaseglob)
 # main also recognizes Main
-alias vm='eval $myvi main.*~main.o~main.h~main.class~main.pyc'
+alias vm='myvim main.*~main.o~main.h~main.class~main.pyc'
 # In zsh, you can make a specific command case insensitive.
-#alias vm='eval $myvi (#i)main.*~main.o~main.h~main.class'
-
-alias vt='eval $myvi test*'
-alias vr='eval $myvi result*'
-alias atr='./a.out > result.txt'
+#alias vm='myvim (#i)main.*~main.o~main.h~main.class'
 
 alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?
 
@@ -915,9 +943,9 @@ fi
 
 # my library
 source ~/dkenv/runtime_config/shell/mylib_alias.sh
-alias vmylib='eval $myvi ~/dkenv/runtime_config/shell/mylib_alias.sh'
+alias vmylib='myvim ~/dkenv/runtime_config/shell/mylib_alias.sh'
 
-alias idea='eval $myvi ~/Google\ Drive/idea/etc.txt'
+alias idea='myvim ~/Google\ Drive/idea/etc.txt'
 
 alias clm='clisp main.lisp'
 alias lp='clm'
@@ -1016,8 +1044,8 @@ if [[ $platform == "macos" ]]; then
     alias zl='z -l'
 fi
 
-alias fzfrc="eval $myvi ~/dkenv/runtime_config/shell/fzf.sh"
-alias zshcus="eval $myvi ~/dkenv/runtime_config/zsh/zsh_custom.zsh"
+alias fzfrc="myvim ~/dkenv/runtime_config/shell/fzf.sh"
+alias zshcus="myvim ~/dkenv/runtime_config/zsh/zsh_custom.zsh"
 
 alias ca='cda' # cd advanced
 
@@ -1036,14 +1064,15 @@ alias zc='cz'
 vx(){
     local file
     file=$( fd --type f -H | fzf +m ) &&
-    eval "$myvi $file"
+    myvim $file
 }
-#alias vf='eval $myvi $(fzf)' # vim + fzf
+
+#alias vf='myvim $(fzf)' # vim + fzf
 # use fasd instead of rupa/z and meain/v
 ##### vl='~/.zplug/repos/meain/v/v'
 ##### vz(){
 #####     file=$(eval ${vl} | fzf)
-#####     [[ ! -z "$file" ]] && $myvi "$file" # vim + z + fzf
+#####     [[ ! -z "$file" ]] && myvim "$file" # vim + z + fzf
 ##### }
 
 # frecency based
@@ -1051,7 +1080,7 @@ vz(){ # vim + fasd + fzf
     local file
     file=$(fasd -fl | fzf)
     echo "$file"
-    [[ ! -z "$file" ]] && $myvi "$file"
+    [[ ! -z "$file" ]] && myvim "$file"
 }
 
 # cv with frecency.
@@ -1063,7 +1092,7 @@ zcv(){ # cd + vim + fasd + fzf
         echo "Nothing selected..."
         return 1;
     fi
-    $myvi $(basename "$file")
+    myvim $(basename "$file")
 }
 
 alias vc='cv'
@@ -1124,3 +1153,15 @@ alias gitall="_gitall &!"
 alias sotmux="tmux source-file ~/.tmux.conf"
 
 alias ocaml_tutorial='cmd.exe /C start "https://www.youtube.com/watch?v=Gi58t_pgfJY&list=PLea0WJq13cnCef-3KSU3qWFge9OGUlKx1"'
+
+if [[ $iswsl == 'true' ]]; then
+    # vcxsrv for remote vim serverclient
+    # https://www.scivision.dev/x11-gui-windows-subsystem-for-linux/
+    DISPLAY=:0.0
+    export DISPLAY
+fi
+
+alias j='jobs'
+
+# verilog
+alias iv='iverilog'
