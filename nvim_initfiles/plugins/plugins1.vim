@@ -76,6 +76,8 @@ let g:fzf_action = {
   \ 'ctrl-o': function('s:copy_results'),
   \ }
 
+Plug 'pandysong/ghost-text.vim'
+
 "Plug 'junegunn/goyo.vim')
 Plug 'morhetz/gruvbox'
 Plug 'sjl/gundo.vim'
