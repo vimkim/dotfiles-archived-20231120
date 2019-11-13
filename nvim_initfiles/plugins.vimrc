@@ -45,7 +45,7 @@ if !empty(glob("$HOME/dkenv/runtime_config/nvim_initfiles/plugins")) "glob expan
     so ~/dkenv/runtime_config/nvim_initfiles/plugins/language_specific.vim
     so ~/dkenv/runtime_config/nvim_initfiles/plugins/markdown.vim
     so ~/dkenv/runtime_config/nvim_initfiles/plugins/latex.vim
-    so ~/dkenv/runtime_config/nvim_initfiles/plugins/conceal.vim
+    "so ~/dkenv/runtime_config/nvim_initfiles/plugins/conceal.vim
 
 
 endif

@@ -118,10 +118,10 @@ nnoremap <leader>s :update<CR>
 onoremap <leader>s <esc>:update<cr>
 
 "QUIT
-" ctrl+q quits all which is not working // now works
-nnoremap <c-q> :q<CR>
-inoremap <c-q> <ESC>:q<CR>
-nnoremap <c-q> :q<CR>
+"nnoremap <c-q> :q<CR>
+"inoremap <c-q> <ESC>:q<CR>
+nnoremap <c-q> <c-z>
+inoremap <c-q> <esc><c-z>
 nnoremap <leader>q :q<CR>
 inoremap <leader>q <ESC>:q<CR>
 nnoremap <leader>q :q<CR>
@@ -462,3 +462,10 @@ nnoremap ][ /}<CR>b99]}
 nnoremap ]] j0[[%/{<CR>
 nnoremap [] k$][%?}<CR>
 
+" replaced with BufTabLine.Go
+"nnoremap <space>! :b 1<cr>
+"nnoremap <space>@ :b 2<cr>
+"nnoremap <space># :b 3<cr>
+"nnoremap <space>$ :b 4<cr>
+"nnoremap <space>% :b 5<cr>
+"nnoremap <space>^ :b 6<cr>

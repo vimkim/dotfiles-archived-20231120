@@ -422,7 +422,7 @@ let g:EasyMotion_smartcase = 1
 "map <Leader>k <Plug>(easymotion-k)
 map <leader>L <plug>(easymotion-bd-jk)
 map L <plug>(easymotion-bd-jk)
-map <space> <plug>(easymotion-bd-jk)
+map <space><space> <plug>(easymotion-bd-jk)
 nmap <leader>L <plug>(easymotion-overwin-line)
 " Move to word
 "map <leader>fw <plug>(easymotion-bd-w)
@@ -604,19 +604,6 @@ nnoremap <plug>NextMatch ;
 "nnoremap <silent> F :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>F
 "nnoremap <silent> t :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>t
 "nnoremap <silent> T :<c-u>call repeat#set("\<lt>Plug>NextMatch")<CR>T
-")
-
-"(VIM-SLIME
-let g:slime_target = "tmux"
-"let isitwsl=$iswsl
-"if isitwsl == 'true'
-""if $iswsl == 'true' " also works  << was not the actual reason it was because of the absence of $TMUX variable
-if $TMUX != '' "test wether I'm currently in tmux or not
-    let g:slime_default_config = {"socket_name": split($TMUX, ",")[0], "target_pane": ":.1"}
-endif
-" Tip: for socket, default, for pane, $session:0.0 
-" You can identify it with the command $tmux list-panes -a
-"let g:slime_python_ipython = 1 "This not working
 ")
 
 "(VIM-SMOOTH-SCROLL
