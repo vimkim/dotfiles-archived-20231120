@@ -23,3 +23,4 @@ if !filereadable(vimplug_exists)
     autocmd VimEnter * PlugInstall
 endif
 
+let g:platform = $platform

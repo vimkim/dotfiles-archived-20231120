@@ -53,12 +53,12 @@ function cl{
             _ls
 }
 function c{ cl @args; }
-Set-Alias v vim
+Set-Alias v _vim
 function _ls{Get-ChildItem -name @args -Force}
 Set-Alias l _ls
 Set-Alias -Name ls -Value _ls -Option AllScope
 function ll{Get-ChildItem}
-function _vim{vim @args}
+function _vim{gvim @args}
 function vimrc {_vim $home\dkenv\runtime_config\vim\.vimrc}
 function vimdir{cd $home\.vim}
 
@@ -135,7 +135,7 @@ function _gdb(){
 set-alias gdb _gdb
 
 function gdbinit(){
-    vim ~/.gdbinit
+    _vim ~/.gdbinit
 }
 
 function vsdir(){
@@ -143,5 +143,25 @@ function vsdir(){
 }
 
 function kuics_site(){
-    vim ~/projects/kuics/kuics_site.txt
+    _vim ~/projects/kuics/kuics_site.txt
+}
+
+function psql_u(){
+    psql -U postgres
+}
+
+function hw(){
+    psql -U postgres -d practice
+}
+
+function psql_s(){
+    psql -U postgres -f main.sql
+}
+
+function query(){
+    psql -U postgres -f query.sql
+}
+
+function vm(){
+    _vim main.*
 }
