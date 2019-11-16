@@ -30,7 +30,7 @@ let g:gitgutter_map_keys = 0
 Plug 'rhysd/vim-grammarous'
 "Plug 'maksimr/vim-jsbeautify'
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx']}
-Plug 'skywind3000/vim-keysound'
+"Plug 'skywind3000/vim-keysound'
 let g:keysound_enable = 1
 Plug 'xuhdev/vim-latex-live-preview'
 " lambdify location
