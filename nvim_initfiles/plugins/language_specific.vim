@@ -29,3 +29,6 @@ so ~/dkenv/runtime_config/nvim_initfiles/plugins/lang/js.vim
 
 "ocaml
 so ~/dkenv/runtime_config/nvim_initfiles/plugins/lang/ocaml.vim
+
+" verilog
+Plug 'vhda/verilog_systemverilog.vim'

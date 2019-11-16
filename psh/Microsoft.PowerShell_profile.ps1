@@ -53,12 +53,13 @@ function cl{
             _ls
 }
 function c{ cl @args; }
-Set-Alias v vim
+Set-Alias v _vim
 function _ls{Get-ChildItem -name @args -Force}
 Set-Alias l _ls
 Set-Alias -Name ls -Value _ls -Option AllScope
 function ll{Get-ChildItem}
-function _vim{vim @args}
+# function _vim{gvim @args}
+function _vim{gvim --servername DKVIM --remote @args}
 function vimrc {_vim $home\dkenv\runtime_config\vim\.vimrc}
 function vimdir{cd $home\.vim}
 
@@ -135,7 +136,7 @@ function _gdb(){
 set-alias gdb _gdb
 
 function gdbinit(){
-    vim ~/.gdbinit
+    _vim ~/.gdbinit
 }
 
 function vsdir(){
@@ -143,5 +144,50 @@ function vsdir(){
 }
 
 function kuics_site(){
-    vim ~/projects/kuics/kuics_site.txt
+    _vim ~/projects/kuics/kuics_site.txt
+}
+
+function psql_u(){
+    psql -U postgres
+}
+
+function hw(){
+    psql -U postgres -d practice
+}
+
+function psql_s(){
+    psql -U postgres -f main.sql
+}
+
+function query(){
+    psql -U postgres -f query.sql
+}
+
+
+function vm(){
+    _vim main.*
+}
+
+function bb(){
+    start-process chrome.exe "https://kulms.korea.ac.kr/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_2_1"
+}
+
+function bb_ca(){
+    start-process chrome.exe "https://kulms.korea.ac.kr/webapps/blackboard/execute/announcement?method=search&context=course_entry&course_id=_155677_1&handle=announcements_entry&mode=view"
+}
+
+function bb_cn(){
+    start-process chrome.exe "https://kulms.korea.ac.kr/webapps/blackboard/execute/announcement?method=search&context=course_entry&course_id=_165361_1&handle=announcements_entry&mode=view"
+}
+
+function bb_db(){
+    start-process chrome.exe "https://kulms.korea.ac.kr/webapps/blackboard/execute/announcement?method=search&context=course_entry&course_id=_155689_1&handle=announcements_entry&mode=view"
+}
+
+function bb_os(){
+    start-process chrome.exe "https://kulms.korea.ac.kr/webapps/blackboard/execute/announcement?method=search&context=course_entry&course_id=_155681_1&handle=announcements_entry&mode=view"
+}
+
+function bb_pl(){
+    start-process chrome.exe "http://prl.korea.ac.kr/~pronto/home/courses/cose212/2019/"
 }
