@@ -688,7 +688,7 @@ alias clisprun='clisp main.lisp'
 
 alias juliarun='julia main.jl'
 
-run_what=""
+run_what="make"
 alias check_run_what='echo $run_what'
 alias run_c="run_what='c'"
 alias run_cpp="run_what='cpp'"
@@ -705,6 +705,7 @@ alias run_r="run_what='r'"
 alias run_ocm="run_what='ocaml'"
 alias run_vrlg="run_what='verilog'"
 alias run_rs="run_what='rust'"
+alias run_make="run_what='make'"
 
 alias cpmake="cp ~/dkenv/runtime_config/make/Makefile_C_general ./Makefile"
 alias cppmake="cp ~/dkenv/runtime_config/make/Makefile_CPP_general ./Makefile"
@@ -730,6 +731,10 @@ mcl(){
         ubin/rm a.out
     elif [[ "$run_what" == 'rust' ]]; then
         /bin/rm main
+    elif [[ "$run_what" == 'make' ]]; then
+        make clean
+    elif [[ "$run_what" == 'ocaml' ]]; then
+        make clean
     else
         echo "run_c or run_cpp?"
     fi
@@ -781,14 +786,18 @@ m(){
     elif [[ "$run_what" == 'ocaml' ]]; then
         echo "this is Ocaml."
         #ocaml -init main.ml
-        ocaml main.ml
+        #ocaml main.ml
         #ocaml < main.ml
+        make $@
     elif [[ "$run_what" == 'verilog' ]]; then
         echo "This is icarus verilog."
         iverilog main.v
     elif [[ "$run_what" == 'rust' ]]; then
         echo "This is Rust."
         rustc main.rs && ./main
+    elif [[ "$run_what" == 'make' ]]; then
+        echo "This is make."
+        make $@
     else
         echo "\$run_what value is not initialized. Use run_* option. Use check_run_what to check its value."
     fi
@@ -816,6 +825,16 @@ alias vm='myvim main.*~main.o~main.h~main.class~main.pyc'
 # In zsh, you can make a specific command case insensitive.
 #alias vm='myvim (#i)main.*~main.o~main.h~main.class'
 
+va(){
+    if [[ "$run_what" == 'c' ]]; then
+        myvim *.c
+    elif [[ "$run_what" == 'ocaml' ]]; then
+        myvim *.ml
+    else
+        echo "run what?"
+    fi
+}
+
 alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?
 
 alias pd='popd'
@@ -826,11 +845,11 @@ _rmt(){
 }
 alias trash_empty='/bin/rm -rfv ~/Trash/*'
 if [[ $platform == 'linux' ]]; then
-    if [[ $iswsl == 'true' ]]; then
-        alias rmt=_rmt
-    else
-        # sudo pacman -S trash-cli
+    if type trash 2>/dev/null; then
         alias rmt="trash"
+    else
+        echo "trash-cli not installed"
+        alias rmt=_rmt
     fi
 elif [[ $platform == 'macos' ]]; then
     alias rmt="rmtrash"
