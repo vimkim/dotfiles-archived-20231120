@@ -3,7 +3,6 @@ so ~/dkenv/runtime_config/nvim_initfiles/install.vimrc
 so ~/dkenv/runtime_config/nvim_initfiles/mappings.vimrc
 so ~/dkenv/runtime_config/nvim_initfiles/plugins.vimrc
 so ~/dkenv/runtime_config/nvim_initfiles/filetypes.vim
-
 so ~/dkenv/runtime_config/nvim_initfiles/latex.vim
 so ~/dkenv/runtime_config/nvim_initfiles/oneliner.vimrc
 so ~/dkenv/runtime_config/nvim_initfiles/colorschemes.vimrc

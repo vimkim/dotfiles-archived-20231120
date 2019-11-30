@@ -469,3 +469,10 @@ nnoremap [] k$][%?}<CR>
 "nnoremap <space>$ :b 4<cr>
 "nnoremap <space>% :b 5<cr>
 "nnoremap <space>^ :b 6<cr>
+
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+nnoremap <F12> :bel sp <Bar> resize 10 <Bar> terminal
+"nnoremap <F3> :bel sp 50 | resize 10 | terminal
