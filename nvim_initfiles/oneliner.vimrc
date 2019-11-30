@@ -23,7 +23,7 @@ set ignorecase
 
 " Search pattern becomes case-insensitive when it has lowercase letters only.
 " * This should be turned on together with :set ignorecase.
-set smartcase
+"set smartcase " annoying when : completion
 
 set scrolloff=100 " scrolling control - leave some lines at both sides
 "set sidescrolloff=100 " for columns
