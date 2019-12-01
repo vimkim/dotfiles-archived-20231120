@@ -282,18 +282,6 @@ let g:tagbar_width=30
 "autocmd VimEnter * Tagbar
 ")
 
-"(ULTISNIPS
-let g:UltiSnipsListSnippets = "<c-j>"
-let g:UltiSnipsJumpForwardTrigger = "<c-l>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
-" Defines the directory private snippet definition files are stored in.
-set runtimepath+=~/dkenv/runtime_config/vim/mySnips
-let g:UltiSnipsSnippetsDir = "~/dkenv/runtime_config/vim/mySnips/UltiSnips"
-" maybe python bug fix? https://github.com/SirVer/ultisnips/issues/510 " no it does not solve
-" au CmdwinEnter * call UltiSnips#LeavingBuffer() " for what?
-" au CmdwinLeave * call UltiSnips#LeavingBuffer()
-" If prompts 'ultisnips requires py > 2.7 or whatever', then install vim-nox or vim-gtk
-
 "(VIMTEX
 " These are not working properly. It still opens the default system viewer
 "let g:vimtex_view_general_viewer = 'open'
