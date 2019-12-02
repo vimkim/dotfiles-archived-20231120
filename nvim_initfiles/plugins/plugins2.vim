@@ -22,7 +22,7 @@ nmap <space>) <Plug>BufTabLine.Go(10)
 
 "Plug 'jooize/vim-colemak'
 "Plug 'altercation/vim-colors-solarized'
-Plug 'octol/vim-cpp-enhanced-highlight' "may conflict with easytags
+"Plug 'octol/vim-cpp-enhanced-highlight' "may conflict with easytags "using lsp
 "Plug 'bfrg/vim-cpp-modern' "inspired by vim-cpp-enhanced-highlight
 Plug 'easymotion/vim-easymotion'
 
@@ -30,6 +30,7 @@ Plug 'easymotion/vim-easymotion'
 " emacs overwrites ctags with its own version of ctags on install. annoying...
 "Plug 'xolox/vim-misc' " must be before easytags
 "Plug 'xolox/vim-easytags'
+Plug 'tpope/vim-eunuch' " :Move command useful
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-fugitive'
 "Plug 'szw/vim-g'

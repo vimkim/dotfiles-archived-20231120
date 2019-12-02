@@ -96,6 +96,8 @@ vf(){
 }
 alias myvim='vf'
 
+
+
 # Detect nvim
 nvimexist='false'
 if type nvim 2>/dev/null; then
@@ -709,36 +711,6 @@ alias run_make="run_what='make'"
 
 alias cpmake="cp ~/dkenv/runtime_config/make/Makefile_C_general ./Makefile"
 alias cppmake="cp ~/dkenv/runtime_config/make/Makefile_CPP_general ./Makefile"
-mcl(){
-    echo "running mcl..."
-    if [[ "$run_what" == 'c' ]]; then
-        make --makefile=~/dkenv/runtime_config/make/Makefile_C_general clean
-        /bin/rm -rf *.dSYM
-        /bin/rm tags
-    elif [[ "$run_what" == 'cpp' ]]; then
-        make --makefile=~/dkenv/runtime_config/make/Makefile_CPP_general clean
-        /bin/rm -rf *.dSYM
-        /bin/rm tags
-    elif [[ "$run_what" == 'java' ]]; then
-        /bin/rm *.class
-    elif [[ "$run_what" == 'python3' ]]; then
-        /bin/rm *.pyc
-        /bin/rm -r __pycache__/*
-        /bin/rmdir __pycache__/
-    elif [[ "$run_what" == 'verilog' ]]; then
-        /bin/rm *.vvp
-        /bin/rm *.vcd
-        ubin/rm a.out
-    elif [[ "$run_what" == 'rust' ]]; then
-        /bin/rm main
-    elif [[ "$run_what" == 'make' ]]; then
-        make clean
-    elif [[ "$run_what" == 'ocaml' ]]; then
-        make clean
-    else
-        echo "run_c or run_cpp?"
-    fi
-}
 
 m(){
     echo "this is m function."
@@ -746,11 +718,13 @@ m(){
         echo "this is make for c"
         #make --makefile=~/dkenv/runtime_config/make/Makefile_C_general
         mcl
-        gccm  *.c && ./a.out
+        #gccm  *.c && ./a.out
+        gcc *.c && ./a.out
     elif [[ "$run_what" == 'cpp' ]]; then
         echo "this is make for cpp"
         #make --makefile=~/dkenv/runtime_config/make/Makefile_CPP_general
-        g++m *.cpp && ./a.out
+        #g++m *.cpp && ./a.out
+        g++ *.cpp && ./a.out
     elif [[ "$run_what" == 'asm' ]]; then
         echo "this is make for asm"
         nasm -f macho64 main.asm && ld -o main main.o && ./main && rm -f main.o main 1> /dev/null # reason to do this = to prevent msgs 'removed main.o, removed main, etc.'
@@ -805,6 +779,36 @@ m(){
     #say "complete"
 }
 
+mcl(){
+    echo "running mcl..."
+    if [[ "$run_what" == 'c' ]]; then
+        make --makefile=~/dkenv/runtime_config/make/Makefile_C_general clean
+        /bin/rm -rf *.dSYM
+        /bin/rm tags
+    elif [[ "$run_what" == 'cpp' ]]; then
+        make --makefile=~/dkenv/runtime_config/make/Makefile_CPP_general clean
+        /bin/rm -rf *.dSYM
+        /bin/rm tags
+    elif [[ "$run_what" == 'java' ]]; then
+        /bin/rm *.class
+    elif [[ "$run_what" == 'python3' ]]; then
+        /bin/rm *.pyc
+        /bin/rm -r __pycache__/*
+        /bin/rmdir __pycache__/
+    elif [[ "$run_what" == 'verilog' ]]; then
+        /bin/rm *.vvp
+        /bin/rm *.vcd
+        ubin/rm a.out
+    elif [[ "$run_what" == 'rust' ]]; then
+        /bin/rm main
+    elif [[ "$run_what" == 'make' ]]; then
+        make clean
+    elif [[ "$run_what" == 'ocaml' ]]; then
+        make clean
+    else
+        echo "run_c or run_cpp?"
+    fi
+}
 alias clang_assembly='clang -g3 -O0 -S -mllvm --x86-asm-syntax=intel'
 #alias clang_assembly='clang -O0 -S -mllvm -masm=intel' # this also seems working
 
