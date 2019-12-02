@@ -825,6 +825,9 @@ alias vm='myvim main.*~main.o~main.h~main.class~main.pyc'
 # In zsh, you can make a specific command case insensitive.
 #alias vm='myvim (#i)main.*~main.o~main.h~main.class'
 
+alias vma='myvim Makefile'
+alias vt='myvim test.ml'
+
 va(){
     if [[ "$run_what" == 'c' ]]; then
         myvim *.c
