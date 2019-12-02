@@ -385,3 +385,6 @@ endif
 
 " auto maximize on entry
 autocmd GUIEnter * simalt ~x
+
+" gui options for cleaner interface
+set guioptions=
