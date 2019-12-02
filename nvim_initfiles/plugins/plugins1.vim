@@ -118,8 +118,6 @@ Plug 'junegunn/seoul256.vim'
 "Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 "Plug 'majutsushi/tagbar'
-Plug 'SirVer/ultisnips' "Snippets Engine
-Plug 'honza/vim-snippets' " Snippets, let me put next to ultisnips
 
 Plug 'vim-scripts/upAndDown'
 
