@@ -23,7 +23,7 @@ set ignorecase
 
 " Search pattern becomes case-insensitive when it has lowercase letters only.
 " * This should be turned on together with :set ignorecase.
-set smartcase
+"set smartcase " annoying when : completion
 
 set scrolloff=100 " scrolling control - leave some lines at both sides
 "set sidescrolloff=100 " for columns
@@ -41,6 +41,7 @@ set fileencoding=utf-8
 
 " gvim gui font
 set guifont=Fira_Code_Retina:h16:cANSI:qDRAFT
+set guifont=Fira\ Code\ weight=453\ 16
 if has('mac')
     set guifontwide=NanumGothic:h22
 endif

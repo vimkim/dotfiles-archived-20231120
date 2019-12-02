@@ -40,14 +40,13 @@ endif
 if !empty(glob("$HOME/dkenv/runtime_config/nvim_initfiles/plugins")) "glob expands $HOME. Necessary? IDK..
 
     " plugin lists modularized
-    so ~/dkenv/runtime_config/nvim_initfiles/plugins/autocompletion.vim
+    so ~/dkenv/runtime_config/nvim_initfiles/plugins/lsp.vim
     so ~/dkenv/runtime_config/nvim_initfiles/plugins/plugins1.vim " name does not start with vim
     so ~/dkenv/runtime_config/nvim_initfiles/plugins/plugins2.vim " name starts with vim
     so ~/dkenv/runtime_config/nvim_initfiles/plugins/language_specific.vim
     so ~/dkenv/runtime_config/nvim_initfiles/plugins/markdown.vim
     so ~/dkenv/runtime_config/nvim_initfiles/plugins/latex.vim
     "so ~/dkenv/runtime_config/nvim_initfiles/plugins/conceal.vim
-
 
 endif
 call plug#end()

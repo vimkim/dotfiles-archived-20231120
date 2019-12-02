@@ -96,6 +96,8 @@ vf(){
 }
 alias myvim='vf'
 
+
+
 # Detect nvim
 nvimexist='false'
 if type nvim 2>/dev/null; then
@@ -688,7 +690,7 @@ alias clisprun='clisp main.lisp'
 
 alias juliarun='julia main.jl'
 
-run_what=""
+run_what="make"
 alias check_run_what='echo $run_what'
 alias run_c="run_what='c'"
 alias run_cpp="run_what='cpp'"
@@ -705,35 +707,10 @@ alias run_r="run_what='r'"
 alias run_ocm="run_what='ocaml'"
 alias run_vrlg="run_what='verilog'"
 alias run_rs="run_what='rust'"
+alias run_make="run_what='make'"
 
 alias cpmake="cp ~/dkenv/runtime_config/make/Makefile_C_general ./Makefile"
 alias cppmake="cp ~/dkenv/runtime_config/make/Makefile_CPP_general ./Makefile"
-mcl(){
-    echo "running mcl..."
-    if [[ "$run_what" == 'c' ]]; then
-        make --makefile=~/dkenv/runtime_config/make/Makefile_C_general clean
-        /bin/rm -rf *.dSYM
-        /bin/rm tags
-    elif [[ "$run_what" == 'cpp' ]]; then
-        make --makefile=~/dkenv/runtime_config/make/Makefile_CPP_general clean
-        /bin/rm -rf *.dSYM
-        /bin/rm tags
-    elif [[ "$run_what" == 'java' ]]; then
-        /bin/rm *.class
-    elif [[ "$run_what" == 'python3' ]]; then
-        /bin/rm *.pyc
-        /bin/rm -r __pycache__/*
-        /bin/rmdir __pycache__/
-    elif [[ "$run_what" == 'verilog' ]]; then
-        /bin/rm *.vvp
-        /bin/rm *.vcd
-        ubin/rm a.out
-    elif [[ "$run_what" == 'rust' ]]; then
-        /bin/rm main
-    else
-        echo "run_c or run_cpp?"
-    fi
-}
 
 m(){
     echo "this is m function."
@@ -741,11 +718,13 @@ m(){
         echo "this is make for c"
         #make --makefile=~/dkenv/runtime_config/make/Makefile_C_general
         mcl
-        gccm  *.c && ./a.out
+        #gccm  *.c && ./a.out
+        gcc *.c && ./a.out
     elif [[ "$run_what" == 'cpp' ]]; then
         echo "this is make for cpp"
         #make --makefile=~/dkenv/runtime_config/make/Makefile_CPP_general
-        g++m *.cpp && ./a.out
+        #g++m *.cpp && ./a.out
+        g++ *.cpp && ./a.out
     elif [[ "$run_what" == 'asm' ]]; then
         echo "this is make for asm"
         nasm -f macho64 main.asm && ld -o main main.o && ./main && rm -f main.o main 1> /dev/null # reason to do this = to prevent msgs 'removed main.o, removed main, etc.'
@@ -781,14 +760,18 @@ m(){
     elif [[ "$run_what" == 'ocaml' ]]; then
         echo "this is Ocaml."
         #ocaml -init main.ml
-        ocaml main.ml
+        #ocaml main.ml
         #ocaml < main.ml
+        make $@
     elif [[ "$run_what" == 'verilog' ]]; then
         echo "This is icarus verilog."
         iverilog main.v
     elif [[ "$run_what" == 'rust' ]]; then
         echo "This is Rust."
         rustc main.rs && ./main
+    elif [[ "$run_what" == 'make' ]]; then
+        echo "This is make."
+        make $@
     else
         echo "\$run_what value is not initialized. Use run_* option. Use check_run_what to check its value."
     fi
@@ -796,6 +779,36 @@ m(){
     #say "complete"
 }
 
+mcl(){
+    echo "running mcl..."
+    if [[ "$run_what" == 'c' ]]; then
+        make --makefile=~/dkenv/runtime_config/make/Makefile_C_general clean
+        /bin/rm -rf *.dSYM
+        /bin/rm tags
+    elif [[ "$run_what" == 'cpp' ]]; then
+        make --makefile=~/dkenv/runtime_config/make/Makefile_CPP_general clean
+        /bin/rm -rf *.dSYM
+        /bin/rm tags
+    elif [[ "$run_what" == 'java' ]]; then
+        /bin/rm *.class
+    elif [[ "$run_what" == 'python3' ]]; then
+        /bin/rm *.pyc
+        /bin/rm -r __pycache__/*
+        /bin/rmdir __pycache__/
+    elif [[ "$run_what" == 'verilog' ]]; then
+        /bin/rm *.vvp
+        /bin/rm *.vcd
+        ubin/rm a.out
+    elif [[ "$run_what" == 'rust' ]]; then
+        /bin/rm main
+    elif [[ "$run_what" == 'make' ]]; then
+        make clean
+    elif [[ "$run_what" == 'ocaml' ]]; then
+        make clean
+    else
+        echo "run_c or run_cpp?"
+    fi
+}
 alias clang_assembly='clang -g3 -O0 -S -mllvm --x86-asm-syntax=intel'
 #alias clang_assembly='clang -O0 -S -mllvm -masm=intel' # this also seems working
 
@@ -816,6 +829,16 @@ alias vm='myvim main.*~main.o~main.h~main.class~main.pyc'
 # In zsh, you can make a specific command case insensitive.
 #alias vm='myvim (#i)main.*~main.o~main.h~main.class'
 
+va(){
+    if [[ "$run_what" == 'c' ]]; then
+        myvim *.c
+    elif [[ "$run_what" == 'ocaml' ]]; then
+        myvim *.ml
+    else
+        echo "run what?"
+    fi
+}
+
 alias euckr2utf8='iconv -c -f euc-kr -t utf-8' # convert from to?
 
 alias pd='popd'
@@ -826,11 +849,11 @@ _rmt(){
 }
 alias trash_empty='/bin/rm -rfv ~/Trash/*'
 if [[ $platform == 'linux' ]]; then
-    if [[ $iswsl == 'true' ]]; then
-        alias rmt=_rmt
-    else
-        # sudo pacman -S trash-cli
+    if type trash 2>/dev/null; then
         alias rmt="trash"
+    else
+        echo "trash-cli not installed"
+        alias rmt=_rmt
     fi
 elif [[ $platform == 'macos' ]]; then
     alias rmt="rmtrash"

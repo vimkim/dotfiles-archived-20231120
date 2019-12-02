@@ -37,9 +37,13 @@ if g:platform == "linux"
     " ## added by OPAM user-setup for vim / ocp-indent ## efdfb104de8a2058a9a60350c799202e ## you can edit, but keep this line
 
         if count(s:opam_available_tools,"ocp-indent") == 0
-          source "/home/dkwslubnt/.opam/default/share/ocp-indent/vim/indent/ocaml.vim"
+            " I added this line cuz it makes error messages in other computers
+            if filereadable("/home/dkwslubnt/.opam/default/share/ocp-indent/vim/indent/ocaml.vim")
+                source "/home/dkwslubnt/.opam/default/share/ocp-indent/vim/indent/ocaml.vim"
+            endif
         endif
 else
     " windows ocaml settings
 endif
 " ## end of OPAM user-setup addition for vim / ocp-indent ## keep this line
+" Only works for wsl

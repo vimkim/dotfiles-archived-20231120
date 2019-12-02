@@ -1,5 +1,6 @@
 " C
 Plug 'vim-scripts/a.vim'
+nnoremap ,aa :A<cr>
 Plug 'tenfyzhong/vim-gencode-cpp'
 
 " lisp-family + scheme
