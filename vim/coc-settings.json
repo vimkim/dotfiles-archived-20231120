@@ -18,5 +18,6 @@
             "filetypes": ["reason", "ocaml"]
         }
     },
-    "suggest.noselect": false
+    "suggest.noselect": false,
+    "python.jediEnabled": false
 }

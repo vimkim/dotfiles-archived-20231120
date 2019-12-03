@@ -7,6 +7,25 @@ gitpullall(){
 
 gitpullall &
 
+updateall(){
+    if type apt 2>/dev/null; then
+        sudo apt update
+        sudo apt upgrade
+    fi
+}
+updateall &
+
+gitpushall(){
+    cd ~/dkenv/runtime_config
+    git add .
+    git commit -m "."
+    git push origin master
+    cd ~/dkenv
+    git add .
+    git commit -m "."
+    git push origin master
+}
+
 alias gh='cl ~/how2heap/glibc_2.25'
 ####### Shell Aliases #####
 # Common aliases which works for both zsh and bash (and probably others too).
