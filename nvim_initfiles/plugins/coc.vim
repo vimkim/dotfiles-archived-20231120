@@ -4,6 +4,8 @@ let g:coc_global_extensions = [
             \'coc-ultisnips',
             \'coc-snippets',
             \'coc-sql',
+            \'coc-reason',
+            \'coc-python',
             \ 'https://github.com/andys8/vscode-jest-snippets'
             \]
 

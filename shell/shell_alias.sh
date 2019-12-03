@@ -7,6 +7,32 @@ gitpullall(){
 
 gitpullall &
 
+updateall(){
+    if type apt 2>/dev/null; then
+        sudo apt update
+        sudo apt upgrade
+    fi
+
+    if type pacman 2>/dev/null; then
+        sudo pacman -Syu
+        # to rebuild everything, use:
+        # sudo pacman -Syyu
+    fi
+}
+
+updateall &
+
+gitpushall(){
+    cd ~/dkenv/runtime_config
+    git add .
+    git commit -m "."
+    git push origin master
+    cd ~/dkenv
+    git add .
+    git commit -m "."
+    git push origin master
+}
+
 alias gh='cl ~/how2heap/glibc_2.25'
 ####### Shell Aliases #####
 # Common aliases which works for both zsh and bash (and probably others too).
@@ -828,6 +854,9 @@ alias ei='e main.*~main.o~main.h~main.class'
 alias vm='myvim main.*~main.o~main.h~main.class~main.pyc'
 # In zsh, you can make a specific command case insensitive.
 #alias vm='myvim (#i)main.*~main.o~main.h~main.class'
+
+alias vma='myvim Makefile'
+alias vt='myvim test.ml'
 
 va(){
     if [[ "$run_what" == 'c' ]]; then
