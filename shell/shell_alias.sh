@@ -12,7 +12,14 @@ updateall(){
         sudo apt update
         sudo apt upgrade
     fi
+
+    if type pacman 2>/dev/null; then
+        sudo pacman -Syu
+        # to rebuild everything, use:
+        # sudo pacman -Syyu
+    fi
 }
+
 updateall &
 
 gitpushall(){
