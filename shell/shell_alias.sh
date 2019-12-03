@@ -1217,3 +1217,6 @@ alias j='jobs'
 
 # verilog
 alias iv='iverilog'
+
+alias which='which -a'
+alias w='which'
