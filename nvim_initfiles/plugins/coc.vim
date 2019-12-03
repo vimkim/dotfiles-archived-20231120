@@ -3,6 +3,7 @@ let g:coc_global_extensions = [
             \'coc-json',
             \'coc-ultisnips',
             \'coc-snippets',
+            \'coc-sql',
             \ 'https://github.com/andys8/vscode-jest-snippets'
             \]
 

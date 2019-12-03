@@ -202,3 +202,23 @@ set-alias csc "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSB
 
 # Install-Module -Name Recycle
 set-alias rmt Remove-ItemSafely
+
+function gitpullall(){
+    cd ~/dkenv/runtime_config
+    git pull
+    cd ~/dkenv
+    git pull
+}
+gitpullall
+
+function gitpushall(){
+    cd ~/dkenv/runtime_config
+    git add .
+    git commit -m "."
+    git push
+
+    cd ~/dkenv
+    git add .
+    git commit -m "."
+    git push
+}
