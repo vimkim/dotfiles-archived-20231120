@@ -1220,3 +1220,5 @@ alias iv='iverilog'
 
 alias which='which -a'
 alias w='which'
+
+alias co='code'
