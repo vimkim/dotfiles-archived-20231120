@@ -29,7 +29,11 @@ autocmd BufRead, BufNewFile *.jl set filetype=julia
 so ~/dkenv/runtime_config/nvim_initfiles/plugins/lang/js.vim
 
 "ocaml
-so ~/dkenv/runtime_config/nvim_initfiles/plugins/lang/ocaml.vim
+"so ~/dkenv/runtime_config/nvim_initfiles/plugins/lang/ocaml.vim
+
+"reason
+Plug 'reasonml-editor/vim-reason-plus'
+let g:ale_reason_ls_executable = "/usr/bin/reason-language-server"
 
 " verilog
 Plug 'vhda/verilog_systemverilog.vim'
