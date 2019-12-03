@@ -191,3 +191,34 @@ function bb_os(){
 function bb_pl(){
     start-process chrome.exe "http://prl.korea.ac.kr/~pronto/home/courses/cose212/2019/"
 }
+
+function r-cpp(){
+    g++ main.cpp; ./a
+}
+
+# set-alias csc C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe
+
+set-alias csc "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Roslyn\csc.exe"
+
+# Install-Module -Name Recycle
+set-alias rmt Remove-ItemSafely
+
+function gitpullall(){
+    cd ~/dkenv/runtime_config
+    git pull
+    cd ~/dkenv
+    git pull
+}
+gitpullall
+
+function gitpushall(){
+    cd ~/dkenv/runtime_config
+    git add .
+    git commit -m "."
+    git push
+
+    cd ~/dkenv
+    git add .
+    git commit -m "."
+    git push
+}

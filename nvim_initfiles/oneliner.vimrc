@@ -40,8 +40,10 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 " gvim gui font
-set guifont=Fira_Code_Retina:h16:cANSI:qDRAFT
 set guifont=Fira\ Code\ weight=453\ 16
+if has('win32')
+    set guifont=Fira_Code_Retina:h16:cANSI:qDRAFT
+endif
 if has('mac')
     set guifontwide=NanumGothic:h22
 endif
@@ -386,3 +388,6 @@ endif
 
 " auto maximize on entry
 autocmd GUIEnter * simalt ~x
+
+" gui options for cleaner interface
+set guioptions=
