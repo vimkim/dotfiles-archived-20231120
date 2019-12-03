@@ -1102,11 +1102,12 @@ alias zshcus="myvim ~/dkenv/runtime_config/zsh/zsh_custom.zsh"
 alias ca='cda' # cd advanced
 
 # export FZF_DEFAULT_COMMAND='fd --type f'
+
 cx() { # find based
   local dir
-  dir=$( fd --type d -H | fzf +m) &&
-  cl "$dir"
+  dir=$( fd --type d -H -E .git | fzf +m) && cl "$dir"
 }
+
 
 # frecency based (frequency + recency)
 alias cz='cl $(fasd -dl | fzf)'
