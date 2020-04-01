@@ -40,6 +40,7 @@ function _cd{
 }
 Set-Alias -Name cd -Value _cd -Option AllScope
 Import-Module PSReadLine
+Import-Module PSFzf # must be after PSReadLine
 Set-PSReadLineOption -EditMode Emacs
 function ch{c $home}
 function cmdh{c $env:cmder_root}
@@ -58,8 +59,8 @@ function _ls{Get-ChildItem -name @args -Force}
 Set-Alias l _ls
 Set-Alias -Name ls -Value _ls -Option AllScope
 function ll{Get-ChildItem}
-# function _vim{gvim @args}
-function _vim{gvim --servername DKVIM --remote @args}
+function _vim{gvim @args}
+# function _vim{gvim --servername DKVIM --remote @args}
 function vimrc {_vim $home\dkenv\runtime_config\vim\.vimrc}
 function vimdir{cd $home\.vim}
 
@@ -78,6 +79,7 @@ function which($name){
 
 $env:term='' # for fzf to work in Fluent Terminal
 function cz{ z | python -c "z=list(__import__('sys').stdin); z=[s.strip().split() for s in z]; z=[l[1] for l in z[3:-2]]; print('\n'.join(z))" | fzf | cl }
+function cx{ fd }
 
 #Import-Module posh-git
 
@@ -209,7 +211,8 @@ function gitpullall(){
     cd ~/dkenv
     git pull
 }
-gitpullall
+
+# gitpullall
 
 function gitpushall(){
     cd ~/dkenv/runtime_config
@@ -222,3 +225,7 @@ function gitpushall(){
     git commit -m "."
     git push
 }
+
+set-alias co code
+
+set-alias iv iverilog

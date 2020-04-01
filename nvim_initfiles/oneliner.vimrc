@@ -382,6 +382,9 @@ endfunction
 
 nnoremap <leader>x :call QuickfixToggle()<cr>
 
+" If the serverlist contains more than one item, than another instance of
+" Vim is loaded.
+" from: https://vim.fandom.com/wiki/Prevent_a_second_instance_of_Vim_from_starting
 if serverlist() =~? "\n."
     echo "MyWarning: Another copy of gvim or Vim is probably loaded!"
 endif

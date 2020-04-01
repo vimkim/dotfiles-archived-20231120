@@ -321,6 +321,7 @@ nnoremap ;time <esc>k:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 "inoremap ;time <esc>k<esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 
 nnoremap ;sov :so $MYVIMRC<cr>
+nnoremap ;evimrc :e $MYVIMRC<cr>
 
 let g:BASH_Ctrl_j = 'off' " does not work
 let g:ZSH_Ctrl_j = 'off'
