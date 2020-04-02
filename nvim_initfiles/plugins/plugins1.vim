@@ -3,7 +3,6 @@ Plug 'vim-scripts/a.vim'
 Plug 'mileszs/ack.vim' "code search // needs extra install of ack
 Plug 'w0rp/ale' "saves my life
 
-
 "Plug 'jiangmiao/auto-pairs' " This plugin is buggy with Korean inputs when 'set noimd'. also bug with wsl
 " these settings disable julia autopairs.. disabled
 "au FileType lisp let b:autopairs_loaded=1 "auto-pairs inferior for lisp
@@ -78,7 +77,9 @@ let g:fzf_action = {
   \ 'ctrl-o': function('s:copy_results'),
   \ }
 
-Plug 'pandysong/ghost-text.vim'
+"Plug 'pandysong/ghost-text.vim' " does not work well with python 3.8.
+"updating since 2 years.
+" Spitting "this plugin needs python3 support." everytime.
 
 "Plug 'junegunn/goyo.vim')
 Plug 'morhetz/gruvbox'

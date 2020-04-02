@@ -66,7 +66,7 @@ function vimdir{cd $home\.vim}
 
 # function which($name){where.exe $name}
 function which($name){
-    Get-Command $name | Select-Object -ExpandProperty Definition
+    Get-Command $name # | Select-Object -ExpandProperty Definition
 }
 
 # ZLocation

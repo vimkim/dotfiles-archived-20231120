@@ -32,7 +32,7 @@ Plug 'easymotion/vim-easymotion'
 "Plug 'xolox/vim-easytags'
 Plug 'tpope/vim-eunuch' " :Move command useful
 Plug 'tommcdo/vim-exchange'
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 "Plug 'szw/vim-g'
 Plug 'tenfyzhong/vim-gencode-cpp'
 Plug 'airblade/vim-gitgutter'
@@ -46,7 +46,7 @@ Plug 'rhysd/vim-grammarous'
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx']}
 "Plug 'skywind3000/vim-keysound'
 let g:keysound_enable = 1
-Plug 'xuhdev/vim-latex-live-preview'
+"Plug 'xuhdev/vim-latex-live-preview'
 " lambdify location
 
 " markdown
