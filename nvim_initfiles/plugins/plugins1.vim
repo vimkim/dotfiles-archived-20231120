@@ -77,10 +77,6 @@ let g:fzf_action = {
   \ 'ctrl-o': function('s:copy_results'),
   \ }
 
-"Plug 'pandysong/ghost-text.vim' " does not work well with python 3.8.
-"updating since 2 years.
-" Spitting "this plugin needs python3 support." everytime.
-
 "Plug 'junegunn/goyo.vim')
 Plug 'morhetz/gruvbox'
 Plug 'sjl/gundo.vim'
@@ -106,6 +102,7 @@ augroup qs_colors
   autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
   autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 augroup END
+let g:qs_highlight_on_keys = ['t', 'T', 'f', 'F']
 
 Plug 'chrisbra/Recover.vim' "temp file diff
 Plug 'vim-scripts/restore_view.vim' " save folds - seems not working
@@ -124,7 +121,8 @@ Plug 'vim-scripts/upAndDown'
 
 "something similar for GUI? keynav (linux), XEasyMotion (macOS)
 " disabled for colemak neio arrow key compatibility
-Plug 'vim-scripts/BinarySearchMove'
+"
+"Plug 'vim-scripts/BinarySearchMove'
 " instead of this, use J, K -> update: it turned out that this is more consistent than J, K as this
 " plugin searches through the whole lines.
 "noremap U :call BSMoveBufGoUp()<CR>

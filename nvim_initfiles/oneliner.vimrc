@@ -18,6 +18,8 @@ set smarttab
 " Show partial commands in the last line
 set showcmd
 
+set showmode
+
 " Search pattern becomes case-insensitive.
 set ignorecase
 
@@ -40,9 +42,9 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 " gvim gui font
-set guifont=Fira\ Code\ weight=453\ 16
+"set guifont=Fira\ Code\ weight=453\ 16
 if has('win32')
-    set guifont=Fira_Code_Retina:h16:cANSI:qDRAFT
+    set guifont=Fira_Code_Retina:h14:cANSI:qDRAFT
 endif
 if has('mac')
     set guifontwide=NanumGothic:h22
@@ -90,7 +92,7 @@ endif
 set confirm
 
 " set command line height to 2
-set cmdheight=2
+"set cmdheight=2
 
 " toggle paste mode
 "set pastetoggle=<F11> << not necessary
@@ -119,9 +121,6 @@ set ruler
 " HTML indenting issue
 let g:html_indent_inctags = "html,body,head,tbody"
 
-" ??
-set showmode
-set showcmd
 
 " Better buffer management - hide buffers instead of closing them - by mojotech
 set hidden
@@ -205,7 +204,8 @@ endif
 "latex conceal unwanted strange math mode
 "let g:tex_conceal = "" "maybe for vim-markdown or general
 
-set lazyredraw " redraw only when we need to 
+"maybe bug
+"set lazyredraw " redraw only when we need to
 
 "jumplist gotojump " in order to invoke, :call GotoJump()
 function! GotoJump()
@@ -324,7 +324,7 @@ autocmd bufnewfile,bufread * setlocal concealcursor=c conceallevel=1
 
 "detect realtime file changes
 set autoread
-au Cursorhold * checktime
+"au Cursorhold * checktime " this one is buggy when q: in gvim windows
 " seems like this does not work with terminal vim.
 " For temporary amendment, use :e! everytime if there is a change.
 " I'll install vim-autoread plugin and see how it goes.
@@ -394,3 +394,14 @@ autocmd GUIEnter * simalt ~x
 
 " gui options for cleaner interface
 set guioptions=
+
+" for windows gvim which only comes with python36.dll
+" especially for ghost-text.vim
+set pythonthreedll=C:\Users\dksmsng\AppData\Local\Programs\Python\Python38\python38.dll
+
+" language
+set langmenu=en_US
+let $LANG='en_US'
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+

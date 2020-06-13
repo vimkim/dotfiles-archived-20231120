@@ -1,0 +1,364 @@
+    // Place your settings in this file to overwrite the default settings
+{
+
+    "editor.quickSuggestions": true,
+    "editor.tabCompletion":"on",
+    "editor.wordWrap": "on",
+    "editor.renderWhitespace": "all",
+    "editor.fontFamily": "'Fira Code Retina', '맑은 고딕'",
+    //"editor.fontSize": 18,
+    "editor.fontSize": 22,
+    "editor.minimap.enabled": true,
+    //"editor.lineNumbers": "relative",
+
+    //"files.defaultLanguage": "${activeEditorLanguage}",
+
+    // for ghosttext + leetcode
+    "files.associations": {
+        "*.tmp": "python"
+    },
+
+    //"scrolloff.alwaysCenter": true, // something wrong when visual select
+
+    "powermode.enabled": true,
+    "powermode.presets":"magic",
+
+
+    "window.newWindowDimensions": "maximized",
+
+    ////// "vim.debug.loggingLevelForConsole":"debug",
+    ////// "vim.debug.loggingLevelForAlert": "debug",
+    "vim.easymotion":true, 
+    // <leader><leader>s<char>
+    ////// //"vim.vimrc.enable": true,
+    ////// //"vim.vimrc.path": "~/dkenv/runtime_config/code/.vimrc",
+    "vim.showcmd": true,
+    "vim.incsearch":true,
+    "vim.useSystemClipboard":true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch":true,
+    
+    // LEADER MAPPING
+    "vim.leader":",",
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-k>": false,
+        "<C-f>": false
+    },
+
+    "vim.insertModeKeyBindings":[
+        {
+            // this does not work in vscodevim
+            // only works when I just get into insert mode and press this right after.
+            "before":["<C-e>"],
+            "after": ["<esc>"]
+        },
+        {
+            "before":["<leader>","s"],
+            "after": ["<esc>"],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args":[]
+                }
+            ]
+        }
+    ],
+
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "q"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeActiveEditor",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before":["<leader>","s"],
+            "after": ["<esc>"],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args":[]
+                }
+            ]
+        }
+    ],
+
+    "[cpp]": {
+        "editor.quickSuggestions": true
+    },
+    "[c]": {
+        "editor.quickSuggestions": true
+    },
+    "window.zoomLevel": 0,
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+
+    // leetcode
+    "leetcode.workspaceFolder": "C:\\Users\\dksmsng\\.leetcode",
+    "leetcode.defaultLanguage": "python3",
+    "leetcode.hint.configWebviewMarkdown": false,
+    "leetcode.showDescription": "Both",
+
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.iconTheme": "material-icon-theme",
+    "sync.gist": "d8e4997ec8c0169c597bf98a39c797f0",
+    "window.restoreWindows": "none",
+
+    //"terminal.integrated.rendererType": "dom",
+    "backgroundCover.imagePath": "c:\\Users\\dksmsng\\dkenv\\runtime_config\\terminal\\wall1.jpg",
+    "backgroundCover.opacity": 0.375,
+    "workbench.colorTheme": "Solarized Light",
+    "vscode-neovim.neovimPath": "C:\\tools\\neovim\\Neovim\\bin\\nvim.exe"
+
+    ////// I'm tired of this. Use vscodevim-colemak instead
+    ////// "vim.insertModeKeyBindings":[
+    //////     {
+    //////         // this does not work in vscodevim
+    //////         // only works when I just get into insert mode and press this right after.
+    //////         "before":["<C-e>"],
+    //////         "after": ["<esc>"]
+    //////     },
+    //////     {
+    //////     
+    //////         "before":["<leader>","s"],
+    //////         "after": ["<esc>"],
+    //////         "commands": [
+    //////             {
+    //////                 "command": "workbench.action.files.save",
+    //////                 "args":[]
+    //////             }
+    //////         ]
+    //////     }
+    ////// ],
+    ////// "vim.normalModeKeyBindings": [
+    //////     {
+    //////         "before": ["n"],
+    //////         "after": ["<down>"]
+    //////     },
+    //////     {
+    //////         "before": ["e"],
+    //////         "after": ["<up>"]
+    //////     },
+    //////     {
+    //////         "before": ["i"],
+    //////         "after": ["<right>"]
+    //////     },
+    ////// ],
+    ////// "vim.normalModeKeyBindingsNonRecursive": [
+    //////     {
+    //////         "before": ["N"],
+    //////         "after": ["J"]
+    //////     },
+    //////     {
+    //////         "before": ["k"],
+    //////         "after": ["n"]
+    //////     },
+    //////     {
+    //////         "before": ["f"],
+    //////         "after": ["e"],
+    //////     },
+    //////     // for some reason remapping l to u does not work. Use the commands block below instead.
+    //////     // source: https://github.com/VSCodeVim/Vim/issues/2234
+    //////     //{
+    //////     //    "before": ["l"],
+    //////     //    "after": ["u"]
+    //////     //},
+    //////     {
+    //////         "before": ["l"],
+    //////         "after": [],
+    //////         "commands": [
+    //////             { "command": "undo",
+    //////             "args":[]
+    //////             }
+    //////         ]
+    //////     },
+    //////     {
+    //////         "before": ["<C-r>"],
+    //////         "after": [],
+    //////         "commands": [
+    //////             {
+    //////             "command": "redo",
+    //////             "args": []
+    //////             }
+    //////         ]
+    //////     },
+    //////     {
+    //////         "before": ["u"],
+    //////         "after": ["i"]
+    //////     },
+    //////     {
+    //////         "before": ["U"],
+    //////         "after": ["I"]
+    //////     },
+    //////     {
+    //////         "before": ["t"],
+    //////         "after": ["f"]
+    //////     },
+    //////     {
+    //////         "before": ["j"],
+    //////         "after": ["t"]
+    //////     },
+    //////     {
+    //////         "before": ["J"],
+    //////         "after": ["T"]
+    //////     },
+    //////     {
+    //////         "before": ["<leader>","d"],
+    //////         "after": ["d","d"]
+    //////     },
+    //////     { // save 
+    //////         "before":["<leader>","s"],
+    //////         "after": ["<esc>"],
+    //////         "commands": [
+    //////             {
+    //////                 "command": "workbench.action.files.save",
+    //////                 "args":[]
+    //////             }
+    //////         ]
+    //////     },
+    //////     {
+    //////         "before": ["Z", "Z"],
+    //////         "after": [],
+    //////         "commands": [
+    //////             {
+    //////                 "command": "workbench.action.files.save",
+    //////                 "args": []
+    //////             },
+    //////             {
+    //////                 "command": "workbench.action.closeActiveEditor",
+    //////                 "args": []
+    //////             }
+    //////         ]
+    //////     },
+    //////     {
+    //////         "before": ["<leader>","q"],
+    //////         "after": [],
+    //////         "commands": [
+    //////             {
+    //////                 "command": "workbench.action.closeActiveEditor",
+    //////                 "args": []
+    //////             }
+    //////         ]
+    //////     }
+    ////// ],
+    ////// "vim.visualModeKeyBindingsNonRecursive": [
+    //////     {
+    //////         "before": ["n"],
+    //////         "after": ["<down>"]
+    //////     },
+    //////     {
+    //////         "before": ["N"],
+    //////         "after": ["J"]
+    //////     },
+    //////     {
+    //////         "before": ["e"],
+    //////         "after": ["<up>"]
+    //////     },
+    //////     {
+    //////         "before": ["i"],
+    //////         "after": ["<right>"]
+    //////     },
+    //////     {
+    //////         "before": ["k"],
+    //////         "after": ["n"]
+    //////     },
+    //////     {
+    //////         "before": ["f"],
+    //////         "after": ["e"],
+    //////     },
+    //////     // for some reason remapping l to u does not work. Use the commands block below instead.
+    //////     // source: https://github.com/VSCodeVim/Vim/issues/2234
+    //////     //{
+    //////     //    "before": ["l"],
+    //////     //    "after": ["u"]
+    //////     //},
+    //////     {
+    //////         "before": ["c", "u", "w"],
+    //////         "after": ["c", "i", "w"]
+    //////     },
+    //////     {
+    //////         "before": ["l"],
+    //////         "after": [],
+    //////         "commands": [
+    //////             { "command": "undo",
+    //////             "args":[]
+    //////             }
+    //////         ]
+    //////     },
+    //////     {
+    //////     "before": ["<C-r>"],
+    //////     "after": [],
+    //////         "commands": [
+    //////             {
+    //////             "command": "redo",
+    //////             "args": []
+    //////             }
+    //////         ]
+    //////     },
+    //////     {
+    //////         "before": ["u"],
+    //////         "after": ["i"]
+    //////     },
+    //////     {
+    //////         "before": ["U"],
+    //////         "after": ["I"]
+    //////     },
+    //////     {
+    //////         "before": ["t"],
+    //////         "after": ["f"]
+    //////     },
+    //////     {
+    //////         "before": ["j"],
+    //////         "after": ["t"]
+    //////     },
+    //////     {
+    //////         "before": ["J"],
+    //////         "after": ["T"]
+    //////     },
+    //////     {
+    //////         "before": ["<leader>","d"],
+    //////         "after": ["d","d"]
+    //////     },
+    //////     { // save 
+    //////         "before":["<leader>","s"],
+    //////         "after": ["<esc>"],
+    //////         "commands": [
+    //////             {
+    //////                 "command": "workbench.action.files.save",
+    //////                 "args":[]
+    //////             }
+    //////         ]
+    //////     },
+    //////     {
+    //////         "before": ["Z", "Z"],
+    //////         "after": [],
+    //////         "commands": [
+    //////             {
+    //////                 "command": "workbench.action.files.save",
+    //////                 "args": []
+    //////             },
+    //////             {
+    //////                 "command": "workbench.action.closeActiveEditor",
+    //////                 "args": []
+    //////             }
+    //////         ]
+    //////     },
+    //////     {
+    //////         "before": ["<leader>","q"],
+    //////         "after": [],
+    //////         "commands": [
+    //////             {
+    //////                 "command": "workbench.action.closeActiveEditor",
+    //////                 "args": []
+    //////             }
+    //////         ]
+    //////     }
+    ////// ],
+    ////// 
+
+}
+

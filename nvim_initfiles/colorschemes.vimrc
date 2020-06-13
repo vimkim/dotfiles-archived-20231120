@@ -28,7 +28,9 @@
 "colo zenburn
 "let g:seoul256_srgb=1
 "let g:seoul256_background=252
-colo seoul256
+"colo seoul256
+colo solarized
+set bg=light
 
 " Prevent vim from overriding default terminal background"
 "https://stackoverflow.com/a/21572296/6154359

@@ -21,7 +21,7 @@ nmap <space>( <Plug>BufTabLine.Go(9)
 nmap <space>) <Plug>BufTabLine.Go(10)
 
 "Plug 'jooize/vim-colemak'
-"Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 "Plug 'octol/vim-cpp-enhanced-highlight' "may conflict with easytags "using lsp
 "Plug 'bfrg/vim-cpp-modern' "inspired by vim-cpp-enhanced-highlight
 Plug 'easymotion/vim-easymotion'

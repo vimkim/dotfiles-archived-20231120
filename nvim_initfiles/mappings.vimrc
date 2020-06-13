@@ -1,14 +1,26 @@
+"inoremap ,aaa #include<stdio.h><cr>int main(void){<cr>printf("hello world!\n");<cr>return 0;<cr>}
+nnoremap ,aaa ihelloworld<esc>hhhhi <esc>
+
 " ##### mapping #####
 "vim navigation enable
 noremap n gj|noremap N J
 noremap e gk|noremap E K
 noremap i l|noremap I L
-noremap k n|noremap K N
-noremap f e|noremap F E
-noremap u i|noremap U I
-noremap l u|noremap L U
-noremap t f|noremap T F
-noremap j t|noremap J T
+" noremap k n|noremap K N
+" noremap f e|noremap F E
+" noremap u i|noremap U I
+" noremap l u|noremap L U
+" noremap t f|noremap T F
+" noremap j t|noremap J T
+noremap l i
+noremap L I
+noremap k n
+noremap K N
+noremap j e
+noremap J E
+
+cnoreabbrev vimrc :e $MYVIMRC
+command Vimrc :e $MYVIMRC
 
 "nnoremap k i|vnoremap k i
 "nnoremap l e|vnoremap l e
@@ -122,10 +134,6 @@ onoremap <leader>s <esc>:update<cr>
 "inoremap <c-q> <ESC>:q<CR>
 nnoremap <c-q> <c-z>
 inoremap <c-q> <esc><c-z>
-nnoremap <leader>q :q<CR>
-inoremap <leader>q <ESC>:q<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>q :bd<CR>
 inoremap <leader>q <ESC>:bd<CR>
 nnoremap <leader>q :bd<CR>
 nnoremap <leader>w :Gwrite<cr>:Gcommit --verbose<cr>
@@ -140,15 +148,17 @@ nnoremap sq <esc>:wq<esc>
 vnoremap sq <esc>:wq<esc>
 
 "DISABLE EX-MODE
-:map Q <nop>
+map Q <nop>
 
 "Try quit in insert mode.
 inoremap QQ <c-c>:q<cr>
 nnoremap QQ <c-c>:q<cr>
+nnoremap QW <c-c>:q<cr>
+nnoremap ,zz <esc>:q<cr>
 
 "NEW LINE
 " insert new line without entering insert mode.
-"nnoremap <Enter> o<ESC>
+nnoremap <Enter> o<ESC>
 " insert new line above the cursor without entering insert mode.
 nnoremap <Leader><Enter> O<ESC>
 " Unfortunately, a more intuitive  choice of <S-Enter> O<ESC> not working on CLI
@@ -306,7 +316,6 @@ nnoremap ;fp :echo expand('%:p')<cr>
 " filename short
 nnoremap ;fn :echo expand('%:p')<cr>
 
-
 " mapping for replace all / substitute all
 nnoremap ;repa :%s/
 nnoremap ;repl :%s/
@@ -321,6 +330,7 @@ nnoremap ;time <esc>k:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 "inoremap ;time <esc>k<esc>:put =strftime('%Y-%b-%d %a %T')<cr><esc>
 
 nnoremap ;sov :so $MYVIMRC<cr>
+nnoremap ;vimrc :e $MYVIMRC<cr>
 nnoremap ;evimrc :e $MYVIMRC<cr>
 
 let g:BASH_Ctrl_j = 'off' " does not work
@@ -477,3 +487,6 @@ tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
 nnoremap <F12> :bel sp <Bar> resize 10 <Bar> terminal
 "nnoremap <F3> :bel sp 50 | resize 10 | terminal
+
+nnoremap ;full <c-w>o
+nnoremap ;max <c-w>o

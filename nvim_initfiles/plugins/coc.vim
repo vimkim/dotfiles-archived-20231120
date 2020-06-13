@@ -21,16 +21,13 @@ let g:UltiSnipsExpandTrigger = ""
 " Defines the directory private snippet definition files are stored in.
 set runtimepath+=~/dkenv/runtime_config/vim/mySnips
 let g:UltiSnipsSnippetsDir = "~/dkenv/runtime_config/vim/mySnips/UltiSnips"
-" maybe python bug fix? https://github.com/SirVer/ultisnips/issues/510 " no it does not solve
-" au CmdwinEnter * call UltiSnips#LeavingBuffer() " for what?
-" au CmdwinLeave * call UltiSnips#LeavingBuffer()
-" If prompts 'ultisnips requires py > 2.7 or whatever', then install vim-nox or vim-gtk
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -48,7 +45,7 @@ set nobackup
 set nowritebackup
 
 " Better display for messages
-set cmdheight=2
+"set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
@@ -70,7 +67,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -104,8 +101,8 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+" Fix autofix problem of current line " conflict with my original keymapping
+"nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)

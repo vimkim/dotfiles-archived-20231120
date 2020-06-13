@@ -1,3 +1,12 @@
+
+<############### Start of PowerTab Initialization Code ########################
+    Added to profile by PowerTab setup for loading of custom tab expansion.
+    Import other modules after this, they may contain PowerTab integration.
+#>
+
+Import-Module "PowerTab" -ArgumentList "C:\Users\dksmsng\Documents\WindowsPowerShell\PowerTabConfig.xml"
+################ End of PowerTab Initialization Code ##########################
+
 # <Continue to add your own>
 function profile {_vim $profile}
 Set-Alias ali profile
@@ -40,8 +49,20 @@ function _cd{
 }
 Set-Alias -Name cd -Value _cd -Option AllScope
 Import-Module PSReadLine
-Import-Module PSFzf # must be after PSReadLine
+#Import-Module PSFzf # must be after PSReadLine
+#Install-Module -Name PowerTab
+Import-Module PowerTab
 Set-PSReadLineOption -EditMode Emacs
+
+#Install-Module VSSetup -Scope CurrentUser
+Import-Module VSSetUp
+
+# add completion - behaves strange
+# Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+# Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+# Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+
+
 function ch{c $home}
 function cmdh{c $env:cmder_root}
 function cl{
@@ -50,7 +71,9 @@ function cl{
                 [Parameter(ValueFromPipeline)]
                 $_cd_paths
              )
-            _cd $_cd_paths
+            If ($_cd_paths -ne $null){
+                _cd $_cd_paths
+            }
             _ls
 }
 function c{ cl @args; }
@@ -66,8 +89,24 @@ function vimdir{cd $home\.vim}
 
 # function which($name){where.exe $name}
 function which($name){
-    Get-Command $name # | Select-Object -ExpandProperty Definition
+    Get-Command -all $name # | Select-Object -ExpandProperty Definition
 }
+
+
+del alias:r -force
+function r(){
+    #py main.py; if ($?) { diff.exe o a }
+    py main.py
+}
+
+function rc(){
+    cl.exe /EHsc main.cpp ; if ($?) { ./main.exe }
+}
+
+function rt(){
+    py test.py
+}
+
 
 # ZLocation
 # the following command does not work with cmder. We need a patch.
@@ -79,7 +118,7 @@ function which($name){
 
 $env:term='' # for fzf to work in Fluent Terminal
 function cz{ z | python -c "z=list(__import__('sys').stdin); z=[s.strip().split() for s in z]; z=[l[1] for l in z[3:-2]]; print('\n'.join(z))" | fzf | cl }
-function cx{ fd }
+function cx{ fd --type d | fzf | cl }
 
 #Import-Module posh-git
 
@@ -229,3 +268,21 @@ function gitpushall(){
 set-alias co code
 
 set-alias iv iverilog
+
+# Chocolatey profile
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}
+
+function pwdcopy(){
+    scb (pwd).Path
+}
+
+function sudop(){
+    Sudo.exe . Powershell.exe
+}
+
+function bj(){
+}
+

@@ -12,4 +12,5 @@ so ~/dkenv/runtime_config/nvim_initfiles/conceal.vim "vim-lisp-conceal plugin do
 
 " TIP: ~/runtime_config/nvim_initfiles/vimtips.txt
 " TIP2: color reference: ~/runtime_config/vimcolor.txt
-"
+
+
