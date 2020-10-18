@@ -10,7 +10,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
         echo "Windows Subsystem Linux"
         iswsl='true'
         export iswsl # vim papercolor theme need this info
-        # `export` allows a other programs to recognize environment variables
+        # `export` allows other programs to recognize environment variables
     else
         echo "Pure Linux"
     fi
@@ -27,6 +27,9 @@ if uname -a | grep -qi 'manjaro'; then # if manjaro exists in uname --all
     distro='manjaro'
 elif [[ $(uname -n) == 'raspberrypi' ]]; then
     distro='pi'
+elif grep -qi 'ubuntu' /etc/os-release; then
+    distro='ubuntu'
 fi
+export distro
 echo "\$distro: $distro"
 echo "****************************************************"

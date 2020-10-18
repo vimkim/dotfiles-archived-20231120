@@ -1,11 +1,7 @@
 gitpullall(){
-    cd ~/dkenv/runtime_config
-    git pull
-    cd ~/dkenv
-    git pull
+    git -C ~/dkenv pull --recurse-submodules
 }
-
-gitpullall &
+#gitpullall &
 
 updateall(){
     if type apt 2>/dev/null; then
@@ -19,8 +15,7 @@ updateall(){
         # sudo pacman -Syyu
     fi
 }
-
-updateall &
+#updateall &
 
 gitpushall(){
     cd ~/dkenv/runtime_config
@@ -442,29 +437,30 @@ alias gsh='git show'
 alias gbl='git blame'
 alias gds='git dissect'
 
-gam(){
-
-    if [[ "$#" -eq 0 ]]; then
-        git add .
-    elif [[ "$#" -ge 1 ]]; then
-        git add "$@"
-    else
-        echo "something wrong with 'gam'"
-        return 1;
-    fi
-    git diff --cached
-
-    local msg=''
-    printf "type your commit msg: "
-    read msg
-    if [[ $msg == '' ]]; then
-        echo "msg must not be empty."
-        return 2
-    fi
-
-    git commit -m $msg
-    git push
-}
+# syntax error occurs
+### gam(){
+### 
+###     if [[ "$#" -eq 0 ]]; then
+###         git add .
+###     elif [[ "$#" -ge 1 ]]; then
+###         git add "$@"
+###     else
+###         echo "something wrong with 'gam'"
+###         return 1
+###     fi
+###     git diff --cached
+### 
+###     local msg=''
+###     printf "type your commit msg: "
+###     read msg
+###     if [[ $msg == '' ]]; then
+###         echo "msg must not be empty."
+###         return 2
+###     fi
+### 
+###     git commit -m $msg
+###     git push
+### }
 
 alias git_show_merge_conflict='git diff --name-only --diff-filter=U'
 alias gumd='git diff --diff-filter=U' # unmerged commits
@@ -630,6 +626,7 @@ bills(){
 
 # shell level (find if nested)
 alias shlv='echo $SHLVL'
+alias lvl='echo $SHLVL'
 studylog(){
     $myed ~/Google\ Drive/diary/studylog/studylog_$(date +%y-%m-%d).md
 }
@@ -1102,6 +1099,13 @@ alias zshcus="myvim ~/dkenv/runtime_config/zsh/zsh_custom.zsh"
 alias ca='cda' # cd advanced
 
 # export FZF_DEFAULT_COMMAND='fd --type f'
+
+
+if [[ $platform == 'linux' ]]; then
+    if [[ $distro == 'ubuntu' ]]; then
+        alias fd='fdfind'
+    fi
+fi
 
 cx() { # find based
   local dir

@@ -321,13 +321,12 @@ let g:NERDTreeWinSize=20
 
 "COLORSCHEME GENERAL
 "set bg=dark
-"Show Whitespace: Must be inserted Before colorscheme command
-autocmd colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
-au InsertLeave * match ExtraWhitespace /\s\+$/
-" sometimes colorschemes does not work in vim. We need t_Co=256 then.
+
+
 if !has('nvim') && $iswsl=='true'
     set t_Co=256
 endif
+
 "colorscheme PaperColor
 "colorscheme zenburn
 
