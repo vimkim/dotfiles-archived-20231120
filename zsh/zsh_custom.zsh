@@ -7,6 +7,7 @@
 if [[ $SHLVL == "2" ]]; then # reason for 2 instead of 1?
     # if I ZDOTDIR= ... zsh, then it's already LVL2
     tmux attach || tmux new
+    exit
 fi
 
 source ~/dkenv/runtime_config/zsh/detect_OS.zsh
