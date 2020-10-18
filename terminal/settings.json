@@ -15,8 +15,9 @@
             // Put settings here that you want to apply to all profiles
             //"colorScheme": "Github",
             "colorScheme": "Solarized Light",
-            "fontFace" : "D2Coding",
-            "fontSize": 18,
+            //"fontFace" : "D2Coding",
+            "fontFace" : "Cascadia Mono",
+            "fontSize": 14,
             "useAcrylic": true,
             "acrylicOpacity": 0.8
             // "backgroundImage": "C:/Users/dksmsng/dkenv/runtime_config/terminal/wall1.jpg",
