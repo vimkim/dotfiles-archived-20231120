@@ -31,6 +31,15 @@ function! DoRemote(arg)
     UpdateRemotePlugins
 endfunction
 
+
+" ((( Show Whitespace: Must be inserted Before colorscheme command
+autocmd colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+colorscheme desert " ! warning: need at least one colorscheme command to avoid the following error:
+" Error detected while processing InsertLeave Autocommands for "*"
+" No such highlight group name: ExtraWhitespace
+" )))
+
 " CALL VIMPLUG
 if has('nvim')
     call plug#begin('$HOME/.config/nvim/plugged')

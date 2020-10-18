@@ -3,7 +3,8 @@
 # tmux auto rename disable
 #export DISABLE_AUTO_TITLE="true"
 # run tmux automatically
-if [[ $SHLVL == 1 ]]; then
+if [[ $SHLVL == 2 ]]; then # reason for 2 instead of 1?
+    # if I ZDOTDIR= ... zsh, then it's already LVL2
     tmux attach || tmux new
 fi
 
@@ -18,30 +19,6 @@ source ~/dkenv/runtime_config/zsh/detect_OS.zsh
 #####     echo "MY WARNING: antigen not installed. (.zshrc)"
 ##### fi
 ##### antigen bundle andrewferrier/fzf-z
-
-### Zplug
-### echo "zplug starting..."
-### source ~/.zplug/init.zsh
-### # Can manage local plugins
-### # zplug "~/.zsh", from:local
-### zplug "rupa/z", use:z.sh
-### zplug "changyuheng/fz", defer:1
-### zplug "changyuheng/zsh-interactive-cd"
-###
-### zplug "meain/v"
-### PATH=$PATH:$HOME/.zplug/repos/meain/v/
-### [ "$vim" ] || vim=vim
-###
-### # Install plugins if there are plugins that have not been installed
-### if ! zplug check --verbose; then
-###     printf "Install? [y/N]: "
-###     if read -q; then
-###         echo; zplug install
-###     fi
-### fi
-### # Then, source plugins and add commands to $PATH
-### zplug load --verbose
-### echo "****************************************************"
 
 # Aliases
 source ~/dkenv/runtime_config/shell/shell_alias.sh
@@ -123,6 +100,7 @@ echo $PATH | tr -s ':' '\n'
 # also check .zprofile, .zshenv, .zlogin, etc.
 # Once it took me some time to detect an undesired python path being added to $PATH in .zprofile.
 echo "\$PWD: $PWD"
+echo "\$SHLVL: $SHLVL"
 echo "****************************************************"
 
 # fzf keybinding
