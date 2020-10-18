@@ -1,3 +1,4 @@
+
 gitpullall(){
     git -C ~/dkenv pull --recurse-submodules
 }
@@ -182,7 +183,7 @@ if [[ $platform == 'linux' ]]; then
     export EDITOR=/usr/bin/vim
     export VISUAL=/usr/bin/vim
     export GIT_EDITOR=/usr/bin/vim
-    echo "hello!"
+
 elif [[ $platform == 'macos' ]]; then
     export EDITOR=/usr/local/bin/$myed
     export VISUAL=/usr/local/bin/$myed
