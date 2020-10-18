@@ -26,6 +26,7 @@ source ~/dkenv/runtime_config/zsh/detect_OS.zsh
 source ~/dkenv/runtime_config/shell/shell_alias.sh
 source ~/dkenv/runtime_config/zsh/zsh_alias.zsh
 source ~/dkenv/runtime_config/shell/temp_alias.sh
+source ~/dkenv/runtime_config/shell/wsl_alias.sh
 # Run at initialization
 #source ~/dkenv/runtime_config/zsh/zsh_run.zsh
 
@@ -56,6 +57,7 @@ unsetopt CASE_GLOB
 # for tmuxinator
 source ~/dkenv/runtime_config/tmuxinatorfiles/tmuxinator.zsh
 
+
 if [[ $platform == "macos" ]]; then
     # for brew gnu tools and manuals
     #export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # not using these cuz it does not work with selecta + tmux combination
@@ -72,11 +74,13 @@ if [[ $platform == "macos" ]]; then
     export PATH="/Applications/MATLAB_R2017a.app/bin:$PATH"
 fi
 
+
 # for FZF
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # automatically append by fzf when ./install
 # even if I move this here, fzf will automaticall add another one so ...
 ### fzf examples
 source ~/dkenv/runtime_config/shell/fzf.sh
+
 
 # for fzf ctrl+r, remove duplicates
 setopt hist_ignore_dups
@@ -84,19 +88,20 @@ setopt HIST_IGNORE_ALL_DUPS
 #export FZF_DEFAULT_COMMAND='fd --type f'
 
 
+### # pip --user
+### export PATH="$HOME/.local/bin:$PATH"
 
-# pip --user
-export PATH="$HOME/.local/bin:$PATH"
 
-# print path
-echo "****************************************************"
-echo "\$PATH: \n"
-# print path line by line
-echo $PATH | tr -s ':' '\n'
-# another methods just for fun
-#tr : '\n' <<< $PATH
-#sed 's/:/\n/g' <<< $PATH
-#awk '{gsub(/:/, "\n");print}'
+### # print path
+### echo "****************************************************"
+### echo "\$PATH: \n"
+### # print path line by line
+### echo $PATH | tr -s ':' '\n'
+### # another methods just for fun
+### #tr : '\n' <<< $PATH
+### #sed 's/:/\n/g' <<< $PATH
+### #awk '{gsub(/:/, "\n");print}'
+
 
 # if having trouble with path (something weird appears in path), check out /etc/paths and /etc/paths.d
 # also check .zprofile, .zshenv, .zlogin, etc.
