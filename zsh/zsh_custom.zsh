@@ -1,9 +1,10 @@
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # tmux auto rename disable
 #export DISABLE_AUTO_TITLE="true"
 # run tmux automatically
-if [[ $SHLVL == 2 ]]; then # reason for 2 instead of 1?
+if [[ $SHLVL == "2" ]]; then # reason for 2 instead of 1?
     # if I ZDOTDIR= ... zsh, then it's already LVL2
     tmux attach || tmux new
 fi
@@ -101,6 +102,6 @@ echo $PATH | tr -s ':' '\n'
 # Once it took me some time to detect an undesired python path being added to $PATH in .zprofile.
 echo "\$PWD: $PWD"
 echo "\$SHLVL: $SHLVL"
-echo "****************************************************"
+echo "hello"
 
-# fzf keybinding
+echo "****************************************************"
