@@ -3,14 +3,14 @@ let g:coc_global_extensions = [
             \'coc-json',
             \'coc-ultisnips',
             \'coc-snippets',
-            \'coc-sql',
-            \'coc-reason',
             \'coc-python',
             \ 'https://github.com/andys8/vscode-jest-snippets'
             \]
+            "\'coc-sql',
+            "\'coc-reason',
 
 " replaced with coc lsp snips
-"Plug 'SirVer/ultisnips' "Snippets Engine
+Plug 'SirVer/ultisnips' "Snippets Engine
 Plug 'honza/vim-snippets' " Snippets, let me put next to ultisnips
 "(ULTISNIPS
 let g:UltiSnipsExpandTrigger = ""
