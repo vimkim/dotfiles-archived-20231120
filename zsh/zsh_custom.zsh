@@ -22,11 +22,15 @@ source ~/dkenv/runtime_config/zsh/detect_OS.zsh
 ##### fi
 ##### antigen bundle andrewferrier/fzf-z
 
+if [[ $iswsl == "true" ]]; then
+    source ~/dkenv/runtime_config/shell/wsl_alias.sh
+fi
+
+
 # Aliases
 source ~/dkenv/runtime_config/shell/shell_alias.sh
 source ~/dkenv/runtime_config/zsh/zsh_alias.zsh
 source ~/dkenv/runtime_config/shell/temp_alias.sh
-source ~/dkenv/runtime_config/shell/wsl_alias.sh
 # Run at initialization
 #source ~/dkenv/runtime_config/zsh/zsh_run.zsh
 
