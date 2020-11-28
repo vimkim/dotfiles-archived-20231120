@@ -1228,3 +1228,5 @@ alias which='which -a'
 alias w='which'
 
 alias co='code'
+
+alias x='py main.py'
