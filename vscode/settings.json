@@ -24,6 +24,10 @@
     "powermode.enabled": true,
     "powermode.presets":"magic",
 
+    // scrolloff extension
+    // vim style center cursor
+    "scrolloff.scrolloff": 1,
+
 
     "window.newWindowDimensions": "maximized",
 
@@ -95,7 +99,7 @@
     "[c]": {
         "editor.quickSuggestions": true
     },
-    "window.zoomLevel": 0,
+    "window.zoomLevel": -1,
     "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
 
     // leetcode
@@ -113,7 +117,10 @@
     "backgroundCover.imagePath": "c:\\Users\\dksmsng\\dkenv\\runtime_config\\terminal\\wall1.jpg",
     "backgroundCover.opacity": 0.375,
     "workbench.colorTheme": "Solarized Light",
-    "vscode-neovim.neovimPath": "C:\\tools\\neovim\\Neovim\\bin\\nvim.exe"
+    "vscode-neovim.neovimPath": "C:\\tools\\neovim\\Neovim\\bin\\nvim.exe",
+    "python.pythonPath": "/usr/bin/python3",
+    "goinmul.baekjoon.id": "dkbkjn",
+    "goinmul.baekjoon.lang": "pypy3"
 
     ////// I'm tired of this. Use vscodevim-colemak instead
     ////// "vim.insertModeKeyBindings":[
