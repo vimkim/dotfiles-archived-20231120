@@ -23,6 +23,7 @@ source ~/dkenv/runtime_config/zsh/detect_OS.zsh
 ##### antigen bundle andrewferrier/fzf-z
 
 if [[ $iswsl == "true" ]]; then
+    source ~/dkenv/runtime_config/zsh/wsl.zsh
     source ~/dkenv/runtime_config/shell/wsl_alias.sh
 fi
 
