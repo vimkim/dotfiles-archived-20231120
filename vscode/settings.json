@@ -1,11 +1,11 @@
-    // Place your settings in this file to overwrite the default settings
+// Place your settings in this file to overwrite the default settings
 {
     "editor.quickSuggestions": true,
     "editor.tabCompletion":"on",
     "editor.wordWrap": "on",
     "editor.renderWhitespace": "all",
     "editor.rulers": [80, 120],
-    "editor.fontFamily": "'Fira Code Retina', '맑은 고딕'",
+    "editor.fontFamily": "'Consolas', 'Fira Code Retina', 'Lucida Console', 'Consolas', '맑은 고딕'",
     //"editor.fontSize": 18,
     "editor.fontSize": 22,
     "editor.minimap.enabled": true,
@@ -109,7 +109,7 @@
     "leetcode.showDescription": "Both",
 
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.iconTheme": "material-icon-theme",
+    "workbench.iconTheme": "vscode-icons",
     "sync.gist": "d8e4997ec8c0169c597bf98a39c797f0",
     "window.restoreWindows": "none",
 
@@ -118,9 +118,9 @@
     "backgroundCover.opacity": 0.375,
     "workbench.colorTheme": "Solarized Light",
     "vscode-neovim.neovimPath": "C:\\tools\\neovim\\Neovim\\bin\\nvim.exe",
-    "python.pythonPath": "/usr/bin/python3",
     "goinmul.baekjoon.id": "dkbkjn",
-    "goinmul.baekjoon.lang": "pypy3"
+    "goinmul.baekjoon.lang": "pypy3",
+    "terminal.integrated.fontFamily": "'Consolas', 'Lucida Console'"
 
     ////// I'm tired of this. Use vscodevim-colemak instead
     ////// "vim.insertModeKeyBindings":[
@@ -369,4 +369,3 @@
     ////// 
 
 }
-
