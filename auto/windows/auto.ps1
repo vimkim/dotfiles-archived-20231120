@@ -1,3 +1,5 @@
+# use Windows Task Scheduler
+
 cd $home\dkenv\runtime_config
 git pull
 git add .
