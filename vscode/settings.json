@@ -120,6 +120,8 @@
     "vscode-neovim.neovimPath": "C:\\tools\\neovim\\Neovim\\bin\\nvim.exe",
     "goinmul.baekjoon.id": "dkbkjn",
     "goinmul.baekjoon.lang": "pypy3",
+    // windows vscode does not work with this path
+    //"python.defaultInterpreterPath": "/usr/bin/python3",
     "terminal.integrated.fontFamily": "'Consolas', 'Lucida Console'"
 
     ////// I'm tired of this. Use vscodevim-colemak instead
