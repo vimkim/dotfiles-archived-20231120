@@ -4,7 +4,7 @@
     Import other modules after this, they may contain PowerTab integration.
 #>
 
-Import-Module "PowerTab" -ArgumentList "C:\Users\dksmsng\Documents\WindowsPowerShell\PowerTabConfig.xml"
+#Import-Module "PowerTab" -ArgumentList "C:\Users\dksmsng\Documents\WindowsPowerShell\PowerTabConfig.xml"
 ################ End of PowerTab Initialization Code ##########################
 
 # <Continue to add your own>
@@ -51,11 +51,11 @@ Set-Alias -Name cd -Value _cd -Option AllScope
 Import-Module PSReadLine
 #Import-Module PSFzf # must be after PSReadLine
 #Install-Module -Name PowerTab
-Import-Module PowerTab
+#Import-Module PowerTab
 Set-PSReadLineOption -EditMode Emacs
 
 #Install-Module VSSetup -Scope CurrentUser
-Import-Module VSSetUp
+#Import-Module VSSetUp
 
 # add completion - behaves strange
 # Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
