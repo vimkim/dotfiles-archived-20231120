@@ -21,7 +21,7 @@
 
     //"scrolloff.alwaysCenter": true, // something wrong when visual select
 
-    "powermode.enabled": true,
+    "powermode.enabled": false,
     "powermode.presets":"magic",
 
     // scrolloff extension
