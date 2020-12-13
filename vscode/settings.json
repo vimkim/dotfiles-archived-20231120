@@ -124,7 +124,8 @@
     //"python.defaultInterpreterPath": "/usr/bin/python3",
     "terminal.integrated.fontFamily": "'Consolas', 'Lucida Console'",
     "python.languageServer": "Pylance",
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "vsicons.presets.hideExplorerArrows": true
 
     ////// I'm tired of this. Use vscodevim-colemak instead
     ////// "vim.insertModeKeyBindings":[
