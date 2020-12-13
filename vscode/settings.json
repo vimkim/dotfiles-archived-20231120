@@ -123,7 +123,8 @@
     // windows vscode does not work with this path
     //"python.defaultInterpreterPath": "/usr/bin/python3",
     "terminal.integrated.fontFamily": "'Consolas', 'Lucida Console'",
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "cmake.configureOnOpen": false
 
     ////// I'm tired of this. Use vscodevim-colemak instead
     ////// "vim.insertModeKeyBindings":[
