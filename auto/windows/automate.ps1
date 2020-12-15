@@ -7,12 +7,8 @@ $action = New-ScheduledTaskAction -Execute "powershell" -Argument "-File %homepa
 
 $trigger = New-ScheduledTaskTrigger -Once -at (get-date) -RepetitionInterval (New-TimeSpan -Minutes 1)
 
-#$principal = New-ScheduledTaskPrincipal -UserID "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
-#$settings = New-ScheduledTaskSettingsSet -MultipleInstances Parallel
-#Register-ScheduledTask auto -action $action -trigger $trigger -Settings $settings -Principal $principal
+# in order to enable the option "run without password"
 $principal = new-scheduledtaskprincipal -userid $env:USERNAME -Logontype S4U -runlevel highest
-Register-ScheduledTask auto -action $action -trigger $trigger -principal $principal
 
-#$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File %homepath%\dkenv\runtime_config\auto\windows\autoBaekjoon.ps1 -WindowStyle Hidden"
-#Register-ScheduledTask autoBaekjoon -action $action -trigger $trigger -Settings $settings -Principal $principal
+Register-ScheduledTask auto -action $action -trigger $trigger -principal $principal
 Register-ScheduledTask autoBaekjoon -action $action -trigger $trigger -principal $principal
