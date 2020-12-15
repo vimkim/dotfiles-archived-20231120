@@ -1,3 +1,5 @@
+echo "baekjoon"
+
 cd $env:homepath\Documents\Github\baekjoon
 git pull
 git add .
