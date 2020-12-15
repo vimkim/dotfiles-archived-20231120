@@ -12,6 +12,6 @@ $trigger = New-ScheduledTaskTrigger -Once -at (get-date) -RepetitionInterval (Ne
 #Register-ScheduledTask auto -action $action -trigger $trigger -Settings $settings -Principal $principal
 Register-ScheduledTask auto -action $action -trigger $trigger
 
-$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File %homepath%\dkenv\runtime_config\auto\windows\autoBaekjoon.ps1 -WindowStyle Hidden"
+#$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File %homepath%\dkenv\runtime_config\auto\windows\autoBaekjoon.ps1 -WindowStyle Hidden"
 #Register-ScheduledTask autoBaekjoon -action $action -trigger $trigger -Settings $settings -Principal $principal
 Register-ScheduledTask autoBaekjoon -action $action -trigger $trigger
