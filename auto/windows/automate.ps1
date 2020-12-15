@@ -3,7 +3,7 @@
 # if error msg: cannot create a file when that file already exists
 # then: type taskschd.msc and delete duplicates
 
-$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File %homepath%\dkenv\runtime_config\auto\windows\auto.ps1 -WindowStyle Hidden"
+$action = New-ScheduledTaskAction -Execute "powershell" -Argument "-File %homepath%\dkenv\runtime_config\auto\windows\auto.ps1 -WindowStyle Hidden"
 
 $trigger = New-ScheduledTaskTrigger -Once -at (get-date) -RepetitionInterval (New-TimeSpan -Minutes 1)
 
