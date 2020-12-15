@@ -10,8 +10,9 @@ $trigger = New-ScheduledTaskTrigger -Once -at (get-date) -RepetitionInterval (Ne
 #$principal = New-ScheduledTaskPrincipal -UserID "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
 #$settings = New-ScheduledTaskSettingsSet -MultipleInstances Parallel
 #Register-ScheduledTask auto -action $action -trigger $trigger -Settings $settings -Principal $principal
-Register-ScheduledTask auto -action $action -trigger $trigger
+$principal = new-scheduledtaskprincipal -userid $env:USERNAME -Logontype S4U -runlevel highest
+Register-ScheduledTask auto -action $action -trigger $trigger -principal $principal
 
 #$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File %homepath%\dkenv\runtime_config\auto\windows\autoBaekjoon.ps1 -WindowStyle Hidden"
 #Register-ScheduledTask autoBaekjoon -action $action -trigger $trigger -Settings $settings -Principal $principal
-Register-ScheduledTask autoBaekjoon -action $action -trigger $trigger
+Register-ScheduledTask autoBaekjoon -action $action -trigger $trigger -principal $principal
