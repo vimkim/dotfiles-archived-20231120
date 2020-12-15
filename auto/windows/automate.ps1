@@ -4,14 +4,14 @@
 # then: type taskschd.msc and delete duplicates
 
 $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "%homepath%\dkenv\runtime_config\auto\windows\auto.ps1"
+
 $trigger = New-ScheduledTaskTrigger -Once -at (get-date) -RepetitionInterval (New-TimeSpan -Minutes 1)
 
-$principal = New-ScheduledTaskPrincipal -UserID "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
-
-$settings = New-ScheduledTaskSettingsSet -MultipleInstances Parallel
-
-Register-ScheduledTask auto -action $action -trigger $trigger -Settings $settings -Principal $principal
-
+#$principal = New-ScheduledTaskPrincipal -UserID "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
+#$settings = New-ScheduledTaskSettingsSet -MultipleInstances Parallel
+#Register-ScheduledTask auto -action $action -trigger $trigger -Settings $settings -Principal $principal
+Register-ScheduledTask auto -action $action -trigger $trigger
 
 $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "%homepath%\dkenv\runtime_config\auto\windows\autoBaekjoon.ps1"
-Register-ScheduledTask autoBaekjoon -action $action -trigger $trigger -Settings $settings -Principal $principal
+#Register-ScheduledTask autoBaekjoon -action $action -trigger $trigger -Settings $settings -Principal $principal
+Register-ScheduledTask autoBaekjoon -action $action -trigger $trigger
