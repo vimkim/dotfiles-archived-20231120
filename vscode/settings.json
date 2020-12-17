@@ -19,10 +19,18 @@
     },
     "files.eol":"auto",
 
+    "vscode_custom_css.imports": [
+        "some random file that does not exist test",
+        "file:///C:/Users/DOD_Admin/.vscode/extensions/webrender.synthwave-x-fluoromachine-0.0.12/synthwave-x-fluoromachine.css",
+        "some random file that does not exist test2"
+    ],
+    "vscode_custom_css.policy": true,
+
     //"scrolloff.alwaysCenter": true, // something wrong when visual select
 
-    "powermode.enabled": false,
-    "powermode.presets":"magic",
+    "powermode.enabled": true,
+    "powermode.presets": "magic",
+
 
     // scrolloff extension
     // vim style center cursor
@@ -116,7 +124,7 @@
     //"terminal.integrated.rendererType": "dom",
     "backgroundCover.imagePath": "c:\\Users\\dksmsng\\dkenv\\runtime_config\\terminal\\wall1.jpg",
     "backgroundCover.opacity": 0.375,
-    "workbench.colorTheme": "Solarized Light",
+    "workbench.colorTheme": "Synthwave x Fluoromachine",
     "vscode-neovim.neovimPath": "C:\\tools\\neovim\\Neovim\\bin\\nvim.exe",
     "goinmul.baekjoon.id": "dkbkjn",
     "goinmul.baekjoon.lang": "pypy3",
@@ -372,5 +380,4 @@
     //////     }
     ////// ],
     ////// 
-
 }
