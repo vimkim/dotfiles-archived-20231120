@@ -19,14 +19,15 @@
     },
     "files.eol":"auto",
 
-    "vscode_custom_css.imports": [
-        "some random file that does not exist test",
-        "file:///C:/Users/DOD_Admin/.vscode/extensions/webrender.synthwave-x-fluoromachine-0.0.12/synthwave-x-fluoromachine.css",
-        "some random file that does not exist test2",
-        "file:///C:/Users/dksmsng/.vscode/extensions/webrender.synthwave-x-fluoromachine-0.0.12/synthwave-x-fluoromachine.css"
-    ],
-    "vscode_custom_css.policy": true,
-
+    // this was fun but my eye hurts. 
+    "vscode_custom_css.policy": false,
+    //"vscode_custom_css.imports": [
+    //    "some random file that does not exist test",
+    //    "file:///C:/Users/DOD_Admin/.vscode/extensions/webrender.synthwave-x-fluoromachine-0.0.12/synthwave-x-fluoromachine.css",
+    //    "some random file that does not exist test2",
+    //    "file:///C:/Users/dksmsng/.vscode/extensions/webrender.synthwave-x-fluoromachine-0.0.12/synthwave-x-fluoromachine.css"
+    //],
+//
     //"scrolloff.alwaysCenter": true, // something wrong when visual select
 
     "powermode.enabled": true,
@@ -125,7 +126,7 @@
     //"terminal.integrated.rendererType": "dom",
     "backgroundCover.imagePath": "c:\\Users\\dksmsng\\dkenv\\runtime_config\\terminal\\wall1.jpg",
     "backgroundCover.opacity": 0.375,
-    "workbench.colorTheme": "Synthwave x Fluoromachine",
+    "workbench.colorTheme": "Solarized Light",
     "vscode-neovim.neovimPath": "C:\\tools\\neovim\\Neovim\\bin\\nvim.exe",
     "goinmul.baekjoon.id": "dkbkjn",
     "goinmul.baekjoon.lang": "pypy3",
