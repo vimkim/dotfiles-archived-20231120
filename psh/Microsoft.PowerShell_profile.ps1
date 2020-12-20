@@ -11,6 +11,8 @@
 function profile {_vim $profile}
 Set-Alias ali profile
 
+set-alias touch new-item
+
 # how to use: type "$ . Reload-Profile"
 function Reload-Profile{
     @(
