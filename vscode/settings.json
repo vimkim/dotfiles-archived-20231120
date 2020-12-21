@@ -126,7 +126,7 @@
     //"terminal.integrated.rendererType": "dom",
     "backgroundCover.imagePath": "c:\\Users\\dksmsng\\dkenv\\runtime_config\\terminal\\wall1.jpg",
     "backgroundCover.opacity": 0.375,
-    "workbench.colorTheme": "Solarized Light",
+    "workbench.colorTheme": "Solarized Dark",
     "vscode-neovim.neovimPath": "C:\\tools\\neovim\\Neovim\\bin\\nvim.exe",
     "goinmul.baekjoon.id": "dkbkjn",
     "goinmul.baekjoon.lang": "pypy3",
