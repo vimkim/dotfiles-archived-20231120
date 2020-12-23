@@ -5,7 +5,7 @@
     "editor.wordWrap": "on",
     "editor.renderWhitespace": "all",
     "editor.rulers": [80, 120],
-    "editor.fontFamily": "'Consolas', 'Fira Code Retina', 'Lucida Console', 'Consolas', '맑은 고딕'",
+    "editor.fontFamily": "'Fira Code Retina', 'Consolas', 'Lucida Console', 'Consolas', '맑은 고딕'",
     //"editor.fontSize": 18,
     "editor.fontSize": 22,
     "editor.minimap.enabled": true,
@@ -132,7 +132,7 @@
     "goinmul.baekjoon.lang": "pypy3",
     // windows vscode does not work with this path
     //"python.defaultInterpreterPath": "/usr/bin/python3",
-    "terminal.integrated.fontFamily": "'Consolas', 'Lucida Console'",
+    "terminal.integrated.fontFamily": "'Consolas', 'Fira Code Retina', 'Lucida Console'",
     "python.languageServer": "Pylance",
     "cmake.configureOnOpen": false,
     "vsicons.presets.hideExplorerArrows": true
