@@ -31,7 +31,9 @@
     //"scrolloff.alwaysCenter": true, // something wrong when visual select
 
     "powermode.enabled": true,
-    "powermode.presets": "magic",
+    "powermode.presets": "exploding-rift",
+    "powermode.enableShake": false,
+    "powermode.enableExplosions": true,
 
 
     // scrolloff extension

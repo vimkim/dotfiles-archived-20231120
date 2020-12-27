@@ -14,7 +14,7 @@
         {
             // Put settings here that you want to apply to all profiles
             //"colorScheme": "Github",
-            "colorScheme": "Solarized Light",
+            "colorScheme": "Solarized Dark",
             //"fontFace" : "D2Coding",
             "fontFace" : "Cascadia Mono",
             "fontSize": 14,
