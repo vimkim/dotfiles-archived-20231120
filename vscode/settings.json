@@ -30,11 +30,10 @@
 //
     //"scrolloff.alwaysCenter": true, // something wrong when visual select
 
-    "powermode.enabled": true,
+    "powermode.enabled": false,
     "powermode.presets": "exploding-rift",
     "powermode.enableShake": false,
     "powermode.enableExplosions": true,
-
 
     // scrolloff extension
     // vim style center cursor
