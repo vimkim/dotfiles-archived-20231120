@@ -13,6 +13,10 @@ Set-Alias ali profile
 
 set-alias touch new-item
 
+function cpm{
+    cat main.* | clip
+}
+
 # how to use: type "$ . Reload-Profile"
 function Reload-Profile{
     @(
