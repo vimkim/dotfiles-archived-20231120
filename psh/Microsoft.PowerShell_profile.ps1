@@ -17,6 +17,17 @@ function cpm{
     cat main.* | clip
 }
 
+function mco($dir){
+    mkdir $dir ; code $dir
+}
+
+function cpro($dir){
+    mkdir $dir;
+    new-item $dir/main.py;
+    new-item $dir/i2;
+    code $dir
+}
+
 # how to use: type "$ . Reload-Profile"
 function Reload-Profile{
     @(
@@ -97,7 +108,6 @@ function vimdir{cd $home\.vim}
 function which($name){
     Get-Command -all $name # | Select-Object -ExpandProperty Definition
 }
-
 
 del alias:r -force
 function r(){

@@ -136,5 +136,6 @@
     "terminal.integrated.fontFamily": "'Fira Code Retina', 'Consolas', 'Lucida Console'",
     "python.languageServer": "Pylance",
     "cmake.configureOnOpen": false,
-    "vsicons.presets.hideExplorerArrows": true
+    "vsicons.presets.hideExplorerArrows": true,
+    "workbench.sideBar.location": "right"
 }
