@@ -134,7 +134,7 @@
     // windows vscode does not work with this path
     //"python.defaultInterpreterPath": "/usr/bin/python3",
     "terminal.integrated.fontFamily": "'Fira Code Retina', 'Consolas', 'Lucida Console'",
-    "python.languageServer": "Pylance",
+    //"python.languageServer": "Pylance",
     "cmake.configureOnOpen": false,
     "vsicons.presets.hideExplorerArrows": true,
     "workbench.sideBar.location": "right"
