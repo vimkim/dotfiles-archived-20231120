@@ -18,6 +18,7 @@
         "*.tmp": "python"
     },
     "files.eol":"auto",
+    "files.trimTrailingWhitespace": true,
 
     // this was fun but my eye hurts. 
     "vscode_custom_css.policy": false,
