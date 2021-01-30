@@ -10,6 +10,8 @@
 # <Continue to add your own>
 function profile {_vim $profile}
 Set-Alias ali profile
+function viali {_vim $profile}
+function coali {code $profile}
 
 set-alias touch new-item
 
