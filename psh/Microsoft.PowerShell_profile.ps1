@@ -117,6 +117,10 @@ function r(){
     py main.py
 }
 
+function x(){
+    py main.py
+}
+
 function rc(){
     cl.exe /EHsc main.cpp ; if ($?) { ./main.exe }
 }
