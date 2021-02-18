@@ -20,7 +20,7 @@
     "files.eol":"auto",
     "files.trimTrailingWhitespace": true,
 
-    // this was fun but my eye hurts. 
+    // this was fun but my eye hurts.
     "vscode_custom_css.policy": false,
     //"vscode_custom_css.imports": [
     //    "some random file that does not exist test",
@@ -45,16 +45,16 @@
 
     ////// "vim.debug.loggingLevelForConsole":"debug",
     ////// "vim.debug.loggingLevelForAlert": "debug",
-    "vim.easymotion":true, 
+    "vim.easymotion":true,
     // <leader><leader>s<char>
     ////// //"vim.vimrc.enable": true,
     ////// //"vim.vimrc.path": "~/dkenv/runtime_config/code/.vimrc",
     "vim.showcmd": true,
     "vim.incsearch":true,
-    "vim.useSystemClipboard":true,
+    "vim.useSystemClipboard": false,
     "vim.useCtrlKeys": true,
     "vim.hlsearch":true,
-    
+
     // LEADER MAPPING
     "vim.leader":",",
     "vim.handleKeys": {
