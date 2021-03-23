@@ -139,5 +139,10 @@
     "cmake.configureOnOpen": false,
     "vsicons.presets.hideExplorerArrows": true,
     "workbench.sideBar.location": "right",
-    "workbench.editorAssociations": []
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ]
 }
