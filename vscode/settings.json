@@ -144,5 +144,6 @@
             "viewType": "jupyter.notebook.ipynb",
             "filenamePattern": "*.ipynb"
         }
-    ]
+    ],
+    "python.languageServer": "Pylance"
 }
