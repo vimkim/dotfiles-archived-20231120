@@ -143,6 +143,10 @@
         {
             "viewType": "jupyter.notebook.ipynb",
             "filenamePattern": "*.ipynb"
+        },
+        {
+            "viewType": "jupyter-notebook",
+            "filenamePattern": "*.ipynb"
         }
     ],
     "python.languageServer": "Pylance"
