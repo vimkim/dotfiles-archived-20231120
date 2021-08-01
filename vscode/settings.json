@@ -139,11 +139,8 @@
     "cmake.configureOnOpen": false,
     "vsicons.presets.hideExplorerArrows": true,
     "workbench.sideBar.location": "right",
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter-notebook",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
     "python.languageServer": "Pylance"
 }
