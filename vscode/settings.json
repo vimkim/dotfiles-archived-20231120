@@ -141,10 +141,6 @@
     "workbench.sideBar.location": "right",
     "workbench.editorAssociations": [
         {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        },
-        {
             "viewType": "jupyter-notebook",
             "filenamePattern": "*.ipynb"
         }
