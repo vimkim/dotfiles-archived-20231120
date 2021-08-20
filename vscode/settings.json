@@ -111,7 +111,6 @@
     "[c]": {
         "editor.quickSuggestions": true
     },
-    "window.zoomLevel": -1,
     "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
 
     // leetcode
