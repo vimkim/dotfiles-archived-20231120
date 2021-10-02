@@ -142,7 +142,6 @@
         "*.ipynb": "jupyter-notebook"
     },
     "python.languageServer": "Pylance",
-    "window.zoomLevel": -3,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "files.exclude": {
@@ -150,5 +149,6 @@
         "**/.project": true,
         "**/.settings": true,
         "**/.factorypath": true
-    }
+    },
+    "window.zoomLevel": -1
 }
