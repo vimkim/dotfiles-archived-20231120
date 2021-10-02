@@ -8,7 +8,7 @@
 ################ End of PowerTab Initialization Code ##########################
 
 # <Continue to add your own>
-function profile {_vim $profile}
+function profile {code $profile}
 Set-Alias ali profile
 function viali {_vim $profile}
 function coali {code $profile}
@@ -23,12 +23,34 @@ function mco($dir){
     mkdir $dir ; code $dir
 }
 
-function cpro($dir){
+
+function prepare($dir){
     mkdir $dir;
-    new-item $dir/main.py;
-    new-item $dir/i2;
-    code $dir
+    copy-item -Path "$env:userprofile\Documents\Github\baekjoon\template\*" -Destination $dir -recurse
 }
+
+
+function play($dir){
+    #new-item $dir/main.py;
+    #new-item $dir/i2;
+    prepare $dir
+    cd $dir;
+    code .
+    code --goto main.py:23:4
+}
+
+
+function compete($dir){
+    mkdir $dir;
+    cd $dir;
+    prepare A;
+    prepare B;
+    prepare C;
+    prepare D;
+    prepare E;
+    prepare F;
+}
+
 
 # how to use: type "$ . Reload-Profile"
 function Reload-Profile{
@@ -117,8 +139,8 @@ function r(){
     py main.py
 }
 
-function x(){
-    py main.py
+function x($inputFile){
+    py main.py $inputFile
 }
 
 function rc(){
@@ -228,7 +250,7 @@ function query(){
 
 
 function vm(){
-    _vim main.*
+    code . main.py
 }
 
 function bb(){
