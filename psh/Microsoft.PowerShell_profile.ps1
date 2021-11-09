@@ -25,6 +25,10 @@ function mco($dir){
 
 
 function prepare($dir){
+    if (Test-Path -Path $dir) {
+        "Path already exists!"
+        return
+    }
     mkdir $dir;
     copy-item -Path "$env:userprofile\Documents\Github\baekjoon\template\*" -Destination $dir -recurse
 }
