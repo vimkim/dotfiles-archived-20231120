@@ -149,5 +149,6 @@
         "**/.project": true,
         "**/.settings": true,
         "**/.factorypath": true
-    }
+    },
+    "window.zoomLevel": -1
 }
