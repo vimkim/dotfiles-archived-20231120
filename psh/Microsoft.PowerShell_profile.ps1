@@ -39,7 +39,7 @@ function play($dir){
     #new-item $dir/i2;
     prepare $dir
     cd $dir;
-    code .
+    code -r .
     code --goto main.py:23:4
 }
 
