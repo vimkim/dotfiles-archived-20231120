@@ -16,7 +16,15 @@ function coali {code $profile}
 set-alias touch new-item
 
 function cpm{
-    cat main.* | clip
+    cat main.cpp | clip
+}
+
+function cppy{
+    cat main.py | clip
+}
+
+function cpcpp{
+    cat main.cpp | clip
 }
 
 function mco($dir){
@@ -40,7 +48,8 @@ function play($dir){
     prepare $dir
     cd $dir;
     code -r .
-    code --goto main.py:23:4
+    #code --goto main.py:23:4
+    code --goto main.cpp:70:4
 }
 
 
@@ -145,6 +154,10 @@ function r(){
 
 function x($inputFile){
     py main.py $inputFile
+}
+
+function g($inputFile){
+    g++ main.cpp; if ($?) { ./a.exe $inputFile}
 }
 
 function rc(){
@@ -314,6 +327,9 @@ function gitpushall(){
 }
 
 set-alias co code
+function cor($myDir){
+    code -r $myDir
+}
 
 set-alias iv iverilog
 
