@@ -1,5 +1,9 @@
 // Place your settings in this file to overwrite the default settings
 {
+    "editor.snippetSuggestions": "inline",
+    //"editor.suggest.localityBonus": true,
+    //"editor.suggest.filterGraceful": true,
+    //"editor.suggest.snippetsPreventQuickSuggestions": true,
     "editor.quickSuggestions": true,
     "editor.tabCompletion":"on",
     "editor.wordWrap": "on",
