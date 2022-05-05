@@ -1,0 +1,1 @@
+mklink "%homepath%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" "%homepath%\Documents\Github\dotfiles\psh\lab.ps1"
