@@ -162,7 +162,7 @@ function compete($dir) {
 ### baekjoon end ###
 
 
-### zlocation and fzu begin ###
+### zlocation, fzf and fd begin ###
 Import-Module ZLocation # this must come after other imports that modify prompt
 Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n" # shows stat. must come after import zlocation
 
@@ -170,5 +170,4 @@ Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.C
 function cz{ z | python -c "z=list(__import__('sys').stdin); z=[s.strip().split() for s in z]; z=[l[1] for l in z[3:-2]]; print('\n'.join(z))" | fzf | cl }
 # Then, 'sudo choco install fd'
 function cx{ fd --type d | fzf | cl }
-
-### fzf and zlocation end ###
+### zlocation, fzf and fd end ###
