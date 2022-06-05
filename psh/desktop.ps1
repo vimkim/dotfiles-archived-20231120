@@ -1,9 +1,9 @@
 # emacs keybinding such as ctrl-w
 set-psreadlineoption -editmode vi
 
-function x(){ python main.py}
+function x() { python main.py }
 
-function r() {python @args}
+function r() { python @args }
 
 function mc() { mkdir @args ; cd @args }
 
