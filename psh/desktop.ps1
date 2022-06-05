@@ -112,3 +112,51 @@ function cl {
 function c { cl @args; }
 ### cl end ###
 
+### baekjoon begin ###
+function cpm {
+    cat main.py | clip
+}
+
+function cppy {
+    cat main.py | clip
+}
+
+function cpcpp {
+    cat main.cpp | clip
+}
+
+function mco($dir) {
+    mkdir $dir ; code $dir
+}
+
+function prepare($dir) {
+    if (Test-Path -Path $dir) {
+        "Path already exists!"
+        return
+    }
+    mkdir $dir;
+    copy-item -Path "$env:userprofile\Documents\Github\baekjoon\template\*" -Destination $dir -recurse
+}
+
+function play($dir) {
+    #new-item $dir/main.py;
+    #new-item $dir/i2;
+    prepare $dir
+    cd $dir;
+    code -r .
+    #code --goto main.py:23:4
+    code --goto main.cpp:70:4
+}
+
+function compete($dir) {
+    mkdir $dir;
+    cd $dir;
+    prepare A;
+    prepare B;
+    prepare C;
+    prepare D;
+    prepare E;
+    prepare F;
+}
+
+### baekjoon end ###
