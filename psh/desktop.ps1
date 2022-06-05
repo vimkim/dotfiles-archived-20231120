@@ -13,6 +13,10 @@ function profile() {
     code $profile
 }
 
+function profiledir(){
+    cd "$home\Documents\WindowsPowerShell\"
+}
+
 function alex() {
     set-location "$home\Documents\Github\Alex"
 
