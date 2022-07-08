@@ -1,6 +1,7 @@
 # emacs keybinding such as ctrl-w
 $ErrorActionPreference = "Stop" # this will stop the script on error
 
+
 set-psreadlineoption -editmode vi
 
 function x() { python main.py }
@@ -121,7 +122,8 @@ function prepare($dir) {
         return
     }
     mkdir $dir;
-    copy-item -Path "$env:userprofile\Documents\Github\algorithms\template\*" -Destination $dir -recurse
+    # copy-item -Path "$env:userprofile\Documents\Github\algorithms\template\*" -Destination $dir -recurse
+    copy-item -Path "$env:userprofile\Documents\Github\algorithms\template\main.py" -Destination $dir -recurse
 }
 
 function play($dir) {
