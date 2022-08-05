@@ -4,7 +4,19 @@ $ErrorActionPreference = "Stop" # this will stop the script on error
 
 set-psreadlineoption -editmode vi
 
-function x() { python main.py }
+function gst() { git status }
+function gad() { git add @args }
+
+function gcm() { git commit @args }
+
+#function x() { python main.py }
+function x() {
+    if (Test-Path main.py) {
+        python main.py @args
+    } elseif (Test-Path main.js) {
+        node main.js @args
+    }
+}
 
 function r() { python @args }
 
@@ -161,3 +173,12 @@ function cz{ z | python -c "z=list(__import__('sys').stdin); z=[s.strip().split(
 function cx{ fd --type d | fzf | cl }
 
 ### zlocation, fzf and fd end ###
+# Import the Chocolatey Profile that contains the necessary code to enable
+# tab-completions to function for `choco`.
+# Be aware that if you are missing these lines from your profile, tab completion
+# for `choco` will not function.
+# See https://ch0.co/tab-completion for details.
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}
