@@ -2,6 +2,9 @@
 $ErrorActionPreference = "Stop" # this will stop the script on error
 
 
+# enables bash-like autocompletion. Default: ctrl + space
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+
 set-psreadlineoption -editmode vi
 
 function gst() { git status }
@@ -16,6 +19,10 @@ function x() {
     } elseif (Test-Path main.js) {
         node main.js @args
     }
+}
+
+function algo() {
+    cd "$githubPath\algorithms\"
 }
 
 function r() { python @args }
