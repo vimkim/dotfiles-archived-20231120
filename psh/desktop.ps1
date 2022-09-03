@@ -1,3 +1,5 @@
+# git branch -m main test
+
 # emacs keybinding such as ctrl-w
 $ErrorActionPreference = "Stop" # this will stop the script on error
 
