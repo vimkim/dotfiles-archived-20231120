@@ -1,9 +1,20 @@
 # emacs keybinding such as ctrl-w
 $ErrorActionPreference = "Stop" # this will stop the script on error
 
+# This makes ctrl+w not work
+#set-psreadlineoption -editmode vi
+
+# Alt (Esc) + f, b moves the cursor forward and backward by a word.
+Set-PSReadLineOption -editmode Emacs
 
 # enables bash-like autocompletion. Default: ctrl + space
+# This must be below Set-PSReadLineOption -editmode. Otherwise not work...
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+# In order to accept a weird auto suggestion called 'predictive intellisense', press either right arrow or ctrl+f.
+
+# How to use backward search (ctrl + r):
+# ctrl r: ReverseSearchHistory
+# ctrl s: ForwardSearchHistory
 
 set-psreadlineoption -editmode vi
 
