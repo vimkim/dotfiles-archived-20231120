@@ -98,12 +98,12 @@ function ppt() {
 
 ### cl begin ###
 
-function _ls{Get-ChildItem -name @args -Force}
+function _ls { Get-ChildItem -name @args -Force }
 
 Set-Alias l _ls
 Set-Alias -Name ls -Value _ls -Option AllScope
 
-function ll{Get-ChildItem}
+function ll { Get-ChildItem }
 
 function _cd {
     # for pipelines to work
