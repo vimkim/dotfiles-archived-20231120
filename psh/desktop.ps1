@@ -41,7 +41,8 @@ function gcm() { git commit @args }
 function x() {
     if (Test-Path main.py) {
         python main.py @args
-    } elseif (Test-Path main.js) {
+    }
+    elseif (Test-Path main.js) {
         node main.js @args
     }
 }
@@ -118,12 +119,12 @@ function _cd {
     else {
         Set-Location $_cd_paths
     }
-#if ($args.count -eq 0){
-#    Set-Location $home
-#}
-#else{
-#    Set-Location @args
-#}
+    #if ($args.count -eq 0){
+    #    Set-Location $home
+    #}
+    #else{
+    #    Set-Location @args
+    #}
 }
 
 Set-Alias -Name cd -Value _cd -Option AllScope
@@ -212,5 +213,5 @@ function cx { fd --type d | fzf | cl }
 # See https://ch0.co/tab-completion for details.
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
+    Import-Module "$ChocolateyProfile"
 }
