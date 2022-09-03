@@ -22,6 +22,14 @@ function nvprofile() {
 
 function nvconfig() {
     cd $env:LOCALAPPDATA/nvim/
+}
+
+
+function temp() {
+    cd $home/temp
+}
+
+set-alias tmp temp
 
 function gst() { git status }
 function gad() { git add @args }
