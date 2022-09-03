@@ -16,7 +16,12 @@ Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 # ctrl r: ReverseSearchHistory
 # ctrl s: ForwardSearchHistory
 
-set-psreadlineoption -editmode vi
+function nvprofile() {
+    code $home/AppData/Local/nvim/init.vim
+}
+
+function nvconfig() {
+    cd $env:LOCALAPPDATA/nvim/
 
 function gst() { git status }
 function gad() { git add @args }
