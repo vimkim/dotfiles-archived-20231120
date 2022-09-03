@@ -32,6 +32,7 @@ function temp() {
 set-alias tmp temp
 
 function gst() { git status }
+
 function gad() { git add @args }
 
 function gcm() { git commit @args }
@@ -59,7 +60,7 @@ function profile() {
     code $profile
 }
 
-function profiledir(){
+function profiledir() {
     cd "$home\Documents\WindowsPowerShell\"
 }
 
