@@ -101,7 +101,7 @@ function ppt() {
 
 ### cl begin ###
 
-function _ls { Get-ChildItem -name @args -Force }
+function _ls { Get-ChildItem @args -Force | format-wide -property name -column 5 }
 
 Set-Alias l _ls
 Set-Alias -Name ls -Value _ls -Option AllScope
