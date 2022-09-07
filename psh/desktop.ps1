@@ -18,6 +18,11 @@ Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 # ctrl r: ReverseSearchHistory
 # ctrl s: ForwardSearchHistory
 
+
+# Install fzf and Psfzf
+set-psfzfoption -PSReadlineChordProvider 'ctrl+t' -PSReadlineChordReverseHistory 'ctrl+r'
+
+
 function nvprofile() {
     code $home/AppData/Local/nvim/init.vim
 }
