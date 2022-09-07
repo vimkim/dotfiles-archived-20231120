@@ -26,7 +26,6 @@ function nvconfig() {
     cd $env:LOCALAPPDATA/nvim/
 }
 
-
 function temp() {
     cd $home/temp
 }
@@ -38,6 +37,8 @@ function gst() { git status }
 function gad() { git add @args }
 
 function gcm() { git commit @args }
+
+function which() { get-command -all @args }
 
 #function x() { python main.py }
 function x() {
