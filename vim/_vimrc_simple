@@ -16,11 +16,18 @@ noremap K N
 noremap l i
 noremap L I
 
-inoremap ,s <esc>:w<cr>
-nnoremap ,s :w<cr>
-nnoremap ,q :q<cr>
+if exists('g:vscode')
+    nnoremap ,q <Cmd>Quit<CR>
+    nnoremap ,s <Cmd>Write<CR>
+else
+    inoremap ,s <esc>:w<cr>
+    nnoremap ,s :w<cr>
+    nnoremap ,q :q<cr>
+endif
 
 set nu
+
+set backspace=indent,eol,start " backspace and ctrl w does not work without this in vim.
 
 set number " Show absolute line numbers on the left.
 filetype plugin on " Auto-detect un-labeled filetypes
@@ -29,5 +36,16 @@ set ai " Sets auto-indentation
 set si " Sets smart-indentation
 set expandtab " Use spaces instead of a tab charater on TAB
 
+set mouse=a
 
+let mapleader=","
+
+set ignorecase " without this, :PlugInstall becomes annoying
+
+" TAB families
+set tabstop=4
+set shiftwidth=4 " >> << width
+set expandtab " expand TABs to spaces
+
+set background=light
 
