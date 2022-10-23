@@ -22,7 +22,9 @@ if exists('g:vscode')
 else
     inoremap ,s <esc>:w<cr>
     nnoremap ,s :w<cr>
-    nnoremap ,q :q<cr>
+    nnoremap ,q :bd<cr>
+    nnoremap <c-q> :q<cr>
+    nnoremap Q <esc>
 endif
 
 set nu
