@@ -1,0 +1,308 @@
+# git branch -m main test
+
+function gnvim() {
+    & "$home/downloads/neovide-windows/neovide.exe" --maximized @args
+}
+
+set-alias neovide gnvim
+set-alias gnv gnvim
+
+function nvinit() {
+    code "$home/AppData/Local/nvim/init.vim"
+}
+
+
+# emacs keybinding such as ctrl-w
+$ErrorActionPreference = "Stop" # this will stop the script on error
+
+# This makes ctrl+w not work
+#set-psreadlineoption -editmode vi
+
+# Alt (Esc) + f, b moves the cursor forward and backward by a word.
+Set-PSReadLineOption -editmode Emacs
+
+# enables bash-like autocompletion. Default: ctrl + space
+# This must be below Set-PSReadLineOption -editmode. Otherwise not work...
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+# In order to accept a weird auto suggestion called 'predictive intellisense', press either right arrow or ctrl+f.
+
+# How to use backward search (ctrl + r):
+# ctrl r: ReverseSearchHistory
+# ctrl s: ForwardSearchHistory
+
+
+# Install fzf and Psfzf
+set-psfzfoption -PSReadlineChordProvider 'ctrl+t' -PSReadlineChordReverseHistory 'ctrl+r'
+
+
+function nvprofile() {
+    code $home/AppData/Local/nvim/init.vim
+}
+
+function nvconfig() {
+    Set-Location $env:LOCALAPPDATA/nvim/
+}
+
+function temp() {
+    Set-Location $home/temp
+}
+
+set-alias tmp temp
+
+function gst() { git status }
+
+function gad() { git add @args }
+
+function gcm() { git commit @args }
+
+function which() { get-command -all @args }
+
+function whichpath() {
+    get-command -all @args | select -ExpandProperty Source
+}
+
+#function () { python main.py }
+function x() {
+    if (test-path main.py) {
+        python main.py @args
+    }
+    elseif (test-path main.js) {
+        node main.js @args
+    }
+    elseif (test-path ./src/main.rs) {
+        cargo run
+    }
+    elseif (test-path main.c) {
+        zig cc main.c
+        if ($?){
+            ./a.exe
+        }
+    }
+    elseif (test-path Main.java) {
+        javac Main.java
+        if ($?) {
+            java Main
+        }
+    }
+}
+
+function algo() {
+    Set-Location "$githubPath\algorithms\"
+}
+
+function r() { python @args }
+
+function mc() {
+    try{
+        mkdir @args
+    }catch [System.IO.IOException]{
+        echo "my exception: directory $args already exists"
+        echo "CD-ing thou..."
+    }
+    set-location @args
+}
+
+function co() { code @args }
+
+function profile() {
+    code $profile
+}
+
+function profiledir() {
+    Set-Location "$home\Documents\powershell"
+}
+
+# requires Administrator privilege. use 'sudo . pwsh'
+function ln ($target, $link) {
+    new-item -path $link -itemtype SymbolicLink -value $target
+}
+
+function dotfiles() {
+    set-location "$home\Documents\Github\dotfiles"
+}
+
+function diffBinary() {
+    fc.exe @args;
+}
+
+### CG hw 3 begin ###
+
+$githubPath = "$home/Documents/github"
+
+function cg() {
+    set-location "$githubPath/cg-hw3"
+}
+
+function hw() {
+    set-location "$githubPath/cg-hw3"
+}
+
+### CG hw 2 end ###
+
+### cl begin ###
+
+function _ls { Get-ChildItem @args -Force | format-wide -property name -column 5 }
+
+Set-Alias l _ls
+# Set-Alias -Name ls -Value _ls -Option AllScope
+
+function ll { Get-ChildItem }
+
+function _cd {
+    # for pipelines to work
+    [CmdletBinding()]
+    param(
+        [Parameter(ValueFromPipeline)]
+        $_cd_paths
+    )
+    if ($null -eq $_cd_paths) {
+        Set-Location $home
+    }
+    else {
+        Set-Location $_cd_paths
+    }
+    #if ($args.count -eq 0){
+    #    Set-Location $home
+    #}
+    #else{
+    #    Set-Location @args
+    #}
+}
+
+Set-Alias -Name cd -Value _cd -Option AllScope
+function cl {
+    [CmdletBinding()]
+    param(
+        [Parameter(ValueFromPipeline)]
+        $_cd_paths
+    )
+    If ($null -ne $_cd_paths) {
+        _cd $_cd_paths
+    }
+    _ls
+}
+
+set-alias touch ni # new-item
+
+function c { cl @args; }
+### cl end ###
+
+
+### baekjoon begin ###
+function cpm {
+    Get-Content main.py | set-clipboard
+}
+
+function cppy {
+    Get-Content main.py | set-clipboard
+}
+
+function cpcpp {
+    Get-Content main.cpp | set-clipboard
+}
+
+function mco($dir) {
+    mkdir $dir ; code $dir
+}
+
+function prepare($dir) {
+    if (Test-Path -Path $dir) {
+        "Path already exists!"
+        return
+    }
+    mkdir $dir;
+    # copy-item -Path "$env:userprofile\Documents\Github\algorithms\template\*" -Destination $dir -recurse
+    copy-item -Path "$env:userprofile\Documents\Github\algorithms\template\main.py" -Destination $dir -recurse
+}
+
+function play($dir) {
+    #new-item $dir/main.py;
+    #new-item $dir/i2;
+    prepare $dir
+    Set-Location $dir;
+    code -r .
+    code --goto main.py:23:4
+    #code --goto main.cpp:70:4
+}
+
+function compete($dir) {
+    mkdir $dir;
+    Set-Location $dir;
+    prepare A;
+    prepare B;
+    prepare C;
+    prepare D;
+    prepare E;
+    prepare F;
+}
+
+### baekjoon end ###
+
+
+### zlocation, fzf and fd begin ###
+
+## Import-Module ZLocation # this must come after other imports that modify prompt
+## Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n" # shows stat. must come after import zlocation
+## # you can RESET database by deleting $home/z-location.db file.
+## # Then, install fzf with 'sudo choco install fzf'
+#function cz { z | python -c "z=list(__import__('sys').stdin); z=[s.strip().split() for s in z]; z=[l[1] for l in z[3:-2]]; print('\n'.join(z))" | fzf | cl }
+## # Then, 'sudo choco install fd'
+
+set-alias cz zi
+# Do not forget the .fdignore setting
+function cx { fd --type d | fzf | cl }
+function vcx { set-location ; fd --type d | fzf | cl }
+
+
+### zlocation, fzf and fd end ###
+# Import the Chocolatey Profile that contains the necessary code to enable
+# tab-completions to function for `choco`.
+# Be aware that if you are missing these lines from your profile, tab completion
+# for `choco` will not function.
+# See https://ch0.co/tab-completion for details.
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+    Import-Module "$ChocolateyProfile"
+}
+
+Set-Alias lvim C:\Users\kimdh\.local\bin\lvim.ps1
+
+
+
+# For zoxide v0.8.0+
+Invoke-Expression (& {
+    $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
+    (zoxide init --hook $hook powershell | Out-String)
+})
+
+function dl() {
+    start chrome https://www.youtube.com/playlist?list=PLCNc54m6eBRVcL8NQTikTM-z6hvspx3cJ
+}
+
+function whichf() {
+    # get-command @args | select *
+    get-command @args | select -ExpandProperty Definition
+}
+
+# oh-my-posh init pwsh | Invoke-Expression
+
+
+# 2022-10-24: Currently pyenv + pipenv combination does not spawn pwsh 7.
+$Env:PIPENV_SHELL = "pwsh"
+# This prepends (envName) in front of pwsh prompt.
+# https://github.com/pypa/pipenv/issues/4264#issuecomment-845445399
+if ($env:PIPENV_ACTIVE -eq 1) {
+
+    function _OLD_PROMPT { "" }
+    Copy-Item -Path function:prompt -Destination function:_OLD_PROMPT
+
+
+    $_PROMPT_PREFIX = (($env:VIRTUAL_ENV -split "\\")[-1] -split "-")[0]
+    $pipenv_name = ((($(pip -V) -split ' ')[3]) -split '\\')[4]
+
+    function prompt {
+        Write-Host -NoNewline -ForegroundColor Green "($_PROMPT_PREFIX) " 
+        _OLD_PROMPT
+    
+    }
+}
