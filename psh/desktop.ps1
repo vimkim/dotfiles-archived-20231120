@@ -205,8 +205,6 @@ function compete($dir) {
 
 ### zlocation, fzf and fd begin ###
 
-Import-Module ZLocation # this must come after other imports that modify prompt
-Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n" # shows stat. must come after import zlocation
 # you can RESET database by deleting $home/z-location.db file.
 # Then, install fzf with 'sudo choco install fzf'
 function cz { z | python -c "z=list(__import__('sys').stdin); z=[s.strip().split() for s in z]; z=[l[1] for l in z[3:-2]]; print('\n'.join(z))" | fzf | cl }
