@@ -3,17 +3,23 @@ set visualbell
 set noerrorbells
 
 inoremap ,s <esc>
-nnoremap ,s <esc>
+nnoremap ,s <esc>:w<cr>
+nnoremap ,q <esc>:q<cr>
 
 "vim navigation enable
-noremap n gj
-noremap e gk
+noremap n j
+noremap N J
+
+noremap e k
+noremap E K
+
 noremap i l
-noremap k n|noremap K N
-noremap f e|noremap F E
-noremap u i|noremap U I
-noremap l u
-noremap t f
-noremap j t
+noremap I L
+
+noremap j e
+noremap J E
+
+noremap k n
+noremap K N
 
 nnoremap ,ru :action Run<cr>
