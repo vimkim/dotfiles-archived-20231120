@@ -21,9 +21,9 @@ if exists('g:vscode')
     nnoremap ,s <Cmd>Write<CR>
 else
     inoremap ,s <esc>:w<cr>
-    nnoremap ,s :w<cr>
-    nnoremap ,q :bd<cr>
-    nnoremap <c-q> :q<cr>
+    nnoremap ,s <esc>:w<cr>
+    nnoremap ,q <esc>:bd<cr>
+    nnoremap <c-q> <esc>:q<cr>
     nnoremap Q <esc>
 endif
 

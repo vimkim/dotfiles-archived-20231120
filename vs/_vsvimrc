@@ -16,6 +16,6 @@ noremap K N
 noremap l i
 noremap L I
 
-inoremap ,s <esc>:w<cr>
+inoremap ,s <esc>
 nnoremap ,s :w<cr>
 nnoremap ,q :q<cr>
