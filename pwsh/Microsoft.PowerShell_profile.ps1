@@ -6,6 +6,11 @@ function gnvim() {
 
 set-alias neovide gnvim
 set-alias gnv gnvim
+set-alias v nvim
+
+function vm() {
+    v (gci main.*)
+}
 
 function nvinit() {
     code "$home/AppData/Local/nvim/init.vim"
@@ -49,32 +54,46 @@ function temp() {
 
 set-alias tmp temp
 
+function venv_activate() { .\.venv\Scripts\activate }
+
 function gst() { git status }
 
 function gad() { git add @args }
 
 function gcm() { git commit @args }
 
-function which() { get-command -all @args }
+function gicm() { git commit -m @args }
+
+function gico() { git checkout @args }
+
+function gall() { git add . ; git commit -m ".", git push }
+
+function which() { get-command -all @args | Select-Object Name, Definition, CommandType | format-list }
 
 function whichpath() {
     get-command -all @args | select -ExpandProperty Source
 }
 
+function whicha() { get-command -all @args }
+
 #function () { python main.py }
 function x() {
     if (test-path main.py) {
+        mypy --strict .
         python main.py @args
     }
+    elseif (test-path package.json) {
+        npm start
+    }
     elseif (test-path main.js) {
-        node main.js @args
+        node --use-strict main.js @args
     }
     elseif (test-path ./src/main.rs) {
         cargo run
     }
     elseif (test-path main.c) {
         zig cc main.c
-        if ($?){
+        if ($?) {
             ./a.exe
         }
     }
@@ -93,9 +112,10 @@ function algo() {
 function r() { python @args }
 
 function mc() {
-    try{
+    try {
         mkdir @args
-    }catch [System.IO.IOException]{
+    }
+    catch [System.IO.IOException] {
         echo "my exception: directory $args already exists"
         echo "CD-ing thou..."
     }
@@ -193,6 +213,10 @@ function cpm {
     Get-Content main.py | set-clipboard
 }
 
+function cppwd {
+    (pwd).path | set-clipboard
+}
+
 function cppy {
     Get-Content main.py | set-clipboard
 }
@@ -271,11 +295,20 @@ Set-Alias lvim C:\Users\kimdh\.local\bin\lvim.ps1
 
 # For zoxide v0.8.0+
 Invoke-Expression (& {
-    $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
+        $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
     (zoxide init --hook $hook powershell | Out-String)
-})
+    })
 
-function dl() {
+function dl_files() {
+    ii "G://My Drive/0_ku/4-2/DL/final_prep"
+}
+
+function dl_site() {
+    start chrome https://kulms.korea.ac.kr/ultra/courses/_372945_1/cl/outline
+}
+
+
+function dl_videos() {
     start chrome https://www.youtube.com/playlist?list=PLCNc54m6eBRVcL8NQTikTM-z6hvspx3cJ
 }
 
@@ -284,15 +317,13 @@ function whichf() {
     get-command @args | select -ExpandProperty Definition
 }
 
-# oh-my-posh init pwsh | Invoke-Expression
 
-
+oh-my-posh init pwsh | Invoke-Expression # This must be in front of any prompt modification such as pipenv.
 # 2022-10-24: Currently pyenv + pipenv combination does not spawn pwsh 7.
 $Env:PIPENV_SHELL = "pwsh"
 # This prepends (envName) in front of pwsh prompt.
 # https://github.com/pypa/pipenv/issues/4264#issuecomment-845445399
 if ($env:PIPENV_ACTIVE -eq 1) {
-
     function _OLD_PROMPT { "" }
     Copy-Item -Path function:prompt -Destination function:_OLD_PROMPT
 
