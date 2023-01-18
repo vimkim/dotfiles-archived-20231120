@@ -63,16 +63,19 @@ set-alias tmp temp
 
 function venv_activate() { .\.venv\Scripts\activate }
 
+function gs() { git status }
 function gst() { git status }
-
-function gad() { git add @args }
-
-function gcm() { git commit @args }
-
+function ga() { git add @args }
+remove-alias gc -force
+function gc() { git commit @args }
+function gw() { git worktree @args }
+function gco() { git checkout @args }
+function gr() { git rebase @args }
+function gm() { git merge @args }
+function gp() { git pull @args }
+function gps() { git push @args }
 function gicm() { git commit -m @args }
-
 function gico() { git checkout @args }
-
 function gall() { git add . ; git commit -m ".", git push }
 
 function which() { get-command -all @args | Select-Object Name, Definition, CommandType | format-list }
