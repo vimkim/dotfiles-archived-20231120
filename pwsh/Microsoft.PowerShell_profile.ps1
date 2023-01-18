@@ -347,3 +347,5 @@ if ($env:PIPENV_ACTIVE -eq 1) {
     
     }
 }
+
+. ~/documents/github/dotfiles/pwsh/alias.ps1
