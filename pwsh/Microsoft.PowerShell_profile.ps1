@@ -16,6 +16,13 @@ function nvinit() {
     code "$home/AppData/Local/nvim/init.vim"
 }
 
+function j() {
+    idea64.exe @args
+}
+
+function id() {
+    idea64.exe @args
+}
 
 # emacs keybinding such as ctrl-w
 $ErrorActionPreference = "Stop" # this will stop the script on error
