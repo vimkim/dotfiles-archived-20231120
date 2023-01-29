@@ -195,11 +195,12 @@ function hw() {
 ### cl begin ###
 
 function _ls { Get-ChildItem @args -Force | format-wide -property name -column 5 }
-
+Remove-Alias ls -force
 Set-Alias l _ls
+Set-Alias ls _ls
+Set-Alias ll _ls
 # Set-Alias -Name ls -Value _ls -Option AllScope
 
-function ll { Get-ChildItem }
 
 function _cd {
     # for pipelines to work
@@ -372,3 +373,6 @@ if ($env:PIPENV_ACTIVE -eq 1) {
 }
 
 . ~/documents/github/dotfiles/pwsh/alias.ps1
+function source-ali {
+    . ~/documents/github/dotfiles/pwsh/alias.ps1
+}
