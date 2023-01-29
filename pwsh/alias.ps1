@@ -9,3 +9,7 @@ function spring_inflearn() {
 function cs() { 
     # start chrome ,q
 }
+
+function obsidian() {
+    cd "G:\My Drive\_obsidian"
+}

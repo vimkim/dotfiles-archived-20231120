@@ -63,20 +63,43 @@ set-alias tmp temp
 
 function venv_activate() { .\.venv\Scripts\activate }
 
+function gd() { git diff @args }
+function gb() { git branch @args }
+function gg() { git log --graph --all @args }
 function gs() { git status }
 function gst() { git status }
 function ga() { git add @args }
 remove-alias gc -force
 function gc() { git commit @args }
+remove-alias gcm -force
+function gcm() { git commit -m @args }
 function gw() { git worktree @args }
 function gco() { git checkout @args }
 function gr() { git rebase @args }
+
+remove-alias gm -force
 function gm() { git merge @args }
 function gp() { git pull @args }
 function gps() { git push @args }
 function gicm() { git commit -m @args }
 function gico() { git checkout @args }
 function gall() { git add . ; git commit -m ".", git push }
+
+function grm() { git rebase main }
+
+function gsw() { git switch @args }
+function gmn() { git merge --no-ff @args }
+
+function git-eradicate-dangerous() {
+    # https://stackoverflow.com/questions/25907313/push-to-origin-after-reflog-expire-and-gc-prune
+    git fsck --unreachable --dangling --no-reflogs
+    git reflog expire --expire=now --all # This deletes all from reflog but they still appear  in fsck
+    git gc --prune=now # Now fsck cannot even find them.
+
+    # note that this does not work for remote repos.
+    # https://stackoverflow.com/questions/47770729/git-is-it-possible-to-modify-delete-the-reflog-of-a-remote-git-repository-e-g
+
+}
 
 function which() { get-command -all @args | Select-Object Name, Definition, CommandType | format-list }
 
@@ -172,11 +195,12 @@ function hw() {
 ### cl begin ###
 
 function _ls { Get-ChildItem @args -Force | format-wide -property name -column 5 }
-
+Remove-Alias ls -force
 Set-Alias l _ls
+Set-Alias ls _ls
+Set-Alias ll _ls
 # Set-Alias -Name ls -Value _ls -Option AllScope
 
-function ll { Get-ChildItem }
 
 function _cd {
     # for pipelines to work
@@ -349,3 +373,6 @@ if ($env:PIPENV_ACTIVE -eq 1) {
 }
 
 . ~/documents/github/dotfiles/pwsh/alias.ps1
+function source-ali {
+    . ~/documents/github/dotfiles/pwsh/alias.ps1
+}
