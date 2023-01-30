@@ -1,16 +1,23 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    /*
-
-    */
-    "actions": [
+    "actions": 
+    [
         {
-            "command": {
+            "command": 
+            {
                 "action": "copy",
                 "singleLine": false
             },
             "keys": "ctrl+c"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 3
+            },
+            "keys": "alt+4"
         },
         {
             "command": "paste"
@@ -18,6 +25,22 @@
         {
             "command": "find",
             "keys": "ctrl+shift+f"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 0
+            },
+            "keys": "alt+1"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 4
+            },
+            "keys": "alt+5"
         },
         {
             "command": "unbound",
@@ -44,14 +67,8 @@
             "keys": "ctrl+alt+5"
         },
         {
-            "command": {
-                "action": "switchToTab",
-                "index": 2
-            },
-            "keys": "alt+3"
-        },
-        {
-            "command": {
+            "command": 
+            {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
@@ -59,78 +76,50 @@
             "keys": "alt+shift+d"
         },
         {
-            "command": {
+            "command": 
+            {
                 "action": "switchToTab",
-                "index": 4
+                "index": 2
             },
-            "keys": "alt+5"
+            "keys": "alt+3"
         },
         {
-            "command": {
-                "action": "switchToTab",
-                "index": 0
-            },
-            "keys": "alt+1"
-        },
-        {
-            "command": {
+            "command": 
+            {
                 "action": "switchToTab",
                 "index": 1
             },
             "keys": "alt+2"
-        },
-        {
-            "command": {
-                "action": "switchToTab",
-                "index": 3
-            },
-            "keys": "alt+4"
         }
     ],
-    /*
-
-    */
     "centerOnLaunch": true,
-    "launchMode": "maximizedFocus",
-    "firstWindowPreference": "defaultProfile",
-    "initialRows": 30,
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-    /*
-
-    */
-    "profiles": {
-        "defaults": {
+    "launchMode": "maximized",
+    "profiles": 
+    {
+        "defaults": 
+        {
             "backgroundImageOpacity": 0.19,
             "colorScheme": "SeoulNightLight",
             "cursorShape": "filledBox",
             "experimental.retroTerminalEffect": false,
-            "font": {
-                "face": "CaskaydiaCove Nerd Font Mono"
+            "font": 
+            {
+                "face": "CaskaydiaCove NFM"
             },
             "opacity": 60,
             "padding": "50",
             "useAcrylic": true
         },
-        "list": [
+        "list": 
+        [
             {
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
                 "name": "PowerShell",
                 "source": "Windows.Terminal.PowershellCore"
-            },
-            {
-                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-                "hidden": false,
-                "name": "Ubuntu",
-                "source": "Windows.Terminal.Wsl"
-            },
-            {
-                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": false,
-                "name": "Windows PowerShell"
             },
             {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
@@ -139,32 +128,21 @@
                 "name": "Command Prompt"
             },
             {
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
+            },
+            {
                 "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
                 "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
-            },
-            {
-                "guid": "{c3ebfec6-48e7-581b-a384-ac52a04baa1e}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 2019",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{82698ecf-9db4-5973-a029-b67d830536ee}",
-                "hidden": false,
-                "name": "Developer PowerShell for VS 2019",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
-                "hidden": false,
-                "name": "Git Bash",
-                "source": "Git"
             }
         ]
     },
-    "schemes": [
+    "schemes": 
+    [
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
@@ -260,17 +238,17 @@
         {
             "background": "#D9D9D9",
             "black": "#0F0F14",
-            "blue": "#34548A",
+            "blue": "#00B7EB",
             "brightBlack": "#0F0F14",
-            "brightBlue": "#34548A",
-            "brightCyan": "#0F4B6E",
+            "brightBlue": "#00B7EB",
+            "brightCyan": "#00B7EB",
             "brightGreen": "#33635C",
             "brightPurple": "#5A4A78",
             "brightRed": "#8C4351",
             "brightWhite": "#828594",
             "brightYellow": "#8F5E15",
             "cursorColor": "#FFFFFF",
-            "cyan": "#0F4B6E",
+            "cyan": "#00B7EB",
             "foreground": "#4C505E",
             "green": "#33635C",
             "name": "SeoulNightLight",
@@ -373,29 +351,6 @@
             "yellow": "#C4A000"
         },
         {
-            "background": "#E1E2E8",
-            "black": "#0F0F14",
-            "blue": "#34548A",
-            "brightBlack": "#0F0F14",
-            "brightBlue": "#34548A",
-            "brightCyan": "#0F4B6E",
-            "brightGreen": "#33635C",
-            "brightPurple": "#5A4A78",
-            "brightRed": "#8C4351",
-            "brightWhite": "#828594",
-            "brightYellow": "#8F5E15",
-            "cursorColor": "#FFFFFF",
-            "cyan": "#0F4B6E",
-            "foreground": "#4C505E",
-            "green": "#33635C",
-            "name": "TokyoNightLight",
-            "purple": "#5A4A78",
-            "red": "#8C4351",
-            "selectionBackground": "#FFFFFF",
-            "white": "#828594",
-            "yellow": "#8F5E15"
-        },
-        {
             "background": "#000000",
             "black": "#000000",
             "blue": "#000080",
@@ -419,6 +374,6 @@
             "yellow": "#808000"
         }
     ],
-    "theme": "system",
-    "useAcrylicInTabRow": true
+    "theme": "light",
+    "themes": []
 }
