@@ -65,7 +65,7 @@ function venv_activate() { .\.venv\Scripts\activate }
 
 function gd() { git diff @args }
 function gb() { git branch @args }
-function gg() { git log --graph --all @args }
+function gg() { git log --graph --all --decorate --oneline @args }
 function gs() { git status }
 function gst() { git status }
 function ga() { git add @args }
