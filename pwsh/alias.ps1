@@ -13,3 +13,7 @@ function cs() {
 function obsidian() {
     cd "G:\My Drive\_obsidian"
 }
+
+function gita() {
+    python -m gita @args
+}
