@@ -1,5 +1,6 @@
 # git branch -m main test
 
+
 function gnvim() {
     & "$home/downloads/neovide-windows/neovide.exe" --maximized @args
 }
@@ -63,32 +64,46 @@ set-alias tmp temp
 
 function venv_activate() { .\.venv\Scripts\activate }
 
+set-alias g git
 function gd() { git diff @args }
 function gb() { git branch @args }
 function gg() { git log --graph --all --decorate --oneline @args }
+
 function gs() { git status }
 function gst() { git status }
+
 function ga() { git add @args }
+
 remove-alias gc -force
 function gc() { git commit @args }
 remove-alias gcm -force
 function gcm() { git commit -m @args }
-function gw() { git worktree @args }
-function gco() { git checkout @args }
-function gr() { git rebase @args }
+function gicm() { git commit -m @args }
+
+function gp() { git pull @args }
+function gpl() { git pull @args }
+
+remove-alias gps -force
+function gps() { git push @args }
+function gpu() { git push @args }
+
+function gf() { git fetch @args }
 
 remove-alias gm -force
 function gm() { git merge @args }
-function gp() { git pull @args }
-function gps() { git push @args }
-function gicm() { git commit -m @args }
-function gico() { git checkout @args }
-function gall() { git add . ; git commit -m ".", git push }
+function gmn() { git merge --no-ff @args }
 
+function gr() { git rebase @args }
 function grm() { git rebase main }
 
+function gco() { git checkout @args }
+function gico() { git checkout @args }
+
+function gall() { git add . ; git commit -m ".", git push }
+
+
 function gsw() { git switch @args }
-function gmn() { git merge --no-ff @args }
+function gw() { git worktree @args }
 
 function git-eradicate-dangerous() {
     # https://stackoverflow.com/questions/25907313/push-to-origin-after-reflog-expire-and-gc-prune
