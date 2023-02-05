@@ -17,3 +17,7 @@ function obsidian() {
 function gita() {
     python -m gita @args
 }
+
+function txt() {
+    ii "G:\My Drive\0_txt\"
+}
