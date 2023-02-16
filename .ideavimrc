@@ -1,6 +1,7 @@
 set surround
 set visualbell
 set noerrorbells
+set scrolloff=999
 
 inoremap ,s <esc>
 nnoremap ,s <esc>:w<cr>
@@ -27,6 +28,10 @@ noremap l i
 noremap L I
 
 nnoremap ,x :action Run<cr>
+nnoremap ,d :action Debug<cr>
 nnoremap ,n :action Generate<cr>
+
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
 
 map gh <Action>(ShowErrorDescription)
