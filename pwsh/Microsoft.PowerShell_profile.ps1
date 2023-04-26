@@ -25,6 +25,10 @@ function id() {
     idea64.exe @args
 }
 
+function find-pid-using-port() {
+    netstat -ano | findstr @args
+}
+
 # emacs keybinding such as ctrl-w
 $ErrorActionPreference = "Stop" # this will stop the script on error
 
@@ -127,7 +131,7 @@ function whicha() { get-command -all @args }
 #function () { python main.py }
 function x() {
     if (test-path main.py) {
-        mypy --strict .
+        # python -m mypy --strict .
         python main.py @args
     }
     elseif (test-path package.json) {
