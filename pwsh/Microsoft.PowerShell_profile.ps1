@@ -137,6 +137,9 @@ function x() {
     elseif (test-path package.json) {
         npm start
     }
+    elseif (test-path index.ts) {
+        tsc && node --use-strict ./dist/index.js @args
+    }
     elseif (test-path main.js) {
         node --use-strict main.js @args
     }
@@ -154,6 +157,12 @@ function x() {
         if ($?) {
             java Main
         }
+    }
+}
+
+function t() {
+    if (test-path package.json) {
+        npm test
     }
 }
 
@@ -371,27 +380,13 @@ function whichf() {
 }
 
 
-oh-my-posh init pwsh | Invoke-Expression # This must be in front of any prompt modification such as pipenv.
-# 2022-10-24: Currently pyenv + pipenv combination does not spawn pwsh 7.
-$Env:PIPENV_SHELL = "pwsh"
-# This prepends (envName) in front of pwsh prompt.
-# https://github.com/pypa/pipenv/issues/4264#issuecomment-845445399
-if ($env:PIPENV_ACTIVE -eq 1) {
-    function _OLD_PROMPT { "" }
-    Copy-Item -Path function:prompt -Destination function:_OLD_PROMPT
-
-
-    $_PROMPT_PREFIX = (($env:VIRTUAL_ENV -split "\\")[-1] -split "-")[0]
-    $pipenv_name = ((($(pip -V) -split ' ')[3]) -split '\\')[4]
-
-    function prompt {
-        Write-Host -NoNewline -ForegroundColor Green "($_PROMPT_PREFIX) " 
-        _OLD_PROMPT
-    
-    }
-}
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/hunk.omp.json" | Invoke-Expression # This must be in front of any prompt modification such as pipenv.
 
 . ~/documents/github/dotfiles/pwsh/alias.ps1
 function source-ali {
     . ~/documents/github/dotfiles/pwsh/alias.ps1
 }
+
+# permanently modify user/system environment variables
+# https://stackoverflow.com/questions/714877/setting-windows-powershell-environment-variables
+# [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\bin", "Machine")
