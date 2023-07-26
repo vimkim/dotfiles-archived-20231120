@@ -27,11 +27,26 @@ noremap K N
 noremap l i
 noremap L I
 
-nnoremap ,x :action Run<cr>
-nnoremap ,d :action Debug<cr>
+" nnoremap ,x :action Run<cr> " the document says to use <Action> instead of
+" :action, and <Action> does not work with noremap
+nnoremap ,dr :action Debug<cr>
 nnoremap ,n :action Generate<cr>
+
+map ,x <Action>(Run)
+map ,iv <Action>(IntroduceVariable)
+
+map ,rc <Action>(ContextRun)
+map ,dc <Action>(ContextDebug)
+
+map ,rt <Action>(RunConfigurationAsAction_Run_All Tests_default_target)
+map ,rr <Action>(RunConfigurationAsAction_Run_start status_default_target)
+
+map ,t <Action>(ActivateTerminalToolWindow)
+map <c-t> <Action>(ActivateTerminalToolWindow)
+
 
 nnoremap <c-o> :action Back<cr>
 nnoremap <c-i> :action Forward<cr>
+
 
 map gh <Action>(ShowErrorDescription)
