@@ -1,13 +1,15 @@
 # git branch -m main test
 
 
-function gnvim() {
-    & "$home/downloads/neovide-windows/neovide.exe" --maximized @args
-}
+# function gnvim() {
+#     & "$home/downloads/neovide-windows/neovide.exe" --maximized @args
+# }
 
-set-alias neovide gnvim
-set-alias gnv gnvim
+# set-alias neovide gnvim
+# set-alias gnv gnvim
 set-alias v nvim
+set-alias w webstorm64.exe
+set-alias co code
 
 function vm() {
     v (gci main.*)
@@ -26,6 +28,10 @@ function id() {
 }
 
 function find-pid-using-port() {
+    netstat -ano | findstr @args
+}
+
+function kill-pid-using-port() {
     netstat -ano | findstr @args
 }
 
@@ -71,7 +77,10 @@ function venv_activate() { .\.venv\Scripts\activate }
 set-alias g git
 function gd() { git diff @args }
 function gb() { git branch @args }
-function gg() { git log --graph --all --decorate --oneline @args }
+function gg() { git log --graph --remotes --all --decorate --oneline @args }
+
+function gl() { git log --graph --remotes --all --decorate --oneline @args }
+function gloga() { git log --graph --remotes --all --decorate --oneline @args }
 
 function gs() { git status }
 function gst() { git status }
@@ -108,6 +117,10 @@ function gall() { git add . ; git commit -m ".", git push }
 
 function gsw() { git switch @args }
 function gw() { git worktree @args }
+
+function gcz() {
+    cz.ps1
+}
 
 function git-eradicate-dangerous() {
     # https://stackoverflow.com/questions/25907313/push-to-origin-after-reflog-expire-and-gc-prune
@@ -324,6 +337,17 @@ function compete($dir) {
 
 ### baekjoon end ###
 
+. ~/documents/github/dotfiles/pwsh/alias.ps1
+function source-ali {
+    . ~/documents/github/dotfiles/pwsh/alias.ps1
+}
+
+Set-Alias lvim C:\Users\kimdh\.local\bin\lvim.ps1
+
+function whichf() {
+    # get-command @args | select *
+    get-command @args | select -ExpandProperty Definition
+}
 
 ### zlocation, fzf and fd begin ###
 
@@ -334,7 +358,12 @@ function compete($dir) {
 #function cz { z | python -c "z=list(__import__('sys').stdin); z=[s.strip().split() for s in z]; z=[l[1] for l in z[3:-2]]; print('\n'.join(z))" | fzf | cl }
 ## # Then, 'sudo choco install fd'
 
-set-alias cz zi
+# set-alias cz zi # I just want to benefit from zoxide's history feature
+function cz {
+    zoxide query -l | fzf | cl
+}
+
+
 # Do not forget the .fdignore setting
 function cx { fd --type d | fzf | cl }
 function vcx { set-location ; fd --type d | fzf | cl }
@@ -351,42 +380,19 @@ if (Test-Path($ChocolateyProfile)) {
     Import-Module "$ChocolateyProfile"
 }
 
-Set-Alias lvim C:\Users\kimdh\.local\bin\lvim.ps1
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/hunk.omp.json" | Invoke-Expression # This must be in front of any prompt modification such as pipenv.
 
+# permanently modify user/system environment variables
+# https://stackoverflow.com/questions/714877/setting-windows-powershell-environment-variables
+# [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\bin", "Machine")
 
 
 # For zoxide v0.8.0+
+# dk: this must come after 'oh-my-posh' or 'starship' since they override prompt hooks.
 Invoke-Expression (& {
         $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
     (zoxide init --hook $hook powershell | Out-String)
     })
 
-function dl_files() {
-    ii "G://My Drive/0_ku/4-2/DL/final_prep"
-}
-
-function dl_site() {
-    start chrome https://kulms.korea.ac.kr/ultra/courses/_372945_1/cl/outline
-}
-
-
-function dl_videos() {
-    start chrome https://www.youtube.com/playlist?list=PLCNc54m6eBRVcL8NQTikTM-z6hvspx3cJ
-}
-
-function whichf() {
-    # get-command @args | select *
-    get-command @args | select -ExpandProperty Definition
-}
-
-
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/hunk.omp.json" | Invoke-Expression # This must be in front of any prompt modification such as pipenv.
-
-. ~/documents/github/dotfiles/pwsh/alias.ps1
-function source-ali {
-    . ~/documents/github/dotfiles/pwsh/alias.ps1
-}
-
-# permanently modify user/system environment variables
-# https://stackoverflow.com/questions/714877/setting-windows-powershell-environment-variables
-# [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\bin", "Machine")
+Import-Module PSReadLine
+Import-Module posh-git
